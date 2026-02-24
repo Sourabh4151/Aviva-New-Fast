@@ -1,0 +1,180 @@
+.header-container {
+
+    /* position: relative; */
+    width: 100%;
+    /* margin: 0 10%; */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 5%;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #004C8E;
+    font-size: 24px;   
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo {
+    height: 40px;
+    object-fit: contain;
+}
+
+.logo-mobile {
+    display: none;
+}
+
+.logo-desktop {
+    display: block;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding-right: 40px;
+    height: 100%;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    z-index: 2;
+}
+
+.nav-link {
+    color: #004C8E !important;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Gotham';
+    
+    z-index: 2;
+}
+
+.logout-button {
+    background-color: #004C8E;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    min-width: 140px;
+    z-index: 2;
+}
+
+.header-icon-img {
+    height: 80px;
+    width: 50%;
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    top: 0;
+}
+
+.hamburger-icon {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    margin-right: 20px;
+    z-index: 2;
+}
+
+.hamburger-icon .bar {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    border-radius: 2px;
+}
+
+.mobile-menu {
+    display: none;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: end;
+
+    background-color: #eceef0;
+    padding: 10px 20px;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    gap: 30px;
+    width: 100%;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+}
+
+.mobile-menu.open {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        width: 100%;
+        overflow: hidden;
+        background-color: #ffff;
+    }
+
+    .logo-desktop {
+        display: none;
+      }
+    
+      .logo-mobile {
+        display: block;
+      }
+
+    /* Match home page mobile logo size (fitted) */
+    .header-container .logo {
+        height: 30px;
+        width: auto;
+        max-width: 140px;
+    }
+
+    .header-content {
+        width: 100%;
+        padding: 5px;
+        
+    }
+
+    .header-left {
+        align-items: flex-start;
+        gap: 5px;
+      
+    }
+
+    .logout-button {
+        height: 32px;
+        padding: 0px;
+        min-width: 100px;
+    }
+
+    .header-right {
+        display: none;
+    }
+
+    .hamburger-icon {
+        display: flex;
+    }
+
+    .mobile-menu {
+        display: none;
+        /* Initially hidden */
+    }
+
+    .mobile-menu.open {
+        display: flex;
+    }
+}

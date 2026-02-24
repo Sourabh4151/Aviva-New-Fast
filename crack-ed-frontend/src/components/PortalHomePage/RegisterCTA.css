@@ -1,0 +1,15 @@
+.bg-orange {
+    background-color: #F26522;
+  }
+  
+  .icon-holder {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .bg-purple-50 {
+    background-color: #f9f0fc;
+  }

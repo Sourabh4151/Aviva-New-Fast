@@ -1,0 +1,181 @@
+.registration-container {
+  max-width: 385px; /* match right card inner width */
+  margin: 0 auto;
+  padding: 0rem;
+  width: 100%;
+  z-index: 11;
+  box-sizing: border-box;
+}
+
+.registration-container .registration-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 28px;
+}
+
+.registration-container .registration-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* make inputs fill available width */
+  gap: 0px; /* design gap between fields */
+  margin: 0; /* card already has padding */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.registration-container .form-group {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.registration-container .form-control {
+  width: 100%;
+  height: 50px;
+  padding: 0 20px;
+  border: 1px solid rgba(217,217,217,1);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  color: rgba(105,105,105,1);
+  box-sizing: border-box;
+}
+
+/* New OTP button-inside-input styles */
+.registration-container .mobile-input-wrapper {
+  position: relative;
+}
+
+.registration-container .form-control.mobile-number-input {
+  padding-right: 6rem;
+}
+
+.registration-container .btn-get-otp-inside {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(30,30,30,1); /* darker text per spec */
+  font-weight: 500; /* Montserrat 500 medium */
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  padding: 0;
+  font-size: 12px; /* spec */
+  text-decoration: underline;
+  text-decoration-style: solid;
+}
+
+/* Request a callback: 206×52px, radius 5px, Helvetica Neue 700 14px, letter-spacing 2%, white */
+.registration-container .btn-submit-createac {
+  background-color:rgba(157, 40, 87, 1); /* yellow per spec */
+  color: rgba(250, 250, 250, 1); /* dark text */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500; /* Medium */
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0.02em; /* 2% */
+  padding: 0;
+  border-radius: 5px;
+  border: none;
+  width: 206px;
+  min-height: 52px;
+  height: 52px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  box-sizing: border-box;
+  margin: 16px auto 0; /* centered inside card */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.registration-form .form-control::-webkit-input-placeholder {
+  font-weight: 300;
+}
+.registration-form .form-control:-moz-placeholder  {
+  font-weight: 300;
+}
+
+.registration-container .btn-submit:hover {
+  background-color: #e05a1a;
+}
+
+@media (max-width: 768px) {
+  .registration-container .registration-form {
+    margin: 20px 16px;
+    gap: 13px; /* mobile vertical gap between fields */
+  }
+
+  .registration-container .btn-submit-createac {
+    width: 100%;
+    max-width: 100%;
+    min-width: unset;
+  }
+
+  .otp-instruction .otp-container {
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .registration-container {
+    padding: 0.5rem;
+    max-width: 100%;
+  }
+
+  .registration-container .registration-form {
+    margin: 16px 12px;
+    gap: 13px; /* ensure consistent gap on small screens */
+  }
+
+  .registration-container .form-control.mobile-number-input {
+    padding-right: 5.5rem;
+  }
+
+  .registration-container .btn-get-otp-inside {
+    right: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .registration-container .btn-submit-createac {
+    width: 100%;
+    min-height: 48px;
+    font-size: 0.9rem;
+  }
+
+  .registration-container .otp-box {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .registration-container .btn-submit {
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .registration-container .otp-box {
+    width: 90%;
+    height: 2.2rem;
+    font-size: 1rem;
+    box-shadow: 1 1 1 1rem #000;
+  }
+
+  .registration-container .btn-get-otp-inside {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .registration-container {
+    max-width: 550px;
+  }
+
+  .registration-container .btn-submit {
+    padding: 0.9rem;
+  }
+}

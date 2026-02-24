@@ -1,0 +1,66 @@
+.thankyou-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.thankyou-illustration {
+  flex: 1;
+  max-width: 450px;
+  padding: 1rem;
+}
+.thankyou-illustration img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+.thankyou-message {
+  flex: 1;
+  padding: 1rem 2rem;
+  max-width: 500px;
+}
+.thankyou-message h2 {
+  color: #6D3078;
+  font-size: 28px;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+.thankyou-message p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.contact-number {
+  color: #EC691F;
+  font-weight: 600;
+  font-size: 16px;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+@media (max-width: 768px) {
+  .thankyou-wrapper {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+    min-height: auto;
+  }
+  .thankyou-illustration, .thankyou-message {
+    max-width: 100%;
+    padding: 1rem 0;
+  }
+  .thankyou-message h2 {
+    font-size: 24px;
+  }
+  .thankyou-message p {
+    font-size: 15px;
+  }
+  .contact-number {
+    font-size: 15px;
+  }
+}

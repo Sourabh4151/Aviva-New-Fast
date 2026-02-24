@@ -1,0 +1,11 @@
+/crack-ed-backend/__pycache__
+__pycache__/
+*.pyc
+*.log
+nohup.out
+uploads/
+deploy.sh
+AURUM.pem
+/crack-ed-backend/google_cloud_credentials.json
+/crack-ed-frontend/node_modules
+

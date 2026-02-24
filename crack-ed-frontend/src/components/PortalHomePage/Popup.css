@@ -1,0 +1,147 @@
+/* Popup.css */
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.popup-card {
+  position: relative;
+  border-radius: 15px;
+  /* width: 90%; */
+  width: 648px;
+  background: #fff;
+  height: 486px;
+  /* margin-top: 638px; */
+  /* margin-left: 339px; */
+  border-radius: 15px;
+  /* padding: 24px 20px 32px; */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.popup-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.popup-image {
+  width: 100%;
+  height: 217px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.popup-content h2 {
+  font-family: 'Gotham rounded', sans-serif;
+font-weight: 400;
+font-size: 24px;
+line-height: 100%;
+letter-spacing: 0%;
+vertical-align: middle;
+color: #000000;
+text-align: left;
+margin-left: 20px;
+margin-top: 20px;
+
+}
+
+.popup-content p {
+  font-family: 'Gotham rounded', sans-serif;
+font-weight: 200;
+font-size: 16px;
+line-height: 27px;
+letter-spacing: 0%;
+color: #3D3D3D;
+text-align: left;
+margin-left: 20px;
+margin-right: 10px;
+/* margin-top: 20px; */
+margin-bottom: 40px;
+
+}
+
+.popup-btn {
+  background-color: #004C8C;
+  color: white;
+  padding: 10px 28px;
+  height: 40px;
+  width: 168px;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.popup-btn:hover {
+  background-color: #004C8C;
+}
+
+@media(max-width: 768px) {
+  .popup-card{
+    width: 360px;
+height: 341px;
+/* padding-right: 15px; */
+/* padding-left: 15px; */
+border-radius: 10px;
+
+  }
+
+  .popup-image {
+  width: 360px;
+  height: 114px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+
+.popup-content h2 {
+  font-family: 'Gotham rounded', sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 100%;
+letter-spacing: 0%;
+vertical-align: middle;
+color: #000000;
+
+}
+
+.popup-content p {
+  font-family: 'Gotham rounded', sans-serif;
+font-weight: 400;
+font-size: 14px;
+line-height: 21px;
+letter-spacing: 0%;
+color: #3D3D3D;
+
+}
+
+
+.popup-btn {
+  background-color: #004C8C;
+  color: white;
+  padding: 10px 28px;
+  height: 40px;
+  width: 168px;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+}

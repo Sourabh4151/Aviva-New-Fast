@@ -1,0 +1,166 @@
+.payment-container {
+  padding: 2rem;
+  font-family: sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.method-box {
+  border: 1px solid #004C8E;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  background-color: #fff;
+}
+
+.method-label {
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.method-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.method-btn {
+  background: #f9f9f9;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.method-btn:hover {
+  background: #f0f0f0;
+}
+
+.method-btn.selected {
+  background: #004C8E;
+  border: 1px solid #004C8E;
+  color: #ffffff;
+}
+
+.installment-box {
+  margin-top: 1.5rem;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.installment-label {
+  margin-bottom: 1rem;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* Amount input + button layout */
+.installments {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.installments input[type="number"] {
+  padding: 0.6rem;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+/* Remaining balance */
+.remaining-balance {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.remaining-balance h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+/* Proceed to pay button */
+.proceedtopay-btn {
+  background-color: #004C8E;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  margin-left: 25rem;
+}
+
+.proceed-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ✅ Enhanced Mobile Styling */
+@media (max-width: 768px) {
+  .payment-container {
+    padding: 1rem;
+  }
+
+  .method-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .method-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .installments {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .installments input {
+    width: 100%;
+  }
+
+  .proceedtopay-btn {
+    width: 80%;
+    padding: 0.9rem;
+    font-size: 16px;
+    margin-left: 0;
+  }
+
+  .remaining-balance {
+    text-align: center;
+  }
+
+  .remaining-balance h2 {
+    font-size: 18px;
+  }
+
+
+  .installments input {
+    width: 100%;
+  }
+
+  /* .proceed-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-left: 0em;
+  } */
+
+}

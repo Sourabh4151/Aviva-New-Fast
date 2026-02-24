@@ -1,0 +1,73 @@
+.App {
+  text-align: center;
+  font-family: 'Gotham';
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+@font-face {
+  font-family: 'Gotham';
+  src: url(./font/GothamRounded/gothamrnd_medium.otf) format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url(./font/GothamRounded/gothamrnd_bold.otf) format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+/* @font-face {
+  font-family: 'Gotham';
+  src: url(./font/Gotham/GOTHAM-BLACK.TTF) format('truetype');
+  font-weight: 700;
+  font-style: normal;
+} */
+@font-face {
+  font-family: 'Gotham';
+  src: url(./font/GothamRounded/GothamRoundedLight.ttf) format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham Rounded';
+  src: url(./font/GothamRounded/gothamrnd_medium.otf) format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}

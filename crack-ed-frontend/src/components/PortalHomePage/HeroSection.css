@@ -1,0 +1,601 @@
+/* Hero Section Styles – min-height so content can be vertically centered (image 1st) */
+.hero-section {
+  width: 100%;
+  min-height: 670px;
+  position: relative;
+  background: url('../../assets/finaova_hero.jpg') center center / cover no-repeat;
+  padding-bottom: 3rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.overlay {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+/* Left column: fixed design frame (desktop) */
+.udaan-left-holder {
+  display: flex;
+  flex-direction: column;
+  /* gap: 30px; */
+  margin-top: 0;
+  margin-left: 0;
+  width: 541px !important; /* match design frame width */
+  max-width: 541px !important;
+  box-sizing: border-box;
+  overflow: visible; /* allow chips to render fully */
+}
+
+.hero-section-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+
+/* Title: Helvetica Neue 700, 54px, 100% line-height, 0% letter-spacing, white */
+.udaan-hero-title {
+  font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+  font-weight: 600; /* SemiBold */
+  font-size: 48px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: rgba(255, 255, 255, 1);
+  margin: 0;
+  max-width: 541px !important; /* constrain to design frame width */
+}
+
+/* Aviva SVG/logo sizing per spec */
+.aviva-hero-svg {
+  width: 197px;
+  height: 41px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .aviva-hero-svg {
+    width: 160px;
+    height: auto;
+    margin-bottom: 12px;
+  }
+}
+.aurum-program-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 4rem 2rem;
+  align-items: flex-start;
+}
+
+.aurum-program-left-holder {
+  padding-left: 5%;
+  flex: 1;
+  max-width: 60%;
+}
+
+.aurum-program-right-holder {
+  width: 35%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+}
+
+.aurum-program-hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  font-family: 'Helvetica Neue', sans-serif;
+  max-width: 600px;
+}
+
+/* Form title: Helvetica Neue 500, 18px, line-height 27px, rgba(1,49,67,1) */
+.heading-registration-home-page {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500; /* Medium */
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: rgba(30,30,30,1);
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.job-tag-container {
+  display: flex;
+  align-items: center;
+  background-color: #EC691F;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  color: white;
+  font-family: 'Helvetica Neue', sans-serif;
+  width: fit-content;
+  min-width: unset;
+}
+
+.top-info-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 34px;
+  width: 100%;
+  
+}
+
+/* CTC/Fees container: horizontal, tighter gap */
+.udaan-info-cards {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 0;
+  justify-content: flex-start;
+  align-items: flex-start; /* align chips to the left edge */
+  min-height: 38px;
+  flex-wrap: wrap;
+  width: 650px !important;   /* container fills design frame */
+  height: auto !important; /* allow flexible wrapping on mobile/various text lengths */
+  overflow: visible;
+  align-content: flex-start;
+  box-sizing: border-box;
+}
+
+/* CTC/Fees pills: compact rounded chips */
+.udaan-info-card {
+  /* background: rgba(0, 0, 0, 0.35); */
+  color: rgba(250, 250, 250, 1); /* exact white spec */
+  border-radius: 100px;
+  font-family: 'Gotham Rounded', 'Helvetica Neue', sans-serif;
+  font-weight: 500; /* Gotham Rounded 500 */
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  min-height: 38px;
+  height: 38px;            /* fixed height per spec */
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start; /* align dot + text to left */
+  text-align: left;
+  padding: 0 10px;         /* horizontal padding, vertical constrained by height */
+  box-sizing: border-box;
+  white-space: nowrap;
+  border: 1px solid rgba(250,250,250,1); /* clearer white border per spec */
+  gap: 5px;               /* spacing between possible inner elements (dot + text) */
+}
+
+/* white circular dot inside each chip */
+.chip-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255,255,255,1);
+  display: inline-block;
+  flex: 0 0 18px;
+  box-sizing: border-box;
+  margin-right: 8px;
+}
+
+/* Frame 199: 385×510, drop shadow 0 5px 15px rgba(0,0,0,0.05) */
+.udaan-right-holder .form-box {
+  width: 373px; /* design width */
+  min-height: auto; /* match design hug */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 8px; /* 8px radius per spec */
+  padding: 32px; /* inner padding per spec */
+  box-sizing: border-box;
+}
+
+/* Position the right registration card to the far right of the hero */
+.udaan-right-holder {
+  margin-left: auto;
+  width: 385px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 70px; /* align with hero left padding */
+  box-sizing: border-box;
+}
+
+.form-box {
+  width: 100%;
+}
+
+.form-box input[type="text"],
+.form-box input[type="email"],
+.form-box input[type="tel"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.otp-input {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.otp-input input {
+  width: 40px;
+  height: 44px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.get-otp-btn {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #004b80;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.register-btn {
+  background-color: #004b80;
+  color: white;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  width: 100%;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+
+/* Mobile form wrapper – use width 90% when parent has w-90 (Bootstrap doesn't define it) */
+.mobile-registration-wrapper .form-box-mobile.w-90 {
+  width: 90%;
+}
+
+.form-box-mobile {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  max-width: 420px;
+  margin: 1.5rem auto;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .form-box-mobile {
+    display: none;
+  }
+}
+
+/* Hero row — position the left frame to match design */
+.udaan-hero-flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+  padding: 141px 40px 72px 70px; /* top right bottom left */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .udaan-hero-flex-row {
+    flex-direction: column;
+    align-items: center;
+    padding: 6rem 1rem 2rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 520px;
+    background: url('../../assets/finaova_hero.jpg') / contain no-repeat;
+    padding: 2rem 1rem 0 1rem;
+    text-align: center;
+  }
+
+  .aurum-program-row {
+    flex-direction: column;
+    align-items: center;          /* Center horizontally */
+    padding: 2rem;
+    min-height: 100vh;            /* Full screen height */
+    text-align: center;
+  }
+
+
+  .udaan-hero-title{
+ font-size: 40px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: white;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    padding: 0 1rem;
+    width: auto;
+    font-family: 'Helvetica Neue', sans-serif;
+  }
+
+
+  .aurum-program-left-holder,
+  .aurum-program-right-holder {
+    background: transparent !important;
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .aurum-program-hero-title {
+    font-size: 1.75rem;
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .udaan-info-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .udaan-info-card {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .aurum-program-right-holder {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    width: 90%;
+  }
+
+  .heading-registration-home-page {
+    font-family: 'Helvetica ', sans-serif;
+font-weight: 700;
+font-size: 24px;
+line-height: 130%;
+letter-spacing: 0%;
+
+  }
+
+  .form-box input[type="text"],
+  .form-box input[type="email"],
+  .form-box input[type="tel"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+  }
+
+  .otp-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 1rem 0;
+  }
+
+  .otp-input input {
+    width: 40px;
+    height: 44px;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+
+  .register-btn {
+    background-color: #004b80;
+    color: white;
+    font-size: 1rem;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .get-otp-btn {
+    font-size: 0.9rem;
+    color: #004b80;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+
+   /* Frame 1166: vertical, gap 16px, padding 16px, width fill */
+   .udaan-left-holder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    width: 100%;
+    max-width: 358px;
+    gap: 16px;
+    box-sizing: border-box;
+  }
+
+  /* Frame 930: vertical, gap 20px, width 253px (fill on narrow) */
+  .udaan-info-cards {
+    gap: 20px;
+    padding-top: 0;
+    width: 100%;
+    max-width: 253px;
+  }
+
+  /* CTC/Fees cards: 253×56 hug, radius 15px, padding 16px 24px, gradient */
+  .udaan-info-card {
+    /* Use translucent dark pill on mobile instead of blue gradient */
+    width: 100% !important;
+    max-width: 253px;
+    min-height: 38px;
+    height: auto;
+    padding: 8px 12px;
+    border-radius: 100px;
+    box-sizing: border-box;
+    background: rgba(0,0,0,0.35);
+    color: rgba(250,250,250,1);
+    border: 1px solid rgba(250,250,250,1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    white-space: normal; /* allow wrapping */
+    overflow: visible;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    min-height: 420px;
+    padding: 1.5rem 0.75rem 0 0.75rem;
+  }
+
+  .udaan-hero-flex-row {
+    padding: 5rem 0.75rem 1rem 0.75rem;
+  }
+
+  .udaan-hero-title {
+    font-size: 1.5rem;
+    line-height: 1.35;
+    padding: 0 0.5rem;
+  }
+
+  /* Keep same design specs: 253px, 56px hug, 15px radius, 16px 24px padding, gradient */
+  .udaan-left-holder {
+    padding: 16px;
+    gap: 16px;
+    max-width: 100%;
+  }
+
+  .udaan-info-cards {
+    gap: 20px;
+    padding-top: 0;
+    max-width: 253px;
+  }
+
+  .udaan-info-card {
+    /* Match desktop chip style on small screens: translucent dark pill with white border */
+    width: 100%;
+    max-width: 253px;
+    min-height: 38px;
+    height: auto;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 100px;
+    background: rgba(0,0,0,0.35);
+    color: rgba(250,250,250,1);
+    border: 1px solid rgba(250,250,250,1);
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .form-box-mobile {
+    margin: 1rem 0.75rem;
+    padding: 1rem;
+    max-width: 100%;
+  }
+}
+
+/* Additional responsive overrides to ensure proper stacking and sizing on mobile */
+@media (max-width: 768px) {
+  /* Use container padding to control horizontal gutters so left/right are equal */
+  .hero-section-container {
+    padding: 0 16px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  .udaan-hero-flex-row {
+    padding: 80px 0 40px 0; /* horizontal padding removed here */
+    box-sizing: border-box;
+  }
+
+  .udaan-left-holder {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0; /* rely on container padding for symmetric gutters */
+    box-sizing: border-box;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+
+  .udaan-hero-title {
+    font-size: 32px;
+    text-align: left;
+    padding: 0;
+    max-width: 100% !important;
+  }
+
+  .aviva-hero-svg {
+    width: 160px;
+    height: auto;
+    margin-bottom: 12px;
+  }
+
+  .udaan-info-cards {
+    width: 100% !important;
+    height: auto !important;
+    gap: 12px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 0; /* rely on container padding */
+  }
+
+  .udaan-info-card {
+    /* Use full width chips on narrow screens to avoid text clipping */
+    min-height: 38px;
+    height: auto;
+    padding: 8px 12px;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    white-space: normal;          /* allow wrapping */
+    justify-content: flex-start;  /* align dot + text to left */
+    text-align: left;
+    overflow: visible;
+  }
+
+  .udaan-right-holder {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 0;
+    display: block;
+    margin-top: 20px;
+  }
+
+  .udaan-right-holder .form-box {
+    width: 100% !important;
+    max-width: 373px;
+    margin: 0 auto;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,208 @@
+/* Base Typography Utility */
+.text-dark-blue {
+  color: #003049;
+}
+
+.icon-orange {
+  color: #F26A1B;
+}
+
+.heading-left-elegibility {
+  font-size: 32px;
+  text-align: left;
+}
+
+.heading-right-elegibility {
+  font-size: 18px;
+  text-align: left;
+}
+
+.breakline-elegibility {
+  height: 1px;
+  margin: 25px 5px;
+  background-color: rgba(1, 49, 67, 0.13);
+}
+
+.elegibility-requirement-icon {
+  height: 35px;
+  width: 35px;
+}
+
+@media (max-width: 768px) {
+  .heading-left-elegibility {
+    display: none;
+  }
+
+  .heading-right-elegibility {
+    font-size: 24px;
+  }
+
+  .elegibility-requirement-icon {
+    height: 25px;
+    width: 25px;
+  }
+}
+
+/* ================================
+   🎓 Eligibility Section
+================================ */
+.eligibility-section {
+  background: #fff;
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+.eligibility-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 50px;
+  position: relative;
+}
+
+/* Left Image with Abstract Shape */
+.eligibility-img-wrapper {
+  position: relative;
+  width: 580px;
+  max-width: 100%;
+}
+
+.eligibility-img {
+  width: 100%;
+  height: auto;
+  z-index: 2;
+  position: relative;
+  border-radius: 0;
+}
+
+/* .eligibility-abstract-shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 115%;
+  height: 100%;
+  background: #F5F6FE;
+  border-top-right-radius: 50% 70%;
+  border-bottom-right-radius: 50% 70%;
+  z-index: 1;
+} */
+
+/* Right Text Content */
+.eligibility-content {
+  flex: 1;
+  max-width: 500px;
+  text-align: left;
+}
+
+.eligibility-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 16px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  text-align: left;
+}
+
+.eligibility-subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 20px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  text-align: left;
+  margin-right: 16rem;
+}
+
+.eligibility-requirement-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.eligibility-check-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.eligibility-requirement-text {
+  font-size: 0.98rem;
+  color: #333;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* ================================
+   📱 Mobile Styles
+================================ */
+@media (max-width: 900px) {
+  .eligibility-container {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 20px;
+  }
+
+  /* .eligibility-img-wrapper {
+    width: 100%;
+    max-width: 320px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  } */
+
+  .eligibility-img {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
+
+  /* .eligibility-abstract-shape {
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-radius: 100% 0 100% 0 / 90% 0 100% 0;
+    top: 0;
+    left: 0;
+  } */
+
+  .eligibility-content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .eligibility-title {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .eligibility-subtitle {
+    text-align: center;
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+  }
+
+  .eligibility-requirement-row {
+    justify-content: center;
+    text-align: center;
+    font-size: 0.92rem;
+  }
+
+  .eligibility-requirement-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .eligibility-check-icon {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+  }
+}

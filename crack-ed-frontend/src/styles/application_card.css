@@ -1,0 +1,180 @@
+.application-card {
+    border: 1px solid #004C8E;
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    background: #fff;
+  }
+  
+  .application-details {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .application-card .label {
+    font-size: 14px;
+    color: #004C8E;
+    font-weight: 700;
+  }
+  
+  .value {
+    font-size: 16px;
+    font-weight: 500;
+    color: black;
+    margin-top: 4px;
+  }
+  
+  .pay-fee-btn {
+    background-color: #004C8E;
+    color: white;
+    margin: 0 0 0 12px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 0.2s;
+  }
+  
+  .pay-fee-btn:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }
+  
+  .download-receipt-btn {
+    background: #fff;
+    color: #004C8E;
+    border: 2px solid #004C8E;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 15px;
+    margin-right: 12px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .download-receipt-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  .download-receipt-btn:hover {
+    background: #004C8E;
+    color: #fff;
+  }
+  
+  .resume-btn {
+    background-color: #004C8E;
+    color: white;
+    margin: 10px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  
+  .application-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .payment-info-card {
+    border: 1.5px solid #004C8E;
+    border-radius: 12px;
+    padding: 28px 30px;
+    margin: 0 0 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    gap: 30px;
+  }
+  .payment-info-details {
+    display: flex;
+    gap: 60px;
+  }
+  .payment-info-column {
+    display: flex;
+    flex-direction: column;
+    min-width: 120px;
+  }
+  .payment-info-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .payment-status-section {
+    margin-top: 18px;
+    padding: 12px 0 0 0;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    font-size: 16px;
+  }
+  
+  .payment-status-label .paid {
+    color: green;
+    font-weight: 700;
+  }
+  
+  .payment-status-label .unpaid {
+    color: #004C8E;
+    font-weight: 700;
+  }
+  
+  .payment-amount-label {
+    font-weight: 500;
+  }
+  
+  @media (max-width: 900px) {
+    .application-card, .payment-info-card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .payment-info-details {
+      gap: 30px;
+    }
+  }
+  @media (max-width: 600px) {
+    .application-card, .payment-info-card {
+      padding: 18px 8px;
+      border-radius: 8px;
+    }
+    .payment-info-details {
+      gap: 16px;
+    }
+    .payment-info-column {
+      min-width: 90px;
+    }
+    .download-receipt-btn, .pay-fee-btn {
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+  }
+  

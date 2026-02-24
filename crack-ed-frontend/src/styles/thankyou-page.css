@@ -1,0 +1,167 @@
+
+
+  .thank-you-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px 100px;
+    overflow: hidden;
+  }
+  
+.thank-you-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    width: 100%;
+  }
+  
+  .thank-you-image-container {
+    width: 100%;
+    max-width: 2000px; /* Adjust based on your image dimensions */
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .thank-you-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .thank-you-content {
+      margin-top: 30px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .thank-you-content {
+      margin-top: 20px;
+    }
+    
+    .thank-you-image-container {
+      padding: 0 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .thank-you-content {
+      margin-top: 15px;
+    }
+    
+    .thank-you-image-container {
+      padding: 0 10px;
+    }
+  }
+  
+  .illustration-container {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+  }
+  
+  .circle-background {
+    background-color: var(--highlight-bg);
+    border-radius: 50%;
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .main-illustration {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+  
+  .message-container {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+  }
+  
+  .thank-you-title {
+    color: var(--primary-color);
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    margin-bottom: 20px;
+    font-family: 'Gotham', -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  
+  .thank-you-message {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .highlight-text {
+    color: var(--secondary-color);
+    font-weight: 500;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 1024px) {
+    .thank-you-content {
+      margin-top: 60px;
+      gap: 30px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .thank-you-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .main-navigation {
+      width: 100%;
+    }
+    
+  
+    .thank-you-title {
+      font-size: 1.8rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .thank-you-container {
+      padding-bottom: 60px;
+    }
+    
+  
+    .thank-you-content {
+      margin-top: 40px;
+    }
+    
+    .thank-you-title {
+      font-size: 1.5rem;
+    }
+  }
+  
+  /* Performance Optimizations */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Reduced motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Add these styles to your RegistrationFormThankYou.css */
+
+/* Navigation styles */
+/* Update these styles in your RegistrationFormThankYou.css */
+
+/* Navigation styles */

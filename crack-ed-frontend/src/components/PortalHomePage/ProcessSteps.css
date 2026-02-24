@@ -1,0 +1,226 @@
+/* Section: Vertical, Width Fill, Padding 48px top/bottom, Gap 10px, blue gradient */
+.process-steps-section {
+  background: linear-gradient(180deg, rgba(0, 151, 246, 1) 0%, rgba(0, 88, 144, 1) 100%);
+  padding: 48px 0;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+/* Frame 1150: Horizontal, Width 1160px, Gap 20px */
+.process-steps-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1160px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 60px;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+/* Left column: steps – Width 510px, Gap 25px */
+.process-steps-left {
+  flex: 0 0 510px;
+  max-width: 510px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding-right: 0;
+}
+
+/* Heading: Arial 700, 24px, line-height 36px, color rgba(250,250,245,1) */
+.process-steps-heading {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: 0%;
+  color: rgba(250, 250, 245, 1);
+  margin: 0 0 0 0;
+}
+
+/* Steps list: Vertical, Gap 25px */
+.process-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Step box: Frame 909 – thin blue border, Radius 15px, Padding 18px, Gap 10px, drop shadow */
+.process-step-box {
+  background: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
+  border-radius: 15px;
+  border: 2px solid rgba(0, 76, 142, 1);
+  display: flex;
+  align-items: center;
+  padding: 18px;
+  gap: 25px;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.05);
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Number background (image 2nd): Radius 10px, Padding 13px 18px, Gap 10px, bg rgba(240,243,245,1), ~63×62 */
+.process-step-number-bg {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-width: 63px;
+  min-height: 62px;
+  padding: 13px 18px;
+  gap: 10px;
+  border-radius: 10px;
+  background: rgba(240, 243, 245, 1);
+  box-sizing: border-box;
+}
+
+/* Step number: Arial 700, 48px, black – sits on the number background */
+.process-step-number {
+  background: none;
+  color: rgba(0, 0, 0, 1);
+  font-family: Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Step text: Arial 400, 16px, line-height 24px, black */
+.process-step-text {
+  flex: 1;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: rgba(0, 0, 0, 1);
+  margin: 0;
+}
+
+.process-steps-img {
+  position: absolute;
+  width: 673px;
+  height: 673px;
+  top: 90px;
+  left: 650px;
+  object-fit: contain;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .process-steps-section {
+    padding: 32px 0;
+    flex-direction: column;
+  }
+
+  /* Show illustration above the steps on mobile */
+  .process-steps-img {
+    order: -1;
+  }
+
+  .process-steps-container {
+    order: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 0 16px;
+  }
+  .process-steps-left {
+    flex: 1;
+    max-width: 100%;
+    width: 100%;
+    padding-right: 0;
+    text-align: center;
+  }
+  .process-steps-heading {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+  .process-steps-list {
+    align-items: center;
+    width: 100%;
+  }
+  .process-step-box {
+    width: 90vw;
+    max-width: 400px;
+  }
+  .process-step-number-bg {
+    min-width: 52px;
+    min-height: 52px;
+    padding: 10px 14px;
+  }
+  .process-step-number {
+    font-size: 2rem;
+  }
+  .process-steps-img {
+    position: relative;
+    order: -1;
+    width: 90vw;
+    height: auto;
+    max-width: 300px;
+    top: auto;
+    left: auto;
+    margin-top: 0;
+    margin-bottom: 20px;
+    z-index: 1;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .process-steps-section {
+    padding: 24px 0;
+  }
+
+  .process-steps-container {
+    padding: 0 12px;
+    gap: 24px;
+  }
+
+  .process-steps-heading {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    padding: 0 8px;
+  }
+
+  .process-step-box {
+    width: 100%;
+    max-width: none;
+    padding: 14px 12px;
+    gap: 16px;
+  }
+
+  .process-step-number-bg {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+
+  .process-step-number {
+    font-size: 1.75rem;
+  }
+
+  .process-step-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .process-steps-img {
+    max-width: 220px;
+  }
+}

@@ -1,0 +1,70 @@
+
+/* === Responsive Patch for Mobile Devices (<=768px) === */
+@media (max-width: 768px) {
+  .text-start {
+    text-align: center !important;
+  }
+
+  .about-img,
+  .feature-img,
+  .program-img,
+  .curriculum-img,
+  .eligibility-img,
+  .faq-img,
+  .footer-logo,
+  .header-logo,
+  .cta-img,
+  .selection-img {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .container,
+  .row,
+  .col {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .hero-section {
+    padding: 2rem 1rem !important;
+    height: auto !important;
+    background-size: cover !important;
+    text-align: center;
+  }
+
+  .hero-section .d-flex {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .badge-box,
+  .feature-box,
+  .journey-step,
+  .curriculum-block,
+  .faq-item,
+  .selection-step {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 1rem !important;
+  }
+
+  .btn,
+  .btn-submit,
+  .btn-get-otp {
+    width: 100% !important;
+    font-size: 1rem !important;
+  }
+
+  h1, h2, h3, h4 {
+    font-size: 1.5rem !important;
+  }
+
+  p {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+  }
+}

@@ -1,0 +1,144 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-box {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    width: 400px;
+    text-align: start;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modal-icon .icon-circle {
+    background: #f3e8ff;
+    color: #7e22ce;
+    font-size: 24px;
+    border-radius: 5px;
+    padding: 10px;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+  
+  .modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .modal-description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .btn-outline {
+    border: 1px solid #6D3078;
+    background: white;
+    color: #6D3078;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .btn-filled {
+    background: #6D3078;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .payment-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .payment-modal {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 24px;
+    min-width: 320px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .payment-modal h2 {
+    margin-bottom: 20px;
+    color: #4B266C;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  
+  .payment-modal label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #4B266C;
+  }
+  
+  .payment-modal input[type="number"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+  }
+  
+  .payment-modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+  
+  .payment-modal-actions button {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #F37021;
+    color: #fff;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  
+  .payment-modal-actions button[type="button"] {
+    background: #fff;
+    color: #F37021;
+    border: 1px solid #F37021;
+  }
+  
+  .payment-modal-actions button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  

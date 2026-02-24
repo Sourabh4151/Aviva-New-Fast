@@ -1,0 +1,303 @@
+/* === Design specs: Frame 801 (header) === */
+/* Layout: Horizontal, Width Fill, Height 76px, Justify space-between */
+/* Padding: 18px 120px; Background: rgba(250, 250, 250, 1) */
+
+.bg-purple {
+  background-color: #004C8E;
+}
+
+.bg-orange {
+  background-color: #f26522;
+  color: white;
+}
+
+.hover-underline:hover {
+  text-decoration: underline;
+}
+
+.header-portal-main {
+  width: 100%;
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', sans-serif;
+  background-color: rgba(250, 250, 250, 1);
+}
+
+/* === Logo: same as portal register - contain to keep clear (no crop) === */
+.header-portal-main .logo {
+  height: 37px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.header-portal-main .logo-mobile {
+  display: none;
+}
+
+.header-portal-main .logo-desktop {
+  display: block;
+}
+
+.container-bar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* === Top bar: Frame 801 specs === */
+.header-portal-main .top-bar {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 76px;
+  height: 76px;
+  padding: 18px 120px;
+  background: rgba(250, 250, 250, 1);
+  box-sizing: border-box;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-portal-main .logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.bottom-bar .title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.vertical-line {
+  border-left: 1px solid white;
+  height: 45px;
+  margin: 0 10px;
+}
+
+/* === Hamburger menu button === */
+.menu-toggle {
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: rgba(0, 76, 142, 1);
+  cursor: pointer;
+  display: block;
+  padding: 0;
+  z-index: 20;
+  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* === Nav links: Frame 881 – Horizontal, Gap 43px, Height Hug 40px === */
+/* Typography: Helvetica Neue 500, 14px, 100% line-height; Color: rgba(0, 76, 142, 1) */
+nav {
+  display: flex;
+  flex-direction: row;
+  gap: 43px;
+  transition: max-height 0.3s ease;
+  align-items: center;
+  min-height: 40px;
+}
+
+.header-portal-main .closed {
+  max-height: 0px;
+  width: 0px;
+  overflow: hidden;
+  display: none;
+}
+
+nav.open {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 500px;
+  background-color: rgba(0, 76, 142, 1);
+  padding: 1rem 1.5rem;
+  position: absolute;
+  top: 76px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.header-portal-main .nav-links {
+  display: flex;
+  z-index: 2;
+  gap: 25px;
+  align-items: center;
+  min-height: 40px;
+}
+
+.header-portal-main .nav-links a,
+nav.open a {
+  color: rgba(0, 76, 142, 1) !important;
+  font-weight: 500;
+  font-style: normal;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0;
+  padding-left: 0;
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', sans-serif;
+}
+
+.header-portal-main .nav-links a:hover,
+nav.open a:hover {
+  text-decoration: underline;
+  color: rgba(0, 76, 142, 1) !important;
+}
+
+nav.open a {
+  color: #fff !important;
+}
+
+/* Keep links visible in mobile menu after visit (avoid :visited blending into background) */
+nav.open a:visited,
+nav.open a:active,
+nav.open a:focus {
+  color: #fff !important;
+}
+
+/* === Auth buttons container: Gap 10px === */
+.nav-auth-buttons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* === Login button: Frame 1146 === */
+/* Width 132px, Height 40px, Radius 5px, Border 1px rgba(0,76,142,1), Padding 12px 16px */
+/* Typography: Helvetica Neue 500, 16px, center/middle; Color: rgba(0, 76, 142, 1) */
+.nav-auth-btn {
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  white-space: nowrap;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 12px 16px;
+  min-height: 40px;
+  height: 40px;
+}
+
+.nav-auth-btn-login {
+  width: 132px;
+  background-color: #fff;
+  color: rgba(0, 76, 142, 1);
+  border: 1px solid rgba(0, 76, 142, 1);
+}
+
+.nav-auth-btn-login:hover {
+  background-color: rgba(250, 250, 250, 1);
+}
+
+/* === Register Now button: Frame 1147 === */
+/* Width Hug 132px, Height 40px, Radius 5px, Padding 12px 16px, Background rgba(0,76,142,1), Text white */
+.nav-auth-btn.register {
+  width: 132px;
+  background-color: rgba(0, 76, 142, 1);
+  color: rgba(255, 255, 255, 1);
+  border: none;
+}
+
+.nav-auth-btn.register:hover {
+  background-color: rgba(0, 60, 115, 1);
+}
+
+.nav-auth-btn.logout {
+  background-color: rgba(0, 76, 142, 1);
+  color: rgba(255, 255, 255, 1);
+  border: none;
+}
+
+.nav-auth-btn.logout:hover {
+  background-color: rgba(0, 60, 115, 1);
+}
+
+/* === Announcement bar === */
+.announcement-bar {
+  background-color: rgba(0, 76, 142, 1);
+  color: #fff;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', sans-serif;
+}
+
+/* === Mobile styles === */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+  }
+
+  .header-portal-main .top-bar {
+    padding: 18px 24px;
+  }
+
+  .header-portal-main .logo {
+    height: 30px;
+    width: auto;
+  }
+
+  .header-portal-main .logo-desktop {
+    display: none;
+  }
+
+  .header-portal-main .logo-mobile {
+    display: block;
+  }
+
+  nav.open {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 76, 142, 1);
+  }
+
+  .header-portal-main .nav-links {
+    display: none;
+  }
+
+  .header-portal-main .nav-links a,
+  nav.open a {
+    color: #fff !important;
+  }
+
+  nav.open a:visited,
+  nav.open a:active,
+  nav.open a:focus {
+    color: #fff !important;
+  }
+
+  .nav-auth-btn-login {
+    background-color: #fff;
+    color: rgba(0, 76, 142, 1);
+  }
+
+  .nav-auth-btn.register {
+    background-color: rgba(0, 76, 142, 1);
+    color: #fff;
+  }
+}

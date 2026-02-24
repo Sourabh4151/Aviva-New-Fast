@@ -1,0 +1,345 @@
+/* Shared Base Styles */
+/* Shared Base Styles */
+.text-purple {
+  color: #E6EEF4;
+}
+/* About The Program heading: Arial 700, 32px, 100% line-height, 0% letter-spacing, black */
+.title-text-purple {
+  padding: 0 0 16px 0;
+  color: rgba(0, 0, 0, 1);
+  font-family: Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+/* Body text: Arial 400, 16px, 27.2px line-height, 0% letter-spacing, justified */
+.about-text-secondary {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: Arial, sans-serif;
+  line-height: 27.2px;
+  letter-spacing: 0%;
+  color: rgba(0, 0, 0, 1);
+  margin-bottom: 0;
+  text-align: justify;
+}
+
+/* Span: Udaan Certification Program – Virtual Relationship Manager – Arial 700, 16px, justified, rgba(55,70,90,1) */
+.about-program-name {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 27.2px;
+  letter-spacing: 0%;
+  color: rgba(55, 70, 90, 1);
+}
+
+/* Download Brochure: Gotham Rounded 500, 14px, underline, rgba(0,76,142,1), gap 10px from paragraph */
+.about-download-brochure {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Gotham Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0.02em;
+  color: rgba(0, 76, 142, 1);
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-underline-offset: 2px;
+  /* margin-top: 14px; */
+  transition: opacity 0.2s;
+}
+.about-download-brochure:hover {
+  opacity: 0.85;
+}
+.about-download-icon {
+  flex-shrink: 0;
+}
+
+.portal-section-title {
+  color: #3D3D3D;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 550;
+}
+
+/* Outer section – Frame 898: padding 80 / 120, vertical, gap 56px */
+.about-program-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 120px;
+  gap: 56px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+/* ---------- DESKTOP STYLES ---------- */
+/* Frame 899: Horizontal, Width 1040px, Height Hug (406px), Gap 40px */
+.portal-about {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: #fff;
+  gap: 40px;
+  width: 1040px;
+  min-height: 406px;
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Frame 927: Image column – 400px × 406px */
+.image-container {
+  position: relative;
+  width: 400px;
+  height: 406px;
+  flex-shrink: 0;
+  margin-left: 0;
+}
+
+.about-img {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  object-fit: cover;
+  margin: 0;
+}
+
+.blue-abstract-shape {
+  position: absolute;
+  left: 30px;
+  top: 40px;
+  width: 220px;
+  height: 260px;
+  background: radial-gradient(ellipse at center, #1da1f2 60%, #0072c6 100%);
+  border-radius: 50% 45% 50% 60% / 60% 50% 60% 50%;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+/* Text Block – Frame 891: Vertical, Width Fixed 564px, Height Hug (326px), Gap 10px, Padding 16px */
+.text-container {
+  width: 564px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Info Cards Section */
+.about-info-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1040px;
+  box-sizing: border-box;
+}
+
+.about-info-card {
+  background: #fff;
+  border-radius: 15px;
+  border: 2px solid rgba(240, 243, 245, 1);
+  padding: 32px 24px;
+  width: 333px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.about-info-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  background: #F0F3F5;
+  border: 10px solid #F0F3F5;
+}
+
+.about-info-title {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.about-info-desc {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(55, 70, 90, 1);
+  line-height: 27.2px;
+}
+
+/* ---------- MOBILE STYLES ---------- */
+@media (max-width: 900px) {
+  .portal-about {
+    flex-direction: column;
+    padding: 40px 16px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .image-container {
+    width: 100%;
+    margin: 0 auto 20px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .about-img {
+    width: 290px;
+    height: auto;
+    margin: 0;
+  }
+
+  .blue-abstract-shape {
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 180px;
+  }
+
+  .text-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 16px;
+    text-align: left;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+  }
+
+  .title-text-purple {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .about-text-secondary {
+    font-size: 0.9rem;
+    text-align: justify;
+    margin-bottom: 20px;
+    max-width: 100%;
+  }
+
+  .about-info-cards {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 30px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  .about-info-card {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    height: auto;
+    border-radius: 15px;
+    border-width: 2px;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+  }
+
+  .about-info-title {
+    font-family: Arial;
+font-weight: 700;
+font-size: 24px;
+line-height: 100%;
+letter-spacing: 0%;
+
+    margin-bottom: 12px;
+  }
+
+  .about-info-desc {
+    font-family: Arial;
+font-weight: 400;
+font-size: 14px;
+line-height: 27.2px;
+letter-spacing: 0%;
+
+  }
+
+  .about-info-icon {
+    width: 78px;
+    height: 78px;
+    margin-top: 15px;
+    margin-left: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-program-section {
+    padding: 40px 16px;
+    gap: 32px;
+  }
+
+  .portal-about {
+    padding: 24px 0;
+  }
+
+  .about-img {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .text-container {
+    padding: 0 8px;
+  }
+
+  .title-text-purple {
+    font-size: 1.25rem;
+  }
+
+  .about-text-secondary {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .about-info-cards {
+    padding: 0 8px;
+    gap: 16px;
+  }
+
+  .about-info-card {
+    padding: 20px 16px;
+  }
+
+  .about-info-title {
+    font-size: 1.1rem;
+  }
+
+  .about-info-desc {
+    font-size: 0.875rem;
+  }
+
+  .about-info-icon {
+    width: 64px;
+    height: 64px;
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,54 @@
+.icon-wrapper {
+  flex-shrink: 0;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: #FFF1EF;
+  }
+  
+  .text-purple {
+    color: #7D288F;
+  }
+  
+  .icon-size {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  .icon-selection-items{
+    max-width: 190px;
+    text-align: justify;
+  }
+  
+.selection-process-section .portal-section-title{
+  padding-bottom: 35px;
+}
+  .selection-process-section{
+    padding: 0px 10% 9% 10%;
+  }
+
+  @media (max-width: 767.98px) {
+
+    .selection-process-section .icon-wrapper {
+      padding: 10px;
+      height: 80px;
+      width: 80px;
+    }
+
+     .icon-selection-items{
+    max-width: 100%;
+    text-align: start;
+  }
+  
+  
+    .icon-selection-process{
+      width: 32px;
+      height: 32px;
+      overflow: hidden;
+    }
+    .selection-process-section .icon-size {
+      width: 32px;
+      height: 32px;
+      object-fit: cover;
+    }
+  }

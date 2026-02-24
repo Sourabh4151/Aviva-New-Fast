@@ -1,0 +1,57 @@
+/* CustomTextField.css */
+
+.custom-text-field {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* max-width: 400px; */
+    /* margin: 20px 0; */
+  }
+  
+  .custom-text-field input {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 16px;
+    border: 1px solid #d3d3d3; /* light gray */
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .custom-text-field .placeholder {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    font-size: 16px;
+    transform: translateY(-52%);
+    color: #555;
+    background-color: white;
+    pointer-events: none;
+    transition: 0.2s ease;
+  }
+  
+  .custom-text-field .tail {
+    position: absolute;
+    background-color: white;
+    top: 50%;
+    right: 20px;
+    font-size: 16px;
+    transform: translateY(-52%);
+    color: #555;
+    transition: 0.2s ease;
+    z-index: 2;
+  }
+  .custom-text-field .tail :hover {
+    color: #000; /* Change color on hover */
+  }
+
+
+
+  /* Optional: move label up on focus */
+  /* .custom-text-field input:focus + .placeholder,
+  .custom-text-field input:not(:placeholder-shown) + .placeholder {
+    font-size: 12px;
+    top: 8px;
+    color: #999;
+  }
+   */
