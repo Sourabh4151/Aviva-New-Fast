@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 
-// Note: place the hero image at src/assets/aviva_ds_hero.jpg
-const HERO_PATH = "/src/assets/desktop.jpg";
+// Import assets so Vite bundles them and production URLs work (raw /src/assets/ paths 404 after build).
+// Use desktop.jpg or aviva_ds_hero.jpg depending on which file you have in src/assets/.
+import heroImage from "../assets/desktop.jpg";
+import tickSvg from "../assets/tick.svg";
 
 export default function Hero() {
   const [form, setForm] = useState({ name: "", email: "", city: "", mobile: "" });
@@ -213,7 +215,7 @@ export default function Hero() {
       {/* Hero background: fixed height on all screens – does NOT grow. Form comes after on mobile. */}
       <div
         className="w-full min-h-[520px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-center bg-no-repeat relative"
-        style={{ backgroundImage: `url(${HERO_PATH})` }}
+        style={{ backgroundImage: `url(${heroImage})` }}
         role="img"
         aria-label="Aviva hero"
       >
@@ -241,7 +243,7 @@ export default function Hero() {
               <ul className="hero-bullet-list text-gray-200 space-y-2 sm:space-y-4 mb-4 md:mb-8">
                 <li className="flex items-start gap-2 sm:gap-3">
                   <span className="hero-tick">
-                    <img src="/src/assets/tick.svg" alt="tick" className="hero-tick-icon" />
+                    <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
                   <span className="hero-subtitle text-[14px] font-normal">
                     Join as a Assistant Manager with a CTC of Rs 4 LPA + incentives
@@ -249,7 +251,7 @@ export default function Hero() {
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
                   <span className="hero-tick">
-                    <img src="/src/assets/tick.svg" alt="tick" className="hero-tick-icon" />
+                    <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
                   <span className="text-[14px] font-normal">6-month program</span>
                 </li>
