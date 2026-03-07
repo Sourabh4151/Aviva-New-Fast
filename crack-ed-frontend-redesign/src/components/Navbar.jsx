@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import logo from "../assets/crack-ed_logo.svg";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -67,7 +68,7 @@ export default function Navbar() {
               aria-label="Go to top"
             >
               <img
-                src="/src/assets/crack-ed_logo.svg"
+                src={logo}
                 alt="Crack-ED"
                 className="w-28 h-8 sm:w-36 sm:h-10 lg:w-[180px] lg:h-[51px] object-contain cursor-pointer"
                 onError={(e) => (e.currentTarget.style.display = "none")}

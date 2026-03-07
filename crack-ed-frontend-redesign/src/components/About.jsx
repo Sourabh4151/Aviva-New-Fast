@@ -1,4 +1,10 @@
 import React from "react";
+import indusland from "../assets/indusland.svg";
+import yesbank from "../assets/yesbank.svg";
+import kotak from "../assets/kotak.svg";
+import au from "../assets/au.svg";
+import axis from "../assets/axis.svg";
+import bandhan from "../assets/bandhan.svg";
 
 export default function About() {
   return (
@@ -20,63 +26,63 @@ export default function About() {
           <div className="mt-4 block md:hidden placement-partners-marquee">
             <div className="placement-partners-track">
               <img
-                src="/src/assets/indusland.svg"
+                src={indusland}
                 alt="IndusInd Bank"
                 className="h-auto max-h-[43px] max-w-[160px] object-contain"
               />
               <img
-                src="/src/assets/yesbank.svg"
+                src={yesbank}
                 alt="Yes Bank"
                 className="h-auto max-h-[43px] max-w-[130px] object-contain"
               />
               <img
-                src="/src/assets/kotak.svg"
+                src={kotak}
                 alt="Kotak Bank"
                 className="h-auto max-h-[43px] max-w-[140px] object-contain"
               />
               <img
-                src="/src/assets/au.svg"
+                src={au}
                 alt="AU Small Finance Bank"
                 className="h-auto max-h-[43px] max-w-[120px] object-contain"
               />
               <img
-                src="/src/assets/axis.svg"
+                src={axis}
                 alt="Axis Bank"
                 className="h-auto max-h-[43px] max-w-[130px] object-contain"
               />
               <img
-                src="/src/assets/bandhan.svg"
+                src={bandhan}
                 alt="Bandhan Bank"
                 className="h-auto max-h-[43px] max-w-[130px] object-contain"
               />
               {/* duplicate logos for seamless loop */}
               <img
-                src="/src/assets/indusland.svg"
+                src={indusland}
                 alt="IndusInd Bank"
                 className="h-auto max-h-[43px] max-w-[160px] object-contain"
               />
               <img
-                src="/src/assets/yesbank.svg"
+                src={yesbank}
                 alt="Yes Bank"
                 className="h-auto max-h-[43px] max-w-[130px] object-contain"
               />
               <img
-                src="/src/assets/kotak.svg"
+                src={kotak}
                 alt="Kotak Bank"
                 className="h-auto max-h-[43px] max-w-[140px] object-contain"
               />
               <img
-                src="/src/assets/au.svg"
+                src={au}
                 alt="AU Small Finance Bank"
                 className="h-auto max-h-[43px] max-w-[120px] object-contain"
               />
               <img
-                src="/src/assets/axis.svg"
+                src={axis}
                 alt="Axis Bank"
                 className="h-auto max-h-[43px] max-w-[130px] object-contain"
               />
               <img
-                src="/src/assets/bandhan.svg"
+                src={bandhan}
                 alt="Bandhan Bank"
                 className="h-auto max-h-[43px] max-w-[130px] object-contain"
               />
@@ -86,32 +92,32 @@ export default function About() {
           {/* Desktop: static single-line row */}
           <div className="mt-4 hidden md:flex flex-wrap md:flex-nowrap items-center justify-between gap-8 md:gap-[50px]">
             <img
-              src="/src/assets/indusland.svg"
+              src={indusland}
               alt="IndusInd Bank"
               className="h-auto max-h-[43px] max-w-[160px] object-contain"
             />
             <img
-              src="/src/assets/yesbank.svg"
+              src={yesbank}
               alt="Yes Bank"
               className="h-auto max-h-[43px] max-w-[130px] object-contain"
             />
             <img
-              src="/src/assets/kotak.svg"
+              src={kotak}
               alt="Kotak Bank"
               className="h-auto max-h-[43px] max-w-[140px] object-contain"
             />
             <img
-              src="/src/assets/au.svg"
+              src={au}
               alt="AU Small Finance Bank"
               className="h-auto max-h-[43px] max-w-[120px] object-contain"
             />
             <img
-              src="/src/assets/axis.svg"
+              src={axis}
               alt="Axis Bank"
               className="h-auto max-h-[43px] max-w-[130px] object-contain"
             />
             <img
-              src="/src/assets/bandhan.svg"
+              src={bandhan}
               alt="Bandhan Bank"
               className="h-auto max-h-[43px] max-w-[130px] object-contain"
             />
