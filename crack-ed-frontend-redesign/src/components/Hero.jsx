@@ -235,25 +235,28 @@ export default function Hero() {
                 <img
                   src={mahindraLogo}
                   alt="Mahindra Finance"
-                  className="block"
-                  style={{ width: "239px", height: "38px" }}
+                  className="block w-[197px] h-[55px] lg:w-[239px] lg:h-[38px] object-contain"
                 />
                 <div
-                  className="hero-badge mt-4 md:mt-6 inline-flex items-center justify-center text-center text-[14px] font-semibold text-white rounded-full border border-white px-4 py-2 max-sm:max-w-[361px] max-sm:w-fit max-sm:h-[54px] max-sm:px-[10px] max-sm:py-[10px] max-sm:gap-[10px]"
+                  className="hero-badge mt-4 md:mt-6 inline-flex items-center justify-center text-center text-[14px] leading-[100%] tracking-[0em] font-semibold text-white rounded-full border border-white px-4 py-2 max-lg:w-[292px] max-lg:h-[37px] max-lg:px-[10px] max-lg:py-[10px] max-lg:gap-[10px] max-lg:rounded-[100px] whitespace-nowrap"
+                  style={{ fontFamily: "Montserrat, sans-serif" }}
                 >
                   Mahindra Finance Prarambh Program
                 </div>
               </div>
-              <h1 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[1] mb-3 md:mb-4">
+              <h1
+                className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[100%] tracking-[0em] mb-3 md:mb-4"
+                style={{ fontFamily: "Montserrat, sans-serif" }}
+              >
               Business Executive
               </h1>
-              <ul className="hero-bullet-list text-gray-200 space-y-2 sm:space-y-4 mb-4 md:mb-8">
+              <ul className="hero-bullet-list text-gray-200 space-y-3 sm:space-y-4 mb-4 md:mb-8">
                 <li className="flex items-start gap-2 sm:gap-3">
                   <span className="hero-tick">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
                   <span
-                    className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em]"
+                    className="hero-subtitle text-[16px] max-lg:text-[14px] leading-[100%] max-lg:leading-[120%] font-normal tracking-[0em]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
                     Join as a Business Executive (Vehicle Loan - Field Sales) with a CTC of upto Rs 3.5 LPA + incentives
@@ -264,14 +267,14 @@ export default function Hero() {
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
                   <span
-                    className="text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
+                    className="text-[16px] leading-[100%] max-lg:leading-[120%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
                     1-Month program
                   </span>
                 </li>
               </ul>
-              <div className="register-btn-wrap mt-4">
+              <div className="register-btn-wrap mt-5 max-lg:mb-12">
                 <a
                   href="/PGC%20-%20BANKING%20MANAGEMENT.pdf"
                   className="download-brochure-btn"
@@ -282,6 +285,18 @@ export default function Hero() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Mobile highlight bar: appears above callback form */}
+      <div className="w-full bg-[rgba(227,24,55,1)] flex justify-center lg:hidden mt-10">
+        <div className="w-full max-w-[1280px] flex items-center justify-center py-2 px-6">
+          <p
+            className="text-[16px] leading-[24px] font-medium tracking-[0em] text-[rgba(250,250,250,1)] text-center"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+          >
+            Designed to Empower Women Candidates
+          </p>
         </div>
       </div>
 
@@ -543,7 +558,7 @@ export default function Hero() {
             </aside>
 
       {/* Bottom highlight bar */}
-      <div className="w-full bg-[rgba(227,24,55,1)] flex justify-center">
+      <div className="w-full bg-[rgba(227,24,55,1)] justify-center hidden lg:flex">
         <div className="w-full max-w-[1280px] flex items-center justify-center py-6 px-4">
           <p
             className="text-[24px] leading-[32px] font-medium tracking-[0em] text-[rgba(250,250,250,1)] text-center"

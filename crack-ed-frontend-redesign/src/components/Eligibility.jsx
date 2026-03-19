@@ -13,10 +13,9 @@ export default function Eligibility() {
       id="eligibility"
       className="relative bg-black text-white scroll-mt-24 overflow-hidden"
     >
-      <div className="relative z-10 mx-auto px-[160px] py-section lg:py-20">
+      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-20">
         <div
-          className="mx-auto flex flex-col lg:flex-row items-start justify-between max-w-[1040px]"
-          style={{ gap: 10 }}
+          className="mx-auto flex flex-col lg:flex-row items-start justify-between gap-6 lg:gap-[10px] max-w-[1040px]"
         >
           {/* Left: badge, heading */}
           <div className="flex-1 flex flex-col items-start text-left min-w-0 w-full">
@@ -34,7 +33,7 @@ export default function Eligibility() {
               Eligibility
             </div>
 
-            <div className="mt-4 flex flex-col gap-4 max-w-full lg:max-w-[498px]">
+            <div className="mt-4 flex flex-col gap-[10px] max-w-full lg:max-w-[498px]">
               <p
                 style={{
                   fontFamily:
@@ -45,6 +44,7 @@ export default function Eligibility() {
                   letterSpacing: "0%",
                   color: "rgba(250, 250, 250, 1)",
                 }}
+                className="max-w-[320px] sm:max-w-full"
               >
                 Is this the right program for you?
               </p>
@@ -52,8 +52,8 @@ export default function Eligibility() {
           </div>
 
           {/* Right: requirements card with glow */}
-          <div className="flex-1 flex justify-center lg:justify-end w-full lg:w-auto lg:-ml-10">
-            <div className="relative w-full max-w-[364px]">
+          <div className="flex-1 flex justify-start lg:justify-end w-full lg:w-auto lg:-ml-10">
+            <div className="relative w-full max-w-[364px] sm:max-w-[422px]">
               {/* Glow around card */}
               <div
                 className="pointer-events-none absolute -left-4 -right-4 -top-2 -bottom-10 sm:-left-6 sm:-right-6 sm:-top-4 sm:-bottom-12"
@@ -68,11 +68,10 @@ export default function Eligibility() {
               <div
                 className="relative flex flex-col shadow-2xl"
                 style={{
-                  width: 422,
-                  maxWidth: "100%",
+                  width: "100%",
                   borderRadius: 10,
                   padding: 24,
-                  gap: 12,
+                  gap: 10,
                   background: "rgba(0, 0, 0, 1)",
                   flexDirection: "column",
                 }}
@@ -95,7 +94,7 @@ export default function Eligibility() {
                 <div
                   className="flex flex-col"
                   style={{
-                    gap: 12,
+                    gap: 10,
                   }}
                 >
                   {REQUIREMENTS.map((item) => (
@@ -128,11 +127,11 @@ export default function Eligibility() {
                       </div>
 
                       <p
+                        className="text-[12px] sm:text-[14px]"
                         style={{
                           fontFamily:
-                            "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                            "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                           fontWeight: 400,
-                          fontSize: "14px",
                           lineHeight: "100%",
                           letterSpacing: "0%",
                           color: "rgba(250, 250, 250, 1)",
