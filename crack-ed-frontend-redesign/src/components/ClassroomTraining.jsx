@@ -286,24 +286,6 @@ export default function ClassroomTraining() {
                     />
                   </div>
                 </div>
-
-                {/* Download brochure CTA only for the last module (Shikhar),
-                    placed below the entire row so it sits visually under the image end */}
-                {index === MODULES.length - 1 && (
-                  <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
-                    <a
-                      href="/PGC%20-%20BANKING%20MANAGEMENT.pdf"
-                      download="PGC - BANKING MANAGEMENT.pdf"
-                      className="inline-flex items-center justify-center rounded-[10px] py-4 px-4 sm:px-6 bg-white text-[#1e1e1e] font-semibold text-sm no-underline cursor-pointer shadow-lg hover:bg-[#d2d2d2] transition-colors"
-                      style={{
-                        fontFamily:
-                          "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                      }}
-                    >
-                      Download Brochure
-                    </a>
-                  </div>
-                )}
               </div>
             ))}
           </div>

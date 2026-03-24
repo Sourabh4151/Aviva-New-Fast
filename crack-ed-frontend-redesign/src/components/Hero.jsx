@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 
 // Import assets so Vite bundles them and production URLs work (raw /src/assets/ paths 404 after build).
 // Use desktop.jpg or aviva_ds_hero.jpg depending on which file you have in src/assets/.
-import heroImage from "../assets/desktop.jpg";
+// import heroImage from "../assets/desktop.jpg";
+import heroImage from "../assets/desk.jpeg";
 import tickSvg from "../assets/tick.svg";
 import mahindraLogo from "../assets/mahindra_logo.png";
 
@@ -215,7 +216,7 @@ export default function Hero() {
     <section id="hero" className="relative max-lg:bg-black">
       {/* Hero background: fixed height on all screens – does NOT grow. Form comes after on mobile. */}
       <div
-        className="w-full min-h-[520px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-center bg-no-repeat relative"
+        className="w-full min-h-[520px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[10%_center] lg:bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
         role="img"
         aria-label="Aviva hero"
@@ -259,7 +260,7 @@ export default function Hero() {
                     className="hero-subtitle text-[16px] max-lg:text-[14px] leading-[100%] max-lg:leading-[120%] font-normal tracking-[0em]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    Join as a Business Executive (Vehicle Loan - Field Sales) with a CTC of upto Rs 3.5 LPA + incentives
+                    Join as a Business Executive (Vehicle Loan - Field Sales) with a CTC of Rs 3.5 LPA + incentives
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
@@ -274,15 +275,6 @@ export default function Hero() {
                   </span>
                 </li>
               </ul>
-              <div className="register-btn-wrap mt-5 max-lg:mb-12">
-                <a
-                  href="/PGC%20-%20BANKING%20MANAGEMENT.pdf"
-                  className="download-brochure-btn"
-                  download="PGC - BANKING MANAGEMENT.pdf"
-                >
-                  Download Brochure
-                </a>
-              </div>
             </div>
           </div>
         </div>

@@ -65,9 +65,9 @@ export default function ProgramFee() {
                 className="pointer-events-none absolute -left-4 -right-4 -top-2 -bottom-10 sm:-left-6 sm:-right-6 sm:-top-4 sm:-bottom-12"
                 style={{
                   background:
-                    "radial-gradient(circle at 50% 50%, rgba(223, 24, 54, 0.7) 0, rgba(223, 24, 54, 0.0) 65%)",
+                    "radial-gradient(circle at 50% 50%, rgba(255, 72, 92, 0.92) 0, rgba(255, 72, 92, 0.0) 65%)",
                   filter: "blur(200px)",
-                  opacity: 0.9,
+                  opacity: 1,
                 }}
               />
 

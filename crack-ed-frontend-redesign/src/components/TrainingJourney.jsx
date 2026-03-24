@@ -325,17 +325,22 @@ export default function TrainingJourney() {
                   style={{
                     fontFamily: FONT_MONTSERRAT,
                     fontWeight: 400,
-                    fontSize: 16,
+                    fontSize: 14,
                     lineHeight: "21px",
                     letterSpacing: "0em",
                     textAlign: isMobile ? "left" : "justify",
-                    color: "rgba(250,250,250,0.5)",
+                    color: ojtVisualActive
+                      ? "rgba(250,250,250,0.8)"
+                      : "rgba(250,250,250,0.5)",
                     marginTop: CARD_GAP,
                   }}
                 >
                   Post training, candidates join Mahindra Finance as full-time Business Executives (Vehicle Loan – Field Sales).
                 </p>
-                <div style={{ marginTop: 16 }}>
+              </div>
+
+              <div style={{ marginTop: 6 }}>
+                <div>
                   <div
                     style={{
                       ...RETENTION_LABEL,
