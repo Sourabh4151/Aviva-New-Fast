@@ -2,7 +2,7 @@ import React from "react";
 
 const REQUIREMENTS = [
   "Open exclusively to female candidates",
-  "Candidates must possess a valid driving license",
+  "Candidates must possess a valid driving license and a two-wheeler",
   "The eligible age bracket is 21 to 28 years at the time of application",
   "A CIBIL score of 650 or above is required, with no DPD (Days Past Due) in the credit history",
 ];

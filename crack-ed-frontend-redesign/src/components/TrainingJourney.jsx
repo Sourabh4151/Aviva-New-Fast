@@ -239,7 +239,7 @@ export default function TrainingJourney() {
                         : DURATION_LABEL_COLOR_INACTIVE,
                     }}
                   >
-                    LOCATION
+                    MODE
                   </div>
                   <div style={{ marginTop: 0 }} />
                   <div
@@ -250,7 +250,7 @@ export default function TrainingJourney() {
                         : DURATION_VALUE_COLOR_INACTIVE,
                     }}
                   >
-                    Jaipur
+                    Online
                   </div>
                 </div>
               </div>

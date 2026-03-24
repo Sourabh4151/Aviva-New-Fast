@@ -271,10 +271,21 @@ export default function Hero() {
                     className="text-[16px] leading-[100%] max-lg:leading-[120%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    1-Month program
+                    1-Month Online program
                   </span>
                 </li>
               </ul>
+              <div className="register-btn-wrap mt-5 max-lg:mb-12">
+                <button
+                  type="button"
+                  disabled
+                  className="download-brochure-btn download-brochure-btn--unavailable"
+                  aria-disabled="true"
+                  title="Brochure download is currently unavailable"
+                >
+                  Download Brochure
+                </button>
+              </div>
             </div>
           </div>
         </div>

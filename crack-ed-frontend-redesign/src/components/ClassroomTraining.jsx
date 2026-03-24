@@ -286,6 +286,20 @@ export default function ClassroomTraining() {
                     />
                   </div>
                 </div>
+
+                {index === MODULES.length - 1 && (
+                  <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
+                    <button
+                      type="button"
+                      disabled
+                      className="download-brochure-btn download-brochure-btn--unavailable"
+                      aria-disabled="true"
+                      title="Brochure download is currently unavailable"
+                    >
+                      Download Brochure
+                    </button>
+                  </div>
+                )}
               </div>
             ))}
           </div>

@@ -6,31 +6,43 @@ const STEPS = [
     number: "01",
     title: "Online Application",
     description:
-      "Fill in your details, choose your program, and take the first step towards your career journey.",
+      "Fill in your details and begin your application journey.",
   },
   {
     number: "02",
-    title: "Leadership Interview",
+    title: "Aptitude Test & Screening Interview",
     description:
-      "Attend an online interview with the leadership team to assess your  overall fit for the program.",
+      "Complete an online aptitude test followed by an initial screening interview to assess your suitability.",
   },
   {
     number: "03",
     title: "Enrollment Fee",
     description:
-      "Candidates who clear the first round are required to pay a non-refundable fee of Rs 3,000 to confirm their participation and move forward in the process.",
+      "Shortlisted candidates pay a non-refundable fee of Rs 3,000 to confirm participation and proceed further.",
   },
   {
     number: "04",
-    title: "Interview Training",
+    title: "Interview Preparation",
     description:
-      "Undergo 3–4 days of structured online training focused on interview preparation, role understanding, and real-world sales scenarios.",
+      "Attend 3–4 days of guided online training covering interview skills, role clarity, and practical scenarios.",
   },
   {
     number: "05",
     title: "Final Interview",
     description:
-      "Appear for the final interview with Mahindra Finance. Selected candidates can complete the remaining fee payment and join the classroom training batch.",
+      "Participate in the final selection round with the hiring team.",
+  },
+  {
+    number: "06",
+    title: "Onboarding",
+    description:
+      "Receive your offer, complete formalities, and get ready to begin your journey.",
+  },
+  {
+    number: "07",
+    title: "Online Classes Start",
+    description:
+      "Kick off your training with structured online sessions designed for role readiness.",
   },
 ];
 
@@ -79,7 +91,7 @@ export default function EnrollmentProcess() {
           {/* Left: Image card */}
           <div className="flex-1 flex justify-start min-w-0">
             <div
-              className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[345px] sm:h-[460px] lg:h-[632px] p-0 sm:p-0 lg:p-6 lg:rounded-[10px] enrollment-image-mobile"
+              className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[400px] sm:h-[540px] lg:h-[775px] p-0 sm:p-0 lg:p-6 lg:rounded-[10px] enrollment-image-mobile"
             >
               <img
                 src={enrollmentImage}
