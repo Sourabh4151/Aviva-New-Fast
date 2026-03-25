@@ -585,8 +585,8 @@ select.hero-select::-ms-expand {
 }
 .download-brochure-btn:hover {
   background: rgba(210, 210, 210, 1);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  transform: translateY(-1px);
+  box-shadow: none;
+  transform: none;
 }
 .download-brochure-btn:active {
   box-shadow: none;

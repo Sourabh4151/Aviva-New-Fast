@@ -22,6 +22,9 @@ export default function Hero() {
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
 
   const otpValue = otpDigits.join("");
+  const brochurePdfPath = "/Mahindra Finance Prarambh Program.pdf";
+  const brochurePdfHref = encodeURI(brochurePdfPath);
+  const brochurePdfDownloadName = "Mahindra Finance Prarambh Program.pdf";
 
   const hasValidationError =
     Object.values(errors).some((val) => Boolean(val)) || Boolean(otpError);
@@ -276,15 +279,14 @@ export default function Hero() {
                 </li>
               </ul>
               <div className="register-btn-wrap mt-5 max-lg:mb-12">
-                <button
-                  type="button"
-                  disabled
-                  className="download-brochure-btn download-brochure-btn--unavailable"
-                  aria-disabled="true"
-                  title="Brochure download is currently unavailable"
+                <a
+                  href={brochurePdfHref}
+                  download={brochurePdfDownloadName}
+                  className="download-brochure-btn"
+                  aria-label="Download brochure PDF"
                 >
                   Download Brochure
-                </button>
+                </a>
               </div>
             </div>
           </div>

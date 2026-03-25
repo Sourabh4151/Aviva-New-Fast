@@ -37,6 +37,9 @@ export default function ClassroomTraining() {
   const modulesRef = useRef(null);
   const imageRefs = useRef([]);
   const [progress, setProgress] = useState(0);
+  const brochurePdfPath = "/Mahindra Finance Prarambh Program.pdf";
+  const brochurePdfHref = encodeURI(brochurePdfPath);
+  const brochurePdfDownloadName = "Mahindra Finance Prarambh Program.pdf";
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -289,15 +292,14 @@ export default function ClassroomTraining() {
 
                 {index === MODULES.length - 1 && (
                   <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
-                    <button
-                      type="button"
-                      disabled
-                      className="download-brochure-btn download-brochure-btn--unavailable"
-                      aria-disabled="true"
-                      title="Brochure download is currently unavailable"
+                    <a
+                      href={brochurePdfHref}
+                      download={brochurePdfDownloadName}
+                      className="download-brochure-btn"
+                      aria-label="Download brochure PDF"
                     >
                       Download Brochure
-                    </button>
+                    </a>
                   </div>
                 )}
               </div>
