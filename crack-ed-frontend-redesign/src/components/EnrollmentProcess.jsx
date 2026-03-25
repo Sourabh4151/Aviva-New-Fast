@@ -30,7 +30,7 @@ const STEPS = [
     number: "05",
     title: "Final Interview",
     description:
-      "Participate in the final selection round with the hiring team.",
+      "Participate in the final selection round with the hiring team of Mahindra Finance.",
   },
   {
     number: "06",
