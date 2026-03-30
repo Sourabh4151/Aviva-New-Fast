@@ -21,7 +21,7 @@ const CARD_ACTIVE_BG = "rgba(1, 7, 12, 1)";
 /** Bottom line when card is hovered/active: 2px, 304px wide, centered, dark blue */
 const LINE_ACTIVE_HEIGHT = 2;
 const LINE_ACTIVE_WIDTH = 304;
-const LINE_ACTIVE_COLOR = "rgba(10, 49, 82, 1)";
+const LINE_ACTIVE_COLOR = "rgba(0, 72, 128, 1)";
 
 /** DURATION/STIPEND label: 12px, 600, 21px line height, uppercase. Initial 0.3, on hover 0.6 */
 const DURATION_LABEL = {
@@ -34,7 +34,7 @@ const DURATION_LABEL = {
   textAlign: "justify",
 };
 const DURATION_LABEL_COLOR_INACTIVE = "rgba(250,250,250,0.3)";
-const DURATION_LABEL_COLOR_ACTIVE = "rgba(250,250,250,0.6)";
+const DURATION_LABEL_COLOR_ACTIVE = "rgba(1, 7, 12, 1)";
 
 /** DURATION/STIPEND value: 16px, 500, 24px line height. Initial 0.5, on hover 1 */
 const DURATION_VALUE = {

@@ -169,7 +169,7 @@ export default function ClassroomTraining() {
                 className="absolute left-1/2 -translate-x-1/2 top-0 w-full rounded-full"
                 style={{
                   height: progressHeight,
-                  backgroundColor: "rgba(10, 49, 82, 1)",
+                  backgroundColor: "rgba(0, 72, 128, 1)",
                 }}
               />
 
@@ -189,7 +189,7 @@ export default function ClassroomTraining() {
                       borderRadius: "999px",
                       top: `calc(${dotOffsets[index]}% - 8px)`,
                       backgroundColor: isActive
-                        ? "rgba(10, 49, 82, 1)"
+                        ? "rgba(0, 72, 128, 1)"
                         : "rgba(63, 63, 63, 1)",
                     }}
                   />
@@ -211,8 +211,8 @@ export default function ClassroomTraining() {
                       className="inline-flex items-center justify-center mb-4 text-sm font-medium tracking-normal"
                       style={{
                         borderRadius: 100,
-                        border: "1px solid rgba(10, 49, 82, 1)",
-                        backgroundColor: "rgba(10, 49, 82, 1)",
+                        border: "1px solid rgba(0, 72, 128, 1)",
+                        backgroundColor: "rgba(0, 72, 128, 1)",
                         paddingTop: 4,
                         paddingBottom: 4,
                         paddingLeft: 30,

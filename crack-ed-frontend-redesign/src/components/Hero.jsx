@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 // Use desktop.jpg or aviva_ds_hero.jpg depending on which file you have in src/assets/.
 import heroImage from "../assets/desktop.jpg";
 import tickSvg from "../assets/tick.svg";
+import bandhanBankLogo from "../assets/bandhan_bank_svg.svg";
 
 export default function Hero() {
   const [form, setForm] = useState({ name: "", email: "", city: "", mobile: "" });
@@ -230,11 +231,18 @@ export default function Hero() {
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
           <div className="hero-container relative">
             <div className="absolute left-[120px] top-[200px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
+              <div className="mb-5 md:mb-5">
+                <img
+                  src={bandhanBankLogo}
+                  alt="Bandhan Bank"
+                  className="h-[49px] w-[180px] object-contain"
+                />
+              </div>
               <div className="hero-logo-badge mb-3 md:mb-4">
                 <div
-                  className="hero-badge mt-4 md:mt-6 inline-flex items-center justify-center text-[14px] font-semibold text-white rounded-full border border-white px-4 py-2"
+                  className="hero-badge inline-flex h-[37px] items-center justify-center gap-[10px] whitespace-nowrap rounded-[100px] border border-[rgba(250,250,250,1)] px-3 py-[10px] text-[12px] font-semibold text-white sm:px-[24px] sm:text-[14px]"
                 >
-                  Postgraduate Program Banking Management
+                  Bandhan Career Bridge Program
                 </div>
               </div>
               <h1 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[1] mb-3 md:mb-4">
@@ -272,7 +280,7 @@ export default function Hero() {
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-6 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[131px] lg:mt-0 lg:w-[373px] lg:z-30 w-full bg-[rgba(3,15,25,1)] p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
+        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-6 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[131px] lg:mt-0 lg:w-[373px] lg:z-30 w-full bg-[rgba(0,14,25,1)] p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
           alreadyInSystem || hasValidationError ? "lg:min-h-[520px]" : "lg:min-h-[471px]"
         }`}
       >

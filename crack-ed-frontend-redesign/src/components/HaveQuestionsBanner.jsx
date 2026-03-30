@@ -67,7 +67,7 @@ export default function HaveQuestionsBanner() {
                 letterSpacing: "0%",
                 color: "rgba(250, 250, 250, 1)",
                 padding: "14px 40px",
-                backgroundColor: "rgba(10, 49, 82, 1)",
+                backgroundColor: "rgba(0, 72, 128, 1)",
               }}
             >
               Request a callback

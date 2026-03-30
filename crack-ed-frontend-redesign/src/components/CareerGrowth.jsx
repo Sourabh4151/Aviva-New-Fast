@@ -52,7 +52,7 @@ export default function CareerGrowth() {
   return (
     <section
       id="career-growth"
-      className="relative bg-[rgba(10,49,82,0.2)] backdrop-blur-[100px] text-white scroll-mt-24 overflow-hidden"
+      className="relative bg-[rgba(0,72,128,0.2)] backdrop-blur-[100px] text-white scroll-mt-24 overflow-hidden"
     >
       {/* Blurred yellow background as per design spec */}
       <div
@@ -67,7 +67,7 @@ export default function CareerGrowth() {
         }}
       />
       <div className="relative z-10 px-4 sm:px-6 md:px-8 py-section lg:pl-[120px] lg:pr-0 lg:pt-[110px] lg:pb-[110px]">
-        <div className="career-growth-card w-full flex flex-col lg:flex-row gap-8 lg:gap-12 rounded-[16px] bg-[rgba(10,49,82,0.2)]/0">
+        <div className="career-growth-card w-full flex flex-col lg:flex-row gap-8 lg:gap-12 rounded-[16px] bg-[rgba(0,72,128,0.2)]/0">
           {/* Left content */}
           <div className="w-full lg:w-[430px] flex-shrink-0">
             <div className="career-growth-tag inline-flex items-center justify-center text-xs sm:text-sm font-medium tracking-normal rounded-full border border-white/30 py-1 px-4 sm:px-[30px] text-white/70">

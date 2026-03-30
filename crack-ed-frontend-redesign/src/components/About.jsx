@@ -11,9 +11,9 @@ export default function About() {
         <p className="about-body mt-4 sm:mt-6 text-[16px] leading-[27px] sm:text-[18px] sm:leading-[32px] font-normal text-white/80 sm:text-white text-justify">
         India’s banking and financial services industry is one of the fastest-growing career sectors today, offering stability, strong income potential, and clear growth pathways for ambitious young professionals. The{" "}
         <span className="font-semibold">
-          Postgraduate Program in Banking Management - Assistant Manager
+        Bandhan Career Bridge Program - Assistant Manager
         </span>{" "}
-        is designed as a direct entry into this opportunity, combining structured training with real-world exposure so you don’t just learn banking, you experience it. Throughout the program, you gain hands-on experience across high-impact verticals: Microfinance (managing and strengthening customer portfolios), Assets (driving loan sales and building the lending book), and Liabilities (acquiring and managing CASA and deposit accounts). It’s a career pathway built for those who want responsibility early, performance-driven rewards, and long-term growth in frontline banking.
+        is designed as a direct entry into this opportunity, combining structured training with real-world exposure so you don’t just learn banking, you experience it. In collaboration with Bandhan Bank, one of India’s leading inclusive banking institutions known for its strong microfinance legacy, the program ensures industry-relevant learning and exposure. Throughout the program, you gain hands-on experience across high-impact verticals: Microfinance (managing and strengthening customer portfolios), Assets (driving loan sales and building the lending book), and Liabilities (acquiring and managing CASA and deposit accounts). It’s a career pathway built for those who want responsibility early, performance-driven rewards, and long-term growth in frontline banking.
         </p>
       </div>
     </section>

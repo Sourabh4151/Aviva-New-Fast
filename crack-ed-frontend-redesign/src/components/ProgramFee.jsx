@@ -55,12 +55,12 @@ export default function ProgramFee() {
           {/* Right: fee card with side/bottom glow */}
           <div className="flex-1 flex justify-center lg:justify-end w-full lg:w-auto">
             <div className="relative w-full max-w-[364px]">
-              {/* Blue glow around card – matches brand color rgba(10, 49, 82) */}
+              {/* Blue glow around card – matches brand color rgba(0, 72, 128) */}
               <div
                 className="pointer-events-none absolute -inset-[40px] sm:-inset-[60px]"
                 style={{
                   background:
-                    "radial-gradient(circle at 0% 50%, rgba(10, 49, 82, 0.45) 0, transparent 60%), radial-gradient(circle at 100% 50%, rgba(10, 49, 82, 0.35) 0, transparent 60%), radial-gradient(circle at 50% 0%, rgba(10, 49, 82, 0.3) 0, transparent 60%), radial-gradient(circle at 50% 100%, rgba(10, 49, 82, 0.3) 0, transparent 60%)",
+                    "radial-gradient(circle at 0% 50%, rgba(0, 72, 128, 0.45) 0, transparent 60%), radial-gradient(circle at 100% 50%, rgba(0, 72, 128, 0.35) 0, transparent 60%), radial-gradient(circle at 50% 0%, rgba(0, 72, 128, 0.3) 0, transparent 60%), radial-gradient(circle at 50% 100%, rgba(0, 72, 128, 0.3) 0, transparent 60%)",
                   filter: "blur(32px)",
                   opacity: 0.6,
                 }}
