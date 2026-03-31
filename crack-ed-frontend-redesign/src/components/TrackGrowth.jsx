@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import alignmentIcon from "../assets/alignment.svg";
 import progressIcon from "../assets/progress.svg";
 import reviewIcon from "../assets/review.svg";
+import animationBandhanLogo from "../assets/animation_bandhan_logo.svg";
 
 const ITEMS = [
   {
@@ -28,6 +29,41 @@ const ITEMS = [
 ];
 
 export default function TrackGrowth() {
+  const cardRefs = useRef({});
+  const [activated, setActivated] = useState({});
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const elements = ITEMS.map((item) => cardRefs.current[item.key]).filter(Boolean);
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const key = entry.target.getAttribute("data-track-growth-key");
+          if (!key) return;
+
+          // Mobile behavior: play when entering the 50% trigger zone,
+          // and reset when moving back out of it.
+          setActivated((prev) => {
+            if (prev[key] === entry.isIntersecting) return prev;
+            return { ...prev, [key]: entry.isIntersecting };
+          });
+        });
+      },
+      {
+        // Mobile trigger point: activate when card top reaches ~50% viewport height.
+        // Shrinking the root from bottom by 50% makes intersection begin around mid-screen.
+        threshold: 0,
+        rootMargin: "0px 0px -50% 0px",
+      }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="track-growth"
@@ -62,9 +98,28 @@ export default function TrackGrowth() {
           {ITEMS.map((item) => (
             <div key={item.key} className="group flex-1 min-w-0">
               <div
-                className="h-full rounded-[10px] bg-[#0d0d0d] transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-[0px_16px_40px_rgba(0,0,0,0.55)] pt-6 pb-6 px-4"
+                ref={(el) => {
+                  cardRefs.current[item.key] = el;
+                }}
+                data-track-growth-key={item.key}
+                className="relative overflow-hidden h-full rounded-[10px] bg-[#0d0d0d] transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-[0px_16px_40px_rgba(0,0,0,0.55)] pt-6 pb-6 px-4"
               >
-                <div className="flex flex-col gap-[10px]">
+                {/* Bandhan logo: desktop hover + always-visible base.
+                    Mobile: scales/brightens when card enters viewport (via IntersectionObserver). */}
+                <img
+                  src={animationBandhanLogo}
+                  alt=""
+                  aria-hidden="true"
+                  className={`pointer-events-none select-none absolute top-[-150px] left-[150px] origin-top-right z-0
+                    w-[312px] h-[360px] object-contain
+                    opacity-[0.3] scale-100 transform-gpu
+                    transition-opacity transition-transform duration-500 ease-out
+                    ${activated[item.key] ? "opacity-[0.8] scale-[1.35]" : ""}
+                    lg:opacity-[0.3] lg:scale-100
+                    lg:group-hover:opacity-[0.8] lg:group-hover:scale-[1.35]`}
+                />
+
+                <div className="relative z-10 flex flex-col gap-[10px]">
                   <div className="inline-flex items-center justify-center rounded-[10px] w-16 h-16 bg-[#202020]">
                     <img
                       src={item.icon}
