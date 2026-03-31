@@ -215,7 +215,7 @@ export default function Hero() {
     <section id="hero" className="relative max-lg:bg-black">
       {/* Hero background: fixed height on all screens – does NOT grow. Form comes after on mobile. */}
       <div
-        className="w-full min-h-[520px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-center bg-no-repeat relative"
+        className="w-full min-h-[520px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-no-repeat max-lg:bg-[40%_center] lg:bg-center relative"
         style={{ backgroundImage: `url(${heroImage})` }}
         role="img"
         aria-label="Aviva hero"
@@ -235,7 +235,7 @@ export default function Hero() {
                 <img
                   src={bandhanBankLogo}
                   alt="Bandhan Bank"
-                  className="h-[49px] w-[180px] object-contain"
+                  className="h-[55.26px] w-[203px] object-contain"
                 />
               </div>
               <div className="hero-logo-badge mb-3 md:mb-4">
@@ -280,7 +280,7 @@ export default function Hero() {
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-6 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[131px] lg:mt-0 lg:w-[373px] lg:z-30 w-full bg-[rgba(0,14,25,1)] p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
+        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-6 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[131px] lg:mt-0 lg:w-[373px] lg:z-30 w-full bg-[rgba(1,73,128,1)] p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
           alreadyInSystem || hasValidationError ? "lg:min-h-[520px]" : "lg:min-h-[471px]"
         }`}
       >
