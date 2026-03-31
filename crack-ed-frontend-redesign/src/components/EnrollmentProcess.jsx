@@ -89,7 +89,7 @@ export default function EnrollmentProcess() {
                 >
                   {(() => {
                     const isHovered = hoveredStep === step.number;
-                    const accentColor = "rgba(0, 72, 128, 1)";
+                    const accentColor = "rgba(237, 59, 37, 1)";
                     const defaultLineColor = "rgba(250,250,250,0.25)";
                     const defaultTextColor = "rgba(250,250,250,1)";
 
