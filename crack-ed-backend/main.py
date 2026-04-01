@@ -154,6 +154,9 @@ def send_callback_lead_to_crm(user):
     "Center": "33",
     "Course": "1",
     "Field5": "Microsite - HDFC - Teller",
+    "Field15": user.utm_source or "",
+    "Textb5": user.utm_medium or "",
+    "Field3": user.utm_campaign or "",
     "leadCampaign":"Default",
     "LeadSource": "123",
     })
