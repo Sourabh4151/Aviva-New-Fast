@@ -9,7 +9,7 @@ export default function About() {
         </div>
 
         <p className="about-body mt-4 sm:mt-6 text-[16px] leading-[27px] sm:text-[18px] sm:leading-[32px] font-normal text-white/80 sm:text-white text-justify">
-        India’s gold loan industry plays a vital role in providing quick and reliable credit to millions of customers, creating strong demand for professionals who can manage gold valuation, customer engagement, and branch operations with accuracy and trust. Supporting this growing sector, leading financial institutions like Poonawalla Fincorp have built strong lending networks focused on responsible credit and customer-first financial services. Through this partnership, the Poonawall FinPro Career Program - Gold Assayer prepares you to begin your career as a Gold Assayer, where you will support gold valuation, loan processing, customer interactions, and the secure handling of pledged ornaments while contributing to branch performance from day one.
+        India’s gold loan industry plays a vital role in providing quick and reliable credit to millions of customers, creating strong demand for professionals who can manage gold valuation, customer engagement, and branch operations with accuracy and trust. Supporting this growing sector, leading financial institutions like Poonawalla Fincorp have built strong lending networks focused on responsible credit and customer-first financial services. Through this partnership, the Poonawalla FinPro Career Program - Gold Assayer prepares you to begin your career as a Gold Assayer, where you will support gold valuation, loan processing, customer interactions, and the secure handling of pledged ornaments while contributing to branch performance from day one.
         </p>
       </div>
     </section>
