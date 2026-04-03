@@ -115,11 +115,11 @@ export default function TrainingJourney() {
           <article
             className="flex-1 min-w-0 max-w-full lg:basis-1/2 lg:max-w-none flex flex-col"
             style={{
-              backgroundColor: classroomVisualActive
-                ? isMobile
-                  ? "rgba(13, 11, 0, 1)"
-                  : CARD_ACTIVE_BG
-                : "transparent",
+              backgroundColor: isMobile
+                ? "rgba(13, 11, 0, 1)"
+                : classroomVisualActive
+                  ? CARD_ACTIVE_BG
+                  : "transparent",
               borderRadius: CARD_RADIUS,
               minHeight: CARD_MIN_HEIGHT,
               ...CARD_PADDING,
@@ -252,11 +252,11 @@ export default function TrainingJourney() {
           <article
             className="flex-1 min-w-0 max-w-full lg:basis-1/2 lg:max-w-none flex flex-col"
             style={{
-              backgroundColor: ojtVisualActive
-                ? isMobile
-                  ? "rgba(13, 11, 0, 1)"
-                  : CARD_ACTIVE_BG
-                : "transparent",
+              backgroundColor: isMobile
+                ? "rgba(13, 11, 0, 1)"
+                : ojtVisualActive
+                  ? CARD_ACTIVE_BG
+                  : "transparent",
               borderRadius: CARD_RADIUS,
               minHeight: CARD_MIN_HEIGHT,
               ...CARD_PADDING,
@@ -289,7 +289,10 @@ export default function TrainingJourney() {
                     lineHeight: "27px",
                     letterSpacing: "0em",
                     textAlign: isMobile ? "left" : "justify",
-                    color: ojtVisualActive ? "rgba(250,250,250,1)" : "rgba(250,250,250,0.5)",
+                    color:
+                      ojtVisualActive || isMobile
+                        ? "rgba(250,250,250,1)"
+                        : "rgba(250,250,250,0.5)",
                   }}
                 >
                   On-the-Job Training
@@ -302,9 +305,10 @@ export default function TrainingJourney() {
                     lineHeight: "21px",
                     letterSpacing: "0em",
                     textAlign: isMobile ? "left" : "justify",
-                    color: ojtVisualActive
-                      ? "rgba(250,250,250,0.8)"
-                      : "rgba(250,250,250,0.5)",
+                    color:
+                      ojtVisualActive || isMobile
+                        ? "rgba(250,250,250,0.8)"
+                        : "rgba(250,250,250,0.5)",
                     marginTop: CARD_GAP,
                   }}
                 >
@@ -314,7 +318,7 @@ export default function TrainingJourney() {
               </div>
 
               <div
-                className="flex flex-wrap gap-x-20 sm:gap-x-[100px] gap-y-2 text-xs tracking-[0.08em]"
+                className="flex flex-wrap gap-x-20 sm:gap-x-[100px] gap-y-2 text-xs tracking-[0.16em]"
                 style={{ marginTop: 6 }}
               >
                 <div>
@@ -322,9 +326,10 @@ export default function TrainingJourney() {
                     style={{
                       ...DURATION_LABEL,
                       textAlign: isMobile ? "left" : "justify",
-                      color: ojtVisualActive
-                        ? DURATION_LABEL_COLOR_ACTIVE
-                        : DURATION_LABEL_COLOR_INACTIVE,
+                      color:
+                        ojtVisualActive || isMobile
+                          ? DURATION_LABEL_COLOR_ACTIVE
+                          : DURATION_LABEL_COLOR_INACTIVE,
                     }}
                   >
                     DURATION
@@ -334,9 +339,10 @@ export default function TrainingJourney() {
                     style={{
                       ...DURATION_VALUE,
                       textAlign: isMobile ? "left" : "justify",
-                      color: ojtVisualActive
-                        ? DURATION_VALUE_COLOR_ACTIVE
-                        : DURATION_VALUE_COLOR_INACTIVE,
+                      color:
+                        ojtVisualActive || isMobile
+                          ? DURATION_VALUE_COLOR_ACTIVE
+                          : DURATION_VALUE_COLOR_INACTIVE,
                     }}
                   >
                     1 Month
@@ -346,9 +352,10 @@ export default function TrainingJourney() {
                   <div
                     style={{
                       ...DURATION_LABEL,
-                      color: ojtVisualActive
-                        ? DURATION_LABEL_COLOR_ACTIVE
-                        : DURATION_LABEL_COLOR_INACTIVE,
+                      color:
+                        ojtVisualActive || isMobile
+                          ? DURATION_LABEL_COLOR_ACTIVE
+                          : DURATION_LABEL_COLOR_INACTIVE,
                     }}
                   >
                     STIPEND
@@ -357,9 +364,10 @@ export default function TrainingJourney() {
                   <div
                     style={{
                       ...DURATION_VALUE,
-                      color: ojtVisualActive
-                        ? DURATION_VALUE_COLOR_ACTIVE
-                        : DURATION_VALUE_COLOR_INACTIVE,
+                      color:
+                        ojtVisualActive || isMobile
+                          ? DURATION_VALUE_COLOR_ACTIVE
+                          : DURATION_VALUE_COLOR_INACTIVE,
                     }}
                   >
                     Rs 10,000
