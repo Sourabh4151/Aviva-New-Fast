@@ -242,7 +242,7 @@ export default function Hero() {
                     <div
                       className="hero-badge inline-flex h-[37px] items-center justify-center gap-[10px] whitespace-nowrap rounded-[100px] border border-[rgba(250,250,250,1)] px-[24px] py-[10px] text-[14px] leading-[1] font-semibold text-white"
                     >
-                      Poonawall FinPro Career Program
+                      Poonawalla FinPro Career Program
                     </div>
                   </div>
                   <h1 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[1]">
