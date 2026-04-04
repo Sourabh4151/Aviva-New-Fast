@@ -23,7 +23,7 @@ const LINE_ACTIVE_HEIGHT = 2;
 const LINE_ACTIVE_WIDTH = 304;
 const LINE_ACTIVE_COLOR = "rgba(0, 72, 128, 1)";
 
-/** DURATION/STIPEND label: 12px, 600, 21px line height, uppercase. Initial 0.3, on hover 0.6 */
+/** DURATION/STIPEND label: Montserrat 600, 12px, 21px lh, uppercase; inactive 0.3, active/hover rgba(250,250,250,0.6) per design */
 const DURATION_LABEL = {
   fontFamily: FONT_MONTSERRAT,
   fontWeight: 600,
@@ -34,7 +34,7 @@ const DURATION_LABEL = {
   textAlign: "justify",
 };
 const DURATION_LABEL_COLOR_INACTIVE = "rgba(250,250,250,0.3)";
-const DURATION_LABEL_COLOR_ACTIVE = "rgba(1, 7, 12, 1)";
+const DURATION_LABEL_COLOR_ACTIVE = "rgba(250,250,250,0.6)";
 
 /** DURATION/STIPEND value: 16px, 500, 24px line height. Initial 0.5, on hover 1 */
 const DURATION_VALUE = {
@@ -127,13 +127,16 @@ export default function TrainingJourney() {
                   : CARD_ACTIVE_BG
                 : "transparent",
               borderRadius: CARD_RADIUS,
-              minHeight: CARD_MIN_HEIGHT,
+              ...(isMobile ? {} : { minHeight: CARD_MIN_HEIGHT }),
               ...CARD_PADDING,
               gap: CARD_GAP,
             }}
             onMouseEnter={!isMobile ? () => setActiveCard("classroom") : undefined}
           >
-            <div className="w-full flex flex-col flex-1" style={{ gap: CARD_GAP }}>
+            <div
+              className={`w-full flex flex-col ${isMobile ? "" : "flex-1"}`}
+              style={{ gap: CARD_GAP }}
+            >
               <div>
                 <img
                   src={classroomMobile}
@@ -236,8 +239,8 @@ export default function TrainingJourney() {
                 </div>
               </div>
 
-              {/* Spacer: pushes bottom line down to match card 3 */}
-              <div style={{ flex: 1, minHeight: 0 }} aria-hidden="true" />
+              {/* Spacer: desktop only — aligns bottom line across the three cards */}
+              {!isMobile && <div style={{ flex: 1, minHeight: 0 }} aria-hidden="true" />}
 
               <div className="h-[2px] w-full bg-white sm:hidden" />
               <div
@@ -266,13 +269,16 @@ export default function TrainingJourney() {
                   : CARD_ACTIVE_BG
                 : "transparent",
               borderRadius: CARD_RADIUS,
-              minHeight: CARD_MIN_HEIGHT,
+              ...(isMobile ? {} : { minHeight: CARD_MIN_HEIGHT }),
               ...CARD_PADDING,
               gap: CARD_GAP,
             }}
             onMouseEnter={!isMobile ? () => setActiveCard("ojt") : undefined}
           >
-            <div className="w-full flex flex-col flex-1" style={{ gap: CARD_GAP }}>
+            <div
+              className={`w-full flex flex-col ${isMobile ? "" : "flex-1"}`}
+              style={{ gap: CARD_GAP }}
+            >
               <div>
                 <img
                   src={ojtMobile}
@@ -375,8 +381,7 @@ export default function TrainingJourney() {
                 </div>
               </div>
 
-              {/* Spacer: pushes bottom line down to match card 3 */}
-              <div style={{ flex: 1, minHeight: 0 }} aria-hidden="true" />
+              {!isMobile && <div style={{ flex: 1, minHeight: 0 }} aria-hidden="true" />}
 
               <div className="h-[2px] w-full bg-white sm:hidden" />
               <div
@@ -405,13 +410,16 @@ export default function TrainingJourney() {
                   : CARD_ACTIVE_BG
                 : "transparent",
               borderRadius: CARD_RADIUS,
-              minHeight: CARD_MIN_HEIGHT,
+              ...(isMobile ? {} : { minHeight: CARD_MIN_HEIGHT }),
               ...CARD_PADDING,
               gap: CARD_GAP,
             }}
             onMouseEnter={!isMobile ? () => setActiveCard("placement") : undefined}
           >
-            <div className="w-full flex flex-col flex-1" style={{ gap: CARD_GAP }}>
+            <div
+              className={`w-full flex flex-col ${isMobile ? "" : "flex-1"}`}
+              style={{ gap: CARD_GAP }}
+            >
               <div>
                 <img
                   src={placementMobile}
@@ -461,8 +469,7 @@ export default function TrainingJourney() {
                 </p>
               </div>
 
-              {/* Spacer: pushes bottom line down so all three cards align */}
-              <div style={{ flex: 1, minHeight: 0 }} aria-hidden="true" />
+              {!isMobile && <div style={{ flex: 1, minHeight: 0 }} aria-hidden="true" />}
 
               <div className="h-[2px] w-full bg-white sm:hidden" />
               <div
