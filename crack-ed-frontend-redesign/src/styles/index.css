@@ -69,11 +69,13 @@ body::-webkit-scrollbar {
   .hero-left-adjust .hero-bullet-list > li + li {
     margin-top: 8px;
   }
-  /* Aviva Nirmaan Program badge (Frame 299): 255×37, radius 100px, border 1px, padding 10px */
+  /* Badge: design was 255×37 for shorter copy; long “FinPro Career Program” needs room — fixed width + 10px pad caused overflow (text touching border). */
   .hero-badge {
-    width: 255px;
+    width: fit-content;
+    max-width: 100%;
+    height: auto;
     min-height: 37px;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 100px;
     border: 1px solid rgba(250, 250, 250, 1);
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;

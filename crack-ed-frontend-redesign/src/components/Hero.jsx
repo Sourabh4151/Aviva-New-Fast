@@ -249,20 +249,21 @@ export default function Hero() {
                   Sales Executive
                   </h1>
                 </div>
-                <ul className="hero-bullet-list text-gray-200 space-y-4">
+                <ul className="hero-bullet-list space-y-4">
                   <li className="flex items-start gap-2 sm:gap-3">
                     <span className="hero-tick">
                       <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                     </span>
-                    <span className="hero-subtitle font-normal text-[14px] leading-[1]">
-                    Join as a Sales Executive with a CTC of upto Rs 2.76 LPA + incentives
+                    <span className="hero-subtitle font-normal text-[16px] leading-[1] text-[rgba(250,250,250,1)]">
+                      Join as a Sales Executive with a CTC of upto Rs 2.76 LPA + incentives
                     </span>
                   </li>
                   <li className="flex items-start gap-2 sm:gap-3">
                     <span className="hero-tick">
                       <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                     </span>
-                    <span className="hero-subtitle font-normal text-[14px] leading-[1]">3-week program
+                    <span className="hero-subtitle font-normal text-[16px] leading-[1] text-[rgba(250,250,250,1)]">
+                      3-week program
                     </span>
                   </li>
                 </ul>
