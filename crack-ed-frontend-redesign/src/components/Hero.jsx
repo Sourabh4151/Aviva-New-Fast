@@ -228,7 +228,7 @@ export default function Hero() {
           className="relative z-10 min-h-[520px] sm:min-h-[600px] lg:absolute lg:inset-0 lg:min-h-0"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.35) 85%, rgba(0, 0, 0, 0.55) 95%, rgba(0, 0, 0, 0.7) 100%)",
+              "linear-gradient(to bottom, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.62)), linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.52) 85%, rgba(0, 0, 0, 0.72) 95%, rgba(0, 0, 0, 0.88) 100%)",
           }}
         >
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
@@ -257,7 +257,7 @@ export default function Hero() {
                     <span className="hero-tick">
                       <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                     </span>
-                    <span className="hero-subtitle font-normal text-[14px] leading-[1]">
+                    <span className="hero-subtitle font-normal text-[16px] leading-[1]">
                     Join as a Relationship Manager with a CTC of Rs 2.74 LPA + variable
                     </span>
                   </li>
@@ -265,7 +265,7 @@ export default function Hero() {
                     <span className="hero-tick">
                       <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                     </span>
-                    <span className="hero-subtitle font-normal text-[14px] leading-[1]">13-week program
+                    <span className="hero-subtitle font-normal text-[16px] leading-[1]">13-week program
                     </span>
                   </li>
                 </ul>
