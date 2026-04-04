@@ -239,7 +239,7 @@ export default function Hero() {
                   <img
                     src={lenskartLogo}
                     alt="Aviva logo"
-                    className="w-[177px] h-[46px] object-contain"
+                    className="w-[135px] h-[46px] object-contain"
                   />
                   <div className="hero-logo-badge">
                     <div
