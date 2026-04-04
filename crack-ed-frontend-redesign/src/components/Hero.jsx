@@ -228,7 +228,7 @@ export default function Hero() {
           className="relative z-10 min-h-[520px] sm:min-h-[600px] lg:absolute lg:inset-0 lg:min-h-0"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.35) 85%, rgba(0, 0, 0, 0.55) 95%, rgba(0, 0, 0, 0.7) 100%)",
+              "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.75)), linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 85%, rgba(0, 0, 0, 0.75) 95%, rgba(0, 0, 0, 0.9) 100%)",
           }}
         >
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
@@ -252,20 +252,21 @@ export default function Hero() {
                   Field Sales Executive
                   </h1>
                 </div>
-                <ul className="hero-bullet-list text-gray-200 space-y-4">
+                <ul className="hero-bullet-list space-y-4">
                   <li className="flex items-start gap-2 sm:gap-3">
                     <span className="hero-tick">
                       <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                     </span>
-                    <span className="hero-subtitle font-normal text-[14px] leading-[1]">
-                    Join as a Field Sales Executive with a CTC of Rs 2.5 LPA + incentives
+                    <span className="hero-subtitle font-normal text-[14px] leading-[1] text-[rgba(250,250,250,1)]">
+                      Join as a Field Sales Executive with a CTC of Rs 2.5 LPA + incentives
                     </span>
                   </li>
                   <li className="flex items-start gap-2 sm:gap-3">
                     <span className="hero-tick">
                       <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                     </span>
-                    <span className="hero-subtitle font-normal text-[14px] leading-[1]">2-week program (virtual)
+                    <span className="hero-subtitle font-normal text-[14px] leading-[1] text-[rgba(250,250,250,1)]">
+                      2-week program (virtual)
                     </span>
                   </li>
                 </ul>
