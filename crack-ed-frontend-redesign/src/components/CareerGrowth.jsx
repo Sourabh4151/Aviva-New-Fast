@@ -60,7 +60,8 @@ export default function CareerGrowth() {
   return (
     <section
       id="career-growth"
-      className="relative bg-[rgba(3, 0, 69, 0.3)] backdrop-blur-[100px] text-white scroll-mt-24 overflow-hidden"
+      className="relative backdrop-blur-[100px] text-white scroll-mt-24 overflow-hidden"
+      style={{ backgroundColor: "rgba(3, 0, 69, 0.3)" }}
     >
       {/* Blurred yellow background as per design spec */}
       <div
