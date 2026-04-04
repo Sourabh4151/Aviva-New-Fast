@@ -69,11 +69,13 @@ body::-webkit-scrollbar {
   .hero-left-adjust .hero-bullet-list > li + li {
     margin-top: 8px;
   }
-  /* Aviva Nirmaan Program badge (Frame 299): 255×37, radius 100px, border 1px, padding 10px */
+  /* Pill badge: desktop spec was 255×37; on narrow screens fixed width + nowrap overflows and hides horizontal padding */
   .hero-badge {
-    width: 255px;
+    width: auto;
+    max-width: 100%;
     min-height: 37px;
-    padding: 10px;
+    padding: 10px 24px;
+    box-sizing: border-box;
     border-radius: 100px;
     border: 1px solid rgba(250, 250, 250, 1);
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
@@ -82,7 +84,6 @@ body::-webkit-scrollbar {
     line-height: 100%;
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);
-    box-sizing: border-box;
   }
   /* Direct Sales Executive: Montserrat 600, 40px, line-height 100%, color rgba(250,250,250,1) */
   .hero-title {
@@ -93,11 +94,11 @@ body::-webkit-scrollbar {
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);
   }
-  /* Subtitle bullet: Poppins 400, 14px, line-height 100%, color rgba(250,250,250,1) */
+  /* Subtitle bullet: Poppins 400, 16px, line-height 100%, color rgba(250,250,250,1) */
   .hero-subtitle {
     font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 100%;
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);

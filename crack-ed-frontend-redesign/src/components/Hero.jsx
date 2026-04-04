@@ -240,7 +240,7 @@ export default function Hero() {
                   />
                   <div className="hero-logo-badge">
                     <div
-                      className="hero-badge inline-flex h-[37px] items-center justify-center gap-[10px] whitespace-nowrap rounded-[100px] border border-[rgba(250,250,250,1)] px-[24px] py-[10px] text-[14px] leading-[1] font-semibold text-white"
+                      className="hero-badge inline-flex min-h-[37px] items-center justify-center gap-[10px] whitespace-nowrap rounded-[100px] border border-[rgba(250,250,250,1)] px-[24px] py-[10px] text-[14px] leading-[1] font-semibold text-white"
                     >
                       Poonawalla FinPro Career Program
                     </div>
@@ -249,20 +249,21 @@ export default function Hero() {
                   Gold Assayer
                   </h1>
                 </div>
-                <ul className="hero-bullet-list text-gray-200 space-y-4">
+                <ul className="hero-bullet-list space-y-4">
                   <li className="flex items-start gap-2 sm:gap-3">
                     <span className="hero-tick">
                       <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                     </span>
-                    <span className="hero-subtitle font-normal text-[14px] leading-[1]">
-                    Join as a Gold Assayer with a CTC of Rs 2.5 LPA + incentives
+                    <span className="hero-subtitle font-normal text-[16px] text-[rgba(250,250,250,1)]">
+                      Join as a Gold Assayer with a CTC of Rs 2.5 LPA + incentives
                     </span>
                   </li>
                   <li className="flex items-start gap-2 sm:gap-3">
                     <span className="hero-tick">
                       <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                     </span>
-                    <span className="hero-subtitle font-normal text-[14px] leading-[1]">1.5-month program
+                    <span className="hero-subtitle font-normal text-[16px] text-[rgba(250,250,250,1)]">
+                      1.5-month program
                     </span>
                   </li>
                 </ul>
