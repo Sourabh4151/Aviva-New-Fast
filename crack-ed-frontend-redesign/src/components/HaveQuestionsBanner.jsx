@@ -57,7 +57,7 @@ export default function HaveQuestionsBanner() {
             <button
               type="button"
               onClick={scrollToHero}
-              className="rounded-[10px] cursor-pointer hover:opacity-95 transition-opacity w-fit"
+              className="rounded-[10px] cursor-pointer w-fit bg-[rgba(10,49,82,1)] hover:bg-[rgba(10,49,82,0.7)] transition-colors"
               style={{
                 fontFamily:
                   "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
@@ -67,7 +67,6 @@ export default function HaveQuestionsBanner() {
                 letterSpacing: "0%",
                 color: "rgba(250, 250, 250, 1)",
                 padding: "14px 40px",
-                backgroundColor: "rgba(10, 49, 82, 1)",
               }}
             >
               Request a callback

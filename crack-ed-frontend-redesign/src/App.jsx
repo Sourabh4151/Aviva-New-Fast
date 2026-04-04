@@ -9,6 +9,7 @@ import TrackGrowth from "./components/TrackGrowth";
 import EnrollmentProcess from "./components/EnrollmentProcess";
 import ProgramFee from "./components/ProgramFee";
 import HaveQuestionsBanner from "./components/HaveQuestionsBanner";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
       <EnrollmentProcess />
       <ProgramFee />
       <HaveQuestionsBanner />
+      <Footer />
     </div>
   );
 }

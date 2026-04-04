@@ -212,11 +212,15 @@ export default function Hero() {
     <section id="hero" className="relative max-lg:bg-black">
       {/* Hero background: fixed height on all screens – does NOT grow. Form comes after on mobile. */}
       <div
-        className="w-full min-h-[520px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-center bg-no-repeat relative"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        className="w-full min-h-[520px] sm:min-h-[600px] lg:h-[690px] relative overflow-hidden"
         role="img"
         aria-label="Aviva hero"
       >
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroImage})`, transform: "scaleX(-1)" }}
+          aria-hidden
+        />
         <div
           className="absolute inset-0"
           style={{
@@ -235,7 +239,7 @@ export default function Hero() {
                   className="w-[146px] h-[44.92px] object-contain"
                 />
                 <div className="hero-badge inline-flex items-center justify-center text-[14px] font-semibold text-white rounded-full border border-white px-4 py-2">
-                  Postgraduate Program Relationship Management
+                  Postgraduate Program In Relationship Management
                 </div>
               </div>
               <h1 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[1] mb-4">

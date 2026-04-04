@@ -78,8 +78,8 @@ export default function ProgramFee() {
                 flexDirection: "column",
               }}
               >
-              {/* PROGRAM FEE + amount */}
-              <div className="flex flex-col" style={{ gap: "10px" }}>
+              {/* PROGRAM FEE + amount — vertical gap per design (4px) */}
+              <div className="flex flex-col gap-1">
                 <p
                   className="program-fee-card-label"
                   style={{
@@ -121,7 +121,7 @@ export default function ProgramFee() {
                       color: "rgba(250, 250, 250, 1)",
                     }}
                   >
-                    (tax included)
+                    + GST
                   </span>
                 </p>
               </div>
