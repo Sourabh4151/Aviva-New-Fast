@@ -115,7 +115,7 @@ export default function ProgramFee() {
                     whiteSpace: "nowrap",
                   }}
                 >
-                  Rs 60,000{" "}
+                  Rs 80,000{" "}
                   <span
                     style={{
                       fontFamily:
