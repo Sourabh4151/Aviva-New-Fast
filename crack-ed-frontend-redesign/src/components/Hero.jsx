@@ -225,7 +225,7 @@ export default function Hero() {
           style={{
             zIndex: 10,
             background:
-              "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.35) 85%, rgba(0, 0, 0, 0.55) 95%, rgba(0, 0, 0, 0.7) 100%)",
+              "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.75)), linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 85%, rgba(0, 0, 0, 0.75) 95%, rgba(0, 0, 0, 0.9) 100%)",
           }}
         >
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
