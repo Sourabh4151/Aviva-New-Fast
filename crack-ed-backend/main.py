@@ -59,15 +59,6 @@ NOPAPERFORMS_GET_BY_EMAIL_URL = os.getenv(
     "NOPAPERFORMS_GET_BY_EMAIL_URL",
     "https://api.nopaperforms.io/lead/v1/getDetailsByEmail",
 )
-# Sent on createOrUpdate only (override via .env per environment).
-NOPAPERFORMS_CF_FORM_NAME = os.getenv(
-    "NOPAPERFORMS_CF_FORM_NAME",
-    "Microsite - Aviva - AS",
-)
-NOPAPERFORMS_CF_PROGRAM = os.getenv("NOPAPERFORMS_CF_PROGRAM", "Aviva - AS")
-NOPAPERFORMS_CF_PG_PROGRAM = os.getenv("NOPAPERFORMS_CF_PG_PROGRAM", "PG Program")
-
-
 def _nopaperforms_lead_headers():
     headers = {
         "Content-Type": "application/json",
@@ -126,9 +117,9 @@ def _post_lead_to_nopaperforms(
         "source": _str_utm(utm_source),
         "medium": _str_utm(utm_medium),
         "campaign": _str_utm(utm_campaign),
-        "cf_form_name": NOPAPERFORMS_CF_FORM_NAME,
-        "cf_program": NOPAPERFORMS_CF_PROGRAM,
-        "cf_pg_program": NOPAPERFORMS_CF_PG_PROGRAM,
+        "cf_form_name": "Microsite - Aviva - AS",
+        "cf_program": "Aviva - AS",
+        "cf_pg_program": "PG Program",
     }
     try:
         print("NoPaperForms CRM payload:", json.dumps(payload))
