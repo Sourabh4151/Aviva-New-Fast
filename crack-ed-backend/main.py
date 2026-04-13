@@ -59,6 +59,13 @@ NOPAPERFORMS_GET_BY_EMAIL_URL = os.getenv(
     "NOPAPERFORMS_GET_BY_EMAIL_URL",
     "https://api.nopaperforms.io/lead/v1/getDetailsByEmail",
 )
+# Sent on createOrUpdate only (override via .env per environment).
+NOPAPERFORMS_CF_FORM_NAME = os.getenv(
+    "NOPAPERFORMS_CF_FORM_NAME",
+    "Microsite - Aviva - AS",
+)
+NOPAPERFORMS_CF_PROGRAM = os.getenv("NOPAPERFORMS_CF_PROGRAM", "Aviva - AS")
+NOPAPERFORMS_CF_PG_PROGRAM = os.getenv("NOPAPERFORMS_CF_PG_PROGRAM", "PG Program")
 
 
 def _nopaperforms_lead_headers():
@@ -91,14 +98,37 @@ def _format_mobile_for_nopaperforms(mobile):
     return digits
 
 
-def _post_lead_to_nopaperforms(*, full_name, email, mobile, state="", city="", search_criteria="mobile"):
+def _str_utm(value):
+    if value is None:
+        return ""
+    return str(value).strip()
+
+
+def _post_lead_to_nopaperforms(
+    *,
+    full_name,
+    email,
+    mobile,
+    state="",
+    city="",
+    search_criteria="mobile",
+    utm_source="",
+    utm_medium="",
+    utm_campaign="",
+):
     payload = {
         "name": (full_name or "").strip(),
         "email": (email or "").strip(),
         "mobile": _format_mobile_for_nopaperforms(mobile),
         "state": state or "",
         "city": city or "",
-        "search_criteria":"mobile",
+        "search_criteria": search_criteria or "mobile",
+        "source": _str_utm(utm_source),
+        "medium": _str_utm(utm_medium),
+        "campaign": _str_utm(utm_campaign),
+        "cf_form_name": NOPAPERFORMS_CF_FORM_NAME,
+        "cf_program": NOPAPERFORMS_CF_PROGRAM,
+        "cf_pg_program": NOPAPERFORMS_CF_PG_PROGRAM,
     }
     try:
         print("NoPaperForms CRM payload:", json.dumps(payload))
@@ -338,6 +368,9 @@ def send_callback_lead_to_crm(user):
         state=state_val,
         city=city_val,
         search_criteria="mobile",
+        utm_source=getattr(user, "utm_source", None),
+        utm_medium=getattr(user, "utm_medium", None),
+        utm_campaign=getattr(user, "utm_campaign", None),
     )
     print(response.text)
 
@@ -385,6 +418,9 @@ def send_registration_lead_to_crm(user):
             state=getattr(user, "state", None) or "",
             city=getattr(user, "city", None) or "",
             search_criteria="mobile",
+            utm_source=getattr(user, "utm_source", None),
+            utm_medium=getattr(user, "utm_medium", None),
+            utm_campaign=getattr(user, "utm_campaign", None),
         )
         print(f"CRM Response: {response.text}")
         return response

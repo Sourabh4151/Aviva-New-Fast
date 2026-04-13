@@ -257,7 +257,7 @@ export default function Hero() {
                     <span className="hero-tick">
                       <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                     </span>
-                    <span className="hero-subtitle font-normal text-[14px] leading-[1]">
+                    <span className="hero-subtitle font-normal text-[16px] leading-[1]">
                     Join as a Front Line Sales Executive - Agency Sales with a CTC of Rs 3.5 LPA + Variable 
                     </span>
                   </li>
@@ -265,7 +265,7 @@ export default function Hero() {
                     <span className="hero-tick">
                       <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                     </span>
-                    <span className="hero-subtitle font-normal text-[14px] leading-[1]">3-month program
+                    <span className="hero-subtitle font-normal text-[16px] leading-[1]">3-month program
                     </span>
                   </li>
                 </ul>
