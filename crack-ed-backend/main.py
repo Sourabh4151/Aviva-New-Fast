@@ -45,6 +45,210 @@ def normalize_status(s):
 
 load_dotenv()
 
+# NoPaperForms CRM — set NOPAPERFORMS_ACCESS_KEY, NOPAPERFORMS_SECRET_KEY (and optional NOPAPERFORMS_API_TOKEN) in .env.
+NOPAPERFORMS_LEAD_URL = os.getenv(
+    "NOPAPERFORMS_LEAD_URL",
+    "https://api.nopaperforms.io/lead/v1/createOrUpdate",
+)
+NOPAPERFORMS_GET_BY_MOBILE_URL = os.getenv(
+    "NOPAPERFORMS_GET_BY_MOBILE_URL",
+    "https://api.nopaperforms.io/lead/v1/getDetailsByMobileNumber",
+)
+# Fallback when mobile lookup returns nothing. Set to empty string to disable.
+NOPAPERFORMS_GET_BY_EMAIL_URL = os.getenv(
+    "NOPAPERFORMS_GET_BY_EMAIL_URL",
+    "https://api.nopaperforms.io/lead/v1/getDetailsByEmail",
+)
+def _nopaperforms_lead_headers():
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+    access_key = (os.getenv("NOPAPERFORMS_ACCESS_KEY") or "").strip()
+    secret_key = (os.getenv("NOPAPERFORMS_SECRET_KEY") or "").strip()
+    if access_key:
+        headers["access-key"] = access_key
+    if secret_key:
+        headers["secret-key"] = secret_key
+    token = (os.getenv("NOPAPERFORMS_API_TOKEN") or "").strip()
+    if token:
+        headers["Authorization"] = (
+            token if token.lower().startswith("bearer ") else f"Bearer {token}"
+        )
+    return headers
+
+
+def _format_mobile_for_nopaperforms(mobile):
+    """Normalize to 10-digit local mobile as in NoPaperForms examples."""
+    if mobile is None:
+        return ""
+    s = str(mobile).strip().replace(" ", "")
+    digits = "".join(c for c in s if c.isdigit())
+    if len(digits) >= 10:
+        return digits[-10:]
+    return digits
+
+
+def _str_utm(value):
+    if value is None:
+        return ""
+    return str(value).strip()
+
+
+def _post_lead_to_nopaperforms(
+    *,
+    full_name,
+    email,
+    mobile,
+    state="",
+    city="",
+    search_criteria="mobile",
+    utm_source="",
+    utm_medium="",
+    utm_campaign="",
+):
+    payload = {
+        "name": (full_name or "").strip(),
+        "email": (email or "").strip(),
+        "mobile": _format_mobile_for_nopaperforms(mobile),
+        "state": state or "",
+        "city": city or "",
+        "search_criteria": search_criteria or "mobile",
+        "source": _str_utm(utm_source),
+        "medium": _str_utm(utm_medium),
+        "campaign": _str_utm(utm_campaign),
+        "cf_form_name": "Microsite - HDFC - Teller",
+        "cf_program": "HDFC - Teller",
+        "cf_pg_program": "PG Program",
+    }
+    try:
+        print("NoPaperForms CRM payload:", json.dumps(payload))
+    except Exception:
+        pass
+    return requests.post(
+        NOPAPERFORMS_LEAD_URL,
+        json=payload,
+        headers=_nopaperforms_lead_headers(),
+        timeout=(10, 30),
+    )
+
+
+def _nopaperforms_pull_fields():
+    default = ["name", "mobile", "lead_stage", "email", "course"]
+    raw = (os.getenv("NOPAPERFORMS_PULL_FIELDS") or "").strip()
+    if not raw:
+        return default
+    try:
+        parsed = json.loads(raw)
+        return parsed if isinstance(parsed, list) else default
+    except json.JSONDecodeError:
+        return default
+
+
+def _parse_nopaperforms_details_list(data):
+    if not isinstance(data, dict):
+        return []
+    inner = data.get("data") or {}
+    details = inner.get("details")
+    return details if isinstance(details, list) else []
+
+
+def _pick_nopaperforms_detail(details, email=None):
+    if not details:
+        return None
+    if email and len(details) > 1:
+        el = email.strip().lower()
+        for d in details:
+            if not isinstance(d, dict):
+                continue
+            if (d.get("email") or "").strip().lower() == el:
+                return d
+    first = details[0]
+    return first if isinstance(first, dict) else None
+
+
+def _normalize_nopaperforms_detail(detail):
+    """
+    Map NoPaperForms lead detail to the shape used by login / get-application-data:
+    Status (from lead_stage), Reason (explicit or inferred from common stage labels).
+    """
+    if not detail:
+        return None
+    lead_stage = (detail.get("lead_stage") or "").strip()
+    reason = (detail.get("Reason") or detail.get("reason") or "").strip()
+    status = lead_stage
+    uls = lead_stage.lower()
+
+    # Heuristics when CRM does not use Extraa-style "Result" + Reason Selected/Rejected
+    if reason:
+        pass
+    elif uls in ("selected", "offered", "admitted", "shortlisted"):
+        status = "Result"
+        reason = "Selected"
+    elif uls in ("rejected", "not selected", "not_selected", "disqualified", "declined"):
+        status = "Result"
+        reason = "Rejected"
+
+    out = dict(detail)
+    out["Status"] = status
+    out["Reason"] = reason
+    return out
+
+
+def _post_nopaperforms_get_leads(url, json_body):
+    if not url:
+        return None
+    try:
+        r = requests.post(
+            url,
+            json=json_body,
+            headers=_nopaperforms_lead_headers(),
+            timeout=(10, 30),
+        )
+        if r.status_code != 200:
+            print(f"NoPaperForms pull status {r.status_code}: {r.text[:300]}")
+            return None
+        return r.json()
+    except requests.exceptions.RequestException as e:
+        print(f"NoPaperForms pull error: {e}")
+        return None
+
+
+def _pull_nopaperforms_by_mobile(mobile_number, email=None):
+    mob = _format_mobile_for_nopaperforms(mobile_number)
+    if not mob or len(mob) < 10:
+        return None
+    try:
+        mobile_payload = int(mob)
+    except ValueError:
+        mobile_payload = mob
+    fields = _nopaperforms_pull_fields()
+    data = _post_nopaperforms_get_leads(
+        NOPAPERFORMS_GET_BY_MOBILE_URL,
+        {"mobile": mobile_payload, "fields": fields},
+    )
+    if not data:
+        return None
+    details = _parse_nopaperforms_details_list(data)
+    picked = _pick_nopaperforms_detail(details, email=email)
+    return _normalize_nopaperforms_detail(picked)
+
+
+def _pull_nopaperforms_by_email(email):
+    if not email or not str(email).strip():
+        return None
+    clean = email.strip().lower()
+    fields = _nopaperforms_pull_fields()
+    data = _post_nopaperforms_get_leads(
+        NOPAPERFORMS_GET_BY_EMAIL_URL,
+        {"email": clean, "fields": fields},
+    )
+    if not data:
+        return None
+    details = _parse_nopaperforms_details_list(data)
+    picked = _pick_nopaperforms_detail(details, email=clean)
+    return _normalize_nopaperforms_detail(picked)
+
 # $env:FLASK_APP="main:app" 
 
 app = Flask(__name__)
@@ -142,142 +346,73 @@ def verify_otp_api(otp_txn_id, otp):
         return jsonify({"error": "Failed to send OTP", "details": str(e)}), 500
 
 def send_callback_lead_to_crm(user):
-    url = "https://publisher.extraaedge.com/api/Webhook/addPublisherLead"
-    payload = json.dumps({
-    "Source": "crack-ed",
-    "AuthToken": "crack-ed_29-01-2025",
-    "FirstName": user.fname,
-    "LastName":  user.lname,
-    "Email": user.email,
-    "MobileNumber": int(user.mobile),
-    "City":  user.city,
-    "Center": "33",
-    "Course": "1",
-    "Field5": "Microsite - HDFC - Teller",
-    "Field15": user.utm_source or "",
-    "Textb5": user.utm_medium or "",
-    "Field3": user.utm_campaign or "",
-    "leadCampaign":"Default",
-    "LeadSource": "123",
-    })
-    headers = {
-    'Content-Type': 'application/json'
-    }
-    response = requests.request("POST", url, headers=headers, data=payload)
-
+    full_name = f"{user.fname or ''} {user.lname or ''}".strip()
+    state_val = (getattr(user, "state", None) or "").strip()
+    city_val = (getattr(user, "city", None) or "").strip()
+    # CallBackUsers has no `state` column; the callback form stores the selected state in `city`.
+    if not state_val and city_val:
+        state_val, city_val = city_val, ""
+    response = _post_lead_to_nopaperforms(
+        full_name=full_name,
+        email=user.email,
+        mobile=user.mobile,
+        state=state_val,
+        city=city_val,
+        search_criteria="mobile",
+        utm_source=getattr(user, "utm_source", None),
+        utm_medium=getattr(user, "utm_medium", None),
+        utm_campaign=getattr(user, "utm_campaign", None),
+    )
     print(response.text)
 
 def pull_lead_details_from_crm(email=None, mobile_number=None):
-    """Pull lead details from CRM by mobile number first, then by email"""
-    crm_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJpbmZvQHRoZWV4dHJhYWVkZ2UuY29tIiwianRpIjoiZWI5MTAwNjMtNWNlNC00M2YxLTg4ZDQtMWM3ZWFkNjAwMzJjIiwiaWF0IjoxNzU3OTIxMTc5LCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiI0IiwiaHR0cDovL3d3dy5leHRyYWFlZGdlLmNvbS8yMDE2L2NsYWltcy9jdXN0b21lcmlkZW50aWZpZXIiOiJjNThlYmQ0ZS04ZTk0LTQxZDgtOTA1NS0xZWUzZGRlODE5YWMiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiRXh0cmFhRWRnZSBBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL21vYmlsZXBob25lIjoiOTYwNzQ5NzQzMiIsImh0dHA6Ly93d3cuZXh0cmFhZWRnZS5jb20vMjAxNi9jbGFpbXMvY3VzdG9tZXJpZCI6OTksImh0dHA6Ly93d3cuZXh0cmFhZWRnZS5jb20vMjAxNi9jbGFpbXMvY2FsbGVycmVmZW1wSWQiOiIiLCJodHRwOi8vd3d3LmV4dHJhYWVkZ2UuY29tLzIwMTYvY2xhaW1zL3RpbWV6b25laWQiOjIsImh0dHA6Ly93d3cuZXh0cmFhZWRnZS5jb20vMjAxNi9jbGFpbXMvY2xpZW50TmFtZSI6ImNyYWNrLWVkIiwiaHR0cDovL3d3dy5leHRyYWFlZGdlLmNvbS8yMDE2L2NsYWltcy9jbGllbnRBbGlhcyI6ImNyYWNrLWVkIiwiaHR0cDovL3d3dy5leHRyYWFlZGdlLmNvbS8yMDE2L2NsYWltcy9kZXZpY2VUeXBlIjoiV2ViIiwiaHR0cDovL3d3dy5leHRyYWFlZGdlLmNvbS8yMDE2L2NsYWltcy9DSWQiOjk5LCJodHRwOi8vd3d3LmV4dHJhYWVkZ2UuY29tLzIwMTYvY2xhaW1zL3Nlc3Npb25LZXkiOiI0MTQ5YjA1ZS0zOTBhLTQzY2ItYmJkMS00MDA1NDMyODE5ZWMiLCJuYmYiOjE3NTc5MjExNzgsImV4cCI6MTc4OTQ1NzE3OCwiaXNzIjoiRXh0cmFhZWRnZSIsImF1ZCI6Imh0dHBzOi8vbGludXhhcGkuZXh0cmFhZWRnZS5jb20ifQ.DLMYLAJz74vlSlTcspSazFIsM4q0xtuFb2Z_MTCTdac"
-    
-    headers = {
-        "Authorization": f"Bearer {crm_token.strip()}",
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "User-Agent": "CrackEd-CRM-Client/1.0"
-    }
-    
-    endpoint = "https://linuxapi.extraaedge.com/api/common/pullLeadDetailsFromCRM"
-    
-    # First try mobile number if provided
+    """Pull lead details from NoPaperForms: by mobile first, then by email if configured."""
     if mobile_number:
         try:
-            clean_mobile = str(mobile_number).strip()
-            # Ensure mobile number starts with country code 91
-            if not clean_mobile.startswith("91"):
-                clean_mobile = f"91{clean_mobile[-10:]}"
-            
-            params = {"mobileNumber": clean_mobile}
-            
-            try:
-                response = requests.get(
-                    endpoint,
-                    headers=headers,
-                    params=params,
-                    timeout=(10, 30)  # (connection_timeout, read_timeout)
-                )
-                
-                if response.status_code == 200:
-                    data = response.json()
-                    
-                    if data.get("status") == "success" and data.get("result"):
-                        result_list = data["result"]
-                        if result_list:  # Check if result list is not empty
-                            lead_details = result_list[0].get("leadDetails", {})
-                            return lead_details
-                else:
-                    print(f"CRM API Response Status (mobile): {response.status_code} - {response.text[:200]}")
-            
-            except requests.exceptions.RequestException as e:
-                print(f"Error calling CRM API for mobile: {str(e)}")
-        
+            lead = _pull_nopaperforms_by_mobile(mobile_number, email=email)
+            if lead:
+                return lead
         except Exception as e:
-            print(f"Error processing mobile number: {str(e)}")
-    
-    # If mobile search didn't find anything and email is provided, try email
+            print(f"Error pulling CRM by mobile: {e}")
+
     if email:
-        clean_email = email.strip().lower()
-        params = {"email": clean_email}
-        
         try:
-            response = requests.get(
-                endpoint,
-                headers=headers,
-                params=params,
-                timeout=(10, 30)
-            )
-            
-            if response.status_code == 200:
-                data = response.json()
-                
-                if data.get("status") == "success" and data.get("result"):
-                    result_list = data["result"]
-                    if result_list:  # Check if result list is not empty
-                        lead_details = result_list[0].get("leadDetails", {})
-                        return lead_details
-            else:
-                print(f"CRM API Response Status (email): {response.status_code} - {response.text[:200]}")
-        
-        except requests.exceptions.RequestException as e:
-            print(f"Error calling CRM API for email: {str(e)}")
+            if (NOPAPERFORMS_GET_BY_EMAIL_URL or "").strip():
+                lead = _pull_nopaperforms_by_email(email)
+                if lead:
+                    return lead
+        except Exception as e:
+            print(f"Error pulling CRM by email: {e}")
     return None
 
 def send_registration_lead_to_crm(user):
-    url = "https://publisher.extraaedge.com/api/Webhook/addPublisherLead"
-    
-    # Split name into first and last name
-    name_parts = user.name.split()
+    name_parts = (user.name or "").split()
     first_name = name_parts[0] if name_parts else ""
     last_name = name_parts[-1] if len(name_parts) > 1 else ""
-    
-    payload = json.dumps({
-        "Source": "crack-ed",
-        "AuthToken": "crack-ed_29-01-2025",
-        "FirstName": first_name,
-        "LastName": last_name,
-        "Email": user.email,
-        "MobileNumber": int(user.mobile),
-        "Center": "33",
-        "Course": "1",
-        "Field3": user.utm_campaign or "",  # Vendor ID
-        "Textb5": user.utm_medium or "",  # Campaign ID
-        "leadCampaign":"Default",
-        "LeadSource": "123",
-        "ReasonCode": "120"
-    })
-    
-    headers = {
-        'Content-Type': 'application/json'
-    }
-    
+    full_name = (user.name or "").strip() or f"{first_name} {last_name}".strip()
+
     try:
-        try:
-            print("CRM UTM to send:", getattr(user, 'utm_source', None), getattr(user, 'utm_medium', None), getattr(user, 'utm_campaign', None))
-            print("CRM payload (json):", payload)
-        except Exception as _e:
-            pass
-        response = requests.request("POST", url, headers=headers, data=payload)
+        print(
+            "CRM UTM (registration):",
+            getattr(user, "utm_source", None),
+            getattr(user, "utm_medium", None),
+            getattr(user, "utm_campaign", None),
+        )
+    except Exception:
+        pass
+
+    try:
+        response = _post_lead_to_nopaperforms(
+            full_name=full_name,
+            email=user.email,
+            mobile=user.mobile,
+            state=getattr(user, "state", None) or "",
+            city=getattr(user, "city", None) or "",
+            search_criteria="mobile",
+            utm_source=getattr(user, "utm_source", None),
+            utm_medium=getattr(user, "utm_medium", None),
+            utm_campaign=getattr(user, "utm_campaign", None),
+        )
         print(f"CRM Response: {response.text}")
         return response
     except Exception as e:
@@ -319,6 +454,8 @@ def send_callback_otp():
     name_parts = data['name'].split()
     first_name = name_parts[0] 
     last_name = name_parts[-1] if len(name_parts) > 1 else ""
+    # Hero form sends `state`; older clients may still send `city` for the same field.
+    state_or_city = (data.get("state") or data.get("city") or "").strip()
 
     try:
         # Extract UTM parameters
@@ -338,7 +475,7 @@ def send_callback_otp():
                 user.fname = first_name
                 user.lname = last_name
                 user.email = data['email']
-                user.city = data['city']
+                user.city = state_or_city
                 # Update UTM parameters if provided and column exists
                 try:
                     if utm_source:
@@ -356,7 +493,7 @@ def send_callback_otp():
                 fname=first_name,
                 lname=last_name, 
                 email=data['email'],
-                city=data['city'], 
+                city=state_or_city, 
                 mobile=mobile, 
                 otp=otp
             )
@@ -395,13 +532,13 @@ def send_callback_otp():
                     user.fname = first_name
                     user.lname = last_name
                     user.email = data['email']
-                    user.city = data['city']
+                    user.city = state_or_city
                 else:
                     user = CallBackUsers(
                         fname=first_name,
                         lname=last_name, 
                         email=data['email'],
-                        city=data['city'], 
+                        city=state_or_city, 
                         mobile=mobile, 
                         otp=otp
                     )
