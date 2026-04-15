@@ -7,7 +7,7 @@ import tickSvg from "../assets/tick.svg";
 import lenskartLogo from "../assets/lenskart.svg";
 
 export default function Hero() {
-  const [form, setForm] = useState({ name: "", email: "", city: "", mobile: "" });
+  const [form, setForm] = useState({ name: "", email: "", state: "", mobile: "" });
   const [status, setStatus] = useState(null);
   const [errors, setErrors] = useState({});
   const [stateOpen, setStateOpen] = useState(false);
@@ -79,10 +79,10 @@ export default function Hero() {
   async function handleSubmit(e) {
     e.preventDefault();
     // client-side validation (same rules as original Reg.js)
-    const { name, email, city, mobile } = form;
+    const { name, email, state, mobile } = form;
     const newErrors = {};
     if (!name || !name.trim()) newErrors.name = "Full name is required.";
-    if (!city || !city.trim()) newErrors.city = "State is required.";
+    if (!state || !state.trim()) newErrors.state = "State is required.";
     if (!email || !email.trim()) newErrors.email = "Email is required.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "Invalid email format.";
     if (!mobile || !mobile.trim()) newErrors.mobile = "Mobile number is required.";
@@ -121,7 +121,7 @@ export default function Hero() {
         body: JSON.stringify({
           name,
           email,
-          city,
+          state,
           mobile,
           utm_source,
           utm_medium,
@@ -377,8 +377,8 @@ export default function Hero() {
                       }}
                       className="custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)] font-normal text-[14px] flex items-center justify-between cursor-pointer"
                     >
-                      <span className={form.city ? "text-[14px] text-white" : "text-[14px] text-[rgba(250,250,250,0.6)]"}>
-                        {form.city || "State"}
+                      <span className={form.state ? "text-[14px] text-white" : "text-[14px] text-[rgba(250,250,250,0.6)]"}>
+                        {form.state || "State"}
                       </span>
                       <svg className="h-4 w-4 text-[rgba(250,250,250,0.6)]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                         <path d="M6 8L10 12L14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -429,8 +429,8 @@ export default function Hero() {
                             key={s}
                             role="option"
                             onClick={() => {
-                              setForm({ ...form, city: s });
-                              setErrors((prev) => ({ ...prev, city: "" }));
+                              setForm({ ...form, state: s });
+                              setErrors((prev) => ({ ...prev, state: "" }));
                               setStateOpen(false);
                             }}
                             className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
@@ -440,9 +440,9 @@ export default function Hero() {
                         ))}
                       </ul>
                     )}
-                    {errors.city && (
+                    {errors.state && (
                       <p className="mt-1 text-[12px] text-red-400">
-                        {errors.city}
+                        {errors.state}
                       </p>
                     )}
                   </div>
