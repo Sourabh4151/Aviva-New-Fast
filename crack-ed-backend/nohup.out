@@ -1,0 +1,213 @@
+ * Serving Flask app 'main'
+ * Debug mode: on
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8017
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 110-727-744
+INFO:werkzeug: * Detected change in '/srv/sites/Bandhan-Bank/Aviva-New-Fast/crack-ed-backend/venv/lib/python3.12/site-packages/greenlet/_greenlet.cpython-312-x86_64-linux-gnu.so', reloading
+INFO:werkzeug: * Restarting with stat
+Traceback (most recent call last):
+  File "/srv/sites/Bandhan-Bank/Aviva-New-Fast/crack-ed-backend/main.py", line 2305, in <module>
+    app.run(debug=True, port=8000)
+  File "/srv/sites/Bandhan-Bank/Aviva-New-Fast/crack-ed-backend/venv/lib/python3.12/site-packages/flask/app.py", line 662, in run
+    run_simple(t.cast(str, host), port, self, **options)
+  File "/srv/sites/Bandhan-Bank/Aviva-New-Fast/crack-ed-backend/venv/lib/python3.12/site-packages/werkzeug/serving.py", line 1115, in run_simple
+    run_with_reloader(
+  File "/srv/sites/Bandhan-Bank/Aviva-New-Fast/crack-ed-backend/venv/lib/python3.12/site-packages/werkzeug/_reloader.py", line 469, in run_with_reloader
+    sys.exit(reloader.restart_with_reloader())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/sites/Bandhan-Bank/Aviva-New-Fast/crack-ed-backend/venv/lib/python3.12/site-packages/werkzeug/_reloader.py", line 275, in restart_with_reloader
+    exit_code = subprocess.call(args, env=new_environ, close_fds=False)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 389, in call
+    with Popen(*popenargs, **kwargs) as p:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.12/subprocess.py", line 1840, in _execute_child
+    self._posix_spawn(args, executable, env, restore_signals,
+  File "/usr/lib/python3.12/subprocess.py", line 1784, in _posix_spawn
+    self.pid = os.posix_spawn(executable, args, env, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/srv/sites/Bandhan-Bank/Aviva-New-Fast/crack-ed-backend/venv/bin/python3'
+ * Serving Flask app 'main'
+ * Debug mode: on
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8017
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 293-311-148
+INFO:werkzeug:127.0.0.1 - - [06/Apr/2026 05:34:35] "GET / HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+INFO:werkzeug:127.0.0.1 - - [06/Apr/2026 09:07:14] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/validate HTTP/1.1" 200 128
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): publisher.extraaedge.com:443
+DEBUG:urllib3.connectionpool:https://publisher.extraaedge.com:443 "POST /api/Webhook/addPublisherLead HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [06/Apr/2026 09:07:34] "POST /auth/callback/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+INFO:werkzeug:127.0.0.1 - - [06/Apr/2026 11:53:24] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/validate HTTP/1.1" 200 128
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): publisher.extraaedge.com:443
+DEBUG:urllib3.connectionpool:https://publisher.extraaedge.com:443 "POST /api/Webhook/addPublisherLead HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [06/Apr/2026 11:53:44] "POST /auth/callback/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+INFO:werkzeug:127.0.0.1 - - [08/Apr/2026 06:26:39] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/validate HTTP/1.1" 200 128
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): publisher.extraaedge.com:443
+DEBUG:urllib3.connectionpool:https://publisher.extraaedge.com:443 "POST /api/Webhook/addPublisherLead HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [08/Apr/2026 06:26:55] "POST /auth/callback/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+INFO:werkzeug:127.0.0.1 - - [08/Apr/2026 13:31:36] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/validate HTTP/1.1" 200 128
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): publisher.extraaedge.com:443
+DEBUG:urllib3.connectionpool:https://publisher.extraaedge.com:443 "POST /api/Webhook/addPublisherLead HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [08/Apr/2026 13:32:05] "POST /auth/callback/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+INFO:werkzeug:127.0.0.1 - - [09/Apr/2026 01:56:28] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/validate HTTP/1.1" 200 128
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): publisher.extraaedge.com:443
+DEBUG:urllib3.connectionpool:https://publisher.extraaedge.com:443 "POST /api/Webhook/addPublisherLead HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [09/Apr/2026 01:56:38] "POST /auth/callback/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+INFO:werkzeug:127.0.0.1 - - [09/Apr/2026 06:48:23] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/validate HTTP/1.1" 200 128
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): publisher.extraaedge.com:443
+DEBUG:urllib3.connectionpool:https://publisher.extraaedge.com:443 "POST /api/Webhook/addPublisherLead HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [09/Apr/2026 06:49:59] "POST /auth/callback/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+INFO:werkzeug:127.0.0.1 - - [10/Apr/2026 08:05:31] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/validate HTTP/1.1" 200 128
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): publisher.extraaedge.com:443
+DEBUG:urllib3.connectionpool:https://publisher.extraaedge.com:443 "POST /api/Webhook/addPublisherLead HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [10/Apr/2026 08:06:23] "POST /auth/callback/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+Registration data received: {'name': 'Vishal tiwari', 'email': 'tiwarikrishu439@gmail.com', 'city': 'Uttar Pradesh', 'mobile': '8707587374', 'utm_source': '', 'utm_medium': '', 'utm_campaign': ''}
+Mobile number received: 8707587374
+Generating OTP for mobile: 8707587374
+Creating new callback user with mobile: 8707587374
+Response from OTP API: {'txId': '003661f4-3198-11f1-810d-16ffcff384cf', 'authType': 'SMS', 'responseType': 'CHALLENGE', 'phoneDelivery': {'contact': '918707587374', 'sendStatus': 'SUCCESS', 'sendTime': '2026-04-06T09:07Z'}, 'emailDelivery': {'contact': None, 'sendStatus': None, 'sendTime': None}, 'status': 'SUCCESS', 'message': 'The OTP has been sent to xxxxxxxxxx74. Please enter the OTP you received to Validate.'}
+Data received: {'mobile': '8707587374', 'otp': '3044'}
+Response from OTP API: {'txId': '09cce9ab-3198-11f1-8a7a-121c6831ea31', 'responseType': 'VALIDATE', 'status': 'SUCCESS', 'message': 'Successfully validated.'}
+{"message":"1","result":"Success","sourceSeq":"","leadAlreadyExists":false,"isLeadExists":false,"leadCount":0}
+Registration data received: {'name': 'Riya Singh', 'email': 'riyasingh816056@gmail.com', 'city': 'Gujarat', 'mobile': '8160560515', 'utm_source': '', 'utm_medium': '', 'utm_campaign': ''}
+Mobile number received: 8160560515
+Generating OTP for mobile: 8160560515
+Creating new callback user with mobile: 8160560515
+Response from OTP API: {'txId': '36a3373b-31af-11f1-8a7a-121c6831ea31', 'authType': 'SMS', 'responseType': 'CHALLENGE', 'phoneDelivery': {'contact': '918160560515', 'sendStatus': 'SUCCESS', 'sendTime': '2026-04-06T11:53Z'}, 'emailDelivery': {'contact': None, 'sendStatus': None, 'sendTime': None}, 'status': 'SUCCESS', 'message': 'The OTP has been sent to xxxxxxxxxx15. Please enter the OTP you received to Validate.'}
+Data received: {'mobile': '8160560515', 'otp': '3327'}
+Response from OTP API: {'txId': '422ab9ec-31af-11f1-96fe-0affefe4d3c1', 'responseType': 'VALIDATE', 'status': 'SUCCESS', 'message': 'Successfully validated.'}
+{"message":"1","result":"Success","sourceSeq":"","leadAlreadyExists":true,"isLeadExists":true,"leadCount":0}
+Registration data received: {'name': 'Akhil Bandaru', 'email': 'akhilbandaru4451@gmail.com', 'city': 'Andhra Pradesh', 'mobile': '7993747250', 'utm_source': '', 'utm_medium': '', 'utm_campaign': ''}
+Mobile number received: 7993747250
+Generating OTP for mobile: 7993747250
+Creating new callback user with mobile: 7993747250
+Response from OTP API: {'txId': 'e63d2d4c-3313-11f1-810d-16ffcff384cf', 'authType': 'SMS', 'responseType': 'CHALLENGE', 'phoneDelivery': {'contact': '917993747250', 'sendStatus': 'SUCCESS', 'sendTime': '2026-04-08T06:26Z'}, 'emailDelivery': {'contact': None, 'sendStatus': None, 'sendTime': None}, 'status': 'SUCCESS', 'message': 'The OTP has been sent to xxxxxxxxxx50. Please enter the OTP you received to Validate.'}
+Data received: {'mobile': '7993747250', 'otp': '4328'}
+Response from OTP API: {'txId': 'ed8509a6-3313-11f1-8a7a-121c6831ea31', 'responseType': 'VALIDATE', 'status': 'SUCCESS', 'message': 'Successfully validated.'}
+{"message":"1","result":"Success","sourceSeq":"","leadAlreadyExists":true,"isLeadExists":true,"leadCount":0}
+Registration data received: {'name': 'Pokuri Venkateswarlu', 'email': 'pokurivenkateswarlu153@gmail.com', 'city': 'Andhra Pradesh', 'mobile': '7893303990', 'utm_source': '', 'utm_medium': '', 'utm_campaign': ''}
+Mobile number received: 7893303990
+Generating OTP for mobile: 7893303990
+Creating new callback user with mobile: 7893303990
+Response from OTP API: {'txId': '4380e661-334f-11f1-810d-16ffcff384cf', 'authType': 'SMS', 'responseType': 'CHALLENGE', 'phoneDelivery': {'contact': '917893303990', 'sendStatus': 'SUCCESS', 'sendTime': '2026-04-08T13:31Z'}, 'emailDelivery': {'contact': None, 'sendStatus': None, 'sendTime': None}, 'status': 'SUCCESS', 'message': 'The OTP has been sent to xxxxxxxxxx90. Please enter the OTP you received to Validate.'}
+Data received: {'mobile': '7893303990', 'otp': '4310'}
+Response from OTP API: {'txId': '5487b9f7-334f-11f1-8a7a-121c6831ea31', 'responseType': 'VALIDATE', 'status': 'SUCCESS', 'message': 'Successfully validated.'}
+{"message":"1","result":"Success","sourceSeq":"","leadAlreadyExists":true,"isLeadExists":true,"leadCount":0}
+Registration data received: {'name': 'akbar hussain', 'email': 'akbarswm03@gmail.com', 'city': 'Rajasthan', 'mobile': '8890887152', 'utm_source': '', 'utm_medium': '', 'utm_campaign': ''}
+Mobile number received: 8890887152
+Generating OTP for mobile: 8890887152
+Creating new callback user with mobile: 8890887152
+Response from OTP API: {'txId': '52434d6d-33b7-11f1-810d-16ffcff384cf', 'authType': 'SMS', 'responseType': 'CHALLENGE', 'phoneDelivery': {'contact': '918890887152', 'sendStatus': 'SUCCESS', 'sendTime': '2026-04-09T01:56Z'}, 'emailDelivery': {'contact': None, 'sendStatus': None, 'sendTime': None}, 'status': 'SUCCESS', 'message': 'The OTP has been sent to xxxxxxxxxx52. Please enter the OTP you received to Validate.'}
+Data received: {'mobile': '8890887152', 'otp': '8911'}
+Response from OTP API: {'txId': '57f71c67-33b7-11f1-8a7a-121c6831ea31', 'responseType': 'VALIDATE', 'status': 'SUCCESS', 'message': 'Successfully validated.'}
+{"message":"1","result":"Success","sourceSeq":"","leadAlreadyExists":true,"isLeadExists":true,"leadCount":0}
+Registration data received: {'name': 'Shreya', 'email': 'Shreyasharma@crack-ed.com', 'city': 'Uttarakhand', 'mobile': '9997133867', 'utm_source': '', 'utm_medium': '', 'utm_campaign': ''}
+Mobile number received: 9997133867
+Generating OTP for mobile: 9997133867
+Creating new callback user with mobile: 9997133867
+Response from OTP API: {'txId': '1a28ace4-33e0-11f1-810d-16ffcff384cf', 'authType': 'SMS', 'responseType': 'CHALLENGE', 'phoneDelivery': {'contact': '919997133867', 'sendStatus': 'SUCCESS', 'sendTime': '2026-04-09T06:48Z'}, 'emailDelivery': {'contact': None, 'sendStatus': None, 'sendTime': None}, 'status': 'SUCCESS', 'message': 'The OTP has been sent to xxxxxxxxxx67. Please enter the OTP you received to Validate.'}
+Data received: {'mobile': '9997133867', 'otp': '2009'}
+Response from OTP API: {'txId': '532636b3-33e0-11f1-810d-16ffcff384cf', 'responseType': 'VALIDATE', 'status': 'SUCCESS', 'message': 'Successfully validated.'}
+{"message":"shreyasharma@crack-ed.com already register with Counsoler or Lead Admin ","result":"Failed","sourceSeq":"","leadAlreadyExists":false,"isLeadExists":false,"leadCount":0}
+Registration data received: {'name': 'KANDUKURI USHARANI ', 'email': 'Kandukuriusharani1997@gmail.com', 'city': 'Telangana', 'mobile': '7036470739', 'utm_source': '', 'utm_medium': '', 'utm_campaign': ''}
+Mobile number received: 7036470739
+Generating OTP for mobile: 7036470739
+Creating new callback user with mobile: 7036470739
+Response from OTP API: {'txId': '0ad317cd-34b4-11f1-8a7a-121c6831ea31', 'authType': 'SMS', 'responseType': 'CHALLENGE', 'phoneDelivery': {'contact': '917036470739', 'sendStatus': 'SUCCESS', 'sendTime': '2026-04-10T08:05Z'}, 'emailDelivery': {'contact': None, 'sendStatus': None, 'sendTime': None}, 'status': 'SUCCESS', 'message': 'The OTP has been sent to xxxxxxxxxx39. Please enter the OTP you received to Validate.'}
+Data received: {'mobile': '7036470739', 'otp': '1209'}
+Response from OTP API: {'txId': '297077b5-34b4-11f1-810d-16ffcff384cf', 'responseType': 'VALIDATE', 'status': 'SUCCESS', 'message': 'Successfully validated.'}
+{"message":"1","result":"Success","sourceSeq":"","leadAlreadyExists":false,"isLeadExists":false,"leadCount":0}
+Registration data received: {'name': 'MANUKONDA RAJESH', 'email': 'manukondaraj68@gmail.com', 'city': 'Andhra Pradesh', 'mobile': '9642206364', 'utm_source': '', 'utm_medium': '', 'utm_campaign': ''}
+Mobile number received: 9642206364
+Generating OTP for mobile: 9642206364
+Creating new callback user with mobile: 9642206364
+Response from OTP API: INFO:werkzeug:127.0.0.1 - - [10/Apr/2026 15:54:14] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/validate HTTP/1.1" 200 128
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): publisher.extraaedge.com:443
+DEBUG:urllib3.connectionpool:https://publisher.extraaedge.com:443 "POST /api/Webhook/addPublisherLead HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [10/Apr/2026 15:54:49] "POST /auth/callback/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2026 08:00:12] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2026 13:34:08] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/validate HTTP/1.1" 200 128
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): publisher.extraaedge.com:443
+DEBUG:urllib3.connectionpool:https://publisher.extraaedge.com:443 "POST /api/Webhook/addPublisherLead HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [11/Apr/2026 13:34:24] "POST /auth/callback/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2026 12:36:34] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/validate HTTP/1.1" 200 128
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): publisher.extraaedge.com:443
+DEBUG:urllib3.connectionpool:https://publisher.extraaedge.com:443 "POST /api/Webhook/addPublisherLead HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2026 12:36:51] "POST /auth/callback/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2026 20:07:36] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+INFO:werkzeug:127.0.0.1 - - [14/Apr/2026 05:18:17] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/validate HTTP/1.1" 200 128
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): publisher.extraaedge.com:443
+DEBUG:urllib3.connectionpool:https://publisher.extraaedge.com:443 "POST /api/Webhook/addPublisherLead HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [14/Apr/2026 05:18:30] "POST /auth/callback/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+INFO:werkzeug:127.0.0.1 - - [14/Apr/2026 09:49:49] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/validate HTTP/1.1" 200 128
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): publisher.extraaedge.com:443
+DEBUG:urllib3.connectionpool:https://publisher.extraaedge.com:443 "POST /api/Webhook/addPublisherLead HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [14/Apr/2026 09:49:59] "POST /auth/callback/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/challenge HTTP/1.1" 200 372
+INFO:werkzeug:127.0.0.1 - - [14/Apr/2026 17:27:33] "POST /auth/callbackOtp/ HTTP/1.0" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): login.xecurify.com:443
+DEBUG:urllib3.connectionpool:https://login.xecurify.com:443 "POST /moas/api/auth/validate HTTP/1.1" 200 128
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): publisher.extraaedge.com:443
+DEBUG:urllib3.connectionpool:https://publisher.extraaedge.com:443 "POST /api/Webhook/addPublisherLead HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [14/Apr/2026 17:27:58] "POST /auth/callback/ HTTP/1.0" 200 -
