@@ -5,9 +5,11 @@ import growthIcon from "../assets/growth.svg";
 import flseIcon from "../assets/flse.svg";
 import sflseIcon from "../assets/sflse.svg";
 import flsamIcon from "../assets/flsam.svg";
+import amIcon from "../assets/flsdm.svg";
 import frontLineSalesExecutive from "../assets/assistant manager.png";
 import seniorFrontLineSalesExecutive from "../assets/relationship manager (2).png";
 import frontLineSalesAssistantManager from "../assets/branch sales manager.png";
+import areaManager from "../assets/branch manager.png";
 
 
 const ROLE_STEPS = [
@@ -23,12 +25,18 @@ const ROLE_STEPS = [
     icon: sflseIcon,
     image: seniorFrontLineSalesExecutive,
   },
-  {
-    key: "flsam",
-    label: "Deputy Manager",
-    icon: flsamIcon,
-    image: frontLineSalesAssistantManager,
-  },
+    {
+      key: "flsam",
+      label: "Deputy Manager",
+      icon: flsamIcon,
+      image: frontLineSalesAssistantManager,
+    },
+    {
+      key: "am",
+      label: "Area Sales Manager",
+      icon: amIcon,
+      image: areaManager,
+    },
 ];
 
 export default function CareerGrowth() {
