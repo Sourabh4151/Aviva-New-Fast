@@ -1,9 +1,9 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import uthaanImg from "../assets/uthaan.jpg";
-import aarohanImg from "../assets/aarohan.jpg";
-import shikharImg from "../assets/shikhar.jpg";
+import uthaanImg from "../assets/uthaan.png";
+import aarohanImg from "../assets/aarohan.png";
+import shikharImg from "../assets/shikhar.png";
 
 const MODULES = [
   {

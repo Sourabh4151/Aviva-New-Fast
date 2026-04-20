@@ -261,13 +261,16 @@ export default function TrainingJourney() {
                   : CARD_ACTIVE_BG
                 : "transparent",
               borderRadius: CARD_RADIUS,
-              minHeight: CARD_MIN_HEIGHT,
+              minHeight: isMobile ? undefined : CARD_MIN_HEIGHT,
               ...CARD_PADDING,
               gap: CARD_GAP,
             }}
             onMouseEnter={!isMobile ? () => setActiveCard("ojt") : undefined}
           >
-            <div className="w-full flex flex-col flex-1" style={{ gap: CARD_GAP }}>
+            <div
+              className={`w-full flex flex-col ${isMobile ? "" : "flex-1"}`}
+              style={{ gap: CARD_GAP }}
+            >
               <div>
                 <img
                   src={ojtMobile}
@@ -363,8 +366,10 @@ export default function TrainingJourney() {
                 </div>
               )}
 
-              {/* Spacer: pushes bottom line down to match card 3 */}
-              <div style={{ flex: 1, minHeight: 0 }} aria-hidden="true" />
+              {/* Desktop: spacer aligns bottom rule with other cards; mobile: omit — no duration block here */}
+              {!isMobile && (
+                <div style={{ flex: 1, minHeight: 0 }} aria-hidden="true" />
+              )}
 
               <div className="h-[2px] w-full bg-white sm:hidden" />
               <div
