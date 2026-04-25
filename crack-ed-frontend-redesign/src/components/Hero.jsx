@@ -2,8 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 
 // Import assets so Vite bundles them and production URLs work (raw /src/assets/ paths 404 after build).
 // Use desktop.jpg or aviva_ds_hero.jpg depending on which file you have in src/assets/.
-// import heroImage from "../assets/desktop.jpg";
-import heroImage from "../assets/desk.png";
+import heroImage from "../assets/Background.png";
 import tickSvg from "../assets/tick.svg";
 import crackedLogo from "../assets/crack-ed.svg";
 import axisLogo from "../assets/axis_logo.svg";
@@ -252,87 +251,81 @@ export default function Hero() {
 
       {/* Hero background: fixed height on all screens – does NOT grow. Form comes after on mobile. */}
       <div
-        className="w-full min-h-[560px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[10%_60%] lg:bg-[center_70%]"
+        className="w-full min-h-[560px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-center bg-no-repeat relative"
         style={{ backgroundImage: `url(${heroImage})` }}
         role="img"
-        aria-label="Aviva hero"
+        aria-label="Hero background"
       >
+        {/* Light vignette + left emphasis so the photo stays visible but matches Figma contrast */}
         <div
-          className="absolute inset-0"
+          className="pointer-events-none absolute inset-0 z-[1]"
           style={{
-            zIndex: 10,
             background:
-              "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.8)), linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.5) 85%, rgba(0, 0, 0, 0.85) 95%, rgba(0, 0, 0, 1) 100%)",
+              "linear-gradient(90deg, rgba(12, 8, 10, 0.52) 0%, rgba(12, 8, 10, 0.22) 45%, rgba(12, 8, 10, 0.08) 72%, rgba(12, 8, 10, 0.14) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, transparent 38%, rgba(0, 0, 0, 0.18) 100%)",
           }}
-        >
-          <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
+          aria-hidden
+        />
+        <div className="absolute inset-0 z-10">
           <div className="hero-container relative">
             <div className="absolute left-[120px] top-[155px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
               <div className="hero-logo-badge mb-2">
                 <img
                   src={axisLogo}
                   alt="Axis Bank"
-                  className="hero-axis-logo mb-3 h-[42px] w-[158px] object-contain"
+                  className="hero-axis-logo mb-3 block h-[42px] w-[158px] max-w-none object-contain object-left"
                 />
-                <div
-                  className="hero-badge inline-flex items-center justify-center text-center text-[11px] sm:text-[12px] lg:text-[14px] leading-[100%] tracking-[0em] font-semibold text-white rounded-full border border-white h-[32px] lg:h-[37px] px-3 sm:px-4 lg:px-5 py-[8px] lg:py-[10px] whitespace-nowrap max-w-full"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  Axis Sales Academy Program
-                </div>
               </div>
               <h1
-                className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[100%] tracking-[0em] mb-4"
+                className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-medium leading-[100%] tracking-[0em] mb-4"
                 style={{ fontFamily: "Montserrat, sans-serif" }}
               >
-              Business Development Associate
+                From Graduate to Banker in 6 Days
               </h1>
               <ul className="hero-bullet-list text-gray-200 space-y-3 mb-8">
                 <li className="flex items-start gap-2 sm:gap-3">
                   <img src={tickSvg} alt="" aria-hidden="true" className="hero-tick-icon" />
                   <span
-                    className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
+                    className="hero-subtitle text-[16px] leading-snug font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    Join as a Business Development Associate with a CTC of upto Rs 2.36 LPA + incentives
+                    Secure a CTC of up to ₹2.36 LPA + performance-driven bonuses that reward your hustle.
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
                   <img src={tickSvg} alt="" aria-hidden="true" className="hero-tick-icon" />
                   <span
-                    className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
+                    className="hero-subtitle text-[16px] leading-snug font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    6-day program
+                    Transition into banking seamlessly with our 100% free intensive program—no tuition, just pure career preparation.
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
                   <img src={tickSvg} alt="" aria-hidden="true" className="hero-tick-icon" />
                   <span
-                    className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
+                    className="hero-subtitle text-[16px] leading-snug font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    Candidates should be open to field sales, willing to travel daily, and comfortable relocating within the state.
+                    A dynamic, on-the-ground role for go-getters who prefer active movement and real-world results over a desk job.
                   </span>
                 </li>
               </ul>
               <div className="register-btn-wrap">
-                <button
-                  type="button"
-                  disabled
+                <a
+                  href={brochurePdfHref}
+                  download={brochurePdfDownloadName}
                   className="download-brochure-btn"
                   aria-label="Download brochure PDF"
-                  aria-disabled="true"
                 >
                   Download Brochure
-                </button>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
+      {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 keeps it above hero content layer (z-10) and navbar (z-40). */}
       <aside
         className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-16 max-lg:mb-16 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[85px] lg:mt-0 lg:w-[373px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
           alreadyInSystem || hasValidationError ? "lg:min-h-[520px]" : "lg:min-h-[471px]"
