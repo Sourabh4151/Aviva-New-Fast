@@ -267,19 +267,11 @@ export default function Hero() {
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
           <div className="hero-container relative">
             <div className="absolute left-[120px] top-[155px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
-              <div className="hero-logo-badge mb-2">
-                <div
-                  className="hero-badge inline-flex items-center justify-center text-center text-[11px] sm:text-[12px] lg:text-[14px] leading-[100%] tracking-[0em] font-semibold text-white rounded-full border border-white h-[32px] lg:h-[37px] px-3 sm:px-4 lg:px-5 py-[8px] lg:py-[10px] whitespace-nowrap max-w-full"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  Postgraduate Certification - Banking Management
-                </div>
-              </div>
               <h1
                 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[100%] tracking-[0em] mb-4"
                 style={{ fontFamily: "Montserrat, sans-serif" }}
               >
-              Business Development Executive
+                Launch Your Banking Career in 14 Days
               </h1>
               <ul className="hero-bullet-list text-gray-200 space-y-3 mb-8">
                 <li className="flex items-start gap-2 sm:gap-3">
@@ -297,7 +289,7 @@ export default function Hero() {
                     className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    2-week program
+                    Master high-demand CASA sales and CRM skills through our Rs 80,000 all-inclusive training.
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
@@ -306,16 +298,7 @@ export default function Hero() {
                     className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    Fees: Rs 80,000 (Including all Taxes)
-                  </span>
-                </li>
-                <li className="flex items-start gap-2 sm:gap-3">
-                  <img src={tickSvg} alt="" aria-hidden="true" className="hero-tick-icon" />
-                  <span
-                    className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
-                    style={{ fontFamily: "Poppins, sans-serif" }}
-                  >
-                    Applicants should have a graduation degree and be 28 years or younger to qualify. 
+                    Open to ambitious graduates aged 28 and under ready to dominate the retail banking sector
                   </span>
                 </li>
               </ul>
