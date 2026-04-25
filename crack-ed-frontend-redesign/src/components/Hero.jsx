@@ -245,7 +245,7 @@ export default function Hero() {
                 </div>
               </div>
               <h1 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[1] mb-3 md:mb-4">
-              Business Development Associate
+              From Graduate to Banker in 6 Days
               </h1>
               <ul className="hero-bullet-list text-gray-200 space-y-2 sm:space-y-4 mb-2 lg:mb-8">
                 <li className="flex items-start gap-2 sm:gap-3 min-w-0">
@@ -253,14 +253,14 @@ export default function Hero() {
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
                   <span className="hero-subtitle min-w-0 font-['Poppins',ui-sans-serif,system-ui,sans-serif] text-[14px] sm:text-base font-normal not-italic leading-[1.45] tracking-normal text-[rgba(250,250,250,1)]">
-                  Join as a Business Development Associate with a CTC of upto Rs 2.36 LPA + incentives
+                  Join as a Business Development Associate and secure a CTC of upto Rs 2.36 LPA + incentives
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3 min-w-0">
                   <span className="hero-tick">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="hero-bullet-secondary min-w-0 text-[14px] sm:text-[16px] leading-[1.45] font-normal font-['Poppins',ui-sans-serif,system-ui,sans-serif] text-[rgba(250,250,250,1)]">6-day online program
+                  <span className="hero-bullet-secondary min-w-0 text-[14px] sm:text-[16px] leading-[1.45] font-normal font-['Poppins',ui-sans-serif,system-ui,sans-serif] text-[rgba(250,250,250,1)]">100% free. Just real-world training to help you break into the banking sector seamlessly.
                   </span>
                 </li>
               </ul>
