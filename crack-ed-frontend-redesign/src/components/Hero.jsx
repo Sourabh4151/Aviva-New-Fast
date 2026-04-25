@@ -271,19 +271,11 @@ export default function Hero() {
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
           <div className="hero-container relative">
             <div className="absolute left-[120px] top-[180px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
-              <div className="hero-logo-badge mb-2">
-                <div
-                  className="hero-badge inline-flex items-center justify-center text-center text-[11px] sm:text-[12px] lg:text-[14px] leading-[100%] tracking-[0em] font-semibold text-white rounded-full border border-white h-[32px] lg:h-[37px] px-3 sm:px-4 lg:px-5 py-[8px] lg:py-[10px] whitespace-nowrap max-w-full"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  Postgraduate Program - Relationship Management
-                </div>
-              </div>
               <h1
-                className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[100%] tracking-[0em] mb-4"
+                className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-medium leading-[100%] tracking-[0em] mb-4"
                 style={{ fontFamily: "Montserrat, sans-serif" }}
               >
-              Relationship Manager
+              Step into a Career That Commands Respect
               </h1>
               <ul className="hero-bullet-list text-gray-200 space-y-3 mb-8">
                 <li className="flex items-start gap-2 sm:gap-3">
@@ -292,7 +284,7 @@ export default function Hero() {
                     className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    Join as a Relationship Manager with a CTC of Rs 5.5 LPA + incentives
+                    Transition from student to a Relationship Manager in just 180 days.
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
@@ -301,7 +293,7 @@ export default function Hero() {
                     className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    6-month program
+                    Earn back your investment with a starting CTC of Rs 5.5 LPA.
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
@@ -310,7 +302,7 @@ export default function Hero() {
                     className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    Fees: Rs 3,00,000 + GST
+                    Trusted by 5,000+ learners.
                   </span>
                 </li>
                 
@@ -324,6 +316,12 @@ export default function Hero() {
                 >
                   Download Brochure
                 </a>
+                <p
+                  className="mt-2 w-[206px] text-[12px] leading-[16px] font-normal tracking-[0em] text-[rgba(250,250,250,0.8)]"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  * EMI options starting at Rs 11,000/mo
+                </p>
               </div>
             </div>
           </div>
