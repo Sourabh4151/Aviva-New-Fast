@@ -581,36 +581,6 @@ select.hero-select::-ms-expand {
   box-shadow: none;
 }
 
-/* Hero "Download Brochure" button (193×49, radius 10px) */
-.download-brochure-btn {
-  width: 193px;
-  height: 49px;
-  border-radius: 10px;
-  padding: 16px 24px;
-  background: rgba(235, 235, 235, 1);
-  color: rgba(30, 30, 30, 1);
-  font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  gap: 10px;
-  transition: background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
-  cursor: pointer;
-}
-.download-brochure-btn:hover {
-  background: rgba(210, 210, 210, 1);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  transform: translateY(-1px);
-}
-.download-brochure-btn:active {
-  box-shadow: none;
-  transform: translateY(0);
-}
-
 /* Get OTP button */
 .otp-btn {
   width: 206px;
@@ -672,12 +642,6 @@ select.hero-select::-ms-expand {
   /* Tight offset below nav on tablet/mobile */
   .hero-container .left-adjust.hero-left-adjust {
     margin-top: 0.25rem;
-  }
-  /* Center Register Now button on mobile, keep desktop width */
-  .register-btn-wrap {
-    width: 100%;
-    display: flex;
-    justify-content: center;
   }
   /* width 100% + horizontal margin overflows the viewport; use calc + auto margins for even inset */
   .hero-form-card {

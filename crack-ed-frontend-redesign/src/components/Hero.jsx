@@ -231,7 +231,7 @@ export default function Hero() {
         />
         <div className="pointer-events-none absolute left-0 right-0 bottom-0 z-[1] h-8 bg-black" />
         <div className="hero-container relative z-10 lg:h-full">
-            <div className="absolute left-[120px] top-[200px] lg:top-[100px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
+            <div className="absolute left-[120px] top-[200px] lg:top-[152px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
               <div className="hero-logo-badge mb-3 md:mb-4 flex flex-col items-start gap-4 max-lg:gap-3">
                 <img
                   src={axisBankSvg}
@@ -264,15 +264,6 @@ export default function Hero() {
                   </span>
                 </li>
               </ul>
-              <div className="register-btn-wrap mt-2 max-lg:mb-3 lg:mt-4">
-                <span
-                  className="download-brochure-btn pointer-events-none cursor-not-allowed opacity-50"
-                  aria-disabled="true"
-                  tabIndex={-1}
-                >
-                  Download Brochure
-                </span>
-              </div>
             </div>
         </div>
       </div>
