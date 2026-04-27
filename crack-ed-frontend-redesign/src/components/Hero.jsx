@@ -23,9 +23,6 @@ export default function Hero() {
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
 
   const otpValue = otpDigits.join("");
-  const brochurePdfPath = "/PGP - Retail Banking.pdf";
-  const brochurePdfHref = encodeURI(brochurePdfPath);
-  const brochurePdfDownloadName = "PGP - Retail Banking.pdf";
 
   const hasValidationError =
     Object.values(errors).some((val) => Boolean(val)) || Boolean(otpError);
@@ -252,13 +249,13 @@ export default function Hero() {
 
       {/* Hero background: fixed height on all screens – does NOT grow. Form comes after on mobile. */}
       <div
-        className="w-full min-h-[560px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[10%_60%] lg:bg-[center_70%]"
+        className="w-full max-lg:min-h-0 min-h-[560px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[10%_60%] lg:bg-[center_70%]"
         style={{ backgroundImage: `url(${heroImage})` }}
         role="img"
         aria-label="Aviva hero"
       >
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 max-lg:relative max-lg:inset-auto"
           style={{
             zIndex: 10,
             background:
@@ -287,7 +284,7 @@ export default function Hero() {
               >
               Business Development Associate
               </h1>
-              <ul className="hero-bullet-list text-gray-200 space-y-3 mb-8">
+              <ul className="hero-bullet-list text-gray-200 space-y-3 mb-0 lg:mb-8">
                 <li className="flex items-start gap-2 sm:gap-3">
                   <img src={tickSvg} alt="" aria-hidden="true" className="hero-tick-icon" />
                   <span
@@ -316,17 +313,6 @@ export default function Hero() {
                   </span>
                 </li>
               </ul>
-              <div className="register-btn-wrap">
-                <button
-                  type="button"
-                  disabled
-                  className="download-brochure-btn"
-                  aria-label="Download brochure PDF"
-                  aria-disabled="true"
-                >
-                  Download Brochure
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -334,7 +320,7 @@ export default function Hero() {
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-16 max-lg:mb-16 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[85px] lg:mt-0 lg:w-[373px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
+        className={`hero-form-card max-lg:relative max-lg:z-20 max-lg:mx-4 max-lg:mt-6 max-lg:mb-16 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[85px] lg:mt-0 lg:w-[373px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
           alreadyInSystem || hasValidationError ? "lg:min-h-[520px]" : "lg:min-h-[471px]"
         }`}
         style={{

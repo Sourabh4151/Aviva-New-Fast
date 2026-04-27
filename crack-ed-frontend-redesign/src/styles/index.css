@@ -48,7 +48,7 @@ body::-webkit-scrollbar {
     margin-bottom: 16px;
   }
   .hero-left-adjust .hero-bullet-list {
-    margin-bottom: 32px;
+    margin-bottom: 0;
   }
   .hero-left-adjust .hero-bullet-list > li + li {
     margin-top: 10px;
@@ -143,55 +143,6 @@ body::-webkit-scrollbar {
   border-radius: 6px;
 }
 
-/* Hero "Download Brochure" button (193x49, radius 10px) */
-.download-brochure-btn {
-  width: 193px;
-  height: 49px;
-  border-radius: 10px;
-  padding: 16px 24px;
-  background: rgba(235, 235, 235, 1);
-  color: rgba(30, 30, 30, 1);
-  font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  gap: 10px;
-  transition: background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
-  cursor: pointer;
-}
-.download-brochure-btn:hover {
-  background: rgba(210, 210, 210, 1);
-  box-shadow: none;
-  transform: none;
-}
-.download-brochure-btn:active {
-  box-shadow: none;
-  transform: translateY(0);
-}
-
-.download-brochure-btn.download-brochure-btn--unavailable,
-button.download-brochure-btn:disabled {
-  background: rgba(175, 175, 175, 1);
-  color: #8b8b8b;
-  cursor: not-allowed;
-  border: none;
-  box-shadow: none;
-}
-
-.download-brochure-btn.download-brochure-btn--unavailable:hover,
-.download-brochure-btn.download-brochure-btn--unavailable:active,
-button.download-brochure-btn:disabled:hover,
-button.download-brochure-btn:disabled:active {
-  background: rgba(175, 175, 175, 1);
-  color: #8b8b8b;
-  box-shadow: none;
-  transform: none;
-}
-
 /* Hero layout containers */
 .hero-container {
   padding-left: 0;
@@ -214,16 +165,11 @@ button.download-brochure-btn:disabled:active {
     max-width: 100%;
     margin-top: 0;
   }
-  .register-btn-wrap {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
   .hero-form-card {
     position: static !important;
     width: 100% !important;
     max-width: 400px;
-    margin: 6rem auto 2rem !important;
+    margin: 1.5rem auto 2rem !important;
   }
   .hero-container {
     padding-left: 24px;
@@ -248,7 +194,7 @@ button.download-brochure-btn:disabled:active {
 
 @media (max-width: 640px) {
   .hero-form-card {
-    margin-top: 6rem !important;
+    margin-top: 1.25rem !important;
     margin-bottom: 2rem !important;
     padding: 1rem 1.25rem !important;
   }
