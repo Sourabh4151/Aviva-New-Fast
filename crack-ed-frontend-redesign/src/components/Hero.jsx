@@ -255,6 +255,15 @@ export default function Hero() {
                   <span className="text-[14px] font-normal">6-month program</span>
                 </li>
               </ul>
+              <div className="register-btn-wrap mt-4">
+                <a
+                  href="/PGP%20Relationship%20Manager.pdf"
+                  className="download-brochure-btn"
+                  download="PGP Relationship Manager.pdf"
+                >
+                  Download Brochure
+                </a>
+              </div>
             </div>
           </div>
         </div>
