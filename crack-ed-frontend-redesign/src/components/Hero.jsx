@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import heroImage from "../assets/desktop.jpg";
-import iimLogo from "../assets/iim_logo.svg";
 import tickSvg from "../assets/tick.svg";
 
 export default function Hero() {
@@ -231,13 +230,8 @@ export default function Hero() {
         >
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
           <div className="hero-container relative">
-            <div className="absolute left-[120px] top-[200px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
-              <div className="hero-logo-badge mb-6 flex flex-col items-start gap-5">
-                <img
-                  src={iimLogo}
-                  alt="IIM logo"
-                  className="w-[146px] h-[44.92px] object-contain"
-                />
+            <div className="absolute left-[120px] top-[270px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
+              <div className="hero-logo-badge mb-6">
                 <div className="hero-badge inline-flex items-center justify-center text-[14px] font-semibold text-white rounded-full border border-white px-4 py-2">
                   Postgraduate Program In Relationship Management
                 </div>
@@ -261,15 +255,6 @@ export default function Hero() {
                   <span className="text-[14px] font-normal">6-month program</span>
                 </li>
               </ul>
-              <div className="register-btn-wrap mt-4">
-                <a
-                  href="/PGP%20Relationship%20Manager.pdf"
-                  className="download-brochure-btn"
-                  download="PGP Relationship Manager.pdf"
-                >
-                  Download Brochure
-                </a>
-              </div>
             </div>
           </div>
         </div>
@@ -277,7 +262,7 @@ export default function Hero() {
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-6 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[131px] lg:mt-0 lg:w-[373px] lg:z-30 w-full bg-[rgba(3,15,25,1)] p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
+        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-4 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[96px] lg:mt-0 lg:w-[373px] lg:z-30 w-full bg-[rgba(3,15,25,1)] p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
           alreadyInSystem || hasValidationError ? "lg:min-h-[520px]" : "lg:min-h-[471px]"
         }`}
       >

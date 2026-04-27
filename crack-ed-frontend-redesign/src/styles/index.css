@@ -656,7 +656,7 @@ select.hero-select::-ms-expand {
 
 .hero-form-card {
   right: 120px;
-  top: 131px;
+  top: 96px;
   width: 373px;
 }
 
@@ -669,9 +669,9 @@ select.hero-select::-ms-expand {
     width: 100% !important;
     max-width: 100%;
   }
-  /* Push hero content lower on mobile */
+  /* Push hero content lower on mobile / tablet stack */
   .hero-container .left-adjust.hero-left-adjust {
-    margin-top: 1.5rem;
+    margin-top: 3rem;
   }
   /* Center Register Now button on mobile, keep desktop width */
   .register-btn-wrap {
@@ -831,10 +831,10 @@ select.hero-select::-ms-expand {
     padding-right: 12px;
   }
   .hero-container {
-    padding-top: 80px;
+    padding-top: 100px;
   }
   .hero-container .left-adjust.hero-left-adjust {
-    margin-top: 5rem;
+    margin-top: 8rem;
   }
   .hero-container .left-adjust:not(.hero-left-adjust) {
     left: 12px !important;
