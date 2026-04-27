@@ -22,9 +22,6 @@ export default function Hero() {
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
 
   const otpValue = otpDigits.join("");
-  const brochurePdfPath = "/PGP - Retail Banking.pdf";
-  const brochurePdfHref = encodeURI(brochurePdfPath);
-  const brochurePdfDownloadName = "PGP - Retail Banking.pdf";
 
   const hasValidationError =
     Object.values(errors).some((val) => Boolean(val)) || Boolean(otpError);
@@ -249,23 +246,23 @@ export default function Hero() {
         />
       </nav>
 
-      {/* Hero background: fixed height on all screens – does NOT grow. Form comes after on mobile. */}
+      {/* Hero background: fixed height on lg+; on mobile the inner column is in-flow so the block grows and the form is not overlapped. */}
       <div
-        className="w-full max-lg:min-h-0 min-h-[560px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[10%_60%] lg:bg-[center_70%]"
+        className="w-full min-h-[560px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[48%_60%] lg:bg-[center_70%]"
         style={{ backgroundImage: `url(${heroImage})` }}
         role="img"
         aria-label="Hero background"
       >
         {/* Light vignette + left emphasis so the photo stays visible but matches Figma contrast */}
         <div
-          className="pointer-events-none absolute inset-0 z-[1] max-lg:relative max-lg:inset-auto"
+          className="pointer-events-none absolute inset-0 z-[1]"
           style={{
             background:
               "linear-gradient(90deg, rgba(12, 8, 10, 0.52) 0%, rgba(12, 8, 10, 0.22) 45%, rgba(12, 8, 10, 0.08) 72%, rgba(12, 8, 10, 0.14) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, transparent 38%, rgba(0, 0, 0, 0.18) 100%)",
           }}
           aria-hidden
         />
-        <div className="absolute inset-0 z-10">
+        <div className="absolute inset-0 z-10 max-lg:relative max-lg:inset-auto">
           <div className="hero-container relative">
             <div className="absolute left-[120px] top-[155px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
               <div className="hero-logo-badge mb-2">
@@ -310,16 +307,6 @@ export default function Hero() {
                   </span>
                 </li>
               </ul>
-              <div className="register-btn-wrap">
-                <a
-                  href={brochurePdfHref}
-                  download={brochurePdfDownloadName}
-                  className="download-brochure-btn"
-                  aria-label="Download brochure PDF"
-                >
-                  Download Brochure
-                </a>
-              </div>
             </div>
           </div>
         </div>
