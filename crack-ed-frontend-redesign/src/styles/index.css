@@ -217,6 +217,8 @@ button.download-brochure-btn:disabled:active {
   .register-btn-wrap {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
   }
   .hero-form-card {
