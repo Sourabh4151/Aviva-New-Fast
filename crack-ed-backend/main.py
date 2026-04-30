@@ -11,7 +11,7 @@ import requests
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
-from sqlalchemy.exc import OperationalError
+from sqlalchemy.exc import IntegrityError, OperationalError
 
 from extensions import db
 from models import CallBackUsers
@@ -93,121 +93,99 @@ def verify_otp_api(otp_txn_id, otp):
 
 
 # ---------------------------------------------------------------------------
-# CRM integration
-#
-# NoPaperForms is not yet active for this microsite. The NoPaperForms helpers
-# below are kept (commented out) so we can switch back easily once we migrate.
-# For now, callback leads are pushed to ExtraaEdge via its publisher webhook.
+# CRM integration (Meritto / NoPaperForms)
 # ---------------------------------------------------------------------------
 
-# --- NoPaperForms (disabled) -----------------------------------------------
-# NOPAPERFORMS_LEAD_URL = os.getenv(
-#     "NOPAPERFORMS_LEAD_URL",
-#     "https://api.nopaperforms.io/lead/v1/createOrUpdate",
-# )
-#
-#
-# def _nopaperforms_lead_headers():
-#     headers = {"Content-Type": "application/json", "Accept": "application/json"}
-#     access_key = (os.getenv("NOPAPERFORMS_ACCESS_KEY") or "").strip()
-#     secret_key = (os.getenv("NOPAPERFORMS_SECRET_KEY") or "").strip()
-#     if access_key:
-#         headers["access-key"] = access_key
-#     if secret_key:
-#         headers["secret-key"] = secret_key
-#     token = (os.getenv("NOPAPERFORMS_API_TOKEN") or "").strip()
-#     if token:
-#         headers["Authorization"] = (
-#             token if token.lower().startswith("bearer ") else f"Bearer {token}"
-#         )
-#     return headers
-#
-#
-# def _format_mobile_for_nopaperforms(mobile):
-#     if mobile is None:
-#         return ""
-#     s = str(mobile).strip().replace(" ", "")
-#     digits = "".join(c for c in s if c.isdigit())
-#     return digits[-10:] if len(digits) >= 10 else digits
-#
-#
-# def _str_utm(value):
-#     return "" if value is None else str(value).strip()
-#
-#
-# def _post_lead_to_nopaperforms(
-#     *,
-#     full_name,
-#     email,
-#     mobile,
-#     state="",
-#     city="",
-#     utm_source="",
-#     utm_medium="",
-#     utm_campaign="",
-# ):
-#     payload = {
-#         "name": (full_name or "").strip(),
-#         "email": (email or "").strip(),
-#         "mobile": _format_mobile_for_nopaperforms(mobile),
-#         "state": state or "",
-#         "city": city or "",
-#         "search_criteria": "mobile",
-#         "source": _str_utm(utm_source),
-#         "medium": _str_utm(utm_medium),
-#         "campaign": _str_utm(utm_campaign),
-#         "cf_form_name": "Microsite - Mahindra - BE",
-#         "cf_program": "Mahindra - BE",
-#         "cf_pg_program": "PG Program",
-#     }
-#     try:
-#         print("NoPaperForms CRM payload:", json.dumps(payload))
-#     except Exception:
-#         pass
-#     return requests.post(
-#         NOPAPERFORMS_LEAD_URL,
-#         json=payload,
-#         headers=_nopaperforms_lead_headers(),
-#         timeout=(10, 30),
-#     )
+NOPAPERFORMS_LEAD_URL = os.getenv(
+    "NOPAPERFORMS_LEAD_URL",
+    "https://api.nopaperforms.io/lead/v1/createOrUpdate",
+)
 
 
-# --- ExtraaEdge (active) ---------------------------------------------------
-def _mobile_to_int(mobile):
+def _nopaperforms_lead_headers():
+    headers = {"Content-Type": "application/json", "Accept": "application/json"}
+    access_key = (os.getenv("NOPAPERFORMS_ACCESS_KEY") or "").strip()
+    secret_key = (os.getenv("NOPAPERFORMS_SECRET_KEY") or "").strip()
+    if access_key:
+        headers["access-key"] = access_key
+    if secret_key:
+        headers["secret-key"] = secret_key
+    token = (os.getenv("NOPAPERFORMS_API_TOKEN") or "").strip()
+    if token:
+        headers["Authorization"] = (
+            token if token.lower().startswith("bearer ") else f"Bearer {token}"
+        )
+    return headers
+
+
+def _format_mobile_for_nopaperforms(mobile):
     if mobile is None:
-        return 0
-    digits = "".join(c for c in str(mobile) if c.isdigit())
-    if not digits:
-        return 0
+        return ""
+    s = str(mobile).strip().replace(" ", "")
+    digits = "".join(c for c in s if c.isdigit())
+    return digits[-10:] if len(digits) >= 10 else digits
+
+
+def _str_utm(value):
+    return "" if value is None else str(value).strip()
+
+
+def _post_lead_to_nopaperforms(
+    *,
+    full_name,
+    email,
+    mobile,
+    state="",
+    city="",
+    utm_source="",
+    utm_medium="",
+    utm_campaign="",
+):
+    state_value = (state or "").strip() or (city or "").strip()
+    city_value = (city or "").strip()
+    payload = {
+        "name": (full_name or "").strip(),
+        "email": (email or "").strip(),
+        "mobile": _format_mobile_for_nopaperforms(mobile),
+        "state": state_value,
+        "search_criteria": "mobile",
+        "source": _str_utm(utm_source),
+        "medium": _str_utm(utm_medium),
+        "campaign": _str_utm(utm_campaign),
+        "cf_form_name": "Landing Page - Mahindra - BE",
+        "cf_program": "Mahindra - BE",
+        "cf_pg_program": "PG Program",
+    }
+    if city_value and city_value.lower() != state_value.lower():
+        payload["city"] = city_value
     try:
-        return int(digits[-10:])
-    except ValueError:
-        return 0
+        print("Meritto CRM payload:", json.dumps(payload))
+    except Exception:
+        pass
+    return requests.post(
+        NOPAPERFORMS_LEAD_URL,
+        json=payload,
+        headers=_nopaperforms_lead_headers(),
+        timeout=(10, 30),
+    )
 
 
 def send_callback_lead_to_crm(user):
-    url = "https://publisher.extraaedge.com/api/Webhook/addPublisherLead"
-    payload = json.dumps({
-        "Source": "crack-ed",
-        "AuthToken": "crack-ed_29-01-2025",
-        "FirstName": user.fname or "",
-        "LastName": user.lname or "",
-        "Email": user.email or "",
-        "MobileNumber": _mobile_to_int(user.mobile),
-        "City": user.city or "",
-        "Center": "81",
-        "Course": "1",
-        "Field5": "Landing Page - Mahindra - BE",
-        "leadCampaign": "Default",
-        "LeadSource": "123",
-    })
-    headers = {"Content-Type": "application/json"}
-    try:
-        print("ExtraaEdge CRM payload:", payload)
-    except Exception:
-        pass
-    response = requests.post(url, headers=headers, data=payload, timeout=(10, 30))
-    print(response.text)
+    full_name = " ".join(part for part in [user.fname, user.lname] if part).strip()
+    # Current DB model stores selected state in `city`; pass that to Meritto's
+    # required `state` field until a dedicated state column is introduced.
+    state_value = (getattr(user, "state", "") or "").strip() or (user.city or "").strip()
+    response = _post_lead_to_nopaperforms(
+        full_name=full_name,
+        email=user.email or "",
+        mobile=user.mobile,
+        state=state_value,
+        city="",
+        utm_source=getattr(user, "utm_source", "") or "",
+        utm_medium=getattr(user, "utm_medium", "") or "",
+        utm_campaign=getattr(user, "utm_campaign", "") or "",
+    )
+    print("Meritto CRM response:", response.text)
     return response
 
 
@@ -248,7 +226,10 @@ def send_callback_otp():
         utm_medium = data.get("utm_medium", "") or ""
         utm_campaign = data.get("utm_campaign", "") or ""
 
+        incoming_email = (data.get("email") or "").strip()
         existing_user = CallBackUsers.query.filter_by(mobile=mobile).first()
+        if not existing_user and incoming_email:
+            existing_user = CallBackUsers.query.filter_by(email=incoming_email).first()
 
         if existing_user:
             user = existing_user
@@ -259,7 +240,8 @@ def send_callback_otp():
             user.otp = otp
             user.fname = first_name
             user.lname = last_name
-            user.email = data.get('email')
+            user.email = incoming_email
+            user.mobile = mobile
             user.city = state_or_city
             try:
                 if utm_source:
@@ -274,7 +256,7 @@ def send_callback_otp():
             user = CallBackUsers(
                 fname=first_name,
                 lname=last_name,
-                email=data.get('email'),
+                email=incoming_email,
                 city=state_or_city,
                 mobile=mobile,
                 otp=otp,
@@ -297,7 +279,7 @@ def send_callback_otp():
 
         try:
             db.session.commit()
-        except OperationalError as db_error:
+        except (OperationalError, IntegrityError) as db_error:
             error_msg = str(db_error).lower()
             if "no such column" in error_msg and (
                 "utm_source" in error_msg
@@ -311,13 +293,14 @@ def send_callback_otp():
                     user.otp = otp
                     user.fname = first_name
                     user.lname = last_name
-                    user.email = data.get('email')
+                    user.email = incoming_email
+                    user.mobile = mobile
                     user.city = state_or_city
                 else:
                     user = CallBackUsers(
                         fname=first_name,
                         lname=last_name,
-                        email=data.get('email'),
+                        email=incoming_email,
                         city=state_or_city,
                         mobile=mobile,
                         otp=otp,
@@ -327,6 +310,38 @@ def send_callback_otp():
                 if user.otp_txn_id is None:
                     db.session.rollback()
                     return jsonify({"error": "Failed to send OTP"}), 500
+                db.session.commit()
+            elif "unique constraint failed" in error_msg and "callback_users.email" in error_msg:
+                # Email already exists on another row: reuse that row instead of inserting.
+                otp_txn_id = user.otp_txn_id
+                db.session.rollback()
+                email_user = CallBackUsers.query.filter_by(email=incoming_email).first()
+                if not email_user:
+                    raise
+                if email_user.verified:
+                    return jsonify({
+                        "message": "Thanks! Your callback request is already in our system. We'll connect with you soon!"
+                    }), 200
+                email_user.otp = otp
+                email_user.fname = first_name
+                email_user.lname = last_name
+                email_user.city = state_or_city
+                email_user.mobile = mobile
+                email_user.otp_txn_id = otp_txn_id
+                if not email_user.otp_txn_id:
+                    email_user.otp_txn_id = send_otp_api(mobile)
+                    if email_user.otp_txn_id is None:
+                        db.session.rollback()
+                        return jsonify({"error": "Failed to send OTP"}), 500
+                try:
+                    if utm_source:
+                        email_user.utm_source = utm_source
+                    if utm_medium:
+                        email_user.utm_medium = utm_medium
+                    if utm_campaign:
+                        email_user.utm_campaign = utm_campaign
+                except AttributeError:
+                    print("Warning: UTM columns not found. Run a migration to add them.")
                 db.session.commit()
             else:
                 raise
