@@ -217,13 +217,25 @@ button.download-brochure-btn:disabled:active {
   .register-btn-wrap {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: 8px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .register-btn-wrap .download-brochure-btn {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .register-btn-wrap p {
+    text-align: center;
   }
   .hero-form-card {
     position: static !important;
     width: 100% !important;
     max-width: 400px;
-    margin: 1.5rem auto 0;
+    margin: 2.25rem auto 0;
   }
   .hero-container {
     padding-left: 24px;
