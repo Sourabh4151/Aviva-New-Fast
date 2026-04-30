@@ -266,7 +266,7 @@ export default function Hero() {
         >
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
           <div className="hero-container relative">
-            <div className="absolute left-[120px] top-[155px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
+            <div className="absolute left-[120px] top-[210px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
               <h1
                 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[100%] tracking-[0em] mb-4"
                 style={{ fontFamily: "Montserrat, sans-serif" }}
