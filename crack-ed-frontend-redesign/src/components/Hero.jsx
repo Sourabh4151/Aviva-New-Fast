@@ -274,18 +274,12 @@ export default function Hero() {
                   alt="Mahindra Finance"
                   className="block w-[197px] h-[55px] lg:w-[239px] lg:h-[38px] object-contain"
                 />
-                <div
-                  className="hero-badge mt-4 inline-flex items-center justify-center text-center text-[14px] leading-[100%] tracking-[0em] font-semibold text-white rounded-full border border-white lg:w-[320px] lg:h-[37px] lg:px-6 lg:py-[10px] max-lg:w-[292px] max-lg:h-[37px] max-lg:px-[10px] max-lg:py-[10px] max-lg:gap-[10px] max-lg:rounded-[100px] whitespace-nowrap"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  Mahindra Finance Prarambh Program
-                </div>
               </div>
               <h1
                 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[100%] tracking-[0em] mb-4"
                 style={{ fontFamily: "Montserrat, sans-serif" }}
               >
-              Business Executive
+                Drive the Future of Vehicle Finance
               </h1>
               <ul className="hero-bullet-list text-gray-200 space-y-3 mb-8">
                 <li className="flex items-start gap-2 sm:gap-3">
@@ -294,7 +288,7 @@ export default function Hero() {
                     className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    Join as a Business Executive (Vehicle Loan - Field Sales) with a CTC of Rs 3.5 LPA + incentives
+                    Join as a Business Executive with a CTC of Rs 3.5 LPA + incentives
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
@@ -303,7 +297,7 @@ export default function Hero() {
                     className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    1-Month program
+                    Designed for ambitious women graduates (aged up to 28) looking to break into the financial sector.
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
@@ -312,16 +306,7 @@ export default function Hero() {
                     className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    Fee: Rs 70,000 (inclusive of all taxes)
-                  </span>
-                </li>
-                <li className="flex items-start gap-2 sm:gap-3">
-                  <img src={tickSvg} alt="" aria-hidden="true" className="hero-tick-icon" />
-                  <span
-                    className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
-                    style={{ fontFamily: "Poppins, sans-serif" }}
-                  >
-                    Applicants should have a graduation degree and be 28 years or younger to qualify. Open only to female candidates.
+                    1-Month program with an all inclusive fee of Rs 70,000
                   </span>
                 </li>
               </ul>
