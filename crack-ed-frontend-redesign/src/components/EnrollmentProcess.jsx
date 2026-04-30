@@ -10,9 +10,9 @@ const STEPS = [
   },
   {
     number: "02",
-    title: "Screening + AI Interview",
+    title: "Interview",
     description:
-      "Candidates undergo an AI-led interview to assess communication skills, role fit, and professional readiness.",
+      "Undergo an interview round with our internal leadership team to evaluate fit and potential",
   },
   {
     number: "03",
