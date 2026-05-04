@@ -277,12 +277,6 @@ export default function Hero() {
                     className="block w-[174px] h-[58px] object-contain shrink-0"
                   />
                 </div>
-                <span
-                  className="hero-program-pill hidden lg:inline-flex flex-row items-center justify-center gap-[10px] w-fit rounded-[100px] border border-[rgba(250,250,250,1)] px-6 py-[10px] text-[14px] font-semibold leading-[100%] tracking-normal text-[rgba(250,250,250,1)] box-border"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  Hero Finance Pragati Program
-                </span>
                 <h1
                   className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[100%] tracking-[0em] mb-4"
                   style={{ fontFamily: "Montserrat, sans-serif" }}
