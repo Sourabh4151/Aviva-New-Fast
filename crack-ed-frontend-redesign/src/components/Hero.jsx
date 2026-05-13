@@ -249,7 +249,7 @@ export default function Hero() {
                       className="hero-badge inline-flex items-center justify-center self-start whitespace-nowrap rounded-full border border-white px-4 py-2 text-center text-[14px] font-semibold leading-[100%] tracking-[0em] text-white max-lg:h-[37px] max-lg:w-[292px] max-lg:gap-[10px] max-lg:rounded-[100px] max-lg:px-[10px] max-lg:py-[10px]"
                       style={{ fontFamily: "Montserrat, sans-serif" }}
                     >
-                      Hero Finance Pragati Program
+                      Hero Housing Finance Pragati Program
                     </div>
                     <h1
                       className="hero-title w-full text-[40px] font-semibold leading-[100%] tracking-[0em] sm:text-[40px] md:text-[40px] lg:text-[48px]"
