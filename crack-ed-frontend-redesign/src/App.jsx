@@ -6,6 +6,7 @@ import CareerGrowth from "./components/CareerGrowth";
 import TrainingJourney from "./components/TrainingJourney";
 import ClassroomTraining from "./components/ClassroomTraining";
 import TrackGrowth from "./components/TrackGrowth";
+import Eligibility from "./components/Eligibility";
 import EnrollmentProcess from "./components/EnrollmentProcess";
 import ProgramFee from "./components/ProgramFee";
 import HaveQuestionsBanner from "./components/HaveQuestionsBanner";
@@ -23,10 +24,11 @@ export default function App() {
       <TrainingJourney />
       <ClassroomTraining />
       <TrackGrowth />
+      <Eligibility />
       <EnrollmentProcess />
       <ProgramFee />
       <HaveQuestionsBanner />
-      <Footer />
+      <Footer/>
     </div>
   );
 }
