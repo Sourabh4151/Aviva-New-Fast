@@ -11,19 +11,24 @@ import growthIcon from "../assets/growth.svg";
 
 const CAREER_STAGES = [
   {
-    title: "Relationship Manager",
+    title: "Assistant Manager",
     description:
-      "Build strong customer relationships, manage client portfolios, and guide customers with the right banking and financial solutions.",
+      "Build expertise across banking functions while managing customer relationships, sales, and portfolio growth.",
   },
   {
-    title: "Senior Relationship Manager",
+    title: "Relationship Manager",
     description:
-      "Handle high-value client relationships, drive business growth, and mentor teams while delivering personalized financial solutions.",
+      "Drive customer engagement, manage key client portfolios, and deliver tailored banking and financial solutions.",
+  },
+  {
+    title: "Branch Sales Manager",
+    description:
+      "Lead branch sales activities, achieve business targets, and guide teams to drive customer acquisition and revenue growth.",
   },
   {
     title: "Branch Manager",
     description:
-      "Lead branch operations, manage teams, drive sales performance, and ensure excellent customer service and business growth.",
+      "Oversee branch operations, lead teams, ensure exceptional customer service, and drive overall business performance.",
   },
 ];
 
