@@ -452,7 +452,7 @@ export default function Hero() {
                     onChange={handleChange}
                     required
                     placeholder="Full Name"
-                    className="callback-input w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(143,40,44,0.8)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)]"
+                    className="callback-input w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-white outline-none focus:outline-none focus:ring-0 focus:border-white"
                   />
                   {errors.name && (
                     <p className="mt-1 text-[12px] text-red-400">
@@ -465,7 +465,7 @@ export default function Hero() {
                     onChange={handleChange}
                     required
                     placeholder="Email"
-                    className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(143,40,44,0.8)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] callback-input"
+                    className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-white outline-none focus:outline-none focus:ring-0 focus:border-white callback-input"
                   />
                   {errors.email && (
                     <p className="mt-1 text-[12px] text-red-400">
@@ -473,7 +473,7 @@ export default function Hero() {
                     </p>
                   )}
                   <div ref={stateRef} className="relative">
-                    <div className="custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(143,40,44,0.8)] outline-none focus-within:border-[rgba(250,250,250,0.55)] font-normal text-[14px] flex items-center justify-between gap-2 cursor-text">
+                    <div className="custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-white outline-none focus-within:border-white font-normal text-[14px] flex items-center justify-between gap-2 cursor-text">
                       <input
                         ref={stateInputRef}
                         type="text"
@@ -561,7 +561,7 @@ export default function Hero() {
                     <div
                       onMouseEnter={() => setCityHover(true)}
                       onMouseLeave={() => setCityHover(false)}
-                      className={`custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(143,40,44,0.8)] outline-none focus-within:border-[rgba(250,250,250,0.55)] font-normal text-[14px] flex items-center justify-between gap-2 ${
+                      className={`custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-white outline-none focus-within:border-white font-normal text-[14px] flex items-center justify-between gap-2 ${
                         form.state ? "cursor-text" : "cursor-not-allowed opacity-60"
                       }`}
                     >
@@ -664,7 +664,7 @@ export default function Hero() {
                         onChange={handleChange}
                         required
                         placeholder="Mobile Number"
-                        className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(143,40,44,0.8)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] callback-input"
+                        className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-white outline-none focus:outline-none focus:ring-0 focus:border-white callback-input"
                       />
                       {errors.mobile && (
                         <p className="mt-1 text-[12px] text-red-400">
@@ -704,7 +704,7 @@ export default function Hero() {
                                 }
                               }
                             }}
-                            className="w-12 h-12 rounded-[10px] bg-transparent border border-[rgba(143,40,44,0.8)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] text-center text-[18px] text-white callback-input"
+                            className="w-12 h-12 rounded-[10px] bg-transparent border border-white outline-none focus:outline-none focus:ring-0 focus:border-white text-center text-[18px] text-white callback-input"
                             aria-label={`OTP digit ${i + 1}`}
                           />
                         ))}
