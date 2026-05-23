@@ -520,10 +520,12 @@ p.classroom-subtitle {
     justify-content: center;
     gap: 10px;
     width: fit-content;
+    max-width: 100%;
     min-height: 29px;
     padding: 4px 12px;
     border-radius: 100px;
     box-sizing: border-box;
+    white-space: normal;
   }
   .career-roadmap-desc-desktop {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
@@ -532,8 +534,8 @@ p.classroom-subtitle {
     line-height: 150%;
     letter-spacing: 0;
     text-align: justify;
-    width: 303px;
-    max-width: 303px;
+    width: 100%;
+    max-width: min(303px, 100%);
     color: rgba(250, 250, 250, 0.8);
   }
 }
@@ -547,7 +549,7 @@ p.classroom-subtitle {
 }
 
 /* Career roadmap – mobile specs (Figma) */
-@media (max-width: 1023px) {
+@media (max-width: 1279px) {
   .career-roadmap-title-mobile {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     font-weight: 600;
@@ -560,10 +562,12 @@ p.classroom-subtitle {
     justify-content: center;
     gap: 10px;
     width: fit-content;
+    max-width: 100%;
     min-height: 29px;
     padding: 4px 12px;
     border-radius: 100px;
     box-sizing: border-box;
+    white-space: normal;
   }
   .career-roadmap-desc-mobile {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;

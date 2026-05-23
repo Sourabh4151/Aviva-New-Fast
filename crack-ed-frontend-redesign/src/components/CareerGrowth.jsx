@@ -66,10 +66,16 @@ const FEATURES = [
 const DEFAULT_LAYOUT = CAREER_STAGES.map((_, index) => ({
   top: index * 140,
   marginLeft: index * 28,
+  maxWidth: undefined,
 }));
 
 const VIEWPORT_THRESHOLD_DESKTOP = 0.75;
 const VIEWPORT_THRESHOLD_MOBILE = 0.25;
+const ROADMAP_EDGE_PAD = 12;
+const MIN_ROW_WIDTH = 140;
+const ROADMAP_TARGET_FILL = 0.9;
+const ROADMAP_MIN_FILL_BEFORE_SCALE = 0.62;
+const MAX_ROADMAP_SCALE_UP = 2.75;
 
 function CareerStageRow({
   stage,
@@ -93,9 +99,10 @@ function CareerStageRow({
           ? {
               top: layout?.top ?? 0,
               marginLeft: layout?.marginLeft ?? 0,
-              gridTemplateColumns: "auto 1fr",
               columnGap: TEXT_GAP_PX,
               rowGap: TITLE_DESC_GAP_PX,
+              maxWidth: layout?.maxWidth,
+              gridTemplateColumns: "auto minmax(0, 1fr)",
             }
           : {
               gridTemplateColumns: "auto 1fr",
@@ -116,7 +123,7 @@ function CareerStageRow({
         aria-hidden="true"
       />
       <span
-        className={`career-roadmap-title col-start-2 row-start-1 w-max max-w-full self-center whitespace-nowrap ${
+        className={`career-roadmap-title col-start-2 row-start-1 min-w-0 w-max max-w-full self-center ${
           isDesktop
             ? "career-roadmap-title-desktop"
             : "career-roadmap-title-mobile"
@@ -134,7 +141,7 @@ function CareerStageRow({
         {stage.title}
       </span>
       <p
-        className={`career-roadmap-desc col-start-2 row-start-2 w-full ${
+        className={`career-roadmap-desc col-start-2 row-start-2 min-w-0 w-full max-w-full ${
           isDesktop
             ? "career-roadmap-desc-desktop"
             : "career-roadmap-desc-mobile"
@@ -318,17 +325,127 @@ export default function CareerGrowth() {
           marginLeft,
         };
       });
+      
+      const applyLayoutToDom = (layout) => {
+        layout.forEach((item, index) => {
+          const row = rowRefs.current[index];
+          if (!row) return;
+          row.style.top = `${item.top}px`;
+          row.style.marginLeft = `${item.marginLeft}px`;
+          if (item.maxWidth != null) {
+            row.style.maxWidth = `${item.maxWidth}px`;
+          }
+        });
+      };
+
+      const withMaxWidths = (layout, containerWidth) =>
+        layout.map((item) => ({
+          ...item,
+          maxWidth: Math.max(
+            MIN_ROW_WIDTH,
+            containerWidth - item.marginLeft - ROADMAP_EDGE_PAD
+          ),
+        }));
+
+      const getMaxRightEdge = (layout) =>
+        Math.max(
+          ...CAREER_STAGES.map((_, index) => {
+            const row = rowRefs.current[index];
+            const item = layout[index];
+            if (!row || !item) return 0;
+            return item.marginLeft + row.offsetWidth;
+          }),
+          0
+        );
+
+      const getMaxContentWidth = () =>
+        Math.max(
+          ...CAREER_STAGES.map(
+            (_, index) => rowRefs.current[index]?.offsetWidth ?? MIN_ROW_WIDTH
+          ),
+          MIN_ROW_WIDTH
+        );
+
+      const scaleMarginLeft = (layout, scale) =>
+        withMaxWidths(
+          layout.map((item, index) => ({
+            top: item.top,
+            marginLeft: index === 0 ? 0 : Math.round(item.marginLeft * scale),
+          })),
+          width
+        );
+
+      const rightLimit = width - ROADMAP_EDGE_PAD;
+      let fittedLayout = withMaxWidths(newLayout, width);
+      applyLayoutToDom(fittedLayout);
+
+      const maxMarginLeft = Math.max(...newLayout.map((l) => l.marginLeft));
+      if (maxMarginLeft > 0) {
+        let maxRight = getMaxRightEdge(fittedLayout);
+
+        if (maxRight > rightLimit) {
+          const availableForMargin = Math.max(
+            0,
+            rightLimit - getMaxContentWidth()
+          );
+          const scaleDown = Math.max(0.25, availableForMargin / maxMarginLeft);
+          fittedLayout = scaleMarginLeft(newLayout, scaleDown);
+          applyLayoutToDom(fittedLayout);
+          maxRight = getMaxRightEdge(fittedLayout);
+        }
+
+        const fillRatio = maxRight / rightLimit;
+        if (fillRatio < ROADMAP_MIN_FILL_BEFORE_SCALE) {
+          const targetMaxMarginLeft = Math.max(
+            0,
+            rightLimit * ROADMAP_TARGET_FILL - getMaxContentWidth()
+          );
+          const scaleUp = Math.min(
+            MAX_ROADMAP_SCALE_UP,
+            targetMaxMarginLeft / maxMarginLeft
+          );
+
+          if (scaleUp > 1.05) {
+            fittedLayout = scaleMarginLeft(newLayout, scaleUp);
+            applyLayoutToDom(fittedLayout);
+            maxRight = getMaxRightEdge(fittedLayout);
+
+            if (maxRight > rightLimit) {
+              const currentMaxML = Math.max(
+                ...fittedLayout.map((l) => l.marginLeft)
+              );
+              const availableForMargin = Math.max(
+                0,
+                rightLimit - getMaxContentWidth()
+              );
+              const scaleDown = Math.max(
+                0.25,
+                availableForMargin / currentMaxML
+              );
+              fittedLayout = scaleMarginLeft(newLayout, scaleDown);
+              applyLayoutToDom(fittedLayout);
+            }
+          }
+        }
+      }
 
       const contentHeight =
-        Math.max(...tops.map((top, index) => top + heights[index])) + 16;
+      Math.max(
+        ...fittedLayout.map((item, index) => item.top + heights[index])
+      ) + 16;
+
+    const finalDotCenters = CAREER_STAGES.map((_, index) =>
+      toLocalCenter(dotRefs.current[index])
+    );
 
       setStageLayout((prev) => {
         const changed = prev.some(
           (item, index) =>
-            Math.abs(item.top - newLayout[index].top) > 1 ||
-            Math.abs(item.marginLeft - newLayout[index].marginLeft) > 1
+            Math.abs(item.top - fittedLayout[index].top) > 1 ||
+          Math.abs(item.marginLeft - fittedLayout[index].marginLeft) > 1 ||
+          Math.abs((item.maxWidth ?? 0) - fittedLayout[index].maxWidth) > 1
         );
-        return changed ? newLayout : prev;
+        return changed ? fittedLayout : prev;
       });
 
       setRoadmapMinHeight((prev) =>
@@ -338,7 +455,7 @@ export default function CareerGrowth() {
       setConnectorLine({
         width,
         height: Math.max(lineHeight, contentHeight),
-        dotCenters,
+        dotCenters: finalDotCenters,
       });
     } else {
       const contentHeight = roadmap.scrollHeight || roadmapRect.height;
@@ -437,9 +554,9 @@ export default function CareerGrowth() {
       className="relative bg-[rgba(10,49,82,0.2)] backdrop-blur-[100px] text-white scroll-mt-24 overflow-hidden"
     >
       <div className="relative z-10 px-4 py-section sm:px-6 md:px-8 lg:px-[120px] lg:pt-[110px] lg:pb-[110px]">
-        <div className="career-growth-card flex w-full flex-col items-start gap-24 lg:flex-row lg:items-stretch lg:gap-30 xl:gap-48">
+      <div className="career-growth-card flex w-full flex-col items-start gap-24 lg:flex-row lg:items-stretch lg:justify-between lg:gap-x-12">
           {/* Left content */}
-          <div className="w-full flex-shrink-0 lg:w-[430px]">
+          <div className="w-full shrink-0 lg:w-[430px] lg:max-w-[430px]">
             <div
               ref={careerGrowthTagRef}
               className="career-growth-tag inline-flex items-center justify-center rounded-full border border-white/30 px-4 py-1 text-xs font-medium tracking-normal text-white/70 sm:px-[30px] sm:text-sm"
@@ -480,7 +597,7 @@ export default function CareerGrowth() {
           {/* Career roadmap */}
           <div
             ref={roadmapRef}
-            className="career-roadmap relative w-full min-w-0 flex-1 lg:min-h-full"
+            className="career-roadmap relative min-w-0 w-full flex-1 overflow-hidden lg:min-h-full"
             style={isDesktopLayout ? { minHeight: roadmapMinHeight } : undefined}
           >
             {renderConnectorLines()}
