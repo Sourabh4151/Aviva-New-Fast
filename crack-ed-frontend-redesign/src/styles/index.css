@@ -524,6 +524,77 @@ p.classroom-subtitle {
     justify-content: center;
     flex-shrink: 0;
   }
+    /* Career roadmap – desktop inactive typography (Figma) */
+    .career-roadmap-title-desktop {
+      font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+      letter-spacing: -0.03em;
+      color: rgba(30, 30, 30, 0.8);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: fit-content;
+      max-width: 100%;
+      min-height: 29px;
+      padding: 4px 12px;
+      border-radius: 100px;
+      box-sizing: border-box;
+      white-space: normal;
+    }
+    .career-roadmap-desc-desktop {
+      font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 150%;
+      letter-spacing: 0;
+      text-align: justify;
+      width: 100%;
+      max-width: min(303px, 100%);
+      color: rgba(250, 250, 250, 0.8);
+    }
+  }
+  
+  /* Career roadmap – dot specs (Figma, desktop + mobile) */
+  .career-roadmap-node-spec {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+  }
+  
+  /* Career roadmap – mobile specs (Figma) */
+  @media (max-width: 1279px) {
+    .career-roadmap-title-mobile {
+      font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+      letter-spacing: -0.03em;
+      color: rgba(30, 30, 30, 0.8);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: fit-content;
+      max-width: 100%;
+      min-height: 29px;
+      padding: 4px 12px;
+      border-radius: 100px;
+      box-sizing: border-box;
+      white-space: normal;
+    }
+    .career-roadmap-desc-mobile {
+      font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 150%;
+      letter-spacing: 0;
+      text-align: justify;
+      color: rgba(250, 250, 250, 0.8);
+    }
 }
 
 /* normalize select appearance and typography inside hero card */
@@ -632,9 +703,7 @@ select.hero-select::-ms-expand {
   cursor: pointer;
 }
 .otp-btn:hover {
-  background: rgba(255,255,255,0.03);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-  color: rgba(250,250,250,1);
+  background: rgba(10, 49, 82, 0.7);
 }
 .otp-btn:active {
   box-shadow: none;

@@ -349,7 +349,6 @@ def send_callback_lead_to_crm(user):
     full_name = f"{user.fname or ''} {user.lname or ''}".strip()
     state_val = (getattr(user, "state", None) or "").strip()
     city_val = (getattr(user, "city", None) or "").strip()
-    # CallBackUsers has no `state` column; the callback form stores the selected state in `city`.
     if not state_val and city_val:
         state_val, city_val = city_val, ""
     response = _post_lead_to_nopaperforms(
@@ -426,6 +425,17 @@ def safe_str(value):
         return ""
     return str(value)
 
+
+def _set_callback_user_location(user, state_val, city_val):
+    """Persist state and city; fall back if `state` column is not migrated yet."""
+    state_val = (state_val or "").strip()
+    city_val = (city_val or "").strip()
+    try:
+        user.state = state_val
+        user.city = city_val
+    except AttributeError:
+        user.city = city_val or state_val
+
 def generate_payment_receipt_pdf(payment_data, application_data):
     # Payment receipt generation removed.
     return None
@@ -454,8 +464,12 @@ def send_callback_otp():
     name_parts = data['name'].split()
     first_name = name_parts[0] 
     last_name = name_parts[-1] if len(name_parts) > 1 else ""
-    # Hero form sends `state`; older clients may still send `city` for the same field.
-    state_or_city = (data.get("state") or data.get("city") or "").strip()
+    state_val = (data.get("state") or "").strip()
+    city_val = (data.get("city") or "").strip()
+    # Older clients sent a single location field as `state` or `city`.
+    if not state_val and not city_val:
+        legacy = (data.get("state") or data.get("city") or "").strip()
+        state_val = legacy
 
     try:
         # Extract UTM parameters
@@ -475,7 +489,7 @@ def send_callback_otp():
                 user.fname = first_name
                 user.lname = last_name
                 user.email = data['email']
-                user.city = state_or_city
+                _set_callback_user_location(user, state_val, city_val)
                 # Update UTM parameters if provided and column exists
                 try:
                     if utm_source:
@@ -491,12 +505,12 @@ def send_callback_otp():
             print("Creating new callback user with mobile:", mobile)
             user = CallBackUsers(
                 fname=first_name,
-                lname=last_name, 
+                lname=last_name,
                 email=data['email'],
-                city=state_or_city, 
-                mobile=mobile, 
-                otp=otp
+                mobile=mobile,
+                otp=otp,
             )
+            _set_callback_user_location(user, state_val, city_val)
             # Try to set UTM parameters if columns exist
             try:
                 if utm_source:
@@ -532,16 +546,16 @@ def send_callback_otp():
                     user.fname = first_name
                     user.lname = last_name
                     user.email = data['email']
-                    user.city = state_or_city
+                    _set_callback_user_location(user, state_val, city_val)
                 else:
                     user = CallBackUsers(
                         fname=first_name,
-                        lname=last_name, 
+                        lname=last_name,
                         email=data['email'],
-                        city=state_or_city, 
-                        mobile=mobile, 
-                        otp=otp
+                        mobile=mobile,
+                        otp=otp,
                     )
+                    _set_callback_user_location(user, state_val, city_val)
                     db.session.add(user)
                 user.otp_txn_id = send_otp_api(user.mobile)
                 if user.otp_txn_id is None:
