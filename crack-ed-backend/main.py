@@ -254,11 +254,30 @@ def _pull_nopaperforms_by_email(email):
 app = Flask(__name__)
 app.secret_key = 'b7e1c2e4c9a84e2e8f7d4a1b6c3e5f9a2d7c6b8e4f1a2c3d5e6f7b9a1c2d3e4f'
 # CORS(app, supports_credentials=True)
-CORS(app, 
-     origins=["http://localhost:5000"], 
-     supports_credentials=True,
-     allow_headers=["Content-Type", "Authorization"],
-     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"])
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5000",
+    "http://127.0.0.1:5000",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+CORS(
+    app,
+    origins=CORS_ALLOWED_ORIGINS,
+    supports_credentials=True,
+    allow_headers=["Content-Type", "Authorization"],
+    methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+)
+
+
+def _cors_preflight_response():
+    response = jsonify({})
+    origin = request.headers.get("Origin")
+    if origin in CORS_ALLOWED_ORIGINS:
+        response.headers.add("Access-Control-Allow-Origin", origin)
+    response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization")
+    response.headers.add("Access-Control-Allow-Methods", "POST, OPTIONS")
+    response.headers.add("Access-Control-Allow-Credentials", "true")
+    return response
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024 
@@ -331,25 +350,36 @@ def send_otp_api(mobile):
         return None
 
 def verify_otp_api(otp_txn_id, otp):
-    header=generate_hash_header()
+    if not otp_txn_id:
+        print("Error verifying OTP: missing transaction id")
+        return "FAILED"
+
+    header = generate_hash_header()
     payload = {
-    "txId": otp_txn_id,
-	"token": otp
+        "txId": otp_txn_id,
+        "token": otp,
     }
-    
+
     try:
-        response = requests.post(VALIDATE_URL, json=payload, headers=header)
-        print("Response from OTP API:", response.json())
-        return response.json()["status"] 
+        response = requests.post(
+            VALIDATE_URL, json=payload, headers=header, timeout=30
+        )
+        response.raise_for_status()
+        data = response.json()
+        print("Response from OTP API:", data)
+        status = str(data.get("status", "")).strip().upper()
+        return "SUCCESS" if status == "SUCCESS" else "FAILED"
     except requests.exceptions.RequestException as e:
-        print("Error sending OTP:", str(e))
-        return jsonify({"error": "Failed to send OTP", "details": str(e)}), 500
+        print("Error verifying OTP:", str(e))
+        return "FAILED"
+    except (ValueError, TypeError) as e:
+        print("Error parsing OTP API response:", str(e))
+        return "FAILED"
 
 def send_callback_lead_to_crm(user):
     full_name = f"{user.fname or ''} {user.lname or ''}".strip()
     state_val = (getattr(user, "state", None) or "").strip()
     city_val = (getattr(user, "city", None) or "").strip()
-    # CallBackUsers has no `state` column; the callback form stores the selected state in `city`.
     if not state_val and city_val:
         state_val, city_val = city_val, ""
     response = _post_lead_to_nopaperforms(
@@ -426,6 +456,17 @@ def safe_str(value):
         return ""
     return str(value)
 
+
+def _set_callback_user_location(user, state_val, city_val):
+    """Persist state and city; fall back if `state` column is not migrated yet."""
+    state_val = (state_val or "").strip()
+    city_val = (city_val or "").strip()
+    try:
+        user.state = state_val
+        user.city = city_val
+    except AttributeError:
+        user.city = city_val or state_val
+
 def generate_payment_receipt_pdf(payment_data, application_data):
     # Payment receipt generation removed.
     return None
@@ -434,14 +475,9 @@ def generate_payment_receipt_pdf(payment_data, application_data):
 @app.route('/api/auth/callbackOtp/', methods=['POST', 'OPTIONS']) 
 @app.route('/auth/callbackOtp/', methods=['POST', 'OPTIONS']) 
 def send_callback_otp():
-    # Handle preflight OPTIONS request
     if request.method == 'OPTIONS':
-        response = jsonify({})
-        response.headers.add('Access-Control-Allow-Origin', 'http://localhost:5000')
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-        response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
-        response.headers.add('Access-Control-Allow-Credentials', 'true')
-        return response
+        return _cors_preflight_response()
+
     data = request.get_json()
     print("Registration data received:", data)
     mobile = data.get("mobile")
@@ -454,8 +490,12 @@ def send_callback_otp():
     name_parts = data['name'].split()
     first_name = name_parts[0] 
     last_name = name_parts[-1] if len(name_parts) > 1 else ""
-    # Hero form sends `state`; older clients may still send `city` for the same field.
-    state_or_city = (data.get("state") or data.get("city") or "").strip()
+    state_val = (data.get("state") or "").strip()
+    city_val = (data.get("city") or "").strip()
+    # Older clients sent a single location field as `state` or `city`.
+    if not state_val and not city_val:
+        legacy = (data.get("state") or data.get("city") or "").strip()
+        state_val = legacy
 
     try:
         # Extract UTM parameters
@@ -475,7 +515,7 @@ def send_callback_otp():
                 user.fname = first_name
                 user.lname = last_name
                 user.email = data['email']
-                user.city = state_or_city
+                _set_callback_user_location(user, state_val, city_val)
                 # Update UTM parameters if provided and column exists
                 try:
                     if utm_source:
@@ -491,12 +531,12 @@ def send_callback_otp():
             print("Creating new callback user with mobile:", mobile)
             user = CallBackUsers(
                 fname=first_name,
-                lname=last_name, 
+                lname=last_name,
                 email=data['email'],
-                city=state_or_city, 
-                mobile=mobile, 
-                otp=otp
+                mobile=mobile,
+                otp=otp,
             )
+            _set_callback_user_location(user, state_val, city_val)
             # Try to set UTM parameters if columns exist
             try:
                 if utm_source:
@@ -532,16 +572,16 @@ def send_callback_otp():
                     user.fname = first_name
                     user.lname = last_name
                     user.email = data['email']
-                    user.city = state_or_city
+                    _set_callback_user_location(user, state_val, city_val)
                 else:
                     user = CallBackUsers(
                         fname=first_name,
-                        lname=last_name, 
+                        lname=last_name,
                         email=data['email'],
-                        city=state_or_city, 
-                        mobile=mobile, 
-                        otp=otp
+                        mobile=mobile,
+                        otp=otp,
                     )
+                    _set_callback_user_location(user, state_val, city_val)
                     db.session.add(user)
                 user.otp_txn_id = send_otp_api(user.mobile)
                 if user.otp_txn_id is None:
@@ -718,29 +758,42 @@ def register_user():
         print(f"CRM integration failed: {e}")
     return jsonify({"token": user.token, "username": user.name}), 200
 
-@app.route('/auth/callback/', methods=['POST'])
+@app.route('/api/auth/callback/', methods=['POST', 'OPTIONS'])
+@app.route('/auth/callback/', methods=['POST', 'OPTIONS'])
 def add_callback_user():
-    data = request.get_json()
-    user=None
+    if request.method == 'OPTIONS':
+        return _cors_preflight_response()
+
+    data = request.get_json() or {}
     print("Data received:", data)
-   
-    user = CallBackUsers.query.filter_by(mobile=data['mobile']).first()
-        
+
+    mobile = (data.get("mobile") or "").strip()
+    otp = (data.get("otp") or "").strip()
+    if not mobile:
+        return jsonify({"message": "Mobile number is required"}), 400
+    if not otp:
+        return jsonify({"message": "OTP is required"}), 400
+
+    user = CallBackUsers.query.filter_by(mobile=mobile).first()
     if not user:
         return jsonify({"message": "mobile number not found"}), 400
-    else:
-        status=verify_otp_api(user.otp_txn_id, data['otp'])
-        if status == "SUCCESS":
-            try:
-                send_callback_lead_to_crm(user)
-            except:
-                print("callback failed")
-            user.verified = True
-        else:
-            return jsonify({"message": "Invalid OTP"}), 400
-        
+
+    if not user.otp_txn_id:
+        return jsonify({"message": "OTP session expired. Please request a new OTP."}), 400
+
+    status = verify_otp_api(user.otp_txn_id, otp)
+    if status != "SUCCESS":
+        return jsonify({"message": "Invalid OTP"}), 400
+
+    user.verified = True
     db.session.commit()
-    return jsonify({"message":"We will contact you soon"}), 200
+
+    try:
+        send_callback_lead_to_crm(user)
+    except Exception as e:
+        print("callback failed:", str(e))
+
+    return jsonify({"message": "We will contact you soon"}), 200
 
 @app.route('/auth/loginOtp/', methods=['POST'])
 def send_login_otp():
