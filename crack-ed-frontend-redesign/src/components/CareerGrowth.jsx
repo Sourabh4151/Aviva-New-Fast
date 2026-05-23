@@ -34,6 +34,7 @@ const CAREER_STAGES = [
 
 const LINE_ANGLE_DEG = 59.1;
 const ACTIVE_ACCENT = "rgba(143, 40, 44, 1)";
+const SECTION_BG = "rgba(143, 40, 44, 0.1)";
 const ANIM_INITIAL_DELAY_MS = 500;
 const ANIM_STEP_DELAY_MS = 1000;
 const ANIM_DURATION_MS = 600;
@@ -434,7 +435,8 @@ export default function CareerGrowth() {
     <section
       ref={sectionRef}
       id="career-growth"
-      className="relative scroll-mt-24 overflow-hidden bg-black text-white"
+      className="relative scroll-mt-24 overflow-hidden text-white"
+      style={{ backgroundColor: SECTION_BG }}
     >
       <div className="relative z-10 px-4 py-section sm:px-6 md:px-8 lg:px-[120px] lg:pt-[110px] lg:pb-[110px]">
         <div className="career-growth-card flex w-full flex-col items-start gap-24 lg:flex-row lg:items-stretch lg:gap-30 xl:gap-48">
