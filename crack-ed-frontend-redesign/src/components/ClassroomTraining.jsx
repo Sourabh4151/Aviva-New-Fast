@@ -121,18 +121,7 @@ export default function ClassroomTraining() {
       ref={sectionRef}
       className="relative bg-black text-white scroll-mt-24 overflow-hidden"
     >
-      {/* Blurred yellow background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-[-80px] top-1/2 -translate-y-1/2"
-        style={{
-          width: 420,
-          height: 420,
-          borderRadius: "999px",
-          backgroundColor: "rgba(3, 0, 69, 1)",
-          filter: "blur(100px)",
-        }}
-      />
+
 
       <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:pt-[110px] lg:pb-[110px] lg:pr-0">
         {/* Heading block */}
