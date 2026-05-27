@@ -564,29 +564,29 @@ export default function CareerGrowth() {
 
             <div className="mt-3 sm:mt-4">
               <p className="career-growth-subtitle text-lg sm:text-xl lg:text-2xl font-medium text-white text-justify leading-tight">
-                From your first field role to larger opportunities in agri and rural banking.
+                From your first store role to bigger opportunities.
               </p>
               <p className="career-growth-body mt-3 sm:mt-4 font-normal text-[16px] leading-[24px] text-[rgba(250,250,250,0.8)] text-justify">
-                Designed as a strong entry point with clear progression into senior relationship management roles.
+                Designed as a strong entry point with clear scope to grow into store leadership responsibilities.
               </p>
             </div>
 
             <div className="mt-3 sm:mt-4 space-y-0">
               {[
                 {
-                  text: "Start your career in agricultural banking",
+                  text: "Start your career in vision care",
                   icon: careerIcon,
                   textClassName:
                     "font-medium text-[18px] leading-[1] text-[rgba(250,250,250,1)]",
                 },
                 {
-                  text: "Earn a CTC of upto Rs. 6.6 LPA",
+                  text: "Earn a CTC of Rs 2.64 LPA",
                   icon: ctcIcon,
                   textClassName:
                     "font-medium text-[18px] leading-[27px] text-[rgba(250,250,250,1)]",
                 },
                 {
-                  text: "Grow into senior management roles",
+                  text: "Grow into senior optical retail roles",
                   icon: growthIcon,
                   textClassName:
                     "font-medium text-[18px] leading-[1] text-[rgba(250,250,250,1)]",
