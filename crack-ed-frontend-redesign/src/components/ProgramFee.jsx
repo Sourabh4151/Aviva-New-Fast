@@ -61,7 +61,7 @@ export default function ProgramFee() {
                 style={{
                   background:
                     "radial-gradient(circle at 0% 50%, rgba(3, 0, 68, 1) 0, transparent 60%), radial-gradient(circle at 100% 50%, rgba(3, 0, 68, 1) 0, transparent 60%), radial-gradient(circle at 50% 0%, rgba(3, 0, 68, 1) 0, transparent 60%), radial-gradient(circle at 50% 100%, rgba(3, 0, 68, 1) 0, transparent 60%)",
-                  filter: "blur(200px)",
+                  filter: "blur(35px)",
                   opacity: 1,
                 }}
               />
