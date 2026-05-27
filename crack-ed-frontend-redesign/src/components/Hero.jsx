@@ -1,17 +1,41 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 
 // Import assets so Vite bundles them and production URLs work (raw /src/assets/ paths 404 after build).
 // Use desktop.jpg or aviva_ds_hero.jpg depending on which file you have in src/assets/.
 import heroImage from "../assets/desktop.png";
 import tickSvg from "../assets/tick.svg";
+import stateCities from "../data/indian_state_cities.json";
+
+const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
 
 export default function Hero() {
   const brochureUrl = `${import.meta.env.BASE_URL}Elevate%20Banking%20Program.pdf`;
-  const [form, setForm] = useState({ name: "", email: "", state: "", mobile: "" });
+  const [form, setForm] = useState({ name: "", email: "", state: "", city: "", mobile: "" });
   const [status, setStatus] = useState(null);
   const [errors, setErrors] = useState({});
   const [stateOpen, setStateOpen] = useState(false);
+  const [stateSearch, setStateSearch] = useState("");
   const stateRef = useRef(null);
+  const stateInputRef = useRef(null);
+  const [cityOpen, setCityOpen] = useState(false);
+  const [cityHover, setCityHover] = useState(false);
+  const [citySearch, setCitySearch] = useState("");
+  const cityRef = useRef(null);
+  const cityInputRef = useRef(null);
+  const filteredStates = useMemo(() => {
+    const query = stateSearch.trim().toLowerCase();
+    if (!query) return INDIAN_STATES;
+    return INDIAN_STATES.filter((s) => s.toLowerCase().includes(query));
+  }, [stateSearch]);
+  const cityOptions = useMemo(
+    () => (form.state ? [...(stateCities[form.state] || [])].sort((a, b) => a.localeCompare(b)) : []),
+    [form.state]
+  );
+  const filteredCities = useMemo(() => {
+    const query = citySearch.trim().toLowerCase();
+    if (!query) return cityOptions;
+    return cityOptions.filter((c) => c.toLowerCase().includes(query));
+  }, [cityOptions, citySearch]);
   const [showOtp, setShowOtp] = useState(false);
   const [otpDigits, setOtpDigits] = useState(["", "", "", ""]);
   const otpRefs = useRef([]);
@@ -19,6 +43,75 @@ export default function Hero() {
   const [otpError, setOtpError] = useState("");
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+
+  function resolveStateFromSearch(search = stateSearch) {
+    const query = search.trim();
+    if (!query) return "";
+    return INDIAN_STATES.find((s) => s.toLowerCase() === query.toLowerCase()) || "";
+  }
+
+  function selectState(stateName) {
+    const stateChanged = form.state !== stateName;
+    setForm((prev) => ({
+      ...prev,
+      state: stateName,
+      city: stateChanged ? "" : prev.city,
+    }));
+    if (stateChanged) {
+      setCitySearch("");
+    }
+    setStateSearch(stateName);
+    setErrors((prev) => ({ ...prev, state: "", city: stateChanged ? "" : prev.city }));
+    setStateOpen(false);
+    setCityOpen(false);
+  }
+
+  function handleStateBlur() {
+    const matched = resolveStateFromSearch();
+    if (matched) {
+      const stateChanged = form.state !== matched;
+      setForm((prev) => ({
+        ...prev,
+        state: matched,
+        city: stateChanged ? "" : prev.city,
+      }));
+      if (stateChanged) {
+        setCitySearch("");
+      }
+      setStateSearch(matched);
+    } else if (form.state) {
+      setStateSearch(form.state);
+    } else {
+      setStateSearch("");
+    }
+    setStateOpen(false);
+  }
+
+  function resolveCityFromSearch(search = citySearch) {
+    const query = search.trim();
+    if (!query) return "";
+    return cityOptions.find((c) => c.toLowerCase() === query.toLowerCase()) || "";
+  }
+
+  function selectCity(cityName) {
+    setForm((prev) => ({ ...prev, city: cityName }));
+    setCitySearch(cityName);
+    setErrors((prev) => ({ ...prev, city: "" }));
+    setCityOpen(false);
+  }
+
+  function handleCityBlur() {
+    const matched = resolveCityFromSearch();
+    if (matched) {
+      setForm((prev) => ({ ...prev, city: matched }));
+      setCitySearch(matched);
+    } else if (form.city) {
+      setCitySearch(form.city);
+    } else {
+      setCitySearch("");
+    }
+    setCityOpen(false);
+  }
 
   const otpValue = otpDigits.join("");
 
@@ -71,6 +164,9 @@ export default function Hero() {
       if (stateRef.current && !stateRef.current.contains(e.target)) {
         setStateOpen(false);
       }
+      if (cityRef.current && !cityRef.current.contains(e.target)) {
+        setCityOpen(false);
+      }
     }
     window.addEventListener("pointerdown", onClickOutside);
     return () => window.removeEventListener("pointerdown", onClickOutside);
@@ -79,10 +175,24 @@ export default function Hero() {
   async function handleSubmit(e) {
     e.preventDefault();
     // client-side validation (same rules as original Reg.js)
-    const { name, email, state, mobile } = form;
+    const { name, email, mobile } = form;
+    const resolvedState = form.state?.trim() || resolveStateFromSearch();
+    if (resolvedState && resolvedState !== form.state) {
+      setForm((prev) => ({ ...prev, state: resolvedState, city: "" }));
+      setStateSearch(resolvedState);
+      setCitySearch("");
+    }
+    const state = resolvedState;
+    const resolvedCity = form.city?.trim() || resolveCityFromSearch();
+    if (resolvedCity && resolvedCity !== form.city) {
+      setForm((prev) => ({ ...prev, city: resolvedCity }));
+      setCitySearch(resolvedCity);
+    }
+    const city = resolvedCity;
     const newErrors = {};
     if (!name || !name.trim()) newErrors.name = "Full name is required.";
     if (!state || !state.trim()) newErrors.state = "State is required.";
+    if (!city || !city.trim()) newErrors.city = "City is required.";
     if (!email || !email.trim()) newErrors.email = "Email is required.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "Invalid email format.";
     if (!mobile || !mobile.trim()) newErrors.mobile = "Mobile number is required.";
@@ -98,6 +208,7 @@ export default function Hero() {
     setStatus({ type: "info", message: "Sending OTP..." });
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
+    console.log("baseUrl", baseUrl);
     if (!baseUrl) {
       setStatus({
         type: "error",
@@ -122,6 +233,7 @@ export default function Hero() {
           name,
           email,
           state,
+          city,
           mobile,
           utm_source,
           utm_medium,
@@ -163,6 +275,7 @@ export default function Hero() {
     setStatus({ type: "info", message: "Verifying OTP..." });
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
+    console.log("baseUrl", baseUrl);
     if (!baseUrl) {
       setStatus({
         type: "error",
@@ -279,7 +392,7 @@ export default function Hero() {
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:z-20 lg:absolute lg:right-[120px] lg:top-[100px] lg:mt-0 lg:w-[373px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
+        className={`hero-form-card max-lg:relative max-lg:z-20 lg:absolute lg:right-[120px] lg:top-[70px] lg:mt-0 lg:w-[373px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
           alreadyInSystem || hasValidationError ? "lg:min-h-[520px]" : "lg:min-h-[471px]"
         }`}
         style={{
@@ -369,87 +482,187 @@ export default function Hero() {
                   {/* Custom dropdown to ensure consistent styling across browsers */}
                   <div ref={stateRef} className="relative">
                     <div
-                      tabIndex={0}
-                      role="button"
-                      aria-haspopup="listbox"
-                      aria-expanded={stateOpen}
-                      onClick={() => setStateOpen(!stateOpen)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          setStateOpen(!stateOpen);
-                        } else if (e.key === "Escape") {
-                          setStateOpen(false);
-                        }
-                      }}
-                      className="custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] font-normal text-[14px] flex items-center justify-between cursor-pointer"
+                      className="custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] font-normal text-[14px] flex items-center justify-between gap-2 cursor-text"
                     >
-                      <span className={form.state ? "text-[14px] text-white" : "text-[14px] text-[rgba(250,250,250,0.6)]"}>
-                        {form.state || "State"}
-                      </span>
+                      <input
+                        ref={stateInputRef}
+                        type="text"
+                        name="state"
+                        value={stateSearch}
+                        onChange={(e) => {
+                          setStateSearch(e.target.value);
+                          setStateOpen(true);
+                          if (errors.state) {
+                            setErrors((prev) => ({ ...prev, state: "" }));
+                          }
+                        }}
+                        onFocus={() => {
+                          setStateOpen(true);
+                          if (!stateSearch && form.state) {
+                            setStateSearch(form.state);
+                          }
+                        }}
+                        onBlur={() => {
+                          window.setTimeout(handleStateBlur, 150);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Escape") {
+                            setStateOpen(false);
+                            stateInputRef.current?.blur();
+                          } else if (e.key === "Enter" && filteredStates.length === 1) {
+                            e.preventDefault();
+                            selectState(filteredStates[0]);
+                          }
+                        }}
+                        placeholder="State"
+                        autoComplete="off"
+                        aria-autocomplete="list"
+                        aria-expanded={stateOpen}
+                        className="w-full min-w-0 bg-transparent border-0 outline-none focus:outline-none focus:ring-0 text-[14px] text-white placeholder:text-[rgba(250,250,250,0.6)]"
+                      />
+                      <button
+                        type="button"
+                        tabIndex={-1}
+                        aria-label="Toggle state list"
+                        onMouseDown={(e) => e.preventDefault()}
+                        onClick={() => {
+                          setStateOpen((open) => !open);
+                          stateInputRef.current?.focus();
+                        }}
+                        className="shrink-0"
+                      >
                       <svg className="h-4 w-4 text-[rgba(250,250,250,0.6)]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                         <path d="M6 8L10 12L14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
+                      </button>
                     </div>
 
                     {stateOpen && (
                       <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2">
-                        {[
-                          "Andhra Pradesh",
-                          "Arunachal Pradesh",
-                          "Assam",
-                          "Bihar",
-                          "Chhattisgarh",
-                          "Goa",
-                          "Gujarat",
-                          "Haryana",
-                          "Himachal Pradesh",
-                          "Jharkhand",
-                          "Karnataka",
-                          "Kerala",
-                          "Madhya Pradesh",
-                          "Maharashtra",
-                          "Manipur",
-                          "Meghalaya",
-                          "Mizoram",
-                          "Nagaland",
-                          "Odisha",
-                          "Punjab",
-                          "Rajasthan",
-                          "Sikkim",
-                          "Tamil Nadu",
-                          "Telangana",
-                          "Tripura",
-                          "Uttar Pradesh",
-                          "Uttarakhand",
-                          "West Bengal",
-                          "Andaman and Nicobar Islands",
-                          "Chandigarh",
-                          "Dadra and Nagar Haveli and Daman and Diu",
-                          "Delhi",
-                          "Jammu and Kashmir",
-                          "Ladakh",
-                          "Lakshadweep",
-                          "Puducherry",
-                        ].map((s) => (
-                          <li
-                            key={s}
-                            role="option"
-                            onClick={() => {
-                              setForm({ ...form, state: s });
-                              setErrors((prev) => ({ ...prev, state: "" }));
-                              setStateOpen(false);
-                            }}
-                            className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
-                          >
-                            {s}
+                        {filteredStates.length > 0 ? (
+                          filteredStates.map((s) => (
+                            <li
+                              key={s}
+                              role="option"
+                              aria-selected={form.state === s}
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                                selectState(s);
+                              }}
+                              className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
+                            >
+                              {s}
+                            </li>
+                          ))
+                        ) : (
+                          <li className="px-4 py-2 text-[14px] text-[rgba(250,250,250,0.5)]">
+                            No states found
                           </li>
-                        ))}
+                        )}
                       </ul>
                     )}
                     {errors.state && (
                       <p className="mt-1 text-[12px] text-red-400">
                         {errors.state}
+                      </p>
+                    )}
+                  </div>
+                  <div ref={cityRef} className="relative">
+                    <div
+                      onMouseEnter={() => setCityHover(true)}
+                      onMouseLeave={() => setCityHover(false)}
+                      className={`custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] font-normal text-[14px] flex items-center justify-between gap-2 ${
+                        form.state ? "cursor-text" : "cursor-not-allowed opacity-60"
+                      }`}
+                    >
+                      {form.state ? (
+                        <input
+                          ref={cityInputRef}
+                          type="text"
+                          name="city"
+                          value={citySearch}
+                          onChange={(e) => {
+                            setCitySearch(e.target.value);
+                            setCityOpen(true);
+                            if (errors.city) {
+                              setErrors((prev) => ({ ...prev, city: "" }));
+                            }
+                          }}
+                          onFocus={() => {
+                            setCityOpen(true);
+                            if (!citySearch && form.city) {
+                              setCitySearch(form.city);
+                            }
+                          }}
+                          onBlur={() => {
+                            window.setTimeout(handleCityBlur, 150);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "Escape") {
+                              setCityOpen(false);
+                              cityInputRef.current?.blur();
+                            } else if (e.key === "Enter" && filteredCities.length === 1) {
+                              e.preventDefault();
+                              selectCity(filteredCities[0]);
+                            }
+                          }}
+                          placeholder="City"
+                          autoComplete="off"
+                          aria-autocomplete="list"
+                          aria-expanded={cityOpen}
+                          className="w-full min-w-0 bg-transparent border-0 outline-none focus:outline-none focus:ring-0 text-[14px] text-white placeholder:text-[rgba(250,250,250,0.6)]"
+                        />
+                      ) : (
+                        <span className="flex-1 text-[14px] text-[rgba(250,250,250,0.6)]">
+                          {cityHover ? "Select State First" : "City"}
+                        </span>
+                      )}
+                      <button
+                        type="button"
+                        tabIndex={-1}
+                        aria-label="Toggle city list"
+                        disabled={!form.state}
+                        onMouseDown={(e) => e.preventDefault()}
+                        onClick={() => {
+                          if (!form.state) return;
+                          setCityOpen((open) => !open);
+                          cityInputRef.current?.focus();
+                        }}
+                        className="shrink-0 disabled:opacity-60"
+                      >
+                        <svg className="h-4 w-4 text-[rgba(250,250,250,0.6)]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                          <path d="M6 8L10 12L14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                    </div>
+
+                    {cityOpen && form.state && (
+                      <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2">
+                        {filteredCities.length > 0 ? (
+                          filteredCities.map((c) => (
+                            <li
+                              key={c}
+                              role="option"
+                              aria-selected={form.city === c}
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                                selectCity(c);
+                              }}
+                              className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
+                            >
+                              {c}
+                            </li>
+                          ))
+                        ) : (
+                          <li className="px-4 py-2 text-[14px] text-[rgba(250,250,250,0.5)]">
+                            No cities found
+                          </li>
+                        )}
+                      </ul>
+                    )}
+                    {errors.city && (
+                      <p className="mt-1 text-[12px] text-red-400">
+                        {errors.city}
                       </p>
                     )}
                   </div>
