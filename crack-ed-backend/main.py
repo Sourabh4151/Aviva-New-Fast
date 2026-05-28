@@ -331,25 +331,32 @@ def send_otp_api(mobile):
         return None
 
 def verify_otp_api(otp_txn_id, otp):
-    header=generate_hash_header()
+    if not otp_txn_id:
+        print("verify_otp_api: missing otp_txn_id")
+        return "FAILED"
+
+    header = generate_hash_header()
     payload = {
-    "txId": otp_txn_id,
-	"token": otp
+        "txId": otp_txn_id,
+        "token": str(otp or "").strip(),
     }
-    
+
     try:
-        response = requests.post(VALIDATE_URL, json=payload, headers=header)
-        print("Response from OTP API:", response.json())
-        return response.json()["status"] 
+        response = requests.post(VALIDATE_URL, json=payload, headers=header, timeout=30)
+        body = response.json()
+        print("Response from OTP API:", body)
+        return body.get("status", "FAILED")
     except requests.exceptions.RequestException as e:
-        print("Error sending OTP:", str(e))
-        return jsonify({"error": "Failed to send OTP", "details": str(e)}), 500
+        print("Error validating OTP:", str(e))
+        return "FAILED"
+    except (ValueError, KeyError) as e:
+        print("Error parsing OTP validation response:", str(e))
+        return "FAILED"
 
 def send_callback_lead_to_crm(user):
     full_name = f"{user.fname or ''} {user.lname or ''}".strip()
     state_val = (getattr(user, "state", None) or "").strip()
     city_val = (getattr(user, "city", None) or "").strip()
-    # CallBackUsers has no `state` column; the callback form stores the selected state in `city`.
     if not state_val and city_val:
         state_val, city_val = city_val, ""
     response = _post_lead_to_nopaperforms(
@@ -426,6 +433,31 @@ def safe_str(value):
         return ""
     return str(value)
 
+
+def _is_schema_migration_error(exc):
+    """True when SQLite schema is behind the SQLAlchemy models (missing columns/tables)."""
+    msg = str(exc).lower()
+    return isinstance(exc, OperationalError) and (
+        "no such column" in msg or "no such table" in msg
+    )
+
+
+def _schema_migration_error_response():
+    return jsonify({
+        "error": "Database migrations are pending. Please run migration scripts on the server and try again.",
+    }), 503
+
+
+def _set_callback_user_location(user, state_val, city_val):
+    """Persist state and city; fall back if `state` column is not migrated yet."""
+    state_val = (state_val or "").strip()
+    city_val = (city_val or "").strip()
+    try:
+        user.state = state_val
+        user.city = city_val
+    except AttributeError:
+        user.city = city_val or state_val
+
 def generate_payment_receipt_pdf(payment_data, application_data):
     # Payment receipt generation removed.
     return None
@@ -454,8 +486,12 @@ def send_callback_otp():
     name_parts = data['name'].split()
     first_name = name_parts[0] 
     last_name = name_parts[-1] if len(name_parts) > 1 else ""
-    # Hero form sends `state`; older clients may still send `city` for the same field.
-    state_or_city = (data.get("state") or data.get("city") or "").strip()
+    state_val = (data.get("state") or "").strip()
+    city_val = (data.get("city") or "").strip()
+    # Older clients sent a single location field as `state` or `city`.
+    if not state_val and not city_val:
+        legacy = (data.get("state") or data.get("city") or "").strip()
+        state_val = legacy
 
     try:
         # Extract UTM parameters
@@ -475,7 +511,7 @@ def send_callback_otp():
                 user.fname = first_name
                 user.lname = last_name
                 user.email = data['email']
-                user.city = state_or_city
+                _set_callback_user_location(user, state_val, city_val)
                 # Update UTM parameters if provided and column exists
                 try:
                     if utm_source:
@@ -491,12 +527,12 @@ def send_callback_otp():
             print("Creating new callback user with mobile:", mobile)
             user = CallBackUsers(
                 fname=first_name,
-                lname=last_name, 
+                lname=last_name,
                 email=data['email'],
-                city=state_or_city, 
-                mobile=mobile, 
-                otp=otp
+                mobile=mobile,
+                otp=otp,
             )
+            _set_callback_user_location(user, state_val, city_val)
             # Try to set UTM parameters if columns exist
             try:
                 if utm_source:
@@ -510,47 +546,58 @@ def send_callback_otp():
                 print("Warning: UTM columns not found in model. Run migration script.")
         
         db.session.add(user)
-        user.otp_txn_id = send_otp_api(user.mobile)
-        if user.otp_txn_id is None:
+        otp_txn_id = send_otp_api(user.mobile)
+        if otp_txn_id is None:
             db.session.rollback()
             return jsonify({"error": "Failed to send OTP"}), 500
-        
+        user.otp_txn_id = otp_txn_id
+
+        def _retry_callback_user_without_utm():
+            """Reuse the same OTP transaction after a schema-related commit failure."""
+            nonlocal user
+            if existing_user:
+                user = existing_user
+                if user.verified:
+                    return jsonify({"message": "Thanks! Your callback request is already in our system. We'll connect with you soon!"}), 200
+                user.otp = otp
+                user.fname = first_name
+                user.lname = last_name
+                user.email = data["email"]
+                _set_callback_user_location(user, state_val, city_val)
+            else:
+                user = CallBackUsers(
+                    fname=first_name,
+                    lname=last_name,
+                    email=data["email"],
+                    mobile=mobile,
+                    otp=otp,
+                )
+                _set_callback_user_location(user, state_val, city_val)
+                db.session.add(user)
+            user.otp_txn_id = otp_txn_id
+            db.session.commit()
+            print(
+                "User created/updated successfully without UTM fields. "
+                "Please run migration script to add UTM columns."
+            )
+            return None
+
         try:
             db.session.commit()
         except OperationalError as db_error:
-            # Check if error is due to missing UTM columns
             error_msg = str(db_error).lower()
-            if "no such column" in error_msg and ("utm_source" in error_msg or "utm_medium" in error_msg or "utm_campaign" in error_msg):
-                print("Database schema error: UTM columns missing. Attempting to create/update user without UTM fields...")
+            if "no such column" in error_msg:
+                print(
+                    "Database schema error. Retrying without missing columns "
+                    "(same OTP transaction):",
+                    db_error,
+                )
                 db.session.rollback()
-                # Retry without UTM parameters
-                if existing_user:
-                    existing_user.otp = otp
-                    user = existing_user
-                    if user.verified:
-                        return jsonify({"message": "Thanks! Your callback request is already in our system. We'll connect with you soon!"}), 200
-                    user.fname = first_name
-                    user.lname = last_name
-                    user.email = data['email']
-                    user.city = state_or_city
-                else:
-                    user = CallBackUsers(
-                        fname=first_name,
-                        lname=last_name, 
-                        email=data['email'],
-                        city=state_or_city, 
-                        mobile=mobile, 
-                        otp=otp
-                    )
-                    db.session.add(user)
-                user.otp_txn_id = send_otp_api(user.mobile)
-                if user.otp_txn_id is None:
-                    db.session.rollback()
-                    return jsonify({"error": "Failed to send OTP"}), 500
-                db.session.commit()
-                print("User created/updated successfully without UTM fields. Please run migration script to add UTM columns.")
+                retry_response = _retry_callback_user_without_utm()
+                if retry_response is not None:
+                    return retry_response
             else:
-                raise  # Re-raise if it's a different error
+                raise
 
         return jsonify({"message": "OTP sent"}), 200
 
@@ -558,6 +605,8 @@ def send_callback_otp():
         print("OTP registration error:", str(e))
         traceback.print_exc()
         db.session.rollback()
+        if _is_schema_migration_error(e):
+            return _schema_migration_error_response()
         return jsonify({"error": "Internal Server Error"}), 500
 
 
@@ -718,6 +767,7 @@ def register_user():
         print(f"CRM integration failed: {e}")
     return jsonify({"token": user.token, "username": user.name}), 200
 
+@app.route('/api/auth/callback/', methods=['POST'])
 @app.route('/auth/callback/', methods=['POST'])
 def add_callback_user():
     data = request.get_json()
@@ -729,7 +779,20 @@ def add_callback_user():
     if not user:
         return jsonify({"message": "mobile number not found"}), 400
     else:
-        status=verify_otp_api(user.otp_txn_id, data['otp'])
+        db.session.refresh(user)
+        if not user.otp_txn_id:
+            return jsonify({
+                "message": "OTP session expired. Please request a new OTP.",
+            }), 400
+
+        otp_value = str(data.get("otp", "")).strip()
+        print(
+            "Verifying OTP for mobile:",
+            data.get("mobile"),
+            "txId:",
+            user.otp_txn_id,
+        )
+        status = verify_otp_api(user.otp_txn_id, otp_value)
         if status == "SUCCESS":
             try:
                 send_callback_lead_to_crm(user)
