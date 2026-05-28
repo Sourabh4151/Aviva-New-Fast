@@ -4,10 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   /* Hide default page scrollbars while keeping scroll functional */
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 html,
@@ -33,7 +36,7 @@ body::-webkit-scrollbar {
 }
 
 .callback-input::placeholder {
-  color: rgba(250,250,250,0.5);
+  color: rgba(250, 250, 250, 0.5);
 }
 
 /* Hero tick icon – fixed specs for mobile and desktop */
@@ -47,28 +50,35 @@ body::-webkit-scrollbar {
   justify-content: center;
   flex-shrink: 0;
 }
+
 .hero-tick-icon {
   width: 20px;
   height: 20px;
   object-fit: contain;
 }
+
 /* Checkmark vector: 9.42×7.15 at design scale; SVG viewBox 20×20 keeps proportions. Tick color rgba(30,30,30,1) is in tick.svg */
 
 /* Hero mobile typography – design specs (max-width: 768px) */
 @media (max-width: 768px) {
+
   /* Let JSX flex wrappers control mobile spacing (8/24/32). */
   .hero-left-adjust .hero-logo-badge {
     margin-bottom: 0;
   }
+
   .hero-left-adjust .hero-title {
     margin-bottom: 0;
   }
+
   .hero-left-adjust .hero-bullet-list {
     margin-bottom: 0;
   }
-  .hero-left-adjust .hero-bullet-list > li + li {
+
+  .hero-left-adjust .hero-bullet-list>li+li {
     margin-top: 8px;
   }
+
   /* Aviva Nirmaan Program badge (Frame 299): 255×37, radius 100px, border 1px, padding 10px */
   .hero-badge {
     width: 255px;
@@ -84,6 +94,7 @@ body::-webkit-scrollbar {
     color: rgba(250, 250, 250, 1);
     box-sizing: border-box;
   }
+
   /* Direct Sales Executive: Montserrat 600, 40px, line-height 100%, color rgba(250,250,250,1) */
   .hero-title {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
@@ -93,6 +104,7 @@ body::-webkit-scrollbar {
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);
   }
+
   /* Subtitle bullet: Poppins 400, 16px, line-height 100%, color rgba(250,250,250,1) */
   .hero-subtitle {
     font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
@@ -102,6 +114,7 @@ body::-webkit-scrollbar {
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);
   }
+
   /* Register Now button: Montserrat 600, 14px, line-height 100%, color rgba(30,30,30,1) – already in .register-btn */
   .register-btn {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
@@ -111,6 +124,7 @@ body::-webkit-scrollbar {
     letter-spacing: 0%;
     color: rgba(30, 30, 30, 1);
   }
+
   /* Request a Callback!: Montserrat 600, 18px, line-height 27px, color rgba(250,250,250,1) */
   .hero-form-title {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
@@ -120,6 +134,7 @@ body::-webkit-scrollbar {
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);
   }
+
   /* Talk to our counsellors to know more: Montserrat 400, 14px, line-height 21px, color rgba(250,250,250,0.6) */
   .hero-form-subtitle {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
@@ -129,6 +144,7 @@ body::-webkit-scrollbar {
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 0.6);
   }
+
   /* OTP message / Full Name placeholder: Montserrat 400, 12px (OTP) / 14px (inputs), line-height 18px/100%, color rgba(250,250,250,0.6) */
   .hero-form-otp-text {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
@@ -138,6 +154,7 @@ body::-webkit-scrollbar {
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 0.6);
   }
+
   .hero-form-card .callback-input,
   .hero-form-card .callback-input::placeholder {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
@@ -146,12 +163,15 @@ body::-webkit-scrollbar {
     line-height: 100%;
     letter-spacing: 0%;
   }
+
   .hero-form-card .callback-input::placeholder {
     color: rgba(250, 250, 250, 0.6);
   }
+
   .hero-form-card .callback-input {
     color: rgba(250, 250, 250, 1);
   }
+
   .hero-form-card .custom-select {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
@@ -159,6 +179,7 @@ body::-webkit-scrollbar {
     line-height: 100%;
     color: rgba(250, 250, 250, 0.6);
   }
+
   .hero-form-card .custom-select span[class*="text-white"] {
     color: rgba(250, 250, 250, 1);
   }
@@ -183,6 +204,7 @@ body::-webkit-scrollbar {
     justify-content: center;
     gap: 10px;
   }
+
   .program-fee-heading {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     font-weight: 500;
@@ -191,6 +213,7 @@ body::-webkit-scrollbar {
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);
   }
+
   .program-fee-note {
     font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
     font-weight: 500;
@@ -199,6 +222,7 @@ body::-webkit-scrollbar {
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 0.7);
   }
+
   .program-fee-card {
     width: 364px;
     max-width: 100%;
@@ -208,6 +232,7 @@ body::-webkit-scrollbar {
     gap: 10px;
     background: rgba(0, 0, 0, 1);
   }
+
   .program-fee-amount {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     font-weight: 500;
@@ -216,6 +241,7 @@ body::-webkit-scrollbar {
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);
   }
+
   .program-fee-amount span {
     font-size: 18px;
     line-height: 48px;
@@ -231,6 +257,7 @@ body::-webkit-scrollbar {
     color: rgba(250, 250, 250, 0.8);
     text-align: justify;
   }
+
   .program-fee-includes {
     font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
@@ -239,6 +266,7 @@ body::-webkit-scrollbar {
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 0.8);
   }
+
   .program-fee-list-text {
     font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
@@ -268,6 +296,7 @@ body::-webkit-scrollbar {
     justify-content: center;
     gap: 10px;
   }
+
   .about-body {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
@@ -277,6 +306,7 @@ body::-webkit-scrollbar {
     text-align: justify;
     color: rgba(250, 250, 250, 0.8);
   }
+
   .about-download-btn {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     font-weight: 600;
@@ -303,6 +333,7 @@ body::-webkit-scrollbar {
     align-items: center;
     justify-content: center;
   }
+
   .career-growth-subtitle {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     font-weight: 500;
@@ -312,6 +343,7 @@ body::-webkit-scrollbar {
     text-align: justify;
     color: rgba(250, 250, 250, 1);
   }
+
   .career-growth-body {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
@@ -321,6 +353,7 @@ body::-webkit-scrollbar {
     text-align: justify;
     color: rgba(250, 250, 250, 0.8);
   }
+
   .career-growth-list-text {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     font-weight: 500;
@@ -329,6 +362,7 @@ body::-webkit-scrollbar {
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);
   }
+
   .career-growth-role-pill {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     font-weight: 600;
@@ -349,14 +383,17 @@ body::-webkit-scrollbar {
     box-sizing: border-box;
     white-space: nowrap;
   }
+
   /* Make image touch right edge on mobile while keeping section padding for text */
   .career-growth-image-wrap {
     margin-right: -1rem;
   }
+
   /* Overlay: 16px gap between role pill and steps pill */
   .career-growth-overlay {
     gap: 16px;
   }
+
   /* Steps pill – same as desktop: 224×50, padding 4px, gap 16px, bg rgba(250,250,250,0.7) */
   .career-growth-steps-pill {
     width: 170px;
@@ -370,6 +407,7 @@ body::-webkit-scrollbar {
     justify-content: center;
     flex-direction: row;
   }
+
   .career-growth-step-btn {
     width: 42px;
     height: 42px;
@@ -380,90 +418,97 @@ body::-webkit-scrollbar {
     flex-shrink: 0;
   }
 
-/* Classroom Training – typography */
-.classroom-pill {
-  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 27px;
-  letter-spacing: 0%;
-  text-align: center;
-  text-transform: capitalize;
-  color: rgba(250, 250, 250, 0.7);
-  min-height: 35px;
-  padding: 4px 30px;
-  border-radius: 100px;
-  border: 1px solid rgba(250, 250, 250, 0.3);
-  gap: 10px;
-}
-/* Subtitle: higher specificity so Tailwind/base don't override */
-p.classroom-subtitle {
-  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
-  font-weight: 500;
-  font-size: 24px !important;
-  line-height: 31.2px !important;
-  letter-spacing: 0%;
-  text-align: justify;
-  color: rgba(250, 250, 250, 1);
-}
+  /* Classroom Training – typography */
+  .classroom-pill {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 27px;
+    letter-spacing: 0%;
+    text-align: center;
+    text-transform: capitalize;
+    color: rgba(250, 250, 250, 0.7);
+    min-height: 35px;
+    padding: 4px 30px;
+    border-radius: 100px;
+    border: 1px solid rgba(250, 250, 250, 0.3);
+    gap: 10px;
+  }
 
-/* Mobile override – match Figma line-height 36px */
-@media (max-width: 639px) {
+  /* Subtitle: higher specificity so Tailwind/base don't override */
   p.classroom-subtitle {
-    line-height: 36px !important;
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 24px !important;
+    line-height: 31.2px !important;
+    letter-spacing: 0%;
+    text-align: justify;
+    color: rgba(250, 250, 250, 1);
   }
-}
-.classroom-module-heading {
-  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 27px;
-  letter-spacing: 0%;
-  text-align: justify;
-  text-transform: capitalize;
-  color: rgba(250, 250, 250, 1);
-}
-.classroom-module-body {
-  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0%;
-  text-align: justify;
-  color: rgba(250, 250, 250, 0.8);
-}
 
-/* Classroom Training image – full-bleed on mobile (touches viewport edges) */
-.classroom-image-mobile {
-  width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-
-/* Enrollment Process image – full-bleed on small mobile (cancel section padding) */
-@media (max-width: 639px) {
-  .enrollment-image-mobile {
-    width: calc(100% + 2rem); /* cancel base .px-section (1rem left/right) */
-    margin-left: -1rem;
-    margin-right: -1rem;
+  /* Mobile override – match Figma line-height 36px */
+  @media (max-width: 639px) {
+    p.classroom-subtitle {
+      line-height: 36px !important;
+    }
   }
-}
-@media (min-width: 1024px) {
+
+  .classroom-module-heading {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0%;
+    text-align: justify;
+    text-transform: capitalize;
+    color: rgba(250, 250, 250, 1);
+  }
+
+  .classroom-module-body {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0%;
+    text-align: justify;
+    color: rgba(250, 250, 250, 0.8);
+  }
+
+  /* Classroom Training image – full-bleed on mobile (touches viewport edges) */
   .classroom-image-mobile {
-    width: 504px;
-    margin-left: 0;
-    transform: none;
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
   }
-  .enrollment-image-mobile {
-    width: auto;
-    margin-left: 0;
-    margin-right: 0;
+
+  /* Enrollment Process image – full-bleed on small mobile (cancel section padding) */
+  @media (max-width: 639px) {
+    .enrollment-image-mobile {
+      width: calc(100% + 2rem);
+      /* cancel base .px-section (1rem left/right) */
+      margin-left: -1rem;
+      margin-right: -1rem;
+    }
   }
-}
+
+  @media (min-width: 1024px) {
+    .classroom-image-mobile {
+      width: 504px;
+      margin-left: 0;
+      transform: none;
+    }
+
+    .enrollment-image-mobile {
+      width: auto;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
 }
 
 /* Career Growth – desktop specs (steps pill: 224 Fill × 50 Hug, gap 16px, padding 4px, bg rgba(250,250,250,0.7)) */
 @media (min-width: 1024px) {
+
   /* Classroom Training pill – desktop specs (197 Hug × 35 Hug) */
   .classroom-pill {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
@@ -497,6 +542,7 @@ p.classroom-subtitle {
     justify-content: center;
     flex-direction: row;
   }
+
   .career-growth-step-btn {
     width: 42px;
     height: 42px;
@@ -506,22 +552,98 @@ p.classroom-subtitle {
     justify-content: center;
     flex-shrink: 0;
   }
+
+  /* Career roadmap – desktop inactive typography (Figma) */
+  .career-roadmap-title-desktop {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.03em;
+    color: rgba(30, 30, 30, 0.8);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: fit-content;
+    max-width: 100%;
+    min-height: 29px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    box-sizing: border-box;
+    white-space: normal;
+  }
+
+  .career-roadmap-desc-desktop {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0;
+    text-align: justify;
+    width: 100%;
+    max-width: min(303px, 100%);
+    color: rgba(250, 250, 250, 0.8);
+  }
+}
+
+/* Career roadmap – dot specs (Figma, desktop + mobile) */
+.career-roadmap-node-spec {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+}
+
+/* Career roadmap – mobile specs (Figma) */
+@media (max-width: 1279px) {
+  .career-roadmap-title-mobile {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.03em;
+    color: rgba(30, 30, 30, 0.8);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: fit-content;
+    max-width: 100%;
+    min-height: 29px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    box-sizing: border-box;
+    white-space: normal;
+  }
+
+  .career-roadmap-desc-mobile {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0;
+    text-align: justify;
+    color: rgba(250, 250, 250, 0.8);
+  }
 }
 
 /* normalize select appearance and typography inside hero card */
 select.hero-select {
   font-weight: 400 !important;
-  color: rgba(250,250,250,0.6) !important;
+  color: rgba(250, 250, 250, 0.6) !important;
   background: transparent !important;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
+
 select.hero-select option {
   font-weight: 400;
   color: inherit;
   background: transparent;
 }
+
 /* hide native dropdown arrow on IE/Edge */
 select.hero-select::-ms-expand {
   display: none;
@@ -531,8 +653,9 @@ select.hero-select::-ms-expand {
 .custom-options::-webkit-scrollbar {
   width: 8px;
 }
+
 .custom-options::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 6px;
 }
 
@@ -554,10 +677,12 @@ select.hero-select::-ms-expand {
   transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
   cursor: pointer;
 }
+
 .register-btn:hover {
   background: rgb(204, 174, 0);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
+
 .register-btn:active {
   transform: translateY(0);
   box-shadow: none;
@@ -583,10 +708,12 @@ select.hero-select::-ms-expand {
   transition: background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
   cursor: pointer;
 }
+
 .download-brochure-btn:hover {
   background: rgba(210, 210, 210, 1);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
+
 .download-brochure-btn:active {
   box-shadow: none;
 }
@@ -611,11 +738,11 @@ select.hero-select::-ms-expand {
   transition: box-shadow 150ms ease, background 150ms ease, color 150ms ease;
   cursor: pointer;
 }
+
 .otp-btn:hover:not(:disabled) {
   background: rgba(0, 186, 238, 0.7);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  color: rgba(30, 30, 30, 1);
 }
+
 .otp-btn:active {
   box-shadow: none;
 }
@@ -628,6 +755,7 @@ select.hero-select::-ms-expand {
   padding-bottom: 12px;
   height: 75px;
 }
+
 .hero-container {
   padding-left: 0;
   padding-right: 0;
@@ -641,6 +769,7 @@ select.hero-select::-ms-expand {
 }
 
 @media (max-width: 1024px) {
+
   /* Force left content into flow so form stacks below (override .hero-container .left-adjust) */
   .hero-container .left-adjust.hero-left-adjust {
     position: relative !important;
@@ -649,16 +778,19 @@ select.hero-select::-ms-expand {
     width: 100% !important;
     max-width: 100%;
   }
+
   /* Push hero content lower on mobile */
   .hero-container .left-adjust.hero-left-adjust {
     margin-top: 1.5rem;
   }
+
   /* Center Register Now button on mobile, keep desktop width */
   .register-btn-wrap {
     width: 100%;
     display: flex;
     justify-content: center;
   }
+
   .hero-form-card {
     position: static !important;
     width: 100% !important;
@@ -685,6 +817,7 @@ select.hero-select::-ms-expand {
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
+
 .px-section {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -695,6 +828,7 @@ select.hero-select::-ms-expand {
     padding-top: 4rem;
     padding-bottom: 4rem;
   }
+
   .px-section {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -706,6 +840,7 @@ select.hero-select::-ms-expand {
     padding-top: 5rem;
     padding-bottom: 5rem;
   }
+
   .px-section {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -717,6 +852,7 @@ select.hero-select::-ms-expand {
     padding-top: 6.875rem;
     padding-bottom: 6.875rem;
   }
+
   .px-section {
     padding-left: 7.5rem;
     padding-right: 7.5rem;
@@ -724,13 +860,17 @@ select.hero-select::-ms-expand {
 }
 
 @media (max-width: 1024px) {
-  .nav-container, .hero-container {
+
+  .nav-container,
+  .hero-container {
     padding-left: 24px;
     padding-right: 24px;
   }
+
   .hero-container {
     padding-top: 100px;
   }
+
   /* Only apply absolute to .left-adjust when NOT stacking (avoid overriding .hero-left-adjust) */
   .hero-container .left-adjust:not(.hero-left-adjust) {
     left: 24px !important;
@@ -738,6 +878,7 @@ select.hero-select::-ms-expand {
     width: calc(100% - 48px) !important;
     position: absolute;
   }
+
   .page-padding {
     padding-left: 24px;
     padding-right: 24px;
@@ -751,20 +892,26 @@ select.hero-select::-ms-expand {
     height: auto;
     min-height: 60px;
   }
+
   .hero-container .left-adjust:not(.hero-left-adjust) {
     left: 16px !important;
     top: 90px !important;
     width: calc(100% - 32px) !important;
   }
+
   .page-padding {
     padding-left: 16px;
     padding-right: 16px;
   }
+
   .register-btn {
-    width: 193px; /* same as desktop */
+    width: 193px;
+    /* same as desktop */
   }
+
   .otp-btn {
-    width: 206px; /* same as desktop – do not expand on mobile */
+    width: 206px;
+    /* same as desktop – do not expand on mobile */
   }
 }
 
@@ -773,17 +920,21 @@ select.hero-select::-ms-expand {
     padding-left: 12px;
     padding-right: 12px;
   }
+
   .hero-container {
     padding-top: 80px;
   }
+
   .hero-container .left-adjust.hero-left-adjust {
     margin-top: 5rem;
   }
+
   .hero-container .left-adjust:not(.hero-left-adjust) {
     left: 12px !important;
     width: calc(100% - 24px) !important;
     top: 80px !important;
   }
+
   .page-padding {
     padding-left: 12px;
     padding-right: 12px;
@@ -797,4 +948,3 @@ select.hero-select::-ms-expand {
     border-bottom-width: 0 !important;
   }
 }
-
