@@ -28,7 +28,7 @@ export default function HaveQuestionsBanner() {
                 className="text-center w-full"
                 style={{
                   fontFamily:
-                    "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                    "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                   fontWeight: 500,
                   fontSize: "24px",
                   lineHeight: "27px",
@@ -42,7 +42,7 @@ export default function HaveQuestionsBanner() {
                 className="text-center w-full"
                 style={{
                   fontFamily:
-                    "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                    "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                   fontWeight: 400,
                   fontSize: "14px",
                   lineHeight: "21px",
@@ -60,14 +60,14 @@ export default function HaveQuestionsBanner() {
               className="rounded-[10px] cursor-pointer hover:opacity-95 transition-opacity w-fit"
               style={{
                 fontFamily:
-                  "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                 fontWeight: 600,
                 fontSize: "14px",
                 lineHeight: "100%",
                 letterSpacing: "0%",
                 color: "rgba(250, 250, 250, 1)",
                 padding: "14px 40px",
-                backgroundColor: "rgba(0, 72, 128, 1)",
+                backgroundColor: "rgba(10, 50, 82, 1)",
               }}
             >
               Request a callback

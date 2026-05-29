@@ -218,7 +218,7 @@ export default function ClassroomTraining() {
                         paddingLeft: 30,
                         paddingRight: 30,
                         fontFamily:
-                          "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                          "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                         fontWeight: 500,
                         fontSize: 14,
                         lineHeight: "27px",
@@ -233,7 +233,7 @@ export default function ClassroomTraining() {
                     <h3
                       className="classroom-module-heading"
                       style={{
-                        fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
+                        fontFamily: "Lato, ui-sans-serif, system-ui, sans-serif",
                         fontWeight: 500,
                         fontSize: 18,
                         lineHeight: "27px",
@@ -249,7 +249,7 @@ export default function ClassroomTraining() {
                     <p
                       className="classroom-module-body mt-3"
                       style={{
-                        fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
+                        fontFamily: "Lato, ui-sans-serif, system-ui, sans-serif",
                         fontWeight: 400,
                         fontSize: 16,
                         lineHeight: "24px",
@@ -286,7 +286,7 @@ export default function ClassroomTraining() {
                       className="inline-flex items-center justify-center rounded-[10px] py-4 px-4 sm:px-6 bg-white text-[#1e1e1e] font-semibold text-sm no-underline cursor-pointer shadow-lg hover:bg-[#d2d2d2] transition-colors"
                     style={{
                       fontFamily:
-                        "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                        "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                     }}
                     >
                       Download Brochure

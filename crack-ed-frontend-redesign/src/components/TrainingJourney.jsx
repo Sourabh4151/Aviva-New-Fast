@@ -10,7 +10,7 @@ import ojtMobile from "../assets/ojt_mobile.svg";
 import placementMobile from "../assets/placement_mobile.svg";
 
 const FONT_MONTSERRAT =
-  "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+  "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
 
 const CARD_PADDING = { paddingTop: 24, paddingRight: 16, paddingBottom: 24, paddingLeft: 16 };
 const CARD_GAP = 10;
@@ -21,9 +21,9 @@ const CARD_ACTIVE_BG = "rgba(1, 7, 12, 1)";
 /** Bottom line when card is hovered/active: 2px, 304px wide, centered, dark blue */
 const LINE_ACTIVE_HEIGHT = 2;
 const LINE_ACTIVE_WIDTH = 304;
-const LINE_ACTIVE_COLOR = "rgba(0, 72, 128, 1)";
+const LINE_ACTIVE_COLOR = "rgba(10, 50, 82, 1)";
 
-/** DURATION/STIPEND label: Montserrat 600, 12px, 21px lh, uppercase; inactive 0.3, active/hover rgba(250,250,250,0.6) per design */
+/** DURATION/STIPEND label: Lato 600, 12px, 21px lh, uppercase; inactive 0.3, active/hover rgba(250,250,250,0.6) per design */
 const DURATION_LABEL = {
   fontFamily: FONT_MONTSERRAT,
   fontWeight: 600,
@@ -84,7 +84,7 @@ export default function TrainingJourney() {
             className="inline-flex items-center justify-center rounded-full border border-white/30 py-1 px-4 sm:px-[30px]"
             style={{
               fontFamily:
-                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
               fontWeight: 500,
               fontSize: 14,
               lineHeight: "27px",
@@ -100,7 +100,7 @@ export default function TrainingJourney() {
             className="mt-4 mx-auto text-left sm:text-center max-w-[1040px]"
             style={{
               fontFamily:
-                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
               fontWeight: 500,
               fontSize: 24,
               lineHeight: isMobile ? "36px" : "31.2px",

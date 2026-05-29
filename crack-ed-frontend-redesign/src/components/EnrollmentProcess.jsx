@@ -43,7 +43,7 @@ export default function EnrollmentProcess() {
             className="inline-flex items-center justify-center h-[35px] text-sm font-medium tracking-normal rounded-full border border-white/30 py-1 px-[30px] text-white/70 leading-[27px]"
             style={{
               fontFamily:
-                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
             }}
           >
             Enrollment Process
@@ -53,7 +53,7 @@ export default function EnrollmentProcess() {
             className="mt-4 sm:mt-6 text-[24px] font-medium tracking-normal leading-[31.2px]"
             style={{
               fontFamily:
-                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
               color: "rgba(250, 250, 250, 1)",
             }}
           >
@@ -120,7 +120,7 @@ export default function EnrollmentProcess() {
                             className="font-semibold text-[18px] leading-[27px] tracking-normal text-justify min-w-0"
                             style={{
                               fontFamily:
-                                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                                "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                               color: isHovered ? accentColor : "rgba(250, 250, 250, 1)",
                             }}
                           >
@@ -130,7 +130,7 @@ export default function EnrollmentProcess() {
                             className="font-normal text-[14px] leading-[21px] tracking-normal text-justify"
                             style={{
                               fontFamily:
-                                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                                "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                               color: "rgba(250, 250, 250, 0.8)",
                             }}
                           >

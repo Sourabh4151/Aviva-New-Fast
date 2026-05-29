@@ -20,7 +20,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[12px] leading-[24px] font-semibold text-[rgba(250,250,245,1)] hover:text-white transition-colors"
-                style={{ fontFamily: "Montserrat, sans-serif" }}
+                style={{ fontFamily: "Lato, sans-serif" }}
               >
                 {link.label}
               </a>
@@ -29,7 +29,7 @@ export default function Footer() {
           <div className="order-2 h-px w-full bg-[rgba(250,250,250,0.1)] lg:hidden" />
           <p
             className="order-3 text-[12px] leading-[24px] font-semibold text-[rgba(250,250,245,1)] lg:order-1"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
+            style={{ fontFamily: "Lato, sans-serif" }}
           >
             © 2026 Crack-ED. All rights reserved.
           </p>

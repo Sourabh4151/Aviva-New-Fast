@@ -1,5 +1,5 @@
 import React from "react";
-import bandhanBankLogo from "../assets/bandhan_bank_svg.svg";
+import bandhanBankLogo from "../assets/bandhan_bank_logo.svg";
 
 export default function About() {
   return (
@@ -19,7 +19,7 @@ export default function About() {
         <img
           src={bandhanBankLogo}
           alt="Bandhan Bank"
-          className="mt-4 h-[55px] w-[204px] object-contain"
+          className="mt-4 h-[71px] w-[184px] object-cover"
         />
       </div>
     </section>

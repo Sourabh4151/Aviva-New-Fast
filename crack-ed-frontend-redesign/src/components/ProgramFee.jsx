@@ -14,7 +14,7 @@ export default function ProgramFee() {
               className="inline-flex items-center justify-center tracking-normal rounded-full border border-white/30 py-1 px-4 sm:px-[30px] program-fee-pill"
               style={{
                 fontFamily:
-                  "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                 fontWeight: 500,
                 fontSize: "14px",
                 lineHeight: "27px",
@@ -29,7 +29,7 @@ export default function ProgramFee() {
                 className="program-fee-heading"
                 style={{
                   fontFamily:
-                    "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                    "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                   fontWeight: 500,
                   fontSize: "24px",
                   lineHeight: "31.2px",
@@ -44,7 +44,7 @@ export default function ProgramFee() {
                 className="text-xs text-white/70 program-fee-note"
                 style={{
                   fontFamily:
-                    "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                    "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                 }}
               >
                 *Financing options available
@@ -84,7 +84,7 @@ export default function ProgramFee() {
                   className="program-fee-card-label"
                   style={{
                     fontFamily:
-                      "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                      "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                     fontWeight: 600,
                     fontSize: "12px",
                     lineHeight: "21px",
@@ -100,7 +100,7 @@ export default function ProgramFee() {
                   className="program-fee-amount"
                   style={{
                     fontFamily:
-                      "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                      "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                     fontWeight: 500,
                     fontSize: "32px",
                     lineHeight: "48px",
@@ -113,7 +113,7 @@ export default function ProgramFee() {
                   <span
                     style={{
                       fontFamily:
-                        "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                        "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                       fontWeight: 500,
                       fontSize: "16px",
                       lineHeight: "48px",
@@ -131,7 +131,7 @@ export default function ProgramFee() {
                   className="program-fee-includes"
                   style={{
                     fontFamily:
-                      "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                      "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                     fontWeight: 400,
                     fontSize: "12px",
                     lineHeight: "100%",
@@ -183,7 +183,7 @@ export default function ProgramFee() {
                         className="program-fee-list-text"
                         style={{
                           fontFamily:
-                            "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                            "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                           fontWeight: 400,
                           fontSize: "12px",
                           lineHeight: "100%",

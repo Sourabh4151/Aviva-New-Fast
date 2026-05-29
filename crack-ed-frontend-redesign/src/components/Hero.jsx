@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 // Use desktop.jpg or aviva_ds_hero.jpg depending on which file you have in src/assets/.
 import heroImage from "../assets/desktop.jpg";
 import tickSvg from "../assets/tick.svg";
-import bandhanBankLogo from "../assets/bandhan_bank_svg.svg";
+import bandhanBankLogo from "../assets/bandhan_bank_logo.svg";
 
 export default function Hero() {
   const [form, setForm] = useState({ name: "", email: "", state: "", mobile: "" });
@@ -235,7 +235,7 @@ export default function Hero() {
                 <img
                   src={bandhanBankLogo}
                   alt="Bandhan Bank"
-                  className="h-[55.26px] w-[203px] object-contain"
+                  className="h-[71px] w-[184px] object-cover"
                 />
               </div>
               <div className="hero-logo-badge mb-3 md:mb-4">
@@ -248,12 +248,12 @@ export default function Hero() {
               <h1 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[1] mb-3 md:mb-4">
                 Assistant Manager
               </h1>
-              <ul className="hero-bullet-list text-gray-200 space-y-2 sm:space-y-4 mb-4 md:mb-8">
+              <ul className="hero-bullet-list space-y-2 sm:space-y-4 mb-4 md:mb-8">
                 <li className="flex items-start gap-2 sm:gap-3">
                   <span className="hero-tick">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="hero-subtitle text-[14px] font-normal">
+                  <span className="hero-subtitle">
                     Join as a Assistant Manager with a CTC of Rs 4 LPA + incentives
                   </span>
                 </li>
@@ -261,7 +261,7 @@ export default function Hero() {
                   <span className="hero-tick">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="text-[14px] font-normal">6-month program</span>
+                  <span className="hero-subtitle">6-month program</span>
                 </li>
               </ul>
               <div className="register-btn-wrap mt-4">
@@ -280,7 +280,7 @@ export default function Hero() {
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-6 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[131px] lg:mt-0 lg:w-[373px] lg:z-30 w-full bg-[rgba(1,73,128,1)] p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
+        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-6 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[90px] lg:mt-0 lg:w-[373px] lg:z-30 w-full bg-[rgba(10,50,82,1)] p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
           alreadyInSystem || hasValidationError ? "lg:min-h-[520px]" : "lg:min-h-[471px]"
         }`}
       >

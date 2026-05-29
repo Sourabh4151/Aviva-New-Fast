@@ -76,7 +76,7 @@ export default function TrackGrowth() {
             className="inline-flex items-center justify-center font-medium rounded-full border border-white/30 py-1 px-[30px] text-[14px] leading-[27px] text-white/70"
             style={{
               fontFamily:
-                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
             }}
           >
             Track Your Growth
@@ -86,7 +86,7 @@ export default function TrackGrowth() {
             className="mt-4 sm:mt-6 text-[24px] leading-[36px] font-medium text-white px-2"
             style={{
               fontFamily:
-                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
             }}
           >
             Continuous feedback to help you grow into the role with confidence.
@@ -133,7 +133,7 @@ export default function TrackGrowth() {
                       className="font-semibold text-[18px] leading-[27px] text-white text-justify"
                       style={{
                         fontFamily:
-                          "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                          "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                       }}
                     >
                       {item.title}
@@ -142,7 +142,7 @@ export default function TrackGrowth() {
                       className="text-[14px] leading-[21px] text-white/80 text-justify"
                       style={{
                         fontFamily:
-                          "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                          "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                       }}
                     >
                       {item.description}
