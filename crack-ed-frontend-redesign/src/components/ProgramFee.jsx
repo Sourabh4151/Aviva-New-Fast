@@ -109,22 +109,7 @@ export default function ProgramFee() {
                     whiteSpace: "nowrap",
                   }}
                 >
-                  Rs 1,00,000{" "}
-                  <span
-                    style={{
-                      fontFamily:
-                        "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                      fontWeight: 500,
-                      fontSize: "16px",
-                      lineHeight: "48px",
-                      letterSpacing: "0%",
-                      color: "rgba(250, 250, 250, 1)",
-                      display: "inline",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    + GST
-                  </span>
+                  Rs 1,00,000
                 </p>
               </div>
 
