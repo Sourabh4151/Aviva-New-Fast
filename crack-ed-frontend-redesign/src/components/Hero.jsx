@@ -365,7 +365,7 @@ export default function Hero() {
                   <span className="hero-tick">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="hero-bullet-secondary min-w-0 max-sm:max-w-[331px] text-[14px] sm:text-[16px] leading-[1.45] font-normal font-['Poppins',ui-sans-serif,system-ui,sans-serif] text-[rgba(250,250,250,1)]">2-month program
+                  <span className="hero-bullet-secondary min-w-0 max-sm:max-w-[331px] text-[14px] sm:text-[16px] leading-[1.45] font-normal font-['Poppins',ui-sans-serif,system-ui,sans-serif] text-[rgba(250,250,250,1)]">3-month program
                   </span>
                 </li>
               </ul>
