@@ -110,23 +110,7 @@ export default function ProgramFee() {
                     overflowWrap: "anywhere",
                   }}
                 >
-                  Rs 1,25,000{" "}
-                  <span
-                    style={{
-                      fontFamily:
-                        "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                      fontWeight: 500,
-                      fontSize: "16px",
-                      lineHeight: "1.4",
-                      letterSpacing: "0%",
-                      color: "rgba(250, 250, 250, 1)",
-                      display: "block",
-                      marginTop: "4px",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    (inclusive of GST)
-                  </span>
+                  Rs 1,25,000
                 </p>
               </div>
 
