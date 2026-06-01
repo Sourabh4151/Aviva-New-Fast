@@ -1,7 +1,7 @@
 import React from "react";
 
 const REQUIREMENTS = [
-  "Open to graduates aspiring to build long-term careers in banking",
+  "Candidates must have at least 6 months of sales experience.",
   "A minimum aggregate score of 50% in graduation is required",
   "Applicants should be up to 28 years of age",
 ];
