@@ -117,20 +117,6 @@ export default function ProgramFee() {
                   >
                     Rs 70,000
                   </p>
-
-                  <p
-                    style={{
-                      fontFamily:
-                        "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                      fontWeight: 500,
-                      fontSize: "16px",
-                      lineHeight: "30px",
-                      letterSpacing: "0%",
-                      color: "rgba(250, 250, 250, 1)",
-                    }}
-                  >
-                    (including all taxes)
-                  </p>
                 </div>
               </div>
 
