@@ -4,6 +4,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import uthaanImg from "../assets/uthaan.png";
 import aarohanImg from "../assets/aarohan.jpg";
 import shikharImg from "../assets/shikhar.jpg";
+import {
+  BROCHURE_PDF_DOWNLOAD_NAME,
+  BROCHURE_PDF_HREF,
+} from "../brochure";
 
 const MODULES = [
   {
@@ -277,14 +281,10 @@ export default function ClassroomTraining() {
                 {index === MODULES.length - 1 && (
                   <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
                     <a
-                      href="#"
-                      tabIndex={-1}
-                      className="download-brochure-btn download-brochure-btn--unavailable"
-                      aria-disabled="true"
-                      aria-label="Download brochure (unavailable)"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
+                      href={BROCHURE_PDF_HREF}
+                      download={BROCHURE_PDF_DOWNLOAD_NAME}
+                      className="download-brochure-btn"
+                      aria-label="Download brochure PDF"
                     >
                       Download Brochure
                     </a>

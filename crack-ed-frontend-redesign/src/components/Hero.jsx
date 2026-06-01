@@ -6,6 +6,10 @@ import React, { useState, useRef, useEffect } from "react";
 import heroImage from "../assets/desk.png";
 import tickSvg from "../assets/tick.svg";
 import heroLogo from "../assets/herologo.svg";
+import {
+  BROCHURE_PDF_DOWNLOAD_NAME,
+  BROCHURE_PDF_HREF,
+} from "../brochure";
 
 export default function Hero() {
   const [form, setForm] = useState({ name: "", email: "", state: "", mobile: "" });
@@ -286,14 +290,10 @@ export default function Hero() {
                 </div>
                 <div className="register-btn-wrap max-lg:mb-6 lg:mb-0">
                   <a
-                    href="#"
-                    tabIndex={-1}
-                    className="download-brochure-btn download-brochure-btn--unavailable"
-                    aria-disabled="true"
-                    aria-label="Download brochure (unavailable)"
-                    onClick={(e) => {
-                      e.preventDefault();
-                    }}
+                    href={BROCHURE_PDF_HREF}
+                    download={BROCHURE_PDF_DOWNLOAD_NAME}
+                    className="download-brochure-btn"
+                    aria-label="Download brochure PDF"
                   >
                     Download Brochure
                   </a>

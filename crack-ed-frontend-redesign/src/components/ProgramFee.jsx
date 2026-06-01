@@ -102,37 +102,21 @@ export default function ProgramFee() {
                   PROGRAM FEE
                 </p>
 
-                <div className="flex flex-col" style={{ gap: 4 }}>
-                  <p
-                    className="program-fee-amount"
-                    style={{
-                      fontFamily:
-                        "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                      fontWeight: 500,
-                      fontSize: "32px",
-                      lineHeight: "48px",
-                      letterSpacing: "0%",
-                      color: "rgba(250, 250, 250, 1)",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    Rs 80,000
-                  </p>
-
-                  <p
-                    style={{
-                      fontFamily:
-                        "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                      fontWeight: 500,
-                      fontSize: "16px",
-                      lineHeight: "30px",
-                      letterSpacing: "0%",
-                      color: "rgba(250, 250, 250, 1)",
-                    }}
-                  >
-                    (taxes included)
-                  </p>
-                </div>
+                <p
+                  className="program-fee-amount"
+                  style={{
+                    fontFamily:
+                      "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                    fontWeight: 500,
+                    fontSize: "32px",
+                    lineHeight: "48px",
+                    letterSpacing: "0%",
+                    color: "rgba(250, 250, 250, 1)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Rs 80,000
+                </p>
               </div>
 
               <div className="flex flex-col" style={{ gap: "10px" }}>
