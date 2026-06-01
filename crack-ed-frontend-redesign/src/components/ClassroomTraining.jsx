@@ -86,7 +86,7 @@ export default function ClassroomTraining() {
           img,
           { scale: 1 },
           {
-            scale: 1.5,
+            scale: 1.2,
             transformOrigin: "center center",
             ease: "power2.out",
             scrollTrigger: {

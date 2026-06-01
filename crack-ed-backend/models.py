@@ -32,6 +32,7 @@ class CallBackUsers(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fname = db.Column(db.String(120))
     lname = db.Column(db.String(120))
+    state = db.Column(db.String(120))
     city = db.Column(db.String(120))
     email = db.Column(db.String(120), unique=True)
     mobile = db.Column(db.String(15), unique=True)
