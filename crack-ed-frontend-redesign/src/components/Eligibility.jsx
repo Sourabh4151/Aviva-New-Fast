@@ -1,17 +1,26 @@
 import React from "react";
 
-export default function ProgramFee() {
+const REQUIREMENTS = [
+  "Graduates aspiring to build long-term careers in banking",
+  "Applicants should be up to 30 years of age.",
+  "A valid driving licence is required for the role",
+  "Candidates must own a two-wheeler ",
+];
+
+export default function Eligibility() {
   return (
     <section
-      id="program-fee"
+      id="eligibility"
       className="relative bg-black text-white scroll-mt-24 overflow-hidden"
     >
       <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-20">
-        <div className="mx-auto flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-10 max-w-[1040px]">
-          {/* Left: badge, heading, note */}
+        <div
+          className="mx-auto flex flex-col lg:flex-row items-start justify-between gap-6 lg:gap-[10px] max-w-[1040px]"
+        >
+          {/* Left: badge, heading */}
           <div className="flex-1 flex flex-col items-start text-left min-w-0 w-full">
             <div
-              className="inline-flex items-center justify-center tracking-normal rounded-full border border-white/30 py-1 px-4 sm:px-[30px] program-fee-pill"
+              className="inline-flex items-center justify-center tracking-normal rounded-full border border-white/30 py-1 px-4 sm:px-[30px]"
               style={{
                 fontFamily:
                   "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
@@ -21,12 +30,11 @@ export default function ProgramFee() {
                 color: "rgba(250, 250, 250, 0.7)",
               }}
             >
-              Program Fee
+              Eligibility
             </div>
 
-            <div className="mt-4 flex flex-col gap-4 max-w-full lg:max-w-[498px]">
+            <div className="mt-4 flex flex-col gap-[10px] max-w-full lg:max-w-[498px]">
               <p
-                className="program-fee-heading"
                 style={{
                   fontFamily:
                     "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
@@ -36,28 +44,19 @@ export default function ProgramFee() {
                   letterSpacing: "0%",
                   color: "rgba(250, 250, 250, 1)",
                 }}
+                className="max-w-[320px] sm:max-w-full"
               >
-                An investment in your skills, preparation, and career progression.
-              </p>
-
-              <p
-                className="text-xs text-white/70 program-fee-note"
-                style={{
-                  fontFamily:
-                    "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                }}
-              >
-                *Financing options available
+                Is this the right program for you?
               </p>
             </div>
           </div>
 
-          {/* Right: fee card with side/bottom glow */}
-          <div className="flex-1 flex justify-center lg:justify-end w-full lg:w-auto">
-            <div className="relative w-full max-w-[364px]">
-              {/* Blue glow around card – matches brand color rgba(10, 49, 82) */}
+          {/* Right: requirements card with glow */}
+          <div className="flex-1 flex justify-start lg:justify-end w-full lg:w-auto lg:-ml-10">
+            <div className="relative w-full max-w-[364px] sm:max-w-[422px]">
+              {/* Glow around card */}
               <div
-                className="pointer-events-none absolute -inset-[40px] sm:-inset-[60px]"
+                className="pointer-events-none absolute -left-4 -right-4 -top-2 -bottom-10 sm:-left-6 sm:-right-6 sm:-top-4 sm:-bottom-12"
                 style={{
                   background:
                     "radial-gradient(circle at 0% 50%, rgba(255, 217, 0, 0.4) 0, transparent 60%), radial-gradient(circle at 100% 50%, rgba(255, 217, 0, 0.4) 0, transparent 60%), radial-gradient(circle at 50% 0%, rgba(255, 217, 0, 0.4) 0, transparent 60%), radial-gradient(circle at 50% 100%, rgba(255, 217, 0, 0.4) 0, transparent 60%)",
@@ -67,21 +66,17 @@ export default function ProgramFee() {
               />
 
               <div
-              className="relative flex flex-col shadow-2xl program-fee-card"
-              style={{
-                width: 364,
-                maxWidth: "100%",
-                borderRadius: 10,
-                padding: 24,
-                gap: 10,
-                background: "rgba(0, 0, 0, 1)",
-                flexDirection: "column",
-              }}
+                className="relative flex flex-col shadow-2xl"
+                style={{
+                  width: "100%",
+                  borderRadius: 10,
+                  padding: 24,
+                  gap: 10,
+                  background: "rgba(0, 0, 0, 1)",
+                  flexDirection: "column",
+                }}
               >
-              {/* PROGRAM FEE + amount */}
-              <div className="flex flex-col" style={{ gap: "0px" }}>
                 <p
-                  className="program-fee-card-label"
                   style={{
                     fontFamily:
                       "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
@@ -93,51 +88,16 @@ export default function ProgramFee() {
                     textTransform: "uppercase",
                   }}
                 >
-                  PROGRAM FEE
-                </p>
-
-                <p
-                  className="program-fee-amount"
-                  style={{
-                    fontFamily:
-                      "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                    fontWeight: 500,
-                    fontSize: "32px",
-                    lineHeight: "48px",
-                    letterSpacing: "0%",
-                    color: "rgba(250, 250, 250, 1)",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  Rs 1,00,000
-                </p>
-              </div>
-
-              <div className="flex flex-col" style={{ gap: "10px" }}>
-                <p
-                  className="program-fee-includes"
-                  style={{
-                    fontFamily:
-                      "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                    fontWeight: 400,
-                    fontSize: "12px",
-                    lineHeight: "100%",
-                    color: "rgba(250, 250, 250, 1)",
-                  }}
-                >
-                  The program fee includes:
+                  Requirements
                 </p>
 
                 <div
                   className="flex flex-col"
                   style={{
-                    gap: "10px",
+                    gap: 10,
                   }}
                 >
-                  {[
-                    "Comprehensive training & placement support",
-                    "All learning materials and resources",
-                  ].map((item) => (
+                  {REQUIREMENTS.map((item) => (
                     <div
                       key={item}
                       className="flex items-start"
@@ -167,13 +127,13 @@ export default function ProgramFee() {
                       </div>
 
                       <p
-                        className="program-fee-list-text"
+                        className="text-[12px] sm:text-[14px]"
                         style={{
                           fontFamily:
                             "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                           fontWeight: 400,
-                          fontSize: "12px",
-                          lineHeight: "100%",
+                          lineHeight: 1.30,
+                          letterSpacing: "0%",
                           color: "rgba(250, 250, 250, 1)",
                         }}
                       >
@@ -182,7 +142,6 @@ export default function ProgramFee() {
                     </div>
                   ))}
                 </div>
-              </div>
               </div>
             </div>
           </div>
