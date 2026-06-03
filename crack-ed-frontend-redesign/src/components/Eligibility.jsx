@@ -2,7 +2,7 @@ import React from "react";
 
 const REQUIREMENTS = [
   "Must hold a graduate degree in any stream",
-  "Should be 35 years of age or younger",
+  "Should be 30 years of age or younger",
   "Must be comfortable working in a field sales role that involves daily travel.",
 ];
 
