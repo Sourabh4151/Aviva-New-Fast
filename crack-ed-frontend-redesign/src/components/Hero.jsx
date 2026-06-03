@@ -283,7 +283,7 @@ export default function Hero() {
                         className="text-[16px] font-normal leading-[1.55] tracking-[0em] text-[rgba(250,250,250,1)] max-lg:leading-[1.52]"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                        A dedicated 2-month path to help you transition into your new role with confidence.
+                        A dedicated 1-month path to help you transition into your new role with confidence.
                       </span>
                     </li>
                   </ul>
