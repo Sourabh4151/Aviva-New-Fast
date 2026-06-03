@@ -11,6 +11,7 @@ import requests
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
+from sqlalchemy import inspect, text
 from sqlalchemy.exc import IntegrityError, OperationalError
 
 from extensions import db
@@ -36,6 +37,29 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
+
+
+def _ensure_callback_users_schema():
+    db.create_all()
+    inspector = inspect(db.engine)
+    if not inspector.has_table("callback_users"):
+        return
+    columns = {col["name"] for col in inspector.get_columns("callback_users")}
+    migrations = []
+    if "state" not in columns:
+        migrations.append("ALTER TABLE callback_users ADD COLUMN state VARCHAR(120)")
+    if "age" not in columns:
+        migrations.append("ALTER TABLE callback_users ADD COLUMN age VARCHAR(10)")
+    if "graduation_year" not in columns:
+        migrations.append("ALTER TABLE callback_users ADD COLUMN graduation_year VARCHAR(20)")
+    if migrations:
+        with db.engine.begin() as conn:
+            for stmt in migrations:
+                conn.execute(text(stmt))
+
+
+with app.app_context():
+    _ensure_callback_users_schema()
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -130,6 +154,26 @@ def _str_utm(value):
     return "" if value is None else str(value).strip()
 
 
+def _normalize_graduation_year(value):
+    """Return 4-digit graduation year for Meritto (year only, not full date)."""
+    raw = (value or "").strip()
+    if not raw:
+        return ""
+    if len(raw) == 4 and raw.isdigit():
+        return raw
+    if "/" in raw:
+        for part in reversed(raw.split("/")):
+            if len(part) == 4 and part.isdigit():
+                return part
+    if "-" in raw:
+        parts = raw.split("-")
+        if parts and len(parts[0]) == 4 and parts[0].isdigit():
+            return parts[0]
+        if parts and len(parts[-1]) == 4 and parts[-1].isdigit():
+            return parts[-1]
+    return ""
+
+
 def _post_lead_to_nopaperforms(
     *,
     full_name,
@@ -140,6 +184,8 @@ def _post_lead_to_nopaperforms(
     utm_source="",
     utm_medium="",
     utm_campaign="",
+    age="",
+    graduation_year="",
 ):
     state_value = (state or "").strip() or (city or "").strip()
     city_value = (city or "").strip()
@@ -155,6 +201,9 @@ def _post_lead_to_nopaperforms(
         "cf_form_name": "Landing Page - Hero Finance - RM",
         "cf_program": "Hero Finance - RM",
         "cf_pg_program": "PG Program",
+        "cf_language_of_interview": "",
+        "cf_age": str(age).strip() if age is not None else "",
+        "cf_graduation_year": _normalize_graduation_year(graduation_year),
     }
     if city_value and city_value.lower() != state_value.lower():
         payload["city"] = city_value
@@ -172,18 +221,23 @@ def _post_lead_to_nopaperforms(
 
 def send_callback_lead_to_crm(user):
     full_name = " ".join(part for part in [user.fname, user.lname] if part).strip()
-    # Current DB model stores selected state in `city`; pass that to Meritto's
-    # required `state` field until a dedicated state column is introduced.
-    state_value = (getattr(user, "state", "") or "").strip() or (user.city or "").strip()
+    state_value = (getattr(user, "state", "") or "").strip()
+    city_value = (user.city or "").strip()
+    # Legacy rows may have state stored only in `city`.
+    if not state_value and city_value:
+        state_value = city_value
+        city_value = ""
     response = _post_lead_to_nopaperforms(
         full_name=full_name,
         email=user.email or "",
         mobile=user.mobile,
         state=state_value,
-        city="",
+        city=city_value,
         utm_source=getattr(user, "utm_source", "") or "",
         utm_medium=getattr(user, "utm_medium", "") or "",
         utm_campaign=getattr(user, "utm_campaign", "") or "",
+        age=getattr(user, "age", "") or "",
+        graduation_year=getattr(user, "graduation_year", "") or "",
     )
     print("Meritto CRM response:", response.text)
     return response
@@ -215,11 +269,55 @@ def send_callback_otp():
     if not mobile:
         return jsonify({"error": "Mobile number is required"}), 400
 
+    age_raw = str(data.get("age") or "").strip()
+    if not age_raw:
+        return jsonify({"error": "Age is required"}), 400
+    try:
+        age_num = int(age_raw)
+    except ValueError:
+        return jsonify({"error": "Invalid age"}), 400
+    if age_num > 30:
+        return jsonify({"error": "Age must be 30 or below to apply"}), 400
+    if age_num < 18:
+        return jsonify({"error": "Age must be between 18 and 30"}), 400
+
+    graduation_year_value = _normalize_graduation_year(data.get("graduation_year"))
+    if not graduation_year_value:
+        return jsonify({"error": "Graduation year is required"}), 400
+    try:
+        graduation_year_num = int(graduation_year_value)
+    except ValueError:
+        return jsonify({"error": "Invalid graduation year"}), 400
+    current_year = time.localtime().tm_year
+    if graduation_year_num < 1990 or graduation_year_num > current_year:
+        return jsonify({"error": f"Graduation year must be between 1990 and {current_year}"}), 400
+
     otp = generate_otp()
     name_parts = (data.get('name') or "").split()
     first_name = name_parts[0] if name_parts else ""
     last_name = name_parts[-1] if len(name_parts) > 1 else ""
-    state_or_city = (data.get("state") or data.get("city") or "").strip()
+    state_value = (data.get("state") or "").strip()
+    city_value = (data.get("city") or "").strip()
+    # Backward compat when only one location field is sent.
+    if not state_value and city_value:
+        state_value = city_value
+        city_value = ""
+
+    age_value = str(data.get("age") or "").strip()
+
+    def _apply_location_fields(target):
+        try:
+            target.state = state_value
+            target.city = city_value
+        except AttributeError:
+            target.city = state_value or city_value
+
+    def _apply_profile_fields(target):
+        try:
+            target.age = age_value
+            target.graduation_year = graduation_year_value
+        except AttributeError:
+            pass
 
     try:
         utm_source = data.get("utm_source", "") or ""
@@ -242,7 +340,8 @@ def send_callback_otp():
             user.lname = last_name
             user.email = incoming_email
             user.mobile = mobile
-            user.city = state_or_city
+            _apply_location_fields(user)
+            _apply_profile_fields(user)
             try:
                 if utm_source:
                     user.utm_source = utm_source
@@ -257,10 +356,11 @@ def send_callback_otp():
                 fname=first_name,
                 lname=last_name,
                 email=incoming_email,
-                city=state_or_city,
                 mobile=mobile,
                 otp=otp,
             )
+            _apply_location_fields(user)
+            _apply_profile_fields(user)
             try:
                 if utm_source:
                     user.utm_source = utm_source
@@ -285,6 +385,8 @@ def send_callback_otp():
                 "utm_source" in error_msg
                 or "utm_medium" in error_msg
                 or "utm_campaign" in error_msg
+                or ".state" in error_msg
+                or " state" in error_msg
             ):
                 print("UTM columns missing from DB; retrying without them.")
                 db.session.rollback()
@@ -295,16 +397,18 @@ def send_callback_otp():
                     user.lname = last_name
                     user.email = incoming_email
                     user.mobile = mobile
-                    user.city = state_or_city
+                    _apply_location_fields(user)
+                    _apply_profile_fields(user)
                 else:
                     user = CallBackUsers(
                         fname=first_name,
                         lname=last_name,
                         email=incoming_email,
-                        city=state_or_city,
                         mobile=mobile,
                         otp=otp,
                     )
+                    _apply_location_fields(user)
+                    _apply_profile_fields(user)
                     db.session.add(user)
                 user.otp_txn_id = send_otp_api(user.mobile)
                 if user.otp_txn_id is None:
@@ -325,7 +429,8 @@ def send_callback_otp():
                 email_user.otp = otp
                 email_user.fname = first_name
                 email_user.lname = last_name
-                email_user.city = state_or_city
+                _apply_location_fields(email_user)
+                _apply_profile_fields(email_user)
                 email_user.mobile = mobile
                 email_user.otp_txn_id = otp_txn_id
                 if not email_user.otp_txn_id:
@@ -384,6 +489,4 @@ def add_callback_user():
 
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     app.run(debug=True, port=8000)
