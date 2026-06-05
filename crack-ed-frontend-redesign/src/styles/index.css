@@ -5,8 +5,9 @@
 @tailwind utilities;
 
 html, body, #root {
-  height: 100%;
+  min-height: 100%;
   scrollbar-width: none;
+  background-color: #000;
 }
 
 html,
@@ -53,14 +54,15 @@ body::-webkit-scrollbar {
     margin-top: 10px;
   }
   .hero-badge {
-    width: 255px;
-    min-height: 37px;
-    padding: 10px;
+    width: auto;
+    max-width: 100%;
+    min-height: 34px;
+    padding: 8px 14px;
     border-radius: 100px;
     border: 1px solid rgba(250, 250, 250, 1);
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 100%;
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);
@@ -190,6 +192,35 @@ button.download-brochure-btn:disabled:active {
   transform: none;
 }
 
+.hero-form-checkbox {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  min-height: 8px;
+  margin: 5px 0 0;
+  padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 1px solid rgba(250, 250, 250, 1);
+  border-radius: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.hero-form-checkbox:checked {
+  background: rgba(250, 250, 250, 1);
+}
+
+.hero-form-consent-text {
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0;
+  color: rgba(250, 250, 250, 0.6);
+}
+
 /* Hero layout containers */
 .hero-container {
   padding-left: 0;
@@ -200,7 +231,7 @@ button.download-brochure-btn:disabled:active {
 .hero-form-card {
   right: 120px;
   top: 85px;
-  width: 373px;
+  width: 520px;
 }
 
 @media (max-width: 1024px) {
@@ -215,13 +246,25 @@ button.download-brochure-btn:disabled:active {
   .register-btn-wrap {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: 8px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .register-btn-wrap .download-brochure-btn {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .register-btn-wrap p {
+    text-align: center;
   }
   .hero-form-card {
     position: static !important;
     width: 100% !important;
     max-width: 400px;
-    margin: 1.5rem auto 0;
+    margin: 2.25rem auto 0;
   }
   .hero-container {
     padding-left: 24px;
@@ -251,8 +294,12 @@ button.download-brochure-btn:disabled:active {
   }
   .hero-container {
     padding-top: 200px;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .hero-badge {
+    font-size: 11px;
+    padding: 8px 12px;
   }
   .hero-container .left-adjust.hero-left-adjust {
     margin-top: 0;
