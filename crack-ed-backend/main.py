@@ -276,10 +276,10 @@ def send_callback_otp():
         age_num = int(age_raw)
     except ValueError:
         return jsonify({"error": "Invalid age"}), 400
-    if age_num > 30:
-        return jsonify({"error": "Age must be 30 or below to apply"}), 400
+    if age_num > 28:
+        return jsonify({"error": "Age must be 28 or below to apply"}), 400
     if age_num < 18:
-        return jsonify({"error": "Age must be between 18 and 30"}), 400
+        return jsonify({"error": "Age must be between 18 and 28"}), 400
 
     graduation_year_value = _normalize_graduation_year(data.get("graduation_year"))
     if not graduation_year_value:
