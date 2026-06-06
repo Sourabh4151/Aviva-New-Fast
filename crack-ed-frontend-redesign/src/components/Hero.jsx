@@ -364,7 +364,7 @@ export default function Hero() {
 
       {/* Hero background: fixed height on all screens – does NOT grow. Form comes after on mobile. */}
       <div
-        className="w-full min-h-[560px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[10%_60%] lg:bg-[center_90%]"
+        className="w-full min-h-[670px] sm:min-h-[710px] lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[10%_60%] lg:bg-[center_90%]"
         style={{ backgroundImage: `url(${heroImage})` }}
         role="img"
         aria-label="Aviva hero"
