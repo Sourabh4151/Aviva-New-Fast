@@ -255,8 +255,15 @@ button.download-brochure-btn:disabled:active {
   .register-btn-wrap {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     margin-bottom: 1.5rem;
+  }
+  .register-btn-wrap > p {
+    width: auto;
+    margin-top: 0.5rem;
+    text-align: center;
   }
   .hero-form-card {
     position: static !important;
