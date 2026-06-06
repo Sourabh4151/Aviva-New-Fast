@@ -6,13 +6,58 @@ import React, { useState, useRef, useEffect } from "react";
 import heroImage from "../assets/desk.jpg";
 import tickSvg from "../assets/tick.svg";
 import crackedLogo from "../assets/crack-ed.svg";
+import stateCities from "../data/indian_state_cities.json";
+
+const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
+const MAX_FILTERED_OPTIONS = 100;
+
+function filterByQuery(options, query) {
+  const q = (query || "").trim().toLowerCase();
+  if (!q) return options;
+  return options.filter((item) => item.toLowerCase().startsWith(q));
+}
+
+const CURRENT_YEAR = new Date().getFullYear();
+const GRADUATION_YEARS = Array.from(
+  { length: CURRENT_YEAR - 1990 + 1 },
+  (_, i) => String(CURRENT_YEAR - i)
+);
+
+function parseAge(value) {
+  const trimmed = (value || "").trim();
+  if (!/^\d{1,2}$/.test(trimmed)) return null;
+  const ageNum = parseInt(trimmed, 10);
+  return Number.isNaN(ageNum) ? null : ageNum;
+}
+
+function parseGraduationYear(value) {
+  const trimmed = (value || "").trim();
+  if (!/^\d{4}$/.test(trimmed)) return null;
+  const year = parseInt(trimmed, 10);
+  return Number.isNaN(year) ? null : year;
+}
 
 export default function Hero() {
-  const [form, setForm] = useState({ name: "", email: "", state: "", mobile: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    age: "",
+    graduationYear: "",
+    state: "",
+    city: "",
+    mobile: "",
+  });
   const [status, setStatus] = useState(null);
   const [errors, setErrors] = useState({});
   const [stateOpen, setStateOpen] = useState(false);
+  const [cityOpen, setCityOpen] = useState(false);
+  const [gradYearOpen, setGradYearOpen] = useState(false);
+  const [stateQuery, setStateQuery] = useState("");
+  const [cityQuery, setCityQuery] = useState("");
+  const [cityHintActive, setCityHintActive] = useState(false);
   const stateRef = useRef(null);
+  const cityRef = useRef(null);
+  const gradYearRef = useRef(null);
   const [showOtp, setShowOtp] = useState(false);
   const [otpDigits, setOtpDigits] = useState(["", "", "", ""]);
   const otpRefs = useRef([]);
@@ -20,6 +65,8 @@ export default function Hero() {
   const [otpError, setOtpError] = useState("");
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+  const [consentPaidProgram, setConsentPaidProgram] = useState(false);
+  const [consentContact, setConsentContact] = useState(false);
 
   const otpValue = otpDigits.join("");
   const brochurePdfPath = "/PGP Relationship Manager.pdf";
@@ -83,27 +130,93 @@ export default function Hero() {
     }
   }
 
+  function handleAgeChange(e) {
+    const value = e.target.value.replace(/\D/g, "").slice(0, 2);
+    setForm({ ...form, age: value });
+    const ageNum = parseAge(value);
+    if (ageNum !== null && ageNum > 30) {
+      setErrors((prev) => ({
+        ...prev,
+        age: "Age must be 30 or below to apply.",
+      }));
+    } else if (errors.age) {
+      setErrors((prev) => ({ ...prev, age: "" }));
+    }
+  }
+
+  const matchedState = INDIAN_STATES.find(
+    (s) => s.toLowerCase() === (form.state || "").trim().toLowerCase()
+  );
+  const citiesForState = matchedState
+    ? [...(stateCities[matchedState] || [])].sort((a, b) => a.localeCompare(b))
+    : [];
+  const filteredStates = filterByQuery(INDIAN_STATES, stateOpen ? stateQuery : form.state).slice(
+    0,
+    MAX_FILTERED_OPTIONS
+  );
+  const filteredCities = filterByQuery(citiesForState, cityOpen ? cityQuery : form.city).slice(
+    0,
+    MAX_FILTERED_OPTIONS
+  );
+  const parsedFormAge = parseAge(form.age);
+  const isAgeOverLimit = parsedFormAge !== null && parsedFormAge > 30;
+
   useEffect(() => {
     function onClickOutside(e) {
       if (stateRef.current && !stateRef.current.contains(e.target)) {
         setStateOpen(false);
+      }
+      if (cityRef.current && !cityRef.current.contains(e.target)) {
+        setCityOpen(false);
+      }
+      if (gradYearRef.current && !gradYearRef.current.contains(e.target)) {
+        setGradYearOpen(false);
       }
     }
     window.addEventListener("pointerdown", onClickOutside);
     return () => window.removeEventListener("pointerdown", onClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (matchedState) setCityHintActive(false);
+  }, [matchedState]);
+
   async function handleSubmit(e) {
     e.preventDefault();
     // client-side validation (same rules as original Reg.js)
-    const { name, email, state, mobile } = form;
+    const { name, email, age, graduationYear, state, city, mobile } = form;
     const newErrors = {};
     if (!name || !name.trim()) newErrors.name = "Full name is required.";
+    const stateMatch = INDIAN_STATES.find(
+      (s) => s.toLowerCase() === (state || "").trim().toLowerCase()
+    );
     if (!state || !state.trim()) newErrors.state = "State is required.";
+    else if (!stateMatch) newErrors.state = "Please select a valid state from the list.";
+    const cityList = stateMatch ? stateCities[stateMatch] || [] : [];
+    const cityMatch = cityList.find((c) => c.toLowerCase() === (city || "").trim().toLowerCase());
+    if (!city || !city.trim()) newErrors.city = "City is required.";
+    else if (!cityMatch) newErrors.city = "Please select a valid city from the list.";
     if (!email || !email.trim()) newErrors.email = "Email is required.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "Invalid email format.";
+    const ageNum = parseAge(age);
+    if (!age || !age.trim()) newErrors.age = "Age is required.";
+    else if (ageNum === null) newErrors.age = "Please enter a valid age.";
+    else if (ageNum > 30) newErrors.age = "Age must be 30 or below to apply.";
+    else if (ageNum < 18) newErrors.age = "Age must be between 18 and 30.";
+    const gradYear = parseGraduationYear(graduationYear);
+    if (!graduationYear || !graduationYear.trim()) {
+      newErrors.graduationYear = "Graduation year is required.";
+    } else if (!GRADUATION_YEARS.includes(graduationYear)) {
+      newErrors.graduationYear = "Please select a valid graduation year from the list.";
+    }
     if (!mobile || !mobile.trim()) newErrors.mobile = "Mobile number is required.";
     else if (!/^\d{10}$/.test(mobile)) newErrors.mobile = "Mobile must be 10 digits.";
+    if (!consentPaidProgram) {
+      newErrors.consentPaidProgram = "Please confirm you understand the program fee.";
+    }
+    if (!consentContact) {
+      newErrors.consentContact = "Please consent to be contacted regarding this program.";
+    }
 
     if (Object.keys(newErrors).length) {
       setErrors(newErrors);
@@ -138,7 +251,10 @@ export default function Hero() {
         body: JSON.stringify({
           name,
           email,
-          state,
+          state: stateMatch || state,
+          city: cityMatch || city,
+          age: String(ageNum),
+          graduation_year: String(gradYear),
           mobile,
           utm_source,
           utm_medium,
@@ -270,7 +386,7 @@ export default function Hero() {
         >
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
           <div className="hero-container relative">
-            <div className="absolute left-[120px] top-[180px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
+            <div className="absolute left-[120px] top-[240px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
               <h1
                 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-medium leading-[100%] tracking-[0em] mb-4"
                 style={{ fontFamily: "Montserrat, sans-serif" }}
@@ -330,8 +446,8 @@ export default function Hero() {
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-6 max-lg:mb-16 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[85px] lg:mt-0 lg:w-[373px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
-          alreadyInSystem || hasValidationError ? "lg:min-h-[520px]" : "lg:min-h-[471px]"
+        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-6 max-lg:mb-16 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[45px] lg:mt-0 lg:w-[520px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_24px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col gap-4 min-h-0 h-fit ${
+          !showOtp && !alreadyInSystem && (hasValidationError ? "lg:min-h-[680px]" : "lg:min-h-[620px]")
         }`}
         style={{
           backgroundColor: "rgba(3, 15, 25, 1)",
@@ -417,92 +533,287 @@ export default function Hero() {
                       {errors.email}
                     </p>
                   )}
-                  {/* Custom dropdown to ensure consistent styling across browsers */}
-                  <div ref={stateRef} className="relative">
-                    <div
-                      tabIndex={0}
-                      role="button"
-                      aria-haspopup="listbox"
-                      aria-expanded={stateOpen}
-                      onClick={() => setStateOpen(!stateOpen)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          setStateOpen(!stateOpen);
-                        } else if (e.key === "Escape") {
-                          setStateOpen(false);
-                        }
-                      }}
-                      className="custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] font-normal text-[14px] flex items-center justify-between cursor-pointer"
-                    >
-                      <span className={form.state ? "text-[14px] text-white" : "text-[14px] text-[rgba(250,250,250,0.6)]"}>
-                        {form.state || "State"}
-                      </span>
-                      <svg className="h-4 w-4 text-[rgba(250,250,250,0.6)]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                        <path d="M6 8L10 12L14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
+                  <div className="flex gap-3">
+                    <div className="min-w-0 flex-1">
+                      <input
+                        name="age"
+                        type="text"
+                        inputMode="numeric"
+                        value={form.age}
+                        onChange={handleAgeChange}
+                        required
+                        placeholder="Age"
+                        className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] callback-input"
+                      />
+                      {errors.age && (
+                        <p className="mt-1 text-[12px] text-red-400">
+                          {errors.age}
+                        </p>
+                      )}
                     </div>
-
-                    {stateOpen && (
-                      <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2">
-                        {[
-                          "Andhra Pradesh",
-                          "Arunachal Pradesh",
-                          "Assam",
-                          "Bihar",
-                          "Chhattisgarh",
-                          "Goa",
-                          "Gujarat",
-                          "Haryana",
-                          "Himachal Pradesh",
-                          "Jharkhand",
-                          "Karnataka",
-                          "Kerala",
-                          "Madhya Pradesh",
-                          "Maharashtra",
-                          "Manipur",
-                          "Meghalaya",
-                          "Mizoram",
-                          "Nagaland",
-                          "Odisha",
-                          "Punjab",
-                          "Rajasthan",
-                          "Sikkim",
-                          "Tamil Nadu",
-                          "Telangana",
-                          "Tripura",
-                          "Uttar Pradesh",
-                          "Uttarakhand",
-                          "West Bengal",
-                          "Andaman and Nicobar Islands",
-                          "Chandigarh",
-                          "Dadra and Nagar Haveli and Daman and Diu",
-                          "Delhi",
-                          "Jammu and Kashmir",
-                          "Ladakh",
-                          "Lakshadweep",
-                          "Puducherry",
-                        ].map((s) => (
-                          <li
-                            key={s}
-                            role="option"
-                            onClick={() => {
-                              setForm({ ...form, state: s });
-                              setErrors((prev) => ({ ...prev, state: "" }));
-                              setStateOpen(false);
-                            }}
-                            className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
+                    <div ref={gradYearRef} className="relative min-w-0 flex-1">
+                      <div className="relative flex items-center">
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          aria-haspopup="listbox"
+                          aria-expanded={gradYearOpen}
+                          onClick={() => setGradYearOpen(!gradYearOpen)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              setGradYearOpen(!gradYearOpen);
+                            } else if (e.key === "Escape") {
+                              setGradYearOpen(false);
+                            }
+                          }}
+                          className="custom-select w-full px-4 pr-10 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] font-normal text-[14px] flex items-center cursor-pointer"
+                        >
+                          <span
+                            className={
+                              form.graduationYear
+                                ? "text-[14px] text-white"
+                                : "text-[14px] text-[rgba(250,250,250,0.6)]"
+                            }
                           >
-                            {s}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    {errors.state && (
-                      <p className="mt-1 text-[12px] text-red-400">
-                        {errors.state}
-                      </p>
-                    )}
+                            {form.graduationYear || "Graduation Year"}
+                          </span>
+                        </div>
+                        <button
+                          type="button"
+                          tabIndex={-1}
+                          aria-label="Toggle graduation year list"
+                          onClick={() => setGradYearOpen((open) => !open)}
+                          className="absolute right-3 flex h-6 w-6 items-center justify-center text-[rgba(250,250,250,0.6)]"
+                        >
+                          <svg
+                            className="h-4 w-4"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden
+                          >
+                            <path
+                              d="M6 8L10 12L14 8"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                      {gradYearOpen && (
+                        <ul
+                          role="listbox"
+                          className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2"
+                        >
+                          {GRADUATION_YEARS.map((year) => (
+                            <li
+                              key={year}
+                              role="option"
+                              onMouseDown={(e) => e.preventDefault()}
+                              onClick={() => {
+                                setForm({ ...form, graduationYear: year });
+                                setErrors((prev) => ({ ...prev, graduationYear: "" }));
+                                setGradYearOpen(false);
+                              }}
+                              className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
+                            >
+                              {year}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {errors.graduationYear && (
+                        <p className="mt-1 text-[12px] text-red-400">
+                          {errors.graduationYear}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <div ref={stateRef} className="relative min-w-0 flex-1">
+                      <div className="relative flex items-center">
+                        <input
+                          type="text"
+                          placeholder="State"
+                          value={stateOpen ? stateQuery : form.state}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            setStateQuery(value);
+                            setStateOpen(true);
+                            setForm((prev) => ({
+                              ...prev,
+                              state: value,
+                              city: prev.state === value ? prev.city : "",
+                            }));
+                            if (errors.state) setErrors((prev) => ({ ...prev, state: "" }));
+                          }}
+                          onFocus={() => {
+                            setStateQuery(form.state);
+                            setStateOpen(true);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "Escape") setStateOpen(false);
+                          }}
+                          autoComplete="off"
+                          aria-autocomplete="list"
+                          aria-expanded={stateOpen}
+                          aria-haspopup="listbox"
+                          className="custom-select w-full px-4 pr-10 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] font-normal text-[14px] text-white placeholder:text-[rgba(250,250,250,0.6)]"
+                        />
+                        <button
+                          type="button"
+                          tabIndex={-1}
+                          aria-label="Toggle state list"
+                          onClick={() => {
+                            setStateQuery(form.state);
+                            setStateOpen((open) => !open);
+                          }}
+                          className="absolute right-3 flex h-6 w-6 items-center justify-center text-[rgba(250,250,250,0.6)]"
+                        >
+                          <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                            <path d="M6 8L10 12L14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </button>
+                      </div>
+
+                      {stateOpen && (
+                        <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2">
+                          {filteredStates.length > 0 ? (
+                            filteredStates.map((s) => (
+                              <li
+                                key={s}
+                                role="option"
+                                onMouseDown={(e) => e.preventDefault()}
+                                onClick={() => {
+                                  setForm({ ...form, state: s, city: "" });
+                                  setStateQuery(s);
+                                  setCityQuery("");
+                                  setErrors((prev) => ({ ...prev, state: "", city: "" }));
+                                  setStateOpen(false);
+                                  setCityOpen(false);
+                                }}
+                                className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
+                              >
+                                {s}
+                              </li>
+                            ))
+                          ) : (
+                            <li className="px-4 py-2 text-[14px] text-[rgba(250,250,250,0.5)]">
+                              No matching states
+                            </li>
+                          )}
+                        </ul>
+                      )}
+                      {errors.state && (
+                        <p className="mt-1 text-[12px] text-red-400">
+                          {errors.state}
+                        </p>
+                      )}
+                    </div>
+                    <div ref={cityRef} className="relative min-w-0 flex-1">
+                      <div
+                        className={`relative flex items-center ${!matchedState ? "opacity-50" : ""}`}
+                        onMouseEnter={() => {
+                          if (!matchedState) setCityHintActive(true);
+                        }}
+                        onMouseLeave={() => {
+                          if (!matchedState) setCityHintActive(false);
+                        }}
+                        onMouseDown={() => {
+                          if (!matchedState) setCityHintActive(true);
+                        }}
+                      >
+                        <input
+                          type="text"
+                          placeholder={
+                            matchedState ? "City" : cityHintActive ? "Select State First" : "City"
+                          }
+                          disabled={!matchedState}
+                          value={cityOpen ? cityQuery : form.city}
+                          onChange={(e) => {
+                            if (!matchedState) return;
+                            const value = e.target.value;
+                            setCityQuery(value);
+                            setCityOpen(true);
+                            setForm({ ...form, city: value });
+                            if (errors.city) setErrors((prev) => ({ ...prev, city: "" }));
+                          }}
+                          onFocus={() => {
+                            if (!matchedState) return;
+                            setCityQuery(form.city);
+                            setCityOpen(true);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "Escape") setCityOpen(false);
+                          }}
+                          autoComplete="off"
+                          aria-autocomplete="list"
+                          aria-expanded={cityOpen}
+                          aria-haspopup="listbox"
+                          className="custom-select w-full px-4 pr-10 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] font-normal text-[14px] text-white placeholder:text-[rgba(250,250,250,0.6)] disabled:cursor-not-allowed"
+                        />
+                        <button
+                          type="button"
+                          tabIndex={-1}
+                          disabled={!matchedState}
+                          aria-label="Toggle city list"
+                          onClick={() => {
+                            if (!matchedState) return;
+                            setCityQuery(form.city);
+                            setCityOpen((open) => !open);
+                          }}
+                          className="absolute right-3 flex h-6 w-6 items-center justify-center text-[rgba(250,250,250,0.6)] disabled:cursor-not-allowed"
+                        >
+                          <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                            <path
+                              d="M6 8L10 12L14 8"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+
+                      {cityOpen && matchedState && (
+                        <ul
+                          role="listbox"
+                          className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2"
+                        >
+                          {filteredCities.length > 0 ? (
+                            filteredCities.map((c) => (
+                              <li
+                                key={c}
+                                role="option"
+                                onMouseDown={(e) => e.preventDefault()}
+                                onClick={() => {
+                                  setForm({ ...form, city: c });
+                                  setCityQuery(c);
+                                  setErrors((prev) => ({ ...prev, city: "" }));
+                                  setCityOpen(false);
+                                }}
+                                className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
+                              >
+                                {c}
+                              </li>
+                            ))
+                          ) : (
+                            <li className="px-4 py-2 text-[14px] text-[rgba(250,250,250,0.5)]">
+                              No matching cities
+                            </li>
+                          )}
+                        </ul>
+                      )}
+                      {errors.city && (
+                        <p className="mt-1 text-[12px] text-red-400">
+                          {errors.city}
+                        </p>
+                      )}
+                    </div>
                   </div>
                   {!showOtp && (
                     <>
@@ -524,6 +835,54 @@ export default function Hero() {
                           You’ll receive an OTP on this number for verification
                         </p>
                       )}
+                      {!alreadyInSystem && (
+                        <div className="flex flex-col gap-3">
+                          <label className="flex items-center gap-1.5 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={consentPaidProgram}
+                              onChange={(e) => {
+                                setConsentPaidProgram(e.target.checked);
+                                if (errors.consentPaidProgram) {
+                                  setErrors((prev) => ({ ...prev, consentPaidProgram: "" }));
+                                }
+                              }}
+                              className="hero-form-checkbox shrink-0"
+                            />
+                            <span className="hero-form-consent-text">
+                              I understand that this is a paid job-ready program and agree to the
+                              applicable program fee.
+                            </span>
+                          </label>
+                          {errors.consentPaidProgram && (
+                            <p className="-mt-2 text-[12px] text-red-400">
+                              {errors.consentPaidProgram}
+                            </p>
+                          )}
+                          <label className="flex items-center gap-1.5 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={consentContact}
+                              onChange={(e) => {
+                                setConsentContact(e.target.checked);
+                                if (errors.consentContact) {
+                                  setErrors((prev) => ({ ...prev, consentContact: "" }));
+                                }
+                              }}
+                              className="hero-form-checkbox shrink-0"
+                            />
+                            <span className="hero-form-consent-text">
+                              I consent to being contacted by the Crack-ED team on the mobile number
+                              provided regarding this program
+                            </span>
+                          </label>
+                          {errors.consentContact && (
+                            <p className="-mt-2 text-[12px] text-red-400">
+                              {errors.consentContact}
+                            </p>
+                          )}
+                        </div>
+                      )}
                     </>
                   )}
 
@@ -532,7 +891,7 @@ export default function Hero() {
                       <p className="hero-form-otp-text text-[12px] leading-[18px] font-normal text-[rgba(250,250,250,0.6)]">
                         Enter OTP sent to your mobile number
                       </p>
-                      <div className="flex gap-2">
+                      <div className="flex w-full gap-3">
                         {[0, 1, 2, 3].map((i) => (
                           <input
                             key={i}
@@ -552,7 +911,7 @@ export default function Hero() {
                                 }
                               }
                             }}
-                            className="w-12 h-12 rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] text-center text-[18px] text-white callback-input"
+                            className="min-w-0 flex-1 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] text-center text-[18px] text-white callback-input"
                             aria-label={`OTP digit ${i + 1}`}
                           />
                         ))}
@@ -564,24 +923,25 @@ export default function Hero() {
                       )}
                     </>
                   )}
+                  <div
+                    className={`flex flex-col items-center ${showOtp ? "pt-1" : "pt-2"} ${alreadyInSystem ? "pb-2" : ""}`}
+                  >
+                    <button
+                      type="button"
+                      onClick={(e) => (showOtp ? verifyOtp(e) : handleSubmit(e))}
+                      className="h-[52px] w-[206px] rounded-[10px] bg-[rgba(10,49,82,1)] hover:bg-[rgba(10,49,82,0.7)] text-white text-[14px] font-medium tracking-[0.02em] shadow-[0_12px_30px_rgba(0,0,0,0.45)] transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+                      disabled={isSendingOtp || isVerifyingOtp || (!showOtp && isAgeOverLimit)}
+                    >
+                      {showOtp
+                        ? isVerifyingOtp
+                          ? "Verifying..."
+                          : "Request a callback"
+                        : isSendingOtp
+                        ? "Sending OTP..."
+                        : "Get OTP"}
+                    </button>
+                  </div>
                 </form>
-              </div>
-
-              <div className={`flex flex-col items-center pt-4 ${alreadyInSystem ? "pb-6" : "pb-1"}`}>
-                <button
-                  type="button"
-                  onClick={(e) => (showOtp ? verifyOtp(e) : handleSubmit(e))}
-                  className="h-[52px] w-[206px] rounded-[10px] bg-[rgba(10,49,82,1)] hover:bg-[rgba(10,49,82,0.7)] text-white text-[14px] font-medium tracking-[0.02em] shadow-[0_12px_30px_rgba(0,0,0,0.45)] transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
-                  disabled={isSendingOtp || isVerifyingOtp}
-                >
-                  {showOtp
-                    ? isVerifyingOtp
-                      ? "Verifying..."
-                      : "Request a callback"
-                    : isSendingOtp
-                    ? "Sending OTP..."
-                    : "Get OTP"}
-                </button>
               </div>
             </aside>
 
@@ -622,4 +982,3 @@ export default function Hero() {
     </section>
   );
 }
-
