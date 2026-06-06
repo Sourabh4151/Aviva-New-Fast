@@ -253,12 +253,13 @@ button.download-brochure-btn:disabled:active {
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-bottom: 1.5rem;
   }
   .hero-form-card {
     position: static !important;
     width: 100% !important;
     max-width: 520px;
-    margin: 0.5rem auto 0;
+    margin: 1.5rem auto 0;
   }
   .hero-container {
     padding-left: 24px;
@@ -283,7 +284,7 @@ button.download-brochure-btn:disabled:active {
 
 @media (max-width: 640px) {
   .hero-form-card {
-    margin-top: 0.5rem;
+    margin-top: 1.5rem;
     padding: 1rem 1.25rem !important;
   }
   .hero-container {

@@ -371,7 +371,7 @@ export default function Hero() {
 
       {/* Hero background: desktop fixed height; mobile uses shorter min-height so content isn’t followed by a tall empty band before the form. */}
       <div
-        className="w-full min-h-[580px] sm:min-h-[600px] lg:h-[690px] lg:min-h-0 bg-cover bg-no-repeat relative max-lg:bg-[20%_center] lg:bg-center"
+        className="w-full min-h-[580px] sm:min-h-[600px] lg:h-[690px] lg:min-h-0 bg-cover bg-no-repeat relative max-lg:bg-[20%_center] max-lg:pb-4 lg:bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
         role="img"
         aria-label="Aviva hero"
@@ -386,7 +386,7 @@ export default function Hero() {
         >
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
           <div className="hero-container relative">
-            <div className="absolute left-[120px] top-[135px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
+            <div className="absolute left-[120px] top-[135px] lg:top-[200px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
               {/* Frame stack: vertical flow, 8px gap (Figma Frame 307) */}
               <div className="flex flex-col gap-2 w-full">
                 <div className="hero-logo-badge hero-finance-logo flex flex-col w-fit h-fit shrink-0">
@@ -432,7 +432,7 @@ export default function Hero() {
                   </span>
                 </li>
               </ul>
-              <div className="register-btn-wrap max-lg:mb-4">
+              <div className="register-btn-wrap max-lg:mb-6 lg:mb-0">
                 <a
                   href={BROCHURE_PDF_URL}
                   download={BROCHURE_PDF_FILE}
@@ -449,7 +449,7 @@ export default function Hero() {
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-4 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[45px] lg:mt-0 lg:w-[520px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_24px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col gap-4 min-h-0 h-fit ${
+        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-6 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[45px] lg:mt-0 lg:w-[520px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_24px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col gap-4 min-h-0 h-fit ${
           !showOtp && !alreadyInSystem && (hasValidationError ? "lg:min-h-[680px]" : "lg:min-h-[620px]")
         }`}
         style={{
