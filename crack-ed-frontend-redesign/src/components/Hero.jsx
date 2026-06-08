@@ -145,10 +145,10 @@ export default function Hero() {
     const value = e.target.value.replace(/\D/g, "").slice(0, 2);
     setForm({ ...form, age: value });
     const ageNum = parseAge(value);
-    if (ageNum !== null && ageNum > 30) {
+    if (ageNum !== null && ageNum > 35) {
       setErrors((prev) => ({
         ...prev,
-        age: "Age must be 30 or below to apply.",
+        age: "Age must be 35 or below to apply.",
       }));
     } else if (errors.age) {
       setErrors((prev) => ({ ...prev, age: "" }));
@@ -170,7 +170,7 @@ export default function Hero() {
     MAX_FILTERED_OPTIONS
   );
   const parsedFormAge = parseAge(form.age);
-  const isAgeOverLimit = parsedFormAge !== null && parsedFormAge > 30;
+  const isAgeOverLimit = parsedFormAge !== null && parsedFormAge > 35;
 
   useEffect(() => {
     function onClickOutside(e) {
@@ -215,8 +215,8 @@ export default function Hero() {
     const ageNum = parseAge(age);
     if (!age || !age.trim()) newErrors.age = "Age is required.";
     else if (ageNum === null) newErrors.age = "Please enter a valid age.";
-    else if (ageNum > 30) newErrors.age = "Age must be 30 or below to apply.";
-    else if (ageNum < 18) newErrors.age = "Age must be between 18 and 30.";
+    else if (ageNum > 35) newErrors.age = "Age must be 35 or below to apply.";
+    else if (ageNum < 18) newErrors.age = "Age must be between 18 and 35.";
     const gradYear = parseGraduationYear(graduationYear);
     if (!graduationYear || !graduationYear.trim()) {
       newErrors.graduationYear = "Graduation year is required.";
