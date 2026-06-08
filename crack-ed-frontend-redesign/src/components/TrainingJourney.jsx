@@ -311,7 +311,7 @@ export default function TrainingJourney() {
                     marginTop: CARD_GAP,
                   }}
                 >
-                 You will be placed as a Relationship Manager: Mortgage Sales upon successful completion of your classroom training.
+                 You will be placed as a Collection Officer upon successful completion of your classroom training.
                 </p>
               </div>
 
