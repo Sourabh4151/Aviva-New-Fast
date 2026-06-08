@@ -1,0 +1,22 @@
+{
+  "name": "crack-ed-frontend-redesign",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node ./node_modules/vite/bin/vite.js --port 5000",
+    "build": "node ./node_modules/vite/bin/vite.js build",
+    "preview": "node ./node_modules/vite/bin/vite.js preview --port 5000"
+  },
+  "dependencies": {
+    "gsap": "^3.14.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.4.8",
+    "vite": "^5.0.0"
+  }
+}
