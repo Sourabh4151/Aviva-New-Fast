@@ -21,6 +21,7 @@ export default function Hero() {
   const [form, setForm] = useState({ name: "", email: "", state: "", city: "", mobile: "" });
   const [status, setStatus] = useState(null);
   const [errors, setErrors] = useState({});
+  const [consent, setConsent] = useState(false);
   const [stateOpen, setStateOpen] = useState(false);
   const [stateSearch, setStateSearch] = useState("");
   const [cityOpen, setCityOpen] = useState(false);
@@ -205,6 +206,7 @@ export default function Hero() {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "Invalid email format.";
     if (!mobile || !mobile.trim()) newErrors.mobile = "Mobile number is required.";
     else if (!/^\d{10}$/.test(mobile)) newErrors.mobile = "Mobile must be 10 digits.";
+    if (!consent) newErrors.consent = "Please provide consent to be contacted.";
 
     if (Object.keys(newErrors).length) {
       setErrors(newErrors);
@@ -242,6 +244,8 @@ export default function Hero() {
           state,
           city,
           mobile,
+          consent,
+          cf_language_of_interview: "",
           utm_source,
           utm_medium,
           utm_campaign,
@@ -710,6 +714,37 @@ export default function Hero() {
                         <p className="hero-form-otp-text text-[12px] leading-[18px] font-normal text-[rgba(250,250,250,0.6)]">
                           You’ll receive an OTP on this number for verification
                         </p>
+                      )}
+                      <label
+                        htmlFor="consent"
+                        className="flex items-center gap-2 cursor-pointer select-none"
+                      >
+                        <span className="relative flex h-[8px] w-[8px] shrink-0 items-center justify-center">
+                          <input
+                            id="consent"
+                            type="checkbox"
+                            checked={consent}
+                            onChange={(e) => {
+                              const next = e.target.checked;
+                              setConsent(next);
+                              if (errors.consent) {
+                                setErrors((prev) => ({ ...prev, consent: "" }));
+                              }
+                            }}
+                            className="peer sr-only"
+                            aria-invalid={Boolean(errors.consent)}
+                          />
+                          <span
+                            aria-hidden
+                            className="pointer-events-none block h-[8px] w-[8px] rounded-[1px] border border-[rgba(250,250,250,1)] bg-transparent transition-colors duration-150 peer-checked:bg-[rgba(250,250,250,1)]"
+                          />
+                        </span>
+                        <span className="hero-form-otp-text min-w-0 flex-1 text-[12px] leading-[18px] font-normal text-[rgba(250,250,250,0.6)]">
+                          I consent to being contacted by the Crack-ED team on the mobile number provided regarding this program
+                        </span>
+                      </label>
+                      {errors.consent && (
+                        <p className="mt-1 text-[12px] text-red-400">{errors.consent}</p>
                       )}
                     </>
                   )}
