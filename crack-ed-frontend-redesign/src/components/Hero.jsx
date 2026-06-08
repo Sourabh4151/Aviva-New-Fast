@@ -350,7 +350,7 @@ export default function Hero() {
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
           <div className="hero-container relative">
             {/* Frame 307: 16px logo → block • Frame 301: 32px bullets+title block ↔ CTA • 16px title ↔ bullets (half former 32) • 8px pill→title • list 12px */}
-            <div className="hero-left-adjust absolute left-[120px] top-0 lg:top-[130px] flex w-[586px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start gap-[16px] text-white left-adjust">
+            <div className="hero-left-adjust absolute left-[120px] top-0 lg:top-[160px] flex w-[586px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start gap-[16px] text-white left-adjust">
               <div className="hero-logo-badge flex h-[58px] w-[174px] max-w-full shrink-0 self-start items-center justify-center rounded-sm bg-white">
                 <img
                   src={heroLogo}
