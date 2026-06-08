@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  min-height: 100%;
+  scrollbar-width: none;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #000;
+}
+
+#root {
+  background-color: #000;
+}
+
+body {
+  font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.callback-input::placeholder {
+  color: rgba(250, 250, 250, 0.5);
+}
+
+/* Native date input is invisible; label row uses flex centering like other fields. */
+.callback-date-input {
+  color-scheme: light;
+}
+
+.hero-form-consent-text {
+  font-family: Montserrat, sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: rgba(250, 250, 250, 0.6);
+}
+
+.hero-form-checkbox {
+  width: 8px;
+  height: 8px;
+  margin: 0;
+  appearance: none;
+  border: 1px solid rgba(250, 250, 250, 1);
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.hero-form-checkbox:checked {
+  background: rgba(250, 250, 250, 1);
+  box-shadow: inset 0 0 0 1px rgba(12, 9, 25, 1);
+}
+
+.hero-form-checkbox:focus-visible {
+  outline: 1px solid rgba(250, 250, 250, 0.55);
+  outline-offset: 2px;
+}
+
+.hero-left-adjust .hero-bullet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Hero tick icon — uses tick.svg which already has the red circle + white check */
+.hero-tick-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  object-fit: contain;
+}
+
+/* Hero desktop bullet list — Figma Frame 24 */
+@media (min-width: 1024px) {
+  .hero-left-adjust .hero-bullet-list {
+    width: 488px;
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .hero-left-adjust .hero-bullet-list > li + li {
+    margin-top: 0;
+  }
+
+  .hero-left-adjust .hero-subtitle {
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 1);
+  }
+}
+
+/* Hero mobile typography */
+@media (max-width: 768px) {
+  .hero-left-adjust .hero-title {
+    margin-bottom: 16px;
+  }
+  .hero-left-adjust .hero-bullet-list {
+    margin-bottom: 32px;
+  }
+  .hero-badge {
+    width: 255px;
+    min-height: 37px;
+    padding: 10px 24px;
+    border-radius: 100px;
+    border: 1px solid rgba(250, 250, 250, 1);
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 1);
+    box-sizing: border-box;
+  }
+  .hero-title {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 1);
+  }
+  .hero-subtitle {
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 14px !important;
+    line-height: 140% !important;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 1);
+  }
+  .hero-form-title {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 1);
+  }
+  .hero-form-subtitle {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 0.6);
+  }
+  .hero-form-otp-text {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 0.6);
+  }
+  .hero-form-card .callback-input,
+  .hero-form-card .callback-input::placeholder {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+  .hero-form-card .callback-input::placeholder {
+    color: rgba(250, 250, 250, 0.6);
+  }
+  .hero-form-card .callback-input {
+    color: rgba(250, 250, 250, 1);
+  }
+  .hero-form-card .custom-select {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: rgba(250, 250, 250, 0.6);
+  }
+  .hero-form-card .custom-select span[class*="text-white"] {
+    color: rgba(250, 250, 250, 1);
+  }
+}
+
+/* Custom dropdown scrollbar */
+.custom-options::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-options::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+}
+
+/* Hero "Download Brochure" button (193x49, radius 10px) */
+.download-brochure-btn {
+  width: 193px;
+  height: 49px;
+  border-radius: 10px;
+  padding: 16px 24px;
+  background: rgba(235, 235, 235, 1);
+  color: rgba(30, 30, 30, 1);
+  font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  gap: 10px;
+  transition: background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+  cursor: pointer;
+}
+.download-brochure-btn:hover {
+  background: rgba(210, 210, 210, 1);
+  box-shadow: none;
+  transform: none;
+}
+.download-brochure-btn:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.download-brochure-btn.download-brochure-btn--unavailable,
+button.download-brochure-btn:disabled {
+  background: rgba(217, 217, 217, 1);
+  color: #8b8b8b;
+  cursor: not-allowed;
+  border: none;
+  box-shadow: none;
+}
+
+.download-brochure-btn.download-brochure-btn--unavailable:hover,
+.download-brochure-btn.download-brochure-btn--unavailable:active,
+button.download-brochure-btn:disabled:hover,
+button.download-brochure-btn:disabled:active {
+  background: rgba(217, 217, 217, 1);
+  color: #8b8b8b;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Mobile hero photo — taller than container so vertical position can crop */
+@media (max-width: 1023px) {
+  .hero-background-image {
+    background-position: 25% 35%;
+    background-size: auto 110%;
+    background-repeat: no-repeat;
+  }
+}
+
+/* Hero layout containers */
+.hero-container {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 85px;
+}
+
+.hero-form-card {
+  right: 120px;
+  top: 85px;
+  width: 520px;
+}
+
+@media (max-width: 1024px) {
+  .hero-container .left-adjust.hero-left-adjust {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    max-width: 100%;
+    margin-top: 0;
+    text-align: left;
+  }
+
+  .hero-container .hero-finance-logo {
+    margin-right: auto;
+  }
+  .register-btn-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+  .hero-form-card {
+    position: static !important;
+    width: 100% !important;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-container {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 150px;
+  }
+  .hero-container .left-adjust:not(.hero-left-adjust) {
+    left: 24px !important;
+    top: 110px !important;
+    width: calc(100% - 48px) !important;
+    position: absolute;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-container .left-adjust:not(.hero-left-adjust) {
+    left: 16px !important;
+    top: 90px !important;
+    width: calc(100% - 32px) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-form-card {
+    padding: 1rem 1.25rem !important;
+  }
+  .hero-container {
+    padding-top: 150px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .hero-container .left-adjust.hero-left-adjust {
+    margin-top: 0;
+  }
+  .hero-container .left-adjust:not(.hero-left-adjust) {
+    left: 12px !important;
+    width: calc(100% - 24px) !important;
+    top: 80px !important;
+  }
+}
+
+/* Remove separation lines between sections on mobile */
+@media (max-width: 1023px) {
+  section {
+    border-top-width: 0 !important;
+    border-bottom-width: 0 !important;
+  }
+}
