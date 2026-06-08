@@ -799,9 +799,8 @@ button.download-brochure-btn:disabled:active {
     max-width: 100%;
   }
 
-  /* Push hero content lower on mobile */
   .hero-container .left-adjust.hero-left-adjust {
-    margin-top: 1rem;
+    margin-top: 0;
   }
 
   /* Center Download Brochure button on mobile */
@@ -946,7 +945,7 @@ button.download-brochure-btn:disabled:active {
   }
 
   .hero-container .left-adjust.hero-left-adjust {
-    margin-top: 3.5rem;
+    margin-top: 0;
   }
 
   .hero-container .left-adjust:not(.hero-left-adjust) {
