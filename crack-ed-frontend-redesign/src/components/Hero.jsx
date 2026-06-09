@@ -853,7 +853,7 @@ export default function Hero() {
                               : "text-[14px] text-[rgba(250,250,250,0.6)]"
                           }
                         >
-                          {form.salesExperience || "How many years of sales experience do you have?"}
+                          {form.salesExperience || "How many years of experience do you have in Collection/Recovery?"}
                         </span>
                       </div>
                       <button
