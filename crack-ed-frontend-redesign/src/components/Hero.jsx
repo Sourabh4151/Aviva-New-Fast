@@ -25,11 +25,12 @@ const GRADUATION_YEARS = Array.from(
 );
 
 const SALES_EXPERIENCE_OPTIONS = [
-  "More than 2 years",
-  "Less than 6 months",
-  "6 - 12 months",
-  "1 - 2 years",
+  "Less than 1 year",
+  "1–3 years",
+  "More than 3 years",
 ];
+
+const SALES_EXPERIENCE_OTP_ELIGIBLE = ["1–3 years", "More than 3 years"];
 
 const BROCHURE_PDF_FILE = "Housing Finance Pragati Program.pdf";
 const BROCHURE_PDF_URL = `/${encodeURI(BROCHURE_PDF_FILE)}`;
@@ -171,6 +172,10 @@ export default function Hero() {
   );
   const parsedFormAge = parseAge(form.age);
   const isAgeOverLimit = parsedFormAge !== null && parsedFormAge > 35;
+  const isExperienceOtpIneligible =
+    form.salesExperience === "Less than 1 year" ||
+    (form.salesExperience &&
+      !SALES_EXPERIENCE_OTP_ELIGIBLE.includes(form.salesExperience));
 
   useEffect(() => {
     function onClickOutside(e) {
@@ -227,6 +232,9 @@ export default function Hero() {
       newErrors.salesExperience = "Sales experience is required.";
     } else if (!SALES_EXPERIENCE_OPTIONS.includes(salesExperience)) {
       newErrors.salesExperience = "Please select a valid sales experience option.";
+    } else if (!SALES_EXPERIENCE_OTP_ELIGIBLE.includes(salesExperience)) {
+      newErrors.salesExperience =
+        "At least 1 year of Collection/Recovery experience is required to apply.";
     }
     if (!mobile || !mobile.trim()) newErrors.mobile = "Mobile number is required.";
     else if (!/^\d{10}$/.test(mobile)) newErrors.mobile = "Mobile must be 10 digits.";
@@ -892,7 +900,15 @@ export default function Hero() {
                             onMouseDown={(e) => e.preventDefault()}
                             onClick={() => {
                               setForm({ ...form, salesExperience: option });
-                              setErrors((prev) => ({ ...prev, salesExperience: "" }));
+                              if (!SALES_EXPERIENCE_OTP_ELIGIBLE.includes(option)) {
+                                setErrors((prev) => ({
+                                  ...prev,
+                                  salesExperience:
+                                    "At least 1 year of Collection/Recovery experience is required to apply.",
+                                }));
+                              } else {
+                                setErrors((prev) => ({ ...prev, salesExperience: "" }));
+                              }
                               setSalesExpOpen(false);
                             }}
                             className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
@@ -1023,7 +1039,11 @@ export default function Hero() {
                       type="button"
                       onClick={(e) => (showOtp ? verifyOtp(e) : handleSubmit(e))}
                       className="h-[52px] w-[206px] rounded-[10px] bg-[rgba(58,45,125,1)] hover:bg-[rgba(58,45,125,0.7)] text-white text-[14px] font-medium tracking-[0.02em] shadow-[0_12px_30px_rgba(0,0,0,0.45)] transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
-                      disabled={isSendingOtp || isVerifyingOtp || (!showOtp && isAgeOverLimit)}
+                      disabled={
+                        isSendingOtp ||
+                        isVerifyingOtp ||
+                        (!showOtp && (isAgeOverLimit || isExperienceOtpIneligible))
+                      }
                     >
                       {showOtp
                         ? isVerifyingOtp
