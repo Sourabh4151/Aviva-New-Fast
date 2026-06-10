@@ -157,10 +157,14 @@ def _str_utm(value):
 
 
 VALID_SALES_EXPERIENCE_OPTIONS = (
-    "Less than 6 months",
-    "6 - 12 months",
-    "1 - 2 years",
-    "More than 2 years",
+    "Less than 2 years",
+    "2–3 years",
+    "More than 3 years",
+)
+
+OTP_ELIGIBLE_SALES_EXPERIENCE = (
+    "2–3 years",
+    "More than 3 years",
 )
 
 
@@ -313,6 +317,10 @@ def send_callback_otp():
     sales_experience_value = _normalize_sales_experience(data.get("sales_experience"))
     if not sales_experience_value:
         return jsonify({"error": "Sales experience is required"}), 400
+    if sales_experience_value not in OTP_ELIGIBLE_SALES_EXPERIENCE:
+        return jsonify({
+            "error": "Minimum 2 years of Credit & Operations experience is required to apply"
+        }), 400
 
     otp = generate_otp()
     name_parts = (data.get('name') or "").split()
