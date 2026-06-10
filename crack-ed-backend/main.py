@@ -120,6 +120,7 @@ def _post_lead_to_nopaperforms(
         "cf_form_name": "Microsite - Hero Finance - RM",
         "cf_program": "Hero Finance - RM",
         "cf_pg_program": "PG Program",
+        "cf_language_of_interview": "",
     }
     try:
         print("NoPaperForms CRM payload:", json.dumps(payload))
