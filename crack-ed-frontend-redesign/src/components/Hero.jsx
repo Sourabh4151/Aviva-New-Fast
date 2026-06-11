@@ -14,6 +14,7 @@ export default function Hero() {
   const [form, setForm] = useState({ name: "", email: "", state: "", city: "", mobile: "" });
   const [status, setStatus] = useState(null);
   const [errors, setErrors] = useState({});
+  const [consent, setConsent] = useState(false);
   const [stateOpen, setStateOpen] = useState(false);
   const [stateSearch, setStateSearch] = useState("");
   const [cityOpen, setCityOpen] = useState(false);
@@ -201,6 +202,7 @@ export default function Hero() {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "Invalid email format.";
     if (!mobile || !mobile.trim()) newErrors.mobile = "Mobile number is required.";
     else if (!/^\d{10}$/.test(mobile)) newErrors.mobile = "Mobile must be 10 digits.";
+    if (!consent) newErrors.consent = "Please provide consent to be contacted.";
 
     if (Object.keys(newErrors).length) {
       setErrors(newErrors);
@@ -238,6 +240,7 @@ export default function Hero() {
           state,
           city,
           mobile,
+          consent,
           utm_source,
           utm_medium,
           utm_campaign,
@@ -330,7 +333,7 @@ export default function Hero() {
     <section id="hero" className="relative max-lg:bg-black">
       {/* Hero background: fixed height on all screens – does NOT grow. Form comes after on mobile. */}
       <div
-        className="w-full min-h-[520px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[10%_center] lg:bg-center"
+        className="w-full min-h-[520px] sm:min-h-[600px] lg:h-[730px] bg-cover bg-no-repeat relative max-lg:bg-[10%_center] lg:bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
         role="img"
         aria-label="Aviva hero"
@@ -381,7 +384,7 @@ export default function Hero() {
                   <span className="hero-subtitle">1-Month Online program</span>
                 </li>
               </ul>
-              <div className="register-btn-wrap mt-5 max-lg:mb-12">
+              <div className="register-btn-wrap mt-5 max-lg:mb-20">
                 <a
                   href={brochurePdfHref}
                   download={brochurePdfDownloadName}
@@ -398,8 +401,8 @@ export default function Hero() {
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-6 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[87px] lg:mt-0 lg:w-[373px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
-          alreadyInSystem || hasValidationError ? "lg:min-h-[580px]" : "lg:min-h-[524px]"
+        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-10 max-lg:mb-6 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[70px] lg:mt-0 lg:w-[373px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
+          alreadyInSystem || hasValidationError ? "lg:min-h-[620px]" : "lg:min-h-[568px]"
         }`}
         style={{
           backgroundColor: "rgba(23,2,5,1)",
@@ -691,6 +694,37 @@ export default function Hero() {
                           You’ll receive an OTP on this number for verification
                         </p>
                       )}
+                      <label
+                        htmlFor="consent"
+                        className="flex items-center gap-2 cursor-pointer select-none"
+                      >
+                        <span className="relative flex h-[8px] w-[8px] shrink-0 items-center justify-center">
+                          <input
+                            id="consent"
+                            type="checkbox"
+                            checked={consent}
+                            onChange={(e) => {
+                              const next = e.target.checked;
+                              setConsent(next);
+                              if (errors.consent) {
+                                setErrors((prev) => ({ ...prev, consent: "" }));
+                              }
+                            }}
+                            className="peer sr-only"
+                            aria-invalid={Boolean(errors.consent)}
+                          />
+                          <span
+                            aria-hidden
+                            className="pointer-events-none block h-[8px] w-[8px] rounded-[1px] border border-[rgba(250,250,250,1)] bg-transparent transition-colors duration-150 peer-checked:bg-[rgba(250,250,250,1)]"
+                          />
+                        </span>
+                        <span className="hero-form-otp-text min-w-0 flex-1 text-[12px] leading-[18px] font-normal text-[rgba(250,250,250,0.6)]">
+                          I consent to being contacted by the Crack-ED team on the mobile number provided regarding this program
+                        </span>
+                      </label>
+                      {errors.consent && (
+                        <p className="mt-1 text-[12px] text-red-400">{errors.consent}</p>
+                      )}
                     </>
                   )}
 
@@ -753,7 +787,7 @@ export default function Hero() {
             </aside>
 
       {/* Mobile highlight bar: below callback form on small screens */}
-      <div className="w-full bg-[rgba(227,24,55,1)] flex justify-center lg:hidden mt-10">
+      <div className="w-full bg-[rgba(227,24,55,1)] flex justify-center lg:hidden mt-16">
         <div className="w-full max-w-[1280px] flex items-center justify-center py-2 px-6">
           <p
             className="text-[16px] leading-[24px] font-medium tracking-[0em] text-[rgba(250,250,250,1)] text-center"
@@ -765,7 +799,7 @@ export default function Hero() {
       </div>
 
       {/* Bottom highlight bar */}
-      <div className="w-full bg-[rgba(227,24,55,1)] justify-center hidden lg:flex">
+      <div className="w-full bg-[rgba(227,24,55,1)] justify-center hidden lg:flex lg:mt-6">
         <div className="w-full max-w-[1280px] flex items-center justify-center py-6 px-4">
           <p
             className="text-[24px] leading-[32px] font-medium tracking-[0em] text-[rgba(250,250,250,1)] text-center"
