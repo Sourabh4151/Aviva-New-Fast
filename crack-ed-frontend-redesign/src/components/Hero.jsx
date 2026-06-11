@@ -13,6 +13,7 @@ export default function Hero() {
   const [form, setForm] = useState({ name: "", email: "", state: "", city: "", mobile: "" });
   const [status, setStatus] = useState(null);
   const [errors, setErrors] = useState({});
+  const [consent, setConsent] = useState(false);
   const [stateOpen, setStateOpen] = useState(false);
   const [stateSearch, setStateSearch] = useState("");
   const stateRef = useRef(null);
@@ -197,6 +198,7 @@ export default function Hero() {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "Invalid email format.";
     if (!mobile || !mobile.trim()) newErrors.mobile = "Mobile number is required.";
     else if (!/^\d{10}$/.test(mobile)) newErrors.mobile = "Mobile must be 10 digits.";
+    if (!consent) newErrors.consent = "Please provide consent to be contacted.";
 
     if (Object.keys(newErrors).length) {
       setErrors(newErrors);
@@ -234,6 +236,7 @@ export default function Hero() {
           state,
           city,
           mobile,
+          consent,
           utm_source,
           utm_medium,
           utm_campaign,
@@ -360,7 +363,7 @@ export default function Hero() {
                     </div>
                   </div>
                   <h1 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[1]">
-                  Direct Sales Executive
+                    Direct Sales Executive
                   </h1>
                 </div>
                 <ul className="hero-bullet-list text-gray-200 space-y-4">
@@ -369,7 +372,7 @@ export default function Hero() {
                       <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                     </span>
                     <span className="hero-subtitle font-normal text-[16px] leading-[1]">
-                    Join as a Front Line Sales Executive - Direct Sales with a CTC of Rs 3.5 LPA + Variable 
+                      Join as a Front Line Sales Executive - Direct Sales with a CTC of Rs 3.5 LPA + Variable
                     </span>
                   </li>
                   <li className="flex items-start gap-2 sm:gap-3">
@@ -397,338 +400,366 @@ export default function Hero() {
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-8 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[80px] lg:mt-0 lg:w-[373px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${
-          alreadyInSystem || hasValidationError ? "lg:min-h-[520px]" : "lg:min-h-[471px]"
-        }`}
+        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-8 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[80px] lg:mt-0 lg:w-[373px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${alreadyInSystem || hasValidationError ? "lg:min-h-[520px]" : "lg:min-h-[471px]"
+          }`}
         style={{
           backgroundColor: "rgba(13, 11, 0, 1)"
         }}
       >
-              <div>
-                <h3 className="hero-form-title text-[18px] font-semibold mb-1">Request a Callback!</h3>
-                <p className="hero-form-subtitle text-sm text-[rgba(250,250,250,0.6)] mb-3">Talk to our counsellors to know more</p>
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    if (showOtp) verifyOtp(e);
-                    else handleSubmit(e);
-                  }}
-                  className="space-y-[13px]"
-                >
-                  {status?.message && !alreadyInSystem && status.type !== "info" && (
-                    <div
-                      className={`relative flex items-start gap-2 rounded-[10px] px-4 py-3 shadow-[0_10px_25px_rgba(0,0,0,0.35)] border ${
-                        status.type === "error"
-                          ? "border-[rgba(248,113,113,0.4)] bg-gradient-to-r from-[rgba(248,113,113,0.18)] to-[rgba(248,113,113,0.06)]"
-                          : status.type === "success"
-                          ? "border-[rgba(34,197,94,0.35)] bg-gradient-to-r from-[rgba(34,197,94,0.18)] to-[rgba(34,197,94,0.06)]"
-                          : "border-[rgba(59,130,246,0.35)] bg-gradient-to-r from-[rgba(59,130,246,0.18)] to-[rgba(59,130,246,0.06)]"
-                      }`}
-                      role={status.type === "error" ? "alert" : "status"}
-                      aria-live="polite"
-                    >
-                      <p className="text-sm font-normal pr-6 flex-1 text-[rgba(250,250,250,0.92)]">
-                        {status.message}
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => setStatus(null)}
-                        className="absolute top-3 right-3 w-5 h-5 flex items-center justify-center rounded text-[rgba(250,250,250,0.75)] hover:bg-[rgba(0,0,0,0.35)] transition-colors"
-                        aria-label="Dismiss"
-                      >
-                        <span className="text-lg leading-none">×</span>
-                      </button>
-                    </div>
-                  )}
-                  {alreadyInSystem && (
-                    <div
-                      className="relative flex items-start gap-2 rounded-[10px] px-4 py-3 shadow-[0_10px_25px_rgba(0,0,0,0.35)] border border-[rgba(34,197,94,0.35)] bg-gradient-to-r from-[rgba(34,197,94,0.18)] to-[rgba(34,197,94,0.06)]"
-                      role="alert"
-                    >
-                      <p className="text-sm font-normal pr-6 flex-1 text-[rgba(250,250,250,0.92)]">
-                        {status.message}
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => setStatus(null)}
-                        className="absolute top-3 right-3 w-5 h-5 flex items-center justify-center rounded text-[rgba(240,185,11,0.9)] hover:bg-[rgba(0,0,0,0.35)] transition-colors"
-                        aria-label="Dismiss"
-                      >
-                        <span className="text-lg leading-none">×</span>
-                      </button>
-                    </div>
-                  )}
-                  <input name="name" value={form.name} onChange={handleChange} required placeholder="Full Name" className="callback-input w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)]" />
-                  {errors.name && (
-                    <p className="mt-1 text-[12px] text-red-400">
-                      {errors.name}
-                    </p>
-                  )}
-                  <input name="email" value={form.email} onChange={handleChange} required placeholder="Email" className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)] callback-input" />
-                  {errors.email && (
-                    <p className="mt-1 text-[12px] text-red-400">
-                      {errors.email}
-                    </p>
-                  )}
-                  <div ref={stateRef} className="relative">
-                    <div
-                      className="custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)] font-normal text-[14px] flex items-center justify-between gap-2 cursor-text"
-                    >
-                      <input
-                        ref={stateInputRef}
-                        type="text"
-                        name="state"
-                        value={stateSearch}
-                        onChange={(e) => {
-                          setStateSearch(e.target.value);
-                          setStateOpen(true);
-                          if (errors.state) {
-                            setErrors((prev) => ({ ...prev, state: "" }));
-                          }
-                        }}
-                        onFocus={() => {
-                          setStateOpen(true);
-                          if (!stateSearch && form.state) {
-                            setStateSearch(form.state);
-                          }
-                        }}
-                        onBlur={() => {
-                          window.setTimeout(handleStateBlur, 150);
-                        }}
-                        onKeyDown={(e) => {
-                          if (e.key === "Escape") {
-                            setStateOpen(false);
-                            stateInputRef.current?.blur();
-                          } else if (e.key === "Enter" && filteredStates.length === 1) {
-                            e.preventDefault();
-                            selectState(filteredStates[0]);
-                          }
-                        }}
-                        placeholder="State"
-                        autoComplete="off"
-                        aria-autocomplete="list"
-                        aria-expanded={stateOpen}
-                        className="w-full min-w-0 bg-transparent border-0 outline-none focus:outline-none focus:ring-0 text-[14px] text-white placeholder:text-[rgba(250,250,250,0.6)]"
-                      />
-                      <button
-                        type="button"
-                        tabIndex={-1}
-                        aria-label="Toggle state list"
-                        onMouseDown={(e) => e.preventDefault()}
-                        onClick={() => {
-                          setStateOpen((open) => !open);
-                          stateInputRef.current?.focus();
-                        }}
-                        className="shrink-0"
-                      >
-                        <svg className="h-4 w-4 text-[rgba(250,250,250,0.6)]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                          <path d="M6 8L10 12L14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </button>
-                    </div>
-
-                    {stateOpen && (
-                      <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2">
-                        {filteredStates.length > 0 ? (
-                          filteredStates.map((s) => (
-                            <li
-                              key={s}
-                              role="option"
-                              aria-selected={form.state === s}
-                              onMouseDown={(e) => {
-                                e.preventDefault();
-                                selectState(s);
-                              }}
-                              className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
-                            >
-                              {s}
-                            </li>
-                          ))
-                        ) : (
-                          <li className="px-4 py-2 text-[14px] text-[rgba(250,250,250,0.5)]">
-                            No states found
-                          </li>
-                        )}
-                      </ul>
-                    )}
-                    {errors.state && (
-                      <p className="mt-1 text-[12px] text-red-400">
-                        {errors.state}
-                      </p>
-                    )}
-                  </div>
-                  <div ref={cityRef} className="relative">
-                    <div
-                      onMouseEnter={() => setCityHover(true)}
-                      onMouseLeave={() => setCityHover(false)}
-                      className={`custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)] font-normal text-[14px] flex items-center justify-between gap-2 ${
-                        form.state ? "cursor-text" : "cursor-not-allowed opacity-60"
-                      }`}
-                    >
-                      {form.state ? (
-                        <input
-                          ref={cityInputRef}
-                          type="text"
-                          name="city"
-                          value={citySearch}
-                          onChange={(e) => {
-                            setCitySearch(e.target.value);
-                            setCityOpen(true);
-                            if (errors.city) {
-                              setErrors((prev) => ({ ...prev, city: "" }));
-                            }
-                          }}
-                          onFocus={() => {
-                            setCityOpen(true);
-                            if (!citySearch && form.city) {
-                              setCitySearch(form.city);
-                            }
-                          }}
-                          onBlur={() => {
-                            window.setTimeout(handleCityBlur, 150);
-                          }}
-                          onKeyDown={(e) => {
-                            if (e.key === "Escape") {
-                              setCityOpen(false);
-                              cityInputRef.current?.blur();
-                            } else if (e.key === "Enter" && filteredCities.length === 1) {
-                              e.preventDefault();
-                              selectCity(filteredCities[0]);
-                            }
-                          }}
-                          placeholder="City"
-                          autoComplete="off"
-                          aria-autocomplete="list"
-                          aria-expanded={cityOpen}
-                          className="w-full min-w-0 bg-transparent border-0 outline-none focus:outline-none focus:ring-0 text-[14px] text-white placeholder:text-[rgba(250,250,250,0.6)]"
-                        />
-                      ) : (
-                        <span className="flex-1 text-[14px] text-[rgba(250,250,250,0.6)]">
-                          {cityHover ? "Select State First" : "City"}
-                        </span>
-                      )}
-                      <button
-                        type="button"
-                        tabIndex={-1}
-                        aria-label="Toggle city list"
-                        disabled={!form.state}
-                        onMouseDown={(e) => e.preventDefault()}
-                        onClick={() => {
-                          if (!form.state) return;
-                          setCityOpen((open) => !open);
-                          cityInputRef.current?.focus();
-                        }}
-                        className="shrink-0 disabled:opacity-60"
-                      >
-                        <svg className="h-4 w-4 text-[rgba(250,250,250,0.6)]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                          <path d="M6 8L10 12L14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </button>
-                    </div>
-
-                    {cityOpen && form.state && (
-                      <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2">
-                        {filteredCities.length > 0 ? (
-                          filteredCities.map((c) => (
-                            <li
-                              key={c}
-                              role="option"
-                              aria-selected={form.city === c}
-                              onMouseDown={(e) => {
-                                e.preventDefault();
-                                selectCity(c);
-                              }}
-                              className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
-                            >
-                              {c}
-                            </li>
-                          ))
-                        ) : (
-                          <li className="px-4 py-2 text-[14px] text-[rgba(250,250,250,0.5)]">
-                            No cities found
-                          </li>
-                        )}
-                      </ul>
-                    )}
-                    {errors.city && (
-                      <p className="mt-1 text-[12px] text-red-400">
-                        {errors.city}
-                      </p>
-                    )}
-                  </div>
-                  {!showOtp && (
-                    <>
-                      <input name="mobile" value={form.mobile} onChange={handleChange} required placeholder="Mobile Number" className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)] callback-input" />
-                      {errors.mobile && (
-                        <p className="mt-1 text-[12px] text-red-400">
-                          {errors.mobile}
-                        </p>
-                      )}
-                      {!alreadyInSystem && (
-                        <p className="hero-form-otp-text text-[12px] leading-[18px] font-normal text-[rgba(250,250,250,0.6)]">
-                          You’ll receive an OTP on this number for verification
-                        </p>
-                      )}
-                    </>
-                  )}
-
-                  {showOtp && (
-                    <>
-                      <p className="hero-form-otp-text text-[12px] leading-[18px] font-normal text-[rgba(250,250,250,0.6)]">
-                        Enter OTP sent to your mobile number
-                      </p>
-                      <div className="flex gap-2">
-                        {[0, 1, 2, 3].map((i) => (
-                          <input
-                            key={i}
-                            type="text"
-                            inputMode="numeric"
-                            maxLength={1}
-                            value={otpDigits[i]}
-                            ref={(el) => {
-                              otpRefs.current[i] = el;
-                            }}
-                            onChange={(e) => setOtpDigit(i, e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Backspace" && !otpDigits[i] && i > 0) {
-                                const prevInput = otpRefs.current[i - 1];
-                                if (prevInput) {
-                                  prevInput.focus();
-                                }
-                              }
-                            }}
-                            className="w-12 h-12 rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)] text-center text-[18px] text-white callback-input"
-                            aria-label={`OTP digit ${i + 1}`}
-                          />
-                        ))}
-                      </div>
-                      {otpError && (
-                        <p className="mt-2 text-[12px] text-red-400">
-                          {otpError}
-                        </p>
-                      )}
-                    </>
-                  )}
-                </form>
-              </div>
-
-              <div className={`flex flex-col items-center pt-4 ${alreadyInSystem ? "pb-6" : "pb-1"}`}>
+        <div>
+          <h3 className="hero-form-title text-[18px] font-semibold mb-1">Request a Callback!</h3>
+          <p className="hero-form-subtitle text-sm text-[rgba(250,250,250,0.6)] mb-3">Talk to our counsellors to know more</p>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (showOtp) verifyOtp(e);
+              else handleSubmit(e);
+            }}
+            className="space-y-[13px]"
+          >
+            {status?.message && !alreadyInSystem && status.type !== "info" && (
+              <div
+                className={`relative flex items-start gap-2 rounded-[10px] px-4 py-3 shadow-[0_10px_25px_rgba(0,0,0,0.35)] border ${status.type === "error"
+                    ? "border-[rgba(248,113,113,0.4)] bg-gradient-to-r from-[rgba(248,113,113,0.18)] to-[rgba(248,113,113,0.06)]"
+                    : status.type === "success"
+                      ? "border-[rgba(34,197,94,0.35)] bg-gradient-to-r from-[rgba(34,197,94,0.18)] to-[rgba(34,197,94,0.06)]"
+                      : "border-[rgba(59,130,246,0.35)] bg-gradient-to-r from-[rgba(59,130,246,0.18)] to-[rgba(59,130,246,0.06)]"
+                  }`}
+                role={status.type === "error" ? "alert" : "status"}
+                aria-live="polite"
+              >
+                <p className="text-sm font-normal pr-6 flex-1 text-[rgba(250,250,250,0.92)]">
+                  {status.message}
+                </p>
                 <button
                   type="button"
-                  onClick={(e) => (showOtp ? verifyOtp(e) : handleSubmit(e))}
-                  className="otp-btn"
-                  disabled={isSendingOtp || isVerifyingOtp}
+                  onClick={() => setStatus(null)}
+                  className="absolute top-3 right-3 w-5 h-5 flex items-center justify-center rounded text-[rgba(250,250,250,0.75)] hover:bg-[rgba(0,0,0,0.35)] transition-colors"
+                  aria-label="Dismiss"
                 >
-                  {showOtp
-                    ? isVerifyingOtp
-                      ? "Verifying..."
-                      : "Request a callback"
-                    : isSendingOtp
-                    ? "Sending OTP..."
-                    : "Get OTP"}
+                  <span className="text-lg leading-none">×</span>
                 </button>
               </div>
-            </aside>
+            )}
+            {alreadyInSystem && (
+              <div
+                className="relative flex items-start gap-2 rounded-[10px] px-4 py-3 shadow-[0_10px_25px_rgba(0,0,0,0.35)] border border-[rgba(34,197,94,0.35)] bg-gradient-to-r from-[rgba(34,197,94,0.18)] to-[rgba(34,197,94,0.06)]"
+                role="alert"
+              >
+                <p className="text-sm font-normal pr-6 flex-1 text-[rgba(250,250,250,0.92)]">
+                  {status.message}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setStatus(null)}
+                  className="absolute top-3 right-3 w-5 h-5 flex items-center justify-center rounded text-[rgba(240,185,11,0.9)] hover:bg-[rgba(0,0,0,0.35)] transition-colors"
+                  aria-label="Dismiss"
+                >
+                  <span className="text-lg leading-none">×</span>
+                </button>
+              </div>
+            )}
+            <input name="name" value={form.name} onChange={handleChange} required placeholder="Full Name" className="callback-input w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)]" />
+            {errors.name && (
+              <p className="mt-1 text-[12px] text-red-400">
+                {errors.name}
+              </p>
+            )}
+            <input name="email" value={form.email} onChange={handleChange} required placeholder="Email" className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)] callback-input" />
+            {errors.email && (
+              <p className="mt-1 text-[12px] text-red-400">
+                {errors.email}
+              </p>
+            )}
+            <div ref={stateRef} className="relative">
+              <div
+                className="custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)] font-normal text-[14px] flex items-center justify-between gap-2 cursor-text"
+              >
+                <input
+                  ref={stateInputRef}
+                  type="text"
+                  name="state"
+                  value={stateSearch}
+                  onChange={(e) => {
+                    setStateSearch(e.target.value);
+                    setStateOpen(true);
+                    if (errors.state) {
+                      setErrors((prev) => ({ ...prev, state: "" }));
+                    }
+                  }}
+                  onFocus={() => {
+                    setStateOpen(true);
+                    if (!stateSearch && form.state) {
+                      setStateSearch(form.state);
+                    }
+                  }}
+                  onBlur={() => {
+                    window.setTimeout(handleStateBlur, 150);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") {
+                      setStateOpen(false);
+                      stateInputRef.current?.blur();
+                    } else if (e.key === "Enter" && filteredStates.length === 1) {
+                      e.preventDefault();
+                      selectState(filteredStates[0]);
+                    }
+                  }}
+                  placeholder="State"
+                  autoComplete="off"
+                  aria-autocomplete="list"
+                  aria-expanded={stateOpen}
+                  className="w-full min-w-0 bg-transparent border-0 outline-none focus:outline-none focus:ring-0 text-[14px] text-white placeholder:text-[rgba(250,250,250,0.6)]"
+                />
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  aria-label="Toggle state list"
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => {
+                    setStateOpen((open) => !open);
+                    stateInputRef.current?.focus();
+                  }}
+                  className="shrink-0"
+                >
+                  <svg className="h-4 w-4 text-[rgba(250,250,250,0.6)]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <path d="M6 8L10 12L14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </div>
+
+              {stateOpen && (
+                <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2">
+                  {filteredStates.length > 0 ? (
+                    filteredStates.map((s) => (
+                      <li
+                        key={s}
+                        role="option"
+                        aria-selected={form.state === s}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          selectState(s);
+                        }}
+                        className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
+                      >
+                        {s}
+                      </li>
+                    ))
+                  ) : (
+                    <li className="px-4 py-2 text-[14px] text-[rgba(250,250,250,0.5)]">
+                      No states found
+                    </li>
+                  )}
+                </ul>
+              )}
+              {errors.state && (
+                <p className="mt-1 text-[12px] text-red-400">
+                  {errors.state}
+                </p>
+              )}
+            </div>
+            <div ref={cityRef} className="relative">
+              <div
+                onMouseEnter={() => setCityHover(true)}
+                onMouseLeave={() => setCityHover(false)}
+                className={`custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)] font-normal text-[14px] flex items-center justify-between gap-2 ${form.state ? "cursor-text" : "cursor-not-allowed opacity-60"
+                  }`}
+              >
+                {form.state ? (
+                  <input
+                    ref={cityInputRef}
+                    type="text"
+                    name="city"
+                    value={citySearch}
+                    onChange={(e) => {
+                      setCitySearch(e.target.value);
+                      setCityOpen(true);
+                      if (errors.city) {
+                        setErrors((prev) => ({ ...prev, city: "" }));
+                      }
+                    }}
+                    onFocus={() => {
+                      setCityOpen(true);
+                      if (!citySearch && form.city) {
+                        setCitySearch(form.city);
+                      }
+                    }}
+                    onBlur={() => {
+                      window.setTimeout(handleCityBlur, 150);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Escape") {
+                        setCityOpen(false);
+                        cityInputRef.current?.blur();
+                      } else if (e.key === "Enter" && filteredCities.length === 1) {
+                        e.preventDefault();
+                        selectCity(filteredCities[0]);
+                      }
+                    }}
+                    placeholder="City"
+                    autoComplete="off"
+                    aria-autocomplete="list"
+                    aria-expanded={cityOpen}
+                    className="w-full min-w-0 bg-transparent border-0 outline-none focus:outline-none focus:ring-0 text-[14px] text-white placeholder:text-[rgba(250,250,250,0.6)]"
+                  />
+                ) : (
+                  <span className="flex-1 text-[14px] text-[rgba(250,250,250,0.6)]">
+                    {cityHover ? "Select State First" : "City"}
+                  </span>
+                )}
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  aria-label="Toggle city list"
+                  disabled={!form.state}
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => {
+                    if (!form.state) return;
+                    setCityOpen((open) => !open);
+                    cityInputRef.current?.focus();
+                  }}
+                  className="shrink-0 disabled:opacity-60"
+                >
+                  <svg className="h-4 w-4 text-[rgba(250,250,250,0.6)]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <path d="M6 8L10 12L14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </div>
+
+              {cityOpen && form.state && (
+                <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2">
+                  {filteredCities.length > 0 ? (
+                    filteredCities.map((c) => (
+                      <li
+                        key={c}
+                        role="option"
+                        aria-selected={form.city === c}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          selectCity(c);
+                        }}
+                        className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
+                      >
+                        {c}
+                      </li>
+                    ))
+                  ) : (
+                    <li className="px-4 py-2 text-[14px] text-[rgba(250,250,250,0.5)]">
+                      No cities found
+                    </li>
+                  )}
+                </ul>
+              )}
+              {errors.city && (
+                <p className="mt-1 text-[12px] text-red-400">
+                  {errors.city}
+                </p>
+              )}
+            </div>
+            {!showOtp && (
+              <>
+                <input name="mobile" value={form.mobile} onChange={handleChange} required placeholder="Mobile Number" className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)] callback-input" />
+                {errors.mobile && (
+                  <p className="mt-1 text-[12px] text-red-400">
+                    {errors.mobile}
+                  </p>
+                )}
+                {!alreadyInSystem && (
+                  <p className="hero-form-otp-text text-[12px] leading-[18px] font-normal text-[rgba(250,250,250,0.6)]">
+                    You’ll receive an OTP on this number for verification
+                  </p>
+                )}
+                <label
+                  htmlFor="consent"
+                  className="flex items-center gap-2 cursor-pointer select-none"
+                >
+                  <span className="relative flex h-[8px] w-[8px] shrink-0 items-center justify-center">
+                    <input
+                      id="consent"
+                      type="checkbox"
+                      checked={consent}
+                      onChange={(e) => {
+                        const next = e.target.checked;
+                        setConsent(next);
+                        if (errors.consent) {
+                          setErrors((prev) => ({ ...prev, consent: "" }));
+                        }
+                      }}
+                      className="peer sr-only"
+                      aria-invalid={Boolean(errors.consent)}
+                    />
+                    <span
+                      aria-hidden
+                      className="pointer-events-none block h-[8px] w-[8px] rounded-[1px] border border-[rgba(250,250,250,1)] bg-transparent transition-colors duration-150 peer-checked:bg-[rgba(250,250,250,1)]"
+                    />
+                  </span>
+                  <span className="hero-form-otp-text min-w-0 flex-1 text-[12px] leading-[18px] font-normal text-[rgba(250,250,250,0.6)]">
+                    I consent to being contacted by the Crack-ED team on the mobile number provided regarding this program
+                  </span>
+                </label>
+                {errors.consent && (
+                  <p className="mt-1 text-[12px] text-red-400">{errors.consent}</p>
+                )}
+              </>
+            )}
+
+            {showOtp && (
+              <>
+                <p className="hero-form-otp-text text-[12px] leading-[18px] font-normal text-[rgba(250,250,250,0.6)]">
+                  Enter OTP sent to your mobile number
+                </p>
+                <div className="flex gap-2">
+                  {[0, 1, 2, 3].map((i) => (
+                    <input
+                      key={i}
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={1}
+                      value={otpDigits[i]}
+                      ref={(el) => {
+                        otpRefs.current[i] = el;
+                      }}
+                      onChange={(e) => setOtpDigit(i, e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Backspace" && !otpDigits[i] && i > 0) {
+                          const prevInput = otpRefs.current[i - 1];
+                          if (prevInput) {
+                            prevInput.focus();
+                          }
+                        }
+                      }}
+                      className="w-12 h-12 rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)] text-center text-[18px] text-white callback-input"
+                      aria-label={`OTP digit ${i + 1}`}
+                    />
+                  ))}
+                </div>
+                {otpError && (
+                  <p className="mt-2 text-[12px] text-red-400">
+                    {otpError}
+                  </p>
+                )}
+              </>
+            )}
+          </form>
+        </div>
+
+        <div className={`flex flex-col items-center pt-4 ${alreadyInSystem ? "pb-6" : "pb-1"}`}>
+          <button
+            type="button"
+            onClick={(e) => (showOtp ? verifyOtp(e) : handleSubmit(e))}
+            className="otp-btn"
+            disabled={isSendingOtp || isVerifyingOtp}
+          >
+            {showOtp
+              ? isVerifyingOtp
+                ? "Verifying..."
+                : "Request a callback"
+              : isSendingOtp
+                ? "Sending OTP..."
+                : "Get OTP"}
+          </button>
+        </div>
+      </aside>
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
           <div className="relative w-[500px] max-w-[90vw] bg-[rgba(13,11,0,1)] rounded-[24px] shadow-[0_18px_45px_rgba(0,0,0,0.7)] overflow-hidden border border-[rgba(250,250,250,0.12)]">
