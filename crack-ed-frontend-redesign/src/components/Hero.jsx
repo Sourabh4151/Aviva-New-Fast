@@ -245,7 +245,6 @@ export default function Hero() {
           city,
           mobile,
           consent,
-          cf_language_of_interview: "",
           utm_source,
           utm_medium,
           utm_campaign,
