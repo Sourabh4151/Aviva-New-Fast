@@ -221,7 +221,7 @@ def _post_lead_to_nopaperforms(
         "cf_form_name": "Landing Page - Hero Finance - COM",
         "cf_program": "Hero Finance - COM",
         "cf_pg_program": "PG Program",
-        "cf_language_of_interview": "",
+        "cf_batch_name": "Select Batch Name",
         "cf_age": str(age).strip() if age is not None else "",
         "cf_graduation_year": _normalize_graduation_year(graduation_year),
         "cf_sales_experience": _normalize_sales_experience(sales_experience),
