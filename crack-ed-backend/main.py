@@ -201,7 +201,7 @@ def _post_lead_to_nopaperforms(
         "cf_form_name": "Landing Page - Mahindra - BE",
         "cf_program": "Mahindra - BE",
         "cf_pg_program": "PG Program",
-        "cf_language_of_interview": "",
+        "cf_batch_name": "Select Batch Name",
         "cf_age": str(age).strip() if age is not None else "",
         "cf_graduation_year": _normalize_graduation_year(graduation_year),
     }
