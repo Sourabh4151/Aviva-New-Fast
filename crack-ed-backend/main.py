@@ -117,8 +117,8 @@ def _post_lead_to_nopaperforms(
         "source": _str_utm(utm_source),
         "medium": _str_utm(utm_medium),
         "campaign": _str_utm(utm_campaign),
-        "cf_form_name": "Microsite - Hero Finance - RM",
-        "cf_program": "Hero Finance - RM",
+        "cf_form_name": "Microsite - Axis-MFI",
+        "cf_program": "Axis-MFI",
         "cf_pg_program": "PG Program",
         "cf_batch_name": "Select Batch Name",
     }
