@@ -120,6 +120,7 @@ def _post_lead_to_nopaperforms(
         "cf_form_name": "Microsite - Relationship Manager",
         "cf_program": "Relationship Manager",
         "cf_pg_program": "PG Program",
+        "cf_batch_name": "Select Batch Name",
     }
     try:
         print("NoPaperForms CRM payload:", json.dumps(payload))
