@@ -120,6 +120,7 @@ def _post_lead_to_nopaperforms(
         "cf_form_name": "Microsite - Aviva - AS",
         "cf_program": "Aviva - AS",
         "cf_pg_program": "PG Program",
+        "cf_batch_name": "Select Batch Name",
     }
     try:
         print("NoPaperForms CRM payload:", json.dumps(payload))
