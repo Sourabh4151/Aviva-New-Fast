@@ -9,7 +9,17 @@ import crackedLogo from "../assets/crack-ed.svg";
 
 import stateCities from "../data/indian_state_cities.json";
 
-const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
+const INDIAN_STATES = [
+  "Andhra Pradesh",
+  "Delhi",
+  "Haryana",
+  "Karnataka",
+  "Madhya Pradesh",
+  "Punjab",
+  "Rajasthan",
+  "Telangana",
+  "Uttar Pradesh",
+].filter((state) => Array.isArray(stateCities[state]));
 const MAX_FILTERED_OPTIONS = 100;
 
 function filterByQuery(options, query) {
