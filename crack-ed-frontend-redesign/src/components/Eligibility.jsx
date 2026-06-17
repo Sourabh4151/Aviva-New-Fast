@@ -1,10 +1,8 @@
 import React from "react";
 
 const REQUIREMENTS = [
-  "Graduates with 1-4 years of experience in Used Car Finance, Auto Loans, Retail Lending, or related BFSI sales.",
-  "Strong understanding of vehicle financing and local used car market.",
-  "Experience in field sales, dealer/channel partner management, and customer sourcing.",
-  "Good communication skills with ability to build relationships with partners and customers.",
+  "Candidates must possess a graduation degree from a recognized university",
+  "Open exclusively to male applicants who are up to 30 years of age",
 ];
 
 export default function Eligibility() {
