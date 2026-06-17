@@ -12,7 +12,7 @@ const STEPS = [
     number: "02",
     title: "Counselling & Online Interview",
     description:
-      "Upon selection, receive your Letter of Intent (LOI) before you start training.",
+      "Attend counselling and complete an online interview with Crack-ED to assess eligibility and program fit.",
   },
   {
     number: "03",
@@ -30,7 +30,7 @@ const STEPS = [
     number: "05",
     title: "Training & Joining",
     description:
-      "Join full-time upon clearing the test. If unsuccessful after two attempts, receive a refund or an alternate placement.",
+      "Complete the classroom training and step into your full-time role.",
   },
 ];
 
