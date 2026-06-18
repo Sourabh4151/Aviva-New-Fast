@@ -355,20 +355,20 @@ export default function Hero() {
               <h1 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[1] mb-4">
                 Relationship Manager
               </h1>
-              <ul className="hero-bullet-list text-gray-200 space-y-2 sm:space-y-4 mb-4 md:mb-8">
-                <li className="flex items-start gap-2 sm:gap-3">
+              <ul className="hero-bullet-list space-y-2 sm:space-y-4 mb-4 md:mb-8">
+                <li className="flex items-center gap-2 sm:gap-3">
                   <span className="hero-tick">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="hero-subtitle text-[14px] font-normal">
+                  <span className="hero-subtitle">
                     Join as a Relationship Manager with a CTC of Rs 5.5 LPA + incentives
                   </span>
                 </li>
-                <li className="flex items-start gap-2 sm:gap-3">
+                <li className="flex items-center gap-2 sm:gap-3">
                   <span className="hero-tick">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="text-[14px] font-normal">6-month program</span>
+                  <span className="hero-subtitle">6-month program</span>
                 </li>
               </ul>
               <div className="register-btn-wrap mt-4">
