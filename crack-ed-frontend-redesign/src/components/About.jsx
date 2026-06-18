@@ -1,7 +1,6 @@
 import React from "react";
 import indusland from "../assets/indusland.svg";
 import yesbank from "../assets/yesbank.svg";
-import kotak from "../assets/kotak.svg";
 import au from "../assets/au.svg";
 import axis from "../assets/axis.svg";
 import bandhan from "../assets/bandhan.svg";
@@ -10,7 +9,6 @@ import hdfcLogo from "../assets/hdfc_logo.png";
 const placementPartners = [
   { src: indusland, alt: "IndusInd Bank", marqueeMax: "max-w-[160px]" },
   { src: yesbank, alt: "Yes Bank", marqueeMax: "max-w-[130px]" },
-  { src: kotak, alt: "Kotak Bank", marqueeMax: "max-w-[140px]" },
   { src: au, alt: "AU Small Finance Bank", marqueeMax: "max-w-[120px]" },
   { src: axis, alt: "Axis Bank", marqueeMax: "max-w-[130px]" },
   { src: bandhan, alt: "Bandhan Bank", marqueeMax: "max-w-[130px]" },
@@ -56,7 +54,7 @@ export default function About() {
           </div>
 
           {/* Desktop: grid keeps logos inside padded width (flex+nowrap overflow was clipping against body overflow-x) */}
-          <div className="mt-4 hidden md:grid w-full min-w-0 max-w-full gap-x-4 gap-y-6 items-center justify-items-center lg:gap-x-[50px] lg:gap-y-0 [grid-template-columns:repeat(4,minmax(0,1fr))] lg:[grid-template-columns:repeat(7,minmax(0,1fr))]">
+          <div className="mt-4 hidden md:grid w-full min-w-0 max-w-full gap-x-4 gap-y-6 items-center justify-items-center lg:gap-x-[50px] lg:gap-y-0 [grid-template-columns:repeat(4,minmax(0,1fr))] lg:[grid-template-columns:repeat(6,minmax(0,1fr))]">
             {placementPartners.map(({ src, alt }) => (
               <img
                 key={alt}
