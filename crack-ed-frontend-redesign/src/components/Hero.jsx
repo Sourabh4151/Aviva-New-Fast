@@ -7,10 +7,7 @@ import stateCities from "../data/indian_state_cities.json";
 import heroImage from "../assets/desk.png";
 import tickSvg from "../assets/tick.svg";
 import heroLogo from "../assets/herologo.svg";
-import {
-  BROCHURE_PDF_DOWNLOAD_NAME,
-  BROCHURE_PDF_HREF,
-} from "../brochure";
+import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
 
@@ -52,6 +49,7 @@ export default function Hero() {
   const [otpError, setOtpError] = useState("");
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
 
   const otpValue = otpDigits.join("");
 
@@ -406,14 +404,13 @@ export default function Hero() {
                   </ul>
                 </div>
                 <div className="register-btn-wrap max-lg:mb-10 lg:mb-0">
-                  <a
-                    href={BROCHURE_PDF_HREF}
-                    download={BROCHURE_PDF_DOWNLOAD_NAME}
-                    className="download-brochure-btn"
-                    aria-label="Download brochure PDF"
+                  <button
+                    type="button"
+                    className="download-brochure-btn border-0"
+                    onClick={() => setShowBrochureModal(true)}
                   >
                     Download Brochure
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -443,10 +440,10 @@ export default function Hero() {
             {status?.message && !alreadyInSystem && status.type !== "info" && (
               <div
                 className={`relative flex items-start gap-2 rounded-[10px] px-4 py-3 shadow-[0_10px_25px_rgba(0,0,0,0.35)] border ${status.type === "error"
-                    ? "border-[rgba(248,113,113,0.9)] bg-[rgba(127,29,29,0.98)]"
-                    : status.type === "success"
-                      ? "border-[rgba(34,197,94,0.35)] bg-gradient-to-r from-[rgba(34,197,94,0.18)] to-[rgba(34,197,94,0.06)]"
-                      : "border-[rgba(59,130,246,0.35)] bg-gradient-to-r from-[rgba(59,130,246,0.18)] to-[rgba(59,130,246,0.06)]"
+                  ? "border-[rgba(248,113,113,0.9)] bg-[rgba(127,29,29,0.98)]"
+                  : status.type === "success"
+                    ? "border-[rgba(34,197,94,0.35)] bg-gradient-to-r from-[rgba(34,197,94,0.18)] to-[rgba(34,197,94,0.06)]"
+                    : "border-[rgba(59,130,246,0.35)] bg-gradient-to-r from-[rgba(59,130,246,0.18)] to-[rgba(59,130,246,0.06)]"
                   }`}
                 role={status.type === "error" ? "alert" : "status"}
                 aria-live="polite"
@@ -802,6 +799,10 @@ export default function Hero() {
           </button>
         </div>
       </aside>
+      <DownloadBrochureModal
+        isOpen={showBrochureModal}
+        onClose={() => setShowBrochureModal(false)}
+      />
 
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
