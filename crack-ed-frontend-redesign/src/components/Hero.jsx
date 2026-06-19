@@ -330,16 +330,16 @@ export default function Hero() {
     status.message.includes("already in our system");
 
   return (
-    <section id="hero" className="relative max-lg:flex max-lg:flex-col max-lg:gap-10 max-lg:bg-black">
-      {/* Hero background: fixed height on all screens – does NOT grow. Form comes after on mobile. */}
+    <section id="hero" className="relative max-lg:flex max-lg:flex-col max-lg:gap-16 max-lg:bg-black">
+      {/* Hero background: fixed height on desktop; on mobile grows with content so CTA does not overlap the form. */}
       <div
-        className="w-full min-h-[520px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[20%_center] lg:bg-center"
+        className="w-full max-lg:min-h-0 max-lg:h-auto min-h-[520px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[30%_center] lg:bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
         role="img"
         aria-label="Aviva hero"
       >
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 max-lg:relative max-lg:inset-auto"
           style={{
             zIndex: 10,
             background:
@@ -347,16 +347,16 @@ export default function Hero() {
           }}
         >
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
-          <div className="hero-container relative">
+          <div className="hero-container relative max-lg:pb-6">
             {/* Frame 307: 8px logo → block • Frame 301: 32px bullets+title block ↔ CTA • 16px title ↔ bullets (half former 32) • 8px pill→title • list 12px */}
-            <div className="hero-left-adjust absolute left-[120px] top-[130px] flex w-[586px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start gap-[8px] text-white left-adjust">
-              <div className="hero-logo-badge hidden h-[58px] w-[174px] max-w-full shrink-0 items-center justify-center rounded-sm bg-white">
+            <div className="hero-left-adjust absolute left-[120px] top-[130px] flex w-[586px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start gap-[12px] text-white left-adjust">
+              <div className="hero-logo-badge flex h-[43px] w-[138px] max-w-full shrink-0 items-center justify-center rounded-sm bg-white">
                 <img
                   src={heroLogo}
                   alt="Hero Housing Finance"
-                  width={174}
-                  height={58}
-                  className="block h-[58px] w-[174px] max-h-full max-w-full object-contain"
+                  width={138}
+                  height={43}
+                  className="block h-[43px] w-[138px] max-h-full max-w-full object-contain"
                 />
               </div>
               <div className="hero-frame-301 flex w-full min-w-0 flex-col items-start gap-[32px]">
@@ -412,7 +412,7 @@ export default function Hero() {
                     </li>
                   </ul>
                 </div>
-                <div className="register-btn-wrap max-lg:mb-12 lg:mb-0">
+                <div className="register-btn-wrap max-lg:mb-6 lg:mb-0">
                   <button
                     type="button"
                     disabled
@@ -430,7 +430,7 @@ export default function Hero() {
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-6 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[70px] lg:mt-0 lg:w-[415px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${alreadyInSystem || hasValidationError ? "lg:min-h-[580px]" : "lg:min-h-[524px]"
+        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-0 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[70px] lg:mt-0 lg:w-[415px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${alreadyInSystem || hasValidationError ? "lg:min-h-[580px]" : "lg:min-h-[524px]"
           }`}
         style={{
           backgroundColor: "rgba(0, 15, 22, 1)",

@@ -18,7 +18,7 @@ const STEPS = [
     number: "03",
     title: "Bank Interview",
     description:
-      "Appear for the Axis Bank interview as part of the final selection process.",
+      "Appear for the Bank interview as part of the final selection process.",
   },
   {
     number: "04",
