@@ -7,6 +7,7 @@ import stateCities from "../data/indian_state_cities.json";
 import heroImage from "../assets/desk.png";
 import tickSvg from "../assets/tick.svg";
 import heroLogo from "../assets/logo_rupyy.svg";
+import { BROCHURE_PDF_DOWNLOAD_NAME, BROCHURE_PDF_HREF } from "../brochure";
 
 const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
 
@@ -402,14 +403,14 @@ export default function Hero() {
                   </ul>
                 </div>
                 <div className="register-btn-wrap max-lg:mb-0 lg:mb-0">
-                  <button
-                    type="button"
-                    disabled
+                  <a
+                    href={BROCHURE_PDF_HREF}
+                    download={BROCHURE_PDF_DOWNLOAD_NAME}
                     className="download-brochure-btn"
-                    aria-label="Download brochure PDF unavailable"
+                    aria-label="Download brochure PDF"
                   >
                     Download Brochure
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

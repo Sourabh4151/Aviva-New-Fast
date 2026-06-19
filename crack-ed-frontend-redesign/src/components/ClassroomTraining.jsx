@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import uthaanImg from "../assets/uthaan.png";
 import aarohanImg from "../assets/aarohan.png";
 import shikharImg from "../assets/shikhar.png";
+import { BROCHURE_PDF_DOWNLOAD_NAME, BROCHURE_PDF_HREF } from "../brochure";
 
 const MODULES = [
   {
@@ -276,14 +277,14 @@ export default function ClassroomTraining() {
 
                 {index === MODULES.length - 1 && (
                   <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
-                    <button
-                      type="button"
-                      disabled
+                    <a
+                      href={BROCHURE_PDF_HREF}
+                      download={BROCHURE_PDF_DOWNLOAD_NAME}
                       className="download-brochure-btn"
-                      aria-label="Download brochure PDF unavailable"
+                      aria-label="Download brochure PDF"
                     >
                       Download Brochure
-                    </button>
+                    </a>
                   </div>
                 )}
               </div>
