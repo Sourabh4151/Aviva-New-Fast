@@ -11,6 +11,7 @@ import stateCities from "../data/indian_state_cities.json";
 
 const INDIAN_STATES = [
   "Andhra Pradesh",
+  "Delhi",
   "Gujarat",
   "Haryana",
   "Maharashtra",
