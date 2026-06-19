@@ -10,7 +10,7 @@ import time
 import hashlib
 import requests
 from flask_migrate import Migrate
-from models import User,Application,CallBackUsers,AdminUser,LoanApplication,LoanProviderSelection
+from models import User,Application,CallBackUsers,BrochureUsers,AdminUser,LoanApplication,LoanProviderSelection
 from extensions import db, migrate
 import json
 import uuid
@@ -255,30 +255,11 @@ def _pull_nopaperforms_by_email(email):
 app = Flask(__name__)
 app.secret_key = 'b7e1c2e4c9a84e2e8f7d4a1b6c3e5f9a2d7c6b8e4f1a2c3d5e6f7b9a1c2d3e4f'
 # CORS(app, supports_credentials=True)
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5000",
-    "http://127.0.0.1:5000",
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-]
-CORS(
-    app,
-    origins=CORS_ALLOWED_ORIGINS,
-    supports_credentials=True,
-    allow_headers=["Content-Type", "Authorization"],
-    methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
-)
-
-
-def _cors_preflight_response():
-    response = jsonify({})
-    origin = request.headers.get("Origin")
-    if origin in CORS_ALLOWED_ORIGINS:
-        response.headers.add("Access-Control-Allow-Origin", origin)
-    response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization")
-    response.headers.add("Access-Control-Allow-Methods", "POST, OPTIONS")
-    response.headers.add("Access-Control-Allow-Credentials", "true")
-    return response
+CORS(app, 
+     origins=["http://localhost:5000"], 
+     supports_credentials=True,
+     allow_headers=["Content-Type", "Authorization"],
+     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"])
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024 
@@ -351,31 +332,19 @@ def send_otp_api(mobile):
         return None
 
 def verify_otp_api(otp_txn_id, otp):
-    if not otp_txn_id:
-        print("Error verifying OTP: missing transaction id")
-        return "FAILED"
-
-    header = generate_hash_header()
+    header=generate_hash_header()
     payload = {
-        "txId": otp_txn_id,
-        "token": otp,
+    "txId": otp_txn_id,
+	"token": otp
     }
-
+    
     try:
-        response = requests.post(
-            VALIDATE_URL, json=payload, headers=header, timeout=30
-        )
-        response.raise_for_status()
-        data = response.json()
-        print("Response from OTP API:", data)
-        status = str(data.get("status", "")).strip().upper()
-        return "SUCCESS" if status == "SUCCESS" else "FAILED"
+        response = requests.post(VALIDATE_URL, json=payload, headers=header)
+        print("Response from OTP API:", response.json())
+        return response.json()["status"] 
     except requests.exceptions.RequestException as e:
-        print("Error verifying OTP:", str(e))
-        return "FAILED"
-    except (ValueError, TypeError) as e:
-        print("Error parsing OTP API response:", str(e))
-        return "FAILED"
+        print("Error sending OTP:", str(e))
+        return jsonify({"error": "Failed to send OTP", "details": str(e)}), 500
 
 def send_callback_lead_to_crm(user):
     full_name = f"{user.fname or ''} {user.lname or ''}".strip()
@@ -395,6 +364,61 @@ def send_callback_lead_to_crm(user):
         utm_campaign=getattr(user, "utm_campaign", None),
     )
     print(response.text)
+
+
+def _post_brochure_lead_to_nopaperforms(
+    *,
+    full_name,
+    mobile,
+    search_criteria="mobile",
+    utm_source="",
+    utm_medium="",
+    utm_campaign="",
+):
+    payload = {
+        "name": (full_name or "").strip(),
+        "mobile": _format_mobile_for_nopaperforms(mobile),
+        "search_criteria": search_criteria or "mobile",
+        "source": _str_utm(utm_source),
+        "medium": _str_utm(utm_medium),
+        "campaign": _str_utm(utm_campaign),
+        "cf_form_name": "Brochure - Axis - RO",
+        "cf_program": "Axis - RO",
+        "cf_pg_program": "PG Program",
+        "cf_batch_name": "Select Batch Name",
+    }
+    try:
+        print("NoPaperForms brochure CRM payload:", json.dumps(payload))
+    except Exception:
+        pass
+    return requests.post(
+        NOPAPERFORMS_LEAD_URL,
+        json=payload,
+        headers=_nopaperforms_lead_headers(),
+        timeout=(10, 30),
+    )
+
+
+def send_brochure_lead_to_crm(*, name, mobile, utm_source="", utm_medium="", utm_campaign=""):
+    response = _post_brochure_lead_to_nopaperforms(
+        full_name=(name or "").strip(),
+        mobile=mobile,
+        search_criteria="mobile",
+        utm_source=utm_source,
+        utm_medium=utm_medium,
+        utm_campaign=utm_campaign,
+    )
+    print(response.text)
+    return response
+
+
+def _brochure_utm_from_request(data):
+    return {
+        "utm_source": data.get("utm_source", "") or "",
+        "utm_medium": data.get("utm_medium", "") or "",
+        "utm_campaign": data.get("utm_campaign", "") or "",
+    }
+
 
 def pull_lead_details_from_crm(email=None, mobile_number=None):
     """Pull lead details from NoPaperForms: by mobile first, then by email if configured."""
@@ -476,9 +500,14 @@ def generate_payment_receipt_pdf(payment_data, application_data):
 @app.route('/api/auth/callbackOtp/', methods=['POST', 'OPTIONS']) 
 @app.route('/auth/callbackOtp/', methods=['POST', 'OPTIONS']) 
 def send_callback_otp():
+    # Handle preflight OPTIONS request
     if request.method == 'OPTIONS':
-        return _cors_preflight_response()
-
+        response = jsonify({})
+        response.headers.add('Access-Control-Allow-Origin', 'http://localhost:5000')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        return response
     data = request.get_json()
     print("Registration data received:", data)
     mobile = data.get("mobile")
@@ -759,28 +788,123 @@ def register_user():
         print(f"CRM integration failed: {e}")
     return jsonify({"token": user.token, "username": user.name}), 200
 
-@app.route('/api/auth/callback/', methods=['POST', 'OPTIONS'])
-@app.route('/auth/callback/', methods=['POST', 'OPTIONS'])
+@app.route('/auth/callback/', methods=['POST'])
 def add_callback_user():
-    if request.method == 'OPTIONS':
-        return _cors_preflight_response()
-
-    data = request.get_json() or {}
+    data = request.get_json()
+    user=None
     print("Data received:", data)
-
-    mobile = (data.get("mobile") or "").strip()
-    otp = (data.get("otp") or "").strip()
-    if not mobile:
-        return jsonify({"message": "Mobile number is required"}), 400
-    if not otp:
-        return jsonify({"message": "OTP is required"}), 400
-
-    user = CallBackUsers.query.filter_by(mobile=mobile).first()
+   
+    user = CallBackUsers.query.filter_by(mobile=data['mobile']).first()
+        
     if not user:
         return jsonify({"message": "mobile number not found"}), 400
+    else:
+        status=verify_otp_api(user.otp_txn_id, data['otp'])
+        if status == "SUCCESS":
+            try:
+                send_callback_lead_to_crm(user)
+            except:
+                print("callback failed")
+            user.verified = True
+        else:
+            return jsonify({"message": "Invalid OTP"}), 400
+        
+    db.session.commit()
+    return jsonify({"message":"We will contact you soon"}), 200
 
-    if not user.otp_txn_id:
-        return jsonify({"message": "OTP session expired. Please request a new OTP."}), 400
+
+@app.route('/api/auth/brochureOtp/', methods=['POST', 'OPTIONS'])
+@app.route('/auth/brochureOtp/', methods=['POST', 'OPTIONS'])
+def send_brochure_otp():
+    if request.method == 'OPTIONS':
+        response = jsonify({})
+        response.headers.add('Access-Control-Allow-Origin', 'http://localhost:5000')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        return response
+
+    data = request.get_json() or {}
+    mobile = (data.get("mobile") or "").strip()
+    name = (data.get("name") or "").strip()
+
+    if not mobile:
+        return jsonify({"error": "Mobile number is required"}), 400
+    if not name:
+        return jsonify({"error": "Name is required"}), 400
+    if not re.fullmatch(r"\d{10}", mobile):
+        return jsonify({"error": "Mobile must be 10 digits"}), 400
+
+    utm = _brochure_utm_from_request(data)
+    callback_user = CallBackUsers.query.filter_by(mobile=mobile).first()
+    brochure_user = BrochureUsers.query.filter_by(mobile=mobile).first()
+
+    if callback_user or (brochure_user and brochure_user.verified):
+        return jsonify({
+            "already_verified": True,
+            "message": "Your mobile number is already verified. Your brochure is ready for download.",
+        }), 200
+
+    otp = generate_otp()
+
+    try:
+        if brochure_user:
+            brochure_user.name = name
+            brochure_user.otp = otp
+            brochure_user.utm_source = utm["utm_source"]
+            brochure_user.utm_medium = utm["utm_medium"]
+            brochure_user.utm_campaign = utm["utm_campaign"]
+            user = brochure_user
+        else:
+            user = BrochureUsers(
+                name=name,
+                mobile=mobile,
+                otp=otp,
+                utm_source=utm["utm_source"],
+                utm_medium=utm["utm_medium"],
+                utm_campaign=utm["utm_campaign"],
+            )
+            db.session.add(user)
+
+        user.otp_txn_id = send_otp_api(user.mobile)
+        if user.otp_txn_id is None:
+            db.session.rollback()
+            return jsonify({"error": "Failed to send OTP"}), 500
+
+        db.session.commit()
+        return jsonify({"message": "OTP sent"}), 200
+    except Exception as e:
+        print("Brochure OTP error:", str(e))
+        traceback.print_exc()
+        db.session.rollback()
+        return jsonify({"error": "Internal Server Error"}), 500
+
+
+@app.route('/api/auth/brochure/', methods=['POST', 'OPTIONS'])
+@app.route('/auth/brochure/', methods=['POST', 'OPTIONS'])
+def verify_brochure_otp():
+    if request.method == 'OPTIONS':
+        response = jsonify({})
+        response.headers.add('Access-Control-Allow-Origin', 'http://localhost:5000')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        return response
+
+    data = request.get_json() or {}
+    mobile = (data.get("mobile") or "").strip()
+    otp = (data.get("otp") or "").strip()
+    name = (data.get("name") or "").strip()
+
+    if not mobile or not otp:
+        return jsonify({"message": "Mobile number and OTP are required"}), 400
+
+    user = BrochureUsers.query.filter_by(mobile=mobile).first()
+    if not user:
+        return jsonify({"message": "Mobile number not found"}), 400
+
+    if name:
+        user.name = name
 
     status = verify_otp_api(user.otp_txn_id, otp)
     if status != "SUCCESS":
@@ -790,11 +914,80 @@ def add_callback_user():
     db.session.commit()
 
     try:
-        send_callback_lead_to_crm(user)
+        send_brochure_lead_to_crm(
+            name=user.name,
+            mobile=user.mobile,
+            utm_source=user.utm_source,
+            utm_medium=user.utm_medium,
+            utm_campaign=user.utm_campaign,
+        )
     except Exception as e:
-        print("callback failed:", str(e))
+        print(f"Brochure CRM integration failed: {e}")
 
-    return jsonify({"message": "We will contact you soon"}), 200
+    return jsonify({
+        "message": "OTP verified successfully",
+        "verified": True,
+    }), 200
+
+
+@app.route('/api/auth/brochure/download/', methods=['POST', 'OPTIONS'])
+@app.route('/auth/brochure/download/', methods=['POST', 'OPTIONS'])
+def brochure_direct_download():
+    if request.method == 'OPTIONS':
+        response = jsonify({})
+        response.headers.add('Access-Control-Allow-Origin', 'http://localhost:5000')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        return response
+
+    data = request.get_json() or {}
+    mobile = (data.get("mobile") or "").strip()
+    name = (data.get("name") or "").strip()
+    utm = _brochure_utm_from_request(data)
+
+    if not mobile:
+        return jsonify({"error": "Mobile number is required"}), 400
+    if not name:
+        return jsonify({"error": "Name is required"}), 400
+
+    callback_user = CallBackUsers.query.filter_by(mobile=mobile).first()
+    brochure_user = BrochureUsers.query.filter_by(mobile=mobile).first()
+
+    if not callback_user and not (brochure_user and brochure_user.verified):
+        return jsonify({"error": "Mobile number is not eligible for direct download"}), 400
+
+    if brochure_user:
+        brochure_user.name = name
+    else:
+        brochure_user = BrochureUsers(
+            name=name,
+            mobile=mobile,
+            verified=True,
+            utm_source=utm["utm_source"],
+            utm_medium=utm["utm_medium"],
+            utm_campaign=utm["utm_campaign"],
+        )
+        db.session.add(brochure_user)
+
+    db.session.commit()
+
+    try:
+        send_brochure_lead_to_crm(
+            name=name,
+            mobile=mobile,
+            utm_source=utm["utm_source"] or getattr(brochure_user, "utm_source", None),
+            utm_medium=utm["utm_medium"] or getattr(brochure_user, "utm_medium", None),
+            utm_campaign=utm["utm_campaign"] or getattr(brochure_user, "utm_campaign", None),
+        )
+    except Exception as e:
+        print(f"Brochure direct download CRM failed: {e}")
+
+    return jsonify({
+        "message": "Your brochure is ready for download.",
+        "download": True,
+    }), 200
+
 
 @app.route('/auth/loginOtp/', methods=['POST'])
 def send_login_otp():
