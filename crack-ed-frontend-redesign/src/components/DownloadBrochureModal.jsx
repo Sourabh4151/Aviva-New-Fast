@@ -347,7 +347,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
             <button
               type="submit"
               disabled={primaryDisabled}
-              className="otp-btn h-[52px] w-[206px] shadow-[0_12px_30px_rgba(0,0,0,0.45)] disabled:opacity-70 disabled:cursor-not-allowed"
+              className="h-[52px] w-[206px] rounded-[10px] bg-[rgba(143,40,44,1)] hover:bg-[rgba(143,40,44,0.7)] text-white text-[14px] font-medium tracking-[0.02em] shadow-[0_12px_30px_rgba(0,0,0,0.45)] transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {primaryLabel}
             </button>
