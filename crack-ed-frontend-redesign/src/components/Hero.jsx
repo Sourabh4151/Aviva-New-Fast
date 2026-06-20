@@ -7,7 +7,7 @@ import stateCities from "../data/indian_state_cities.json";
 import heroImage from "../assets/desk.png";
 import tickSvg from "../assets/tick.svg";
 import heroLogo from "../assets/logo_rupyy.svg";
-import { BROCHURE_PDF_DOWNLOAD_NAME, BROCHURE_PDF_HREF } from "../brochure";
+import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
 
@@ -49,6 +49,7 @@ export default function Hero() {
   const [otpError, setOtpError] = useState("");
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
 
   const otpValue = otpDigits.join("");
 
@@ -403,14 +404,13 @@ export default function Hero() {
                   </ul>
                 </div>
                 <div className="register-btn-wrap max-lg:mb-0 lg:mb-0">
-                  <a
-                    href={BROCHURE_PDF_HREF}
-                    download={BROCHURE_PDF_DOWNLOAD_NAME}
-                    className="download-brochure-btn"
-                    aria-label="Download brochure PDF"
+                  <button
+                    type="button"
+                    className="download-brochure-btn border-0"
+                    onClick={() => setShowBrochureModal(true)}
                   >
                     Download Brochure
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -799,6 +799,10 @@ export default function Hero() {
           </button>
         </div>
       </aside>
+      <DownloadBrochureModal
+        isOpen={showBrochureModal}
+        onClose={() => setShowBrochureModal(false)}
+      />
 
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
