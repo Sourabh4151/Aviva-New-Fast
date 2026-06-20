@@ -5,11 +5,10 @@ import React, { useState, useRef, useEffect, useMemo } from "react";
 import heroImage from "../assets/desktop.png";
 import tickSvg from "../assets/tick.svg";
 import stateCities from "../data/indian_state_cities.json";
-
+import DownloadBrochureModal from "./DownloadBrochureModal";
 const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
 
 export default function Hero() {
-  const brochureUrl = `${import.meta.env.BASE_URL}Elevate%20Banking%20Program.pdf`;
   const [form, setForm] = useState({ name: "", email: "", state: "", city: "", mobile: "" });
   const [status, setStatus] = useState(null);
   const [errors, setErrors] = useState({});
@@ -44,6 +43,7 @@ export default function Hero() {
   const [otpError, setOtpError] = useState("");
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
 
   function resolveStateFromSearch(search = stateSearch) {
     const query = search.trim();
@@ -381,13 +381,13 @@ export default function Hero() {
               </li>
             </ul>
             <div className="register-btn-wrap mt-2 max-lg:mb-3 lg:mt-4">
-              <a
-                className="download-brochure-btn"
-                href={brochureUrl}
-                download="Elevate Banking Program.pdf"
+              <button
+                type="button"
+                className="download-brochure-btn border-0"
+                onClick={() => setShowBrochureModal(true)}
               >
                 Download Brochure
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -415,10 +415,10 @@ export default function Hero() {
             {status?.message && !alreadyInSystem && status.type !== "info" && (
               <div
                 className={`relative flex items-start gap-2 rounded-[10px] px-4 py-3 shadow-[0_10px_25px_rgba(0,0,0,0.35)] border ${status.type === "error"
-                    ? "border-[rgba(248,113,113,0.9)] bg-[rgba(127,29,29,0.98)]"
-                    : status.type === "success"
-                      ? "border-[rgba(34,197,94,0.35)] bg-gradient-to-r from-[rgba(34,197,94,0.18)] to-[rgba(34,197,94,0.06)]"
-                      : "border-[rgba(59,130,246,0.35)] bg-gradient-to-r from-[rgba(59,130,246,0.18)] to-[rgba(59,130,246,0.06)]"
+                  ? "border-[rgba(248,113,113,0.9)] bg-[rgba(127,29,29,0.98)]"
+                  : status.type === "success"
+                    ? "border-[rgba(34,197,94,0.35)] bg-gradient-to-r from-[rgba(34,197,94,0.18)] to-[rgba(34,197,94,0.06)]"
+                    : "border-[rgba(59,130,246,0.35)] bg-gradient-to-r from-[rgba(59,130,246,0.18)] to-[rgba(59,130,246,0.06)]"
                   }`}
                 role={status.type === "error" ? "alert" : "status"}
                 aria-live="polite"
@@ -777,6 +777,10 @@ export default function Hero() {
           </button>
         </div>
       </aside>
+      <DownloadBrochureModal
+        isOpen={showBrochureModal}
+        onClose={() => setShowBrochureModal(false)}
+      />
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
           <div className="relative w-[500px] max-w-[90vw] rounded-[26px] shadow-[0_22px_60px_rgba(0,0,0,0.9)] overflow-hidden border border-[rgba(250,250,250,0.18)] bg-gradient-to-b from-[rgba(23,23,23,0.98)] via-[rgba(6,6,6,1)] to-[rgba(23,23,23,0.98)]">

@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import uthaanImg from "../assets/uthaan.png";
 import aarohanImg from "../assets/aarohan.png";
 import shikharImg from "../assets/shikhar.png";
+import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const MODULES = [
   {
@@ -33,11 +34,11 @@ const MODULES = [
 ];
 
 export default function ClassroomTraining() {
-  const brochureUrl = `${import.meta.env.BASE_URL}Elevate%20Banking%20Program.pdf`;
   const sectionRef = useRef(null);
   const modulesRef = useRef(null);
   const imageRefs = useRef([]);
   const [progress, setProgress] = useState(0);
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -287,17 +288,21 @@ export default function ClassroomTraining() {
                     />
                   </div>
                 </div>
-                                {/* Download brochure CTA only for the last module (Shikhar),
+                {/* Download brochure CTA only for the last module (Shikhar),
                     placed below the entire row so it sits visually under the image end */}
                 {index === MODULES.length - 1 && (
                   <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
-                    <a
-                      className="download-brochure-btn"
-                      href={brochureUrl}
-                      download="Elevate Banking Program.pdf"
+                    <button
+                      type="button"
+                      onClick={() => setShowBrochureModal(true)}
+                      className="inline-flex items-center justify-center rounded-[10px] py-4 px-4 sm:px-6 bg-white text-[#1e1e1e] font-semibold text-sm border-0 cursor-pointer shadow-lg hover:bg-[#d2d2d2] transition-colors"
+                      style={{
+                        fontFamily:
+                          "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                      }}
                     >
                       Download Brochure
-                    </a>
+                    </button>
                   </div>
                 )}
               </div>
@@ -305,6 +310,10 @@ export default function ClassroomTraining() {
           </div>
         </div>
       </div>
+      <DownloadBrochureModal
+        isOpen={showBrochureModal}
+        onClose={() => setShowBrochureModal(false)}
+      />
     </section>
   );
 }
