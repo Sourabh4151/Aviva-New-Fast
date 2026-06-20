@@ -1,9 +1,9 @@
 import React from "react";
 
 const REQUIREMENTS = [
-  "Candidates must be a graduate in any stream and preferably up to 30 years of age at the time of application.",
+  "Candidates must be a graduate in any stream.",
+  "Candidate should be below 30 years of age at the time of application.",
   "Should be comfortable working in a sales-driven role within dealership environments.",
-  "Candidates must be open to relocation based on business and deployment requirements.",
 ];
 
 export default function Eligibility() {

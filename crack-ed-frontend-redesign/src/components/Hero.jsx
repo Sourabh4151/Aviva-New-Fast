@@ -366,7 +366,7 @@ export default function Hero() {
                       className="hero-badge inline-flex items-center justify-center self-start whitespace-nowrap rounded-full border border-white px-4 py-2 text-center text-[14px] font-semibold leading-[100%] tracking-[0em] text-white max-lg:h-[37px] max-lg:w-[238px] max-lg:gap-[10px] max-lg:rounded-[100px] max-lg:px-[24px] max-lg:py-[10px]"
                       style={{ fontFamily: "Montserrat, sans-serif" }}
                     >
-                      Kotak Mahindra Prime Program
+                      Prime Starters Program
                     </div>
                     <h1
                       className="hero-title w-full text-[40px] font-semibold leading-[100%] tracking-[0em] sm:text-[40px] md:text-[40px] lg:text-[48px]"
@@ -385,7 +385,7 @@ export default function Hero() {
                         className="hero-subtitle text-[16px] max-lg:text-[14px] font-normal leading-[1.55] tracking-[0em] max-lg:leading-[1.52]"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                        Join as a Sales Officer - DST and secure a CTC of Rs 2.7 LPA + incentives
+                        Join as a Sales Officer at Kotak Mahindra Prime Loans
                       </span>
                     </li>
                     <li className="flex items-start gap-2 sm:gap-3">
@@ -396,7 +396,18 @@ export default function Hero() {
                         className="text-[16px] font-normal leading-[1.55] tracking-[0em] text-[rgba(250,250,250,1)] max-lg:leading-[1.52]"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                        A dedicated 1-month path to help you transition into your new role with confidence.
+                        Secure a CTC of Rs 2.7 LPA + incentives
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2 sm:gap-3">
+                      <span className="hero-tick">
+                        <img src={tickSvg} alt="tick" className="hero-tick-icon" />
+                      </span>
+                      <span
+                        className="text-[16px] font-normal leading-[1.55] tracking-[0em] text-[rgba(250,250,250,1)] max-lg:leading-[1.52]"
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
+                        1-month program
                       </span>
                     </li>
                   </ul>
