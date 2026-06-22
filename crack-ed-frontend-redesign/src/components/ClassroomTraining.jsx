@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import uthaanImg from "../assets/utthaan.jpeg";
 import aarohanImg from "../assets/aarohan.jpeg";
 import shikharImg from "../assets/shikhar.jpeg";
+import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const MODULES = [
   {
@@ -37,9 +38,7 @@ export default function ClassroomTraining() {
   const modulesRef = useRef(null);
   const imageRefs = useRef([]);
   const [progress, setProgress] = useState(0);
-  const brochurePdfPath = "/Mahindra Finance Prarambh Program.pdf";
-  const brochurePdfHref = encodeURI(brochurePdfPath);
-  const brochurePdfDownloadName = "Mahindra Finance Prarambh Program.pdf";
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -292,14 +291,17 @@ export default function ClassroomTraining() {
 
                 {index === MODULES.length - 1 && (
                   <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
-                    <a
-                      href={brochurePdfHref}
-                      download={brochurePdfDownloadName}
-                      className="download-brochure-btn"
-                      aria-label="Download brochure PDF"
+                    <button
+                      type="button"
+                      onClick={() => setShowBrochureModal(true)}
+                      className="inline-flex items-center justify-center rounded-[10px] py-4 px-4 sm:px-6 bg-white text-[#1e1e1e] font-semibold text-sm border-0 cursor-pointer shadow-lg hover:bg-[#d2d2d2] transition-colors"
+                      style={{
+                        fontFamily:
+                          "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                      }}
                     >
                       Download Brochure
-                    </a>
+                    </button>
                   </div>
                 )}
               </div>
@@ -307,6 +309,10 @@ export default function ClassroomTraining() {
           </div>
         </div>
       </div>
+      <DownloadBrochureModal
+        isOpen={showBrochureModal}
+        onClose={() => setShowBrochureModal(false)}
+      />
     </section>
   );
 }
