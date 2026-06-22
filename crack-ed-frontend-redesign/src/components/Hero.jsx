@@ -6,6 +6,7 @@ import heroImage from "../assets/desktop.jpg";
 import tickSvg from "../assets/tick.svg";
 import piramalLogo from "../assets/piramal.svg";
 import stateCities from "../data/indian_state_cities.json";
+import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
 
@@ -30,6 +31,7 @@ export default function Hero() {
   const [otpError, setOtpError] = useState("");
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
   const filteredStates = useMemo(() => {
     const query = stateSearch.trim().toLowerCase();
     if (!query) return INDIAN_STATES;
@@ -385,13 +387,13 @@ export default function Hero() {
                 </ul>
               </div>
               <div className="register-btn-wrap">
-                <a
-                  href="/Piramal%20ProEdge%20Program.pdf"
-                  className="download-brochure-btn"
-                  download="Piramal ProEdge Program.pdf"
+                <button
+                  type="button"
+                  className="download-brochure-btn border-0"
+                  onClick={() => setShowBrochureModal(true)}
                 >
                   Download Brochure
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -422,10 +424,10 @@ export default function Hero() {
             {status?.message && !alreadyInSystem && status.type !== "info" && (
               <div
                 className={`relative flex items-start gap-2 rounded-[10px] px-4 py-3 shadow-[0_10px_25px_rgba(0,0,0,0.35)] border ${status.type === "error"
-                    ? "border-[rgba(248,113,113,0.4)] bg-gradient-to-r from-[rgba(248,113,113,0.18)] to-[rgba(248,113,113,0.06)]"
-                    : status.type === "success"
-                      ? "border-[rgba(34,197,94,0.35)] bg-gradient-to-r from-[rgba(34,197,94,0.18)] to-[rgba(34,197,94,0.06)]"
-                      : "border-[rgba(59,130,246,0.35)] bg-gradient-to-r from-[rgba(59,130,246,0.18)] to-[rgba(59,130,246,0.06)]"
+                  ? "border-[rgba(248,113,113,0.4)] bg-gradient-to-r from-[rgba(248,113,113,0.18)] to-[rgba(248,113,113,0.06)]"
+                  : status.type === "success"
+                    ? "border-[rgba(34,197,94,0.35)] bg-gradient-to-r from-[rgba(34,197,94,0.18)] to-[rgba(34,197,94,0.06)]"
+                    : "border-[rgba(59,130,246,0.35)] bg-gradient-to-r from-[rgba(59,130,246,0.18)] to-[rgba(59,130,246,0.06)]"
                   }`}
                 role={status.type === "error" ? "alert" : "status"}
                 aria-live="polite"
@@ -760,6 +762,10 @@ export default function Hero() {
           </button>
         </div>
       </aside>
+      <DownloadBrochureModal
+        isOpen={showBrochureModal}
+        onClose={() => setShowBrochureModal(false)}
+      />
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
           <div className="relative w-[500px] max-w-[90vw] bg-[rgba(13,11,0,1)] rounded-[24px] shadow-[0_18px_45px_rgba(0,0,0,0.7)] overflow-hidden border border-[rgba(250,250,250,0.12)]">
