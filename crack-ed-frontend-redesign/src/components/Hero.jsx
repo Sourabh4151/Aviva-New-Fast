@@ -6,6 +6,7 @@ import heroImage from "../assets/desktop.jpg";
 import tickSvg from "../assets/tick.svg";
 import avivaLogo from "../assets/aviva.svg";
 import stateCities from "../data/indian_state_cities.json";
+import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
 
@@ -44,6 +45,7 @@ export default function Hero() {
   const [otpError, setOtpError] = useState("");
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
 
   const otpValue = otpDigits.join("");
 
@@ -385,13 +387,13 @@ export default function Hero() {
                 </ul>
               </div>
               <div className="register-btn-wrap">
-                <a
-                  href="/FLS%20-%20Direct.pdf"
-                  className="download-brochure-btn"
-                  download="FLS - Direct.pdf"
+              <button
+                  type="button"
+                  className="download-brochure-btn border-0"
+                  onClick={() => setShowBrochureModal(true)}
                 >
                   Download Brochure
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -760,6 +762,10 @@ export default function Hero() {
           </button>
         </div>
       </aside>
+      <DownloadBrochureModal
+        isOpen={showBrochureModal}
+        onClose={() => setShowBrochureModal(false)}
+      />
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
           <div className="relative w-[500px] max-w-[90vw] bg-[rgba(13,11,0,1)] rounded-[24px] shadow-[0_18px_45px_rgba(0,0,0,0.7)] overflow-hidden border border-[rgba(250,250,250,0.12)]">

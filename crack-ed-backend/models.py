@@ -43,6 +43,18 @@ class CallBackUsers(db.Model):
     utm_medium = db.Column(db.String(100))
     utm_campaign = db.Column(db.String(100))
 
+class BrochureUsers(db.Model):
+    __tablename__ = "brochure_users"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120))
+    mobile = db.Column(db.String(15), unique=True)
+    otp = db.Column(db.String(6))
+    otp_txn_id = db.Column(db.String(100))
+    verified = db.Column(db.Boolean, default=False)
+    utm_source = db.Column(db.String(100))
+    utm_medium = db.Column(db.String(100))
+    utm_campaign = db.Column(db.String(100))
+
 class Application(db.Model):
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     application_id = db.Column(db.String(20), default=generate_application_id, unique=True)
