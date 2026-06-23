@@ -1065,6 +1065,12 @@ button.download-brochure-btn:disabled:active {
   align-items: center;
 }
 
+@media (min-width: 1024px) {
+  .admission-strip {
+    margin-top: 50px;
+  }
+}
+
 .admission-strip__viewport {
   width: 100%;
   overflow: hidden;
