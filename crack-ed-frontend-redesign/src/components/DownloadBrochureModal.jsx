@@ -277,7 +277,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
                 if (errors.name) setErrors((prev) => ({ ...prev, name: "" }));
               }}
               placeholder="Full Name"
-              className="callback-input w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)]"
+              className="callback-input w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)]"
             />
             {errors.name && <p className="text-[12px] text-red-400">{errors.name}</p>}
 
@@ -290,7 +290,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
               }}
               placeholder="Mobile Number"
               inputMode="numeric"
-              className="callback-input w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)]"
+              className="callback-input w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)]"
             />
             {errors.mobile && <p className="text-[12px] text-red-400">{errors.mobile}</p>}
 
@@ -329,7 +329,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
                           otpRefs.current[i - 1]?.focus();
                         }
                       }}
-                      className="w-12 h-12 rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] text-center text-[18px] text-white callback-input"
+                      className="w-12 h-12 rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.12)] text-center text-[18px] text-white callback-input"
                       aria-label={`OTP digit ${i + 1}`}
                     />
                   ))}
