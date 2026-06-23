@@ -890,7 +890,7 @@ button.download-brochure-btn:disabled:active {
   }
 
   .hero-container .left-adjust.hero-left-adjust {
-    margin-top: 0;
+    margin-top: 1rem;
   }
 
   /* Center Download Brochure button on mobile */
@@ -978,7 +978,7 @@ button.download-brochure-btn:disabled:active {
   }
 
   .hero-container {
-    padding-top: 70px;
+    padding-top: 88px;
   }
 
   /* Only apply absolute to .left-adjust when NOT stacking (avoid overriding .hero-left-adjust) */
@@ -1001,6 +1001,10 @@ button.download-brochure-btn:disabled:active {
     padding-right: 16px;
     height: auto;
     min-height: 60px;
+  }
+
+  .hero-container {
+    padding-top: 96px;
   }
 
   .hero-container .left-adjust:not(.hero-left-adjust) {
@@ -1032,11 +1036,11 @@ button.download-brochure-btn:disabled:active {
   }
 
   .hero-container {
-    padding-top: 56px;
+    padding-top: 104px;
   }
 
   .hero-container .left-adjust.hero-left-adjust {
-    margin-top: 0;
+    margin-top: 1.5rem;
   }
 
   .hero-container .left-adjust:not(.hero-left-adjust) {
