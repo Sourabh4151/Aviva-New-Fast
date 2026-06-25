@@ -228,6 +228,7 @@ export default function Hero() {
     const utm_source = urlParams.get("utm_source") || "";
     const utm_medium = urlParams.get("utm_medium") || "";
     const utm_campaign = urlParams.get("utm_campaign") || "";
+    const utm_term = urlParams.get("utm_term") || "";
 
     try {
       const res = await fetch(`${baseUrl}/auth/callbackOtp/`, {
@@ -243,6 +244,7 @@ export default function Hero() {
           utm_source,
           utm_medium,
           utm_campaign,
+          utm_term,
         }),
       });
       const json = await res.json().catch(() => ({}));
