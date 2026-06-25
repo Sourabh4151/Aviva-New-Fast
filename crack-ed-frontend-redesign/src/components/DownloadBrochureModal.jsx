@@ -35,6 +35,7 @@ function getUtmParams() {
     utm_source: urlParams.get("utm_source") || "",
     utm_medium: urlParams.get("utm_medium") || "",
     utm_campaign: urlParams.get("utm_campaign") || "",
+    utm_term: urlParams.get("utm_term") || "",
   };
 }
 
