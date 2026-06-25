@@ -24,6 +24,7 @@ class User(db.Model):
     utm_source = db.Column(db.String(100))
     utm_medium = db.Column(db.String(100))
     utm_campaign = db.Column(db.String(100))
+    utm_term = db.Column(db.String(100))
     applications = db.relationship('Application', backref='user', lazy=True)
 
     
@@ -34,7 +35,7 @@ class CallBackUsers(db.Model):
     lname = db.Column(db.String(120))
     state = db.Column(db.String(120))
     city = db.Column(db.String(120))
-    email = db.Column(db.String(120), unique=True)
+    email = db.Column(db.String(120))
     mobile = db.Column(db.String(15), unique=True)
     otp = db.Column(db.String(6))
     otp_txn_id = db.Column(db.String(100))
@@ -42,6 +43,7 @@ class CallBackUsers(db.Model):
     utm_source = db.Column(db.String(100))
     utm_medium = db.Column(db.String(100))
     utm_campaign = db.Column(db.String(100))
+    utm_term = db.Column(db.String(100))
 
 class BrochureUsers(db.Model):
     __tablename__ = "brochure_users"
@@ -54,6 +56,7 @@ class BrochureUsers(db.Model):
     utm_source = db.Column(db.String(100))
     utm_medium = db.Column(db.String(100))
     utm_campaign = db.Column(db.String(100))
+    utm_term = db.Column(db.String(100))
 
 class Application(db.Model):
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
