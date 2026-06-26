@@ -7,6 +7,7 @@ import stateCities from "../data/indian_state_cities.json";
 import heroImage from "../assets/desk.png";
 import tickSvg from "../assets/tick.svg";
 import heroLogo from "../assets/kotak_logo.svg";
+import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
 
@@ -48,6 +49,7 @@ export default function Hero() {
   const [otpError, setOtpError] = useState("");
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
 
   const otpValue = otpDigits.join("");
 
@@ -229,6 +231,7 @@ export default function Hero() {
     const utm_source = urlParams.get("utm_source") || "";
     const utm_medium = urlParams.get("utm_medium") || "";
     const utm_campaign = urlParams.get("utm_campaign") || "";
+    const utm_term = urlParams.get("utm_term") || "";
 
     try {
       const res = await fetch(`${baseUrl}/auth/callbackOtp/`, {
@@ -244,6 +247,7 @@ export default function Hero() {
           utm_source,
           utm_medium,
           utm_campaign,
+          utm_term,
         }),
       });
       const json = await res.json().catch(() => ({}));
@@ -415,9 +419,9 @@ export default function Hero() {
                 <div className="register-btn-wrap max-lg:mb-0 lg:mb-0">
                   <button
                     type="button"
+                    className="download-brochure-btn border-0"
                     disabled
-                    className="download-brochure-btn"
-                    aria-label="Download brochure PDF (currently unavailable)"
+                    aria-disabled="true"
                   >
                     Download Brochure
                   </button>
@@ -809,6 +813,10 @@ export default function Hero() {
           </button>
         </div>
       </aside>
+      <DownloadBrochureModal
+        isOpen={showBrochureModal}
+        onClose={() => setShowBrochureModal(false)}
+      />
 
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">

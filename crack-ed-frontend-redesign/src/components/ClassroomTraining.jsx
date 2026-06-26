@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import uthaanImg from "../assets/uthaan.png";
 import aarohanImg from "../assets/aarohan.png";
 import shikharImg from "../assets/shikhar.png";
+import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const MODULES = [
   {
@@ -37,6 +38,7 @@ export default function ClassroomTraining() {
   const modulesRef = useRef(null);
   const imageRefs = useRef([]);
   const [progress, setProgress] = useState(0);
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -279,8 +281,12 @@ export default function ClassroomTraining() {
                     <button
                       type="button"
                       disabled
-                      className="download-brochure-btn"
-                      aria-label="Download brochure PDF (currently unavailable)"
+                      aria-disabled="true"
+                      className="inline-flex items-center justify-center rounded-[10px] py-4 px-4 sm:px-6 bg-[#d9d9d9] text-[#8b8b8b] font-semibold text-sm border-0 cursor-not-allowed shadow-lg"
+                      style={{
+                        fontFamily:
+                          "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                      }}
                     >
                       Download Brochure
                     </button>
@@ -291,6 +297,10 @@ export default function ClassroomTraining() {
           </div>
         </div>
       </div>
+      <DownloadBrochureModal
+        isOpen={showBrochureModal}
+        onClose={() => setShowBrochureModal(false)}
+      />
     </section>
   );
 }
