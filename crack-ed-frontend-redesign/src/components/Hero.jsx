@@ -11,6 +11,35 @@ import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
 
+const HERO_HIGHLIGHT_MESSAGES = [
+  "Designed to Empower Women Candidates",
+  "Admissions Open • New Batch Starts in June",
+];
+
+function HeroHighlightMarquee({ size = "mobile" }) {
+  const itemClass =
+    size === "desktop" ? "hero-marquee-item hero-marquee-item--desktop" : "hero-marquee-item hero-marquee-item--mobile";
+
+  const renderGroup = (groupKey) => (
+    <span className="hero-marquee-group" key={groupKey}>
+      {HERO_HIGHLIGHT_MESSAGES.map((text) => (
+        <span key={`${groupKey}-${text}`} className={itemClass}>
+          {text}
+        </span>
+      ))}
+    </span>
+  );
+
+  return (
+    <div className="hero-marquee">
+      <div className="hero-marquee-track">
+        {renderGroup("a")}
+        {renderGroup("b")}
+      </div>
+    </div>
+  );
+}
+
 export default function Hero() {
   const [form, setForm] = useState({ name: "", email: "", state: "", city: "", mobile: "" });
   const [status, setStatus] = useState(null);
@@ -789,25 +818,15 @@ export default function Hero() {
 
       {/* Mobile highlight bar: below callback form on small screens */}
       <div className="w-full bg-[rgba(227,24,55,1)] flex justify-center lg:hidden mt-16">
-        <div className="w-full max-w-[1280px] flex items-center justify-center py-2 px-6">
-          <p
-            className="text-[16px] leading-[24px] font-medium tracking-[0em] text-[rgba(250,250,250,1)] text-center"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-          >
-            Designed to Empower Women Candidates
-          </p>
+        <div className="w-full max-w-[1280px] flex items-center py-2 px-6">
+          <HeroHighlightMarquee size="mobile" />
         </div>
       </div>
 
       {/* Bottom highlight bar */}
       <div className="w-full bg-[rgba(227,24,55,1)] justify-center hidden lg:flex lg:mt-6">
-        <div className="w-full max-w-[1280px] flex items-center justify-center py-6 px-4">
-          <p
-            className="text-[24px] leading-[32px] font-medium tracking-[0em] text-[rgba(250,250,250,1)] text-center"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-          >
-            Designed to Empower Women Candidates
-          </p>
+        <div className="w-full max-w-[1280px] flex items-center py-6 px-4">
+          <HeroHighlightMarquee size="desktop" />
         </div>
       </div>
       {showPopup && (

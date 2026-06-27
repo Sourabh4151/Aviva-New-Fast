@@ -1081,3 +1081,63 @@ button.download-brochure-btn:disabled:active {
     border-bottom-width: 0 !important;
   }
 }
+
+/* Hero highlight bar – continuous marquee */
+.hero-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-marquee-track {
+  display: inline-flex;
+  width: max-content;
+  animation: hero-marquee-scroll 14s linear infinite;
+}
+
+.hero-marquee-group {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 5rem;
+  padding-right: 5rem;
+}
+
+.hero-marquee-item {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  color: rgba(250, 250, 250, 1);
+}
+
+.hero-marquee-item--mobile {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.hero-marquee-item--desktop {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+@keyframes hero-marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-marquee-track {
+    animation: none;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero-marquee-group:nth-child(2) {
+    display: none;
+  }
+}
