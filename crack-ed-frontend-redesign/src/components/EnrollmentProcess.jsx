@@ -10,15 +10,15 @@ const STEPS = [
   },
   {
     number: "02",
-    title: "Interview & Aptitude Test",
+    title: "Aptitude Test & Interview",
     description:
-      "Undergo an online aptitude test to evaluate numerical ability, logical reasoning, and banking aptitude, followed by an online perosnal interview",
+      "Undergo an online aptitude test to evaluate numerical ability, logical reasoning, and banking aptitude, followed by an online personal interview",
   },
   {
     number: "03",
-    title: "Offer & Enrollment",
+    title: "LOI & Enrollment",
     description:
-      "Selected candidates receive a formal offer and complete enrollment into the program.",
+      "Selected candidates receive a Letter Of Intent (LOI) and complete enrollment into the program.",
   },
   {
     number: "04",
