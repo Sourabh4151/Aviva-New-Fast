@@ -372,7 +372,7 @@ export default function Hero() {
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
                   <span className="hero-subtitle min-w-0">
-                    Join as a Assistant Manager with a CTC of Rs 4 LPA + incentives
+                    Join as a Assistant Manager with a CTC of Rs 4 LPA
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">

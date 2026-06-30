@@ -234,7 +234,7 @@ export default function TrainingJourney() {
                         : DURATION_VALUE_COLOR_INACTIVE,
                     }}
                   >
-                    Rs 15,000
+                    Rs 5,000/month
                   </div>
                 </div>
               </div>
@@ -376,7 +376,7 @@ export default function TrainingJourney() {
                         : DURATION_VALUE_COLOR_INACTIVE,
                     }}
                   >
-                    Rs 45,000
+                    Rs 15,000/month
                   </div>
                 </div>
               </div>
