@@ -86,20 +86,24 @@ body::-webkit-scrollbar {
   .hero-left-adjust .hero-bullet-list > li + li {
     margin-top: 8px;
   }
-  /* Aviva Nirmaan Program badge (Frame 299): 255×37, radius 100px, border 1px, padding 10px */
+  /* Programme badge – grow/wrap on narrow screens (fixed 255px clipped longer copy) */
   .hero-badge {
-    width: 255px;
+    width: fit-content;
+    max-width: 100%;
     min-height: 37px;
+    height: auto;
     padding: 10px;
     border-radius: 100px;
     border: 1px solid rgba(250, 250, 250, 1);
     font-family: 'Lato', ui-sans-serif, system-ui, sans-serif;
     font-weight: 600;
     font-size: 14px;
-    line-height: 100%;
+    line-height: 1.2;
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);
     box-sizing: border-box;
+    white-space: normal;
+    text-align: center;
   }
   /* Direct Sales Executive: Montserrat 600, 40px, line-height 100%, color rgba(250,250,250,1) */
   .hero-title {
@@ -115,7 +119,7 @@ body::-webkit-scrollbar {
     font-family: 'Lato', ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
     font-size: 14px;
-    line-height: 100%;
+    line-height: 1.35;
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);
   }

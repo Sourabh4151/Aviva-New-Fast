@@ -349,11 +349,11 @@ export default function Hero() {
                   className="h-[67px] w-[196px] object-cover lg:h-[76px] lg:w-[220px]"
                 />
               </div>
-              <div className="hero-logo-badge mb-3 md:mb-4">
+              <div className="hero-logo-badge mb-3 md:mb-4 max-w-full">
                 <div
-                  className="hero-badge inline-flex h-[37px] items-center justify-center gap-[10px] whitespace-nowrap rounded-[100px] border border-[rgba(250,250,250,1)] px-3 py-[10px] text-[12px] font-semibold text-white sm:px-[24px] sm:text-[14px]"
+                  className="hero-badge inline-flex min-h-[37px] h-auto max-w-full items-center justify-center gap-[10px] max-lg:whitespace-normal lg:whitespace-nowrap rounded-[100px] border border-[rgba(250,250,250,1)] px-3 py-[10px] text-[12px] font-semibold text-white sm:px-[24px] sm:text-[14px]"
                 >
-                  Bandhan Career Bridge Program
+                  Bandhan Bank Aspiring Bank Champions Programme
                 </div>
               </div>
               <h1 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[1] mb-3 md:mb-4">
@@ -364,7 +364,7 @@ export default function Hero() {
                   <span className="hero-tick">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="hero-subtitle">
+                  <span className="hero-subtitle min-w-0">
                     Join as a Assistant Manager with a CTC of Rs 4 LPA + incentives
                   </span>
                 </li>
