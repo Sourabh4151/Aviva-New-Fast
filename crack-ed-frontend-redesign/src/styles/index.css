@@ -756,14 +756,17 @@ select.hero-select::-ms-expand {
     position: static !important;
     width: 100% !important;
     max-width: 400px;
-    margin: 1.5rem auto 0;
+    margin: 2.5rem auto 0;
   }
 }
 
 @media (max-width: 640px) {
   .hero-form-card {
-    margin-top: 1rem;
+    margin-top: 2rem;
     padding: 1rem 1.25rem !important;
+  }
+  .register-btn-wrap {
+    margin-bottom: 2.5rem;
   }
 }
 
@@ -868,6 +871,7 @@ select.hero-select::-ms-expand {
   }
   .hero-container {
     padding-top: 80px;
+    padding-bottom: 1rem;
   }
   .hero-container .left-adjust.hero-left-adjust {
     margin-top: 5rem;
