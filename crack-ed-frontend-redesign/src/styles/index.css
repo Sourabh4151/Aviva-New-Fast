@@ -370,9 +370,21 @@ body::-webkit-scrollbar {
     box-sizing: border-box;
     white-space: nowrap;
   }
-  /* Make image touch right edge on mobile while keeping section padding for text */
-  .career-growth-image-wrap {
-    margin-right: -1rem;
+  /* Career Growth image – full width on mobile (cancel section padding) */
+  .career-growth-image-frame {
+    position: relative;
+    aspect-ratio: 680 / 490;
+  }
+  .career-growth-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .career-growth-image-overlay {
+    display: none;
   }
   /* Overlay: 16px gap between role pill and steps pill */
   .career-growth-overlay {
@@ -452,6 +464,20 @@ p.classroom-subtitle {
   letter-spacing: 0%;
   text-align: justify;
   color: rgba(250, 250, 250, 0.8);
+}
+
+/* Career Growth image – full-bleed on mobile/tablet (touch viewport left & right) */
+@media (max-width: 1023px) {
+  .career-growth-image-wrap {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .career-growth-image-frame {
+    border-radius: 10px;
+  }
 }
 
 /* Classroom Training image – full-bleed on mobile (touches viewport edges) */
@@ -567,6 +593,41 @@ p.classroom-subtitle {
     height: 16px;
     min-width: 16px;
     min-height: 16px;
+  }
+
+  /* Career Growth – desktop image (Figma: 680×490, 10px left radius, crop, 20% overlay) */
+  @media (min-width: 1024px) {
+    .career-growth-image-wrap {
+      margin-right: 0;
+      margin-left: auto;
+      flex: 0 0 auto;
+      width: min(680px, calc(100vw - 120px - 430px - 48px));
+      max-width: 680px;
+      transform: none;
+    }
+
+    .career-growth-image-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 680 / 490;
+      max-height: 490px;
+      border-radius: 10px 0 0 10px;
+    }
+
+    .career-growth-image {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .career-growth-image-overlay {
+      display: block;
+      background: rgba(0, 0, 0, 0.2);
+    }
   }
   
   /* Career roadmap – mobile specs (Figma) */
