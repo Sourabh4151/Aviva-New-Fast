@@ -326,8 +326,6 @@ def send_callback_otp():
 
         incoming_email = (data.get("email") or "").strip()
         existing_user = CallBackUsers.query.filter_by(mobile=mobile).first()
-        if not existing_user and incoming_email:
-            existing_user = CallBackUsers.query.filter_by(email=incoming_email).first()
 
         if existing_user:
             user = existing_user
@@ -414,39 +412,6 @@ def send_callback_otp():
                 if user.otp_txn_id is None:
                     db.session.rollback()
                     return jsonify({"error": "Failed to send OTP"}), 500
-                db.session.commit()
-            elif "unique constraint failed" in error_msg and "callback_users.email" in error_msg:
-                # Email already exists on another row: reuse that row instead of inserting.
-                otp_txn_id = user.otp_txn_id
-                db.session.rollback()
-                email_user = CallBackUsers.query.filter_by(email=incoming_email).first()
-                if not email_user:
-                    raise
-                if email_user.verified:
-                    return jsonify({
-                        "message": "Thanks! Your callback request is already in our system. We'll connect with you soon!"
-                    }), 200
-                email_user.otp = otp
-                email_user.fname = first_name
-                email_user.lname = last_name
-                _apply_location_fields(email_user)
-                _apply_profile_fields(email_user)
-                email_user.mobile = mobile
-                email_user.otp_txn_id = otp_txn_id
-                if not email_user.otp_txn_id:
-                    email_user.otp_txn_id = send_otp_api(mobile)
-                    if email_user.otp_txn_id is None:
-                        db.session.rollback()
-                        return jsonify({"error": "Failed to send OTP"}), 500
-                try:
-                    if utm_source:
-                        email_user.utm_source = utm_source
-                    if utm_medium:
-                        email_user.utm_medium = utm_medium
-                    if utm_campaign:
-                        email_user.utm_campaign = utm_campaign
-                except AttributeError:
-                    print("Warning: UTM columns not found. Run a migration to add them.")
                 db.session.commit()
             else:
                 raise

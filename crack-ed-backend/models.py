@@ -8,7 +8,7 @@ class CallBackUsers(db.Model):
     lname = db.Column(db.String(120))
     state = db.Column(db.String(120))
     city = db.Column(db.String(120))
-    email = db.Column(db.String(120), unique=True)
+    email = db.Column(db.String(120))
     mobile = db.Column(db.String(15), unique=True)
     otp = db.Column(db.String(6))
     otp_txn_id = db.Column(db.String(100))
