@@ -419,7 +419,7 @@ export default function Hero() {
                 <li className="flex items-start gap-2 sm:gap-3">
                   <img src={tickSvg} alt="" aria-hidden="true" className="hero-tick-icon" />
                   <span
-                    className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
+                    className="hero-subtitle text-[16px] leading-[120%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
                     Join as a Relationship Manager - Mortgage Sales and secure a CTC of Rs 2.75 LPA + incentives
@@ -428,7 +428,7 @@ export default function Hero() {
                 <li className="flex items-start gap-2 sm:gap-3">
                   <img src={tickSvg} alt="" aria-hidden="true" className="hero-tick-icon" />
                   <span
-                    className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
+                    className="hero-subtitle text-[16px] leading-[120%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
                     A dedicated 1-month path to help you transition into your new role with confidence.
@@ -437,7 +437,7 @@ export default function Hero() {
                 <li className="flex items-start gap-2 sm:gap-3">
                   <img src={tickSvg} alt="" aria-hidden="true" className="hero-tick-icon" />
                   <span
-                    className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
+                    className="hero-subtitle text-[16px] leading-[120%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
                     For graduates under 30 who are ready to excel in a high-energy, daily travel field sales role.
@@ -465,7 +465,7 @@ export default function Hero() {
           !showOtp && !alreadyInSystem && (hasValidationError ? "lg:min-h-[680px]" : "lg:min-h-[620px]")
         }`}
         style={{
-          backgroundColor: "rgba(12, 9, 25, 1)",
+          backgroundColor: "rgba(40, 9, 9, 1)",
         }}
       >
               <div>
@@ -944,7 +944,7 @@ export default function Hero() {
                     <button
                       type="button"
                       onClick={(e) => (showOtp ? verifyOtp(e) : handleSubmit(e))}
-                      className="h-[52px] w-[206px] rounded-[10px] bg-[rgba(58,45,125,1)] hover:bg-[rgba(58,45,125,0.7)] text-white text-[14px] font-medium tracking-[0.02em] shadow-[0_12px_30px_rgba(0,0,0,0.45)] transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+                      className="h-[52px] w-[206px] rounded-[10px] bg-[rgba(199,44,44,1)] hover:bg-[rgba(199,44,44,0.7)] text-white text-[14px] font-medium tracking-[0.02em] shadow-[0_12px_30px_rgba(0,0,0,0.45)] transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
                       disabled={isSendingOtp || isVerifyingOtp || (!showOtp && isAgeOverLimit)}
                     >
                       {showOtp
