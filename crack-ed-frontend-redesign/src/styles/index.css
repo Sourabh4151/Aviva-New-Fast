@@ -1,0 +1,654 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  min-height: 100%;
+  scrollbar-width: none;
+  background-color: #000;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.callback-input::placeholder {
+  color: rgba(250, 250, 250, 0.5);
+}
+
+/* Hero tick icon — uses tick.svg which already has the red circle + white check */
+.hero-tick-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  object-fit: contain;
+}
+
+/* Hero mobile typography */
+@media (max-width: 768px) {
+  .hero-left-adjust .hero-logo-badge {
+    margin-bottom: 8px;
+  }
+  .hero-left-adjust .hero-title {
+    margin-bottom: 16px;
+  }
+  .hero-left-adjust .hero-bullet-list {
+    margin-bottom: 32px;
+  }
+  .hero-left-adjust .hero-bullet-list > li + li {
+    margin-top: 10px;
+  }
+  .hero-badge {
+    width: auto;
+    max-width: 100%;
+    min-height: 34px;
+    padding: 8px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(250, 250, 250, 1);
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 1);
+    box-sizing: border-box;
+  }
+  .hero-title {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 1);
+  }
+  .hero-subtitle {
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 16px !important;
+    line-height: 100% !important;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 1);
+  }
+  .hero-form-title {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 1);
+  }
+  .hero-form-subtitle {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 0.6);
+  }
+  .hero-form-otp-text {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 0.6);
+  }
+  .hero-form-card .callback-input,
+  .hero-form-card .callback-input::placeholder {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+  .hero-form-card .callback-input::placeholder {
+    color: rgba(250, 250, 250, 0.6);
+  }
+  .hero-form-card .callback-input {
+    color: rgba(250, 250, 250, 1);
+  }
+  .hero-form-card .custom-select {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: rgba(250, 250, 250, 0.6);
+  }
+  .hero-form-card .custom-select span[class*="text-white"] {
+    color: rgba(250, 250, 250, 1);
+  }
+}
+
+/* Custom dropdown scrollbar */
+.custom-options::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-options::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+}
+
+.hero-form-checkbox {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  min-height: 8px;
+  margin: 5px 0 0;
+  padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 1px solid rgba(250, 250, 250, 1);
+  border-radius: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.hero-form-checkbox:checked {
+  background: rgba(250, 250, 250, 1);
+}
+
+.hero-form-consent-text {
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0;
+  color: rgba(250, 250, 250, 0.6);
+}
+
+/* Hero layout containers */
+#hero {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  --hero-bg-pan-width: 125%;
+  --hero-bg-pan-shift: -8%;
+  --hero-bg-object-y: center;
+}
+
+.hero-stage {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-height: 730px;
+}
+
+.hero-content-shell {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 4vw, 2rem);
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 6.5rem clamp(1rem, 4vw, 1.5rem) 3rem;
+  box-sizing: border-box;
+}
+
+.hero-left-adjust {
+  width: 100%;
+  max-width: 514px;
+  min-width: 0;
+  margin: 0 auto;
+}
+
+.hero-form-card {
+  width: 100%;
+  max-width: 703px;
+  margin: 0 auto;
+}
+
+.referral-form-card {
+  width: 100%;
+  max-width: 703px;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: rgba(30, 30, 30, 1);
+  box-sizing: border-box;
+}
+
+.hero-bg-wrap {
+  pointer-events: none;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-bg-pan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--hero-bg-pan-width);
+  transform: translateX(var(--hero-bg-pan-shift));
+  will-change: transform;
+}
+
+.hero-bg-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center var(--hero-bg-object-y);
+}
+
+@media (max-width: 1023px) {
+  #hero {
+    --hero-bg-pan-width: 100%;
+    --hero-bg-pan-shift: 0%;
+    --hero-bg-object-y: 32%;
+  }
+
+  .hero-stage {
+    min-height: auto;
+  }
+
+  .hero-bg-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    height: clamp(360px, 46vh, 460px);
+    min-height: 0;
+    width: 100%;
+  }
+
+  .hero-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    height: clamp(360px, 46vh, 460px);
+    width: 100%;
+  }
+
+  .hero-content-shell {
+    padding-top: 5.75rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .hero-left-adjust {
+    padding-top: 0;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hero-content-shell {
+    padding-left: clamp(1.5rem, 5vw, 3rem);
+    padding-right: clamp(1.5rem, 5vw, 3rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  #hero {
+    --hero-bg-pan-width: 168%;
+    --hero-bg-pan-shift: -27%;
+    --hero-bg-object-y: 10%;
+  }
+
+  .hero-bg-image {
+    object-position: center var(--hero-bg-object-y);
+  }
+
+  .hero-stage {
+    min-height: 690px;
+  }
+
+  .hero-content-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 514px) minmax(0, 703px);
+    justify-content: space-between;
+    align-items: start;
+    column-gap: clamp(1.25rem, 2.5vw, 3rem);
+    row-gap: 2rem;
+    padding: 84px 60px 3rem;
+  }
+
+  .hero-left-adjust {
+    margin: 0;
+    padding-top: 90px;
+    justify-self: start;
+    width: 100%;
+    max-width: 514px;
+  }
+
+  .referral-form-card {
+    margin: 0;
+    justify-self: end;
+    width: 100%;
+    max-width: 703px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1320px) {
+  .hero-content-shell {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .hero-left-adjust {
+    max-width: 100%;
+    padding-top: 90px;
+  }
+
+  .referral-form-card {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1321px) {
+  .hero-content-shell {
+    grid-template-columns: 514px 703px;
+  }
+}
+
+.referral-form {
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.referral-section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.referral-section-bar {
+  width: 3px;
+  height: 20px;
+  border-radius: 999px;
+  background-color: rgba(26, 158, 183, 1);
+  flex-shrink: 0;
+}
+
+.referral-section-title {
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 19.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(26, 158, 183, 1);
+}
+
+.referral-field-label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 19.5px;
+  letter-spacing: 0;
+  color: rgba(26, 158, 183, 1);
+}
+
+.referral-required {
+  color: rgba(26, 158, 183, 1);
+}
+
+.referral-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: rgba(0, 0, 0, 0.35);
+  color: rgba(250, 250, 250, 1);
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.referral-input::placeholder {
+  color: rgba(250, 250, 250, 0.45);
+}
+
+.referral-input:focus {
+  border-color: rgba(26, 158, 183, 0.55);
+}
+
+.referral-select-input {
+  padding-right: 40px;
+}
+
+.referral-select-chevron {
+  position: absolute;
+  right: 12px;
+  display: flex;
+  height: 24px;
+  width: 24px;
+  align-items: center;
+  justify-content: center;
+  color: rgba(250, 250, 250, 0.6);
+}
+
+.referral-options {
+  position: absolute;
+  z-index: 50;
+  margin-top: 8px;
+  max-height: 224px;
+  width: 100%;
+  overflow: auto;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(20, 20, 20, 0.98);
+  padding: 8px 0;
+  list-style: none;
+}
+
+.referral-option {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: rgba(250, 250, 250, 1);
+  cursor: pointer;
+}
+
+.referral-option:hover {
+  background: rgba(26, 158, 183, 0.25);
+}
+
+.referral-option-muted {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: rgba(250, 250, 250, 0.5);
+}
+
+.referral-field-error {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #f87171;
+}
+
+.referral-form-divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+.referral-submit-btn {
+  width: 100%;
+  max-width: 221px;
+  min-width: 0;
+  height: 56px;
+  padding: 16px 2rem;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(26, 158, 183, 1);
+  color: rgba(30, 30, 30, 1);
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.referral-submit-btn:hover:not(:disabled) {
+  background-color: rgba(22, 140, 163, 1);
+}
+
+.referral-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1023px) {
+  section {
+    border-top-width: 0 !important;
+    border-bottom-width: 0 !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .referral-submit-btn {
+    max-width: 100%;
+  }
+}
+
+/* Simple Steps section */
+.simple-steps {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 1);
+  box-sizing: border-box;
+}
+
+.simple-steps-inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px clamp(1rem, 4vw, 120px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.simple-steps-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.simple-steps-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 30px;
+  border-radius: 100px;
+  border: 1px solid rgba(250, 250, 250, 1);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 27px;
+  letter-spacing: 0;
+  color: rgba(250, 250, 250, 1);
+  text-align: center;
+}
+
+.simple-steps-title {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 27px;
+  letter-spacing: 0;
+  text-align: center;
+  color: rgba(250, 250, 250, 1);
+}
+
+.simple-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.simple-steps-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background-color: rgba(30, 30, 30, 1);
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.simple-steps-icon {
+  display: block;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.simple-steps-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.simple-steps-card-title {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 25.5px;
+  letter-spacing: 0;
+  color: rgba(250, 250, 250, 1);
+}
+
+.simple-steps-card-desc {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24.5px;
+  letter-spacing: 0;
+  color: rgba(250, 250, 250, 0.55);
+}
+
+@media (max-width: 1023px) {
+  .simple-steps-inner {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .simple-steps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1320px) {
+  .simple-steps-inner {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
