@@ -298,17 +298,17 @@ export default function Hero() {
         <div className="hero-content-shell relative z-20">
           <div className="hero-left-adjust text-white">
             <h1
-              className="hero-title text-[40px] lg:text-[48px] font-semibold leading-[100%] tracking-[0em] text-[rgba(250,250,250,1)] mb-4"
+              className="hero-title text-[40px] lg:text-[48px] font-semibold leading-[100%] tracking-[0em] text-[rgba(250,250,250,1)] mb-8"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
               Help a friend get placed. Earn a commission of{" "}
               <span className="text-[#1A9EB7]">Rs 10,000</span>
             </h1>
-            <ul className="hero-bullet-list text-gray-200 space-y-3 mb-8 max-lg:mb-0">
+            <ul className="hero-bullet-list text-gray-200 space-y-5 mb-8 max-lg:mb-0">
               <li className="flex items-start gap-2 sm:gap-3">
                 <img src={tickSvg} alt="" aria-hidden="true" className="hero-tick-icon" />
                 <span
-                  className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
+                  className="hero-subtitle text-[16px] leading-[135%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
                   <span className="font-semibold">Completely Free:</span> No hidden fees or
@@ -318,7 +318,7 @@ export default function Hero() {
               <li className="flex items-start gap-2 sm:gap-3">
                 <img src={tickSvg} alt="" aria-hidden="true" className="hero-tick-icon" />
                 <span
-                  className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
+                  className="hero-subtitle text-[16px] leading-[135%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
                   <span className="font-semibold">Quick 7-Day Payout:</span> Money hits your
@@ -328,7 +328,7 @@ export default function Hero() {
               <li className="flex items-start gap-2 sm:gap-3">
                 <img src={tickSvg} alt="" aria-hidden="true" className="hero-tick-icon" />
                 <span
-                  className="hero-subtitle text-[16px] leading-[100%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
+                  className="hero-subtitle text-[16px] leading-[135%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
                   <span className="font-semibold">Extra ₹2,000 Included:</span> Get an extra ₹2,000
