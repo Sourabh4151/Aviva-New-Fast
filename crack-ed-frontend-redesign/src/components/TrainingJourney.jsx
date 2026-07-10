@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import card1 from "../assets/card1.svg";
-import card2 from "../assets/card2.svg";
 import card1gold from "../assets/card1gold.svg";
-import card2gold from "../assets/card2gold.svg";
 import classroomMobile from "../assets/classroom_mobile.svg";
-import ojtMobile from "../assets/ojt_mobile.svg";
 
 const FONT_MONTSERRAT =
   "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
@@ -48,7 +45,6 @@ const DURATION_VALUE_COLOR_ACTIVE = "rgba(250,250,250,1)";
 export default function TrainingJourney() {
   const [activeCard, setActiveCard] = useState("classroom");
   const classroomActive = activeCard === "classroom";
-  const ojtActive = activeCard === "ojt";
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -65,8 +61,6 @@ export default function TrainingJourney() {
   }, []);
 
   const classroomVisualActive = isMobile ? true : classroomActive;
-  const ojtVisualActive = isMobile ? true : ojtActive;
-  const placementVisualActive = false;
 
   return (
     <section
@@ -108,14 +102,14 @@ export default function TrainingJourney() {
           </p>
         </div>
 
-        {/* Three cards, same specs: 336px fill, 316px height, radius 10px, padding 24/16, gap 10px */}
+        {/* Training card: 336px fill, 316px height, radius 10px, padding 24/16, gap 10px */}
         <div
           className="mt-4 sm:mt-6 flex flex-col lg:flex-row gap-4 max-w-[1040px] mx-auto"
           onMouseLeave={!isMobile ? () => setActiveCard("classroom") : undefined}
         >
           {/* Classroom Training card */}
           <article
-            className="flex-1 min-w-0 max-w-full lg:max-w-[512px] flex flex-col"
+            className="w-full flex flex-col"
             style={{
               backgroundColor: classroomVisualActive
                 ? isMobile
@@ -244,124 +238,6 @@ export default function TrainingJourney() {
                   marginLeft: undefined,
                   marginRight: undefined,
                   backgroundColor: classroomActive
-                    ? LINE_ACTIVE_COLOR
-                    : "rgba(250,250,250,0.25)",
-                }}
-              />
-            </div>
-          </article>
-
-          {/* On-the-Job Training card */}
-          <article
-            className="flex-1 min-w-0 max-w-full lg:max-w-[512px] flex flex-col"
-            style={{
-              backgroundColor: ojtVisualActive
-                ? isMobile
-                  ? "rgba(13, 11, 0, 1)"
-                  : CARD_ACTIVE_BG
-                : "transparent",
-              borderRadius: CARD_RADIUS,
-              minHeight: isMobile ? undefined : CARD_MIN_HEIGHT,
-              ...CARD_PADDING,
-              gap: CARD_GAP,
-            }}
-            onMouseEnter={!isMobile ? () => setActiveCard("ojt") : undefined}
-          >
-            <div
-              className={`w-full flex flex-col ${isMobile ? "" : "flex-1"}`}
-              style={{ gap: CARD_GAP }}
-            >
-              <div>
-                <img
-                  src={ojtMobile}
-                  alt=""
-                  className="w-16 h-16 sm:hidden"
-                  aria-hidden="true"
-                />
-                <img
-                  src={ojtActive ? card2gold : card2}
-                  alt=""
-                  className="hidden sm:block w-12 h-12 sm:w-16 sm:h-16"
-                  aria-hidden="true"
-                />
-              </div>
-
-              <div>
-                <h3
-                  style={{
-                    fontFamily: FONT_MONTSERRAT,
-                    fontWeight: 600,
-                    fontSize: 18,
-                    lineHeight: "27px",
-                    letterSpacing: "0em",
-                    textAlign: isMobile ? "left" : "justify",
-                    color: ojtVisualActive ? "rgba(250,250,250,1)" : "rgba(250,250,250,0.5)",
-                  }}
-                >
-                  Interview Drive
-                </h3>
-                <p
-                  style={{
-                    fontFamily: FONT_MONTSERRAT,
-                    fontWeight: 400,
-                    fontSize: 14,
-                    lineHeight: "21px",
-                    letterSpacing: "0em",
-                    textAlign: isMobile ? "left" : "justify",
-                    color: ojtVisualActive
-                      ? "rgba(250,250,250,0.8)"
-                      : "rgba(250,250,250,0.5)",
-                    marginTop: CARD_GAP,
-                  }}
-                >
-                  Interview with a top-tier bank and secure a formal offer letter upon selection.
-                </p>
-              </div>
-
-              <div
-                className="flex flex-wrap gap-x-20 sm:gap-x-[100px] gap-y-2 text-xs tracking-[0.16em]"
-                style={{ marginTop: 6 }}
-              >
-                <div>
-                  <div
-                    style={{
-                      ...DURATION_LABEL,
-                      textAlign: isMobile ? "left" : "justify",
-                      color: ojtVisualActive
-                        ? DURATION_LABEL_COLOR_ACTIVE
-                        : DURATION_LABEL_COLOR_INACTIVE,
-                    }}
-                  >
-                    DURATION
-                  </div>
-                  <div style={{ marginTop: 8 }} />
-                  <div
-                    style={{
-                      ...DURATION_VALUE,
-                      textAlign: isMobile ? "left" : "justify",
-                      color: ojtVisualActive
-                        ? DURATION_VALUE_COLOR_ACTIVE
-                        : DURATION_VALUE_COLOR_INACTIVE,
-                    }}
-                  >
-                    2 Months
-                  </div>
-                </div>
-              </div>
-
-              {/* Spacer: pushes bottom line down to match sibling card */}
-              <div style={{ flex: 1, minHeight: 0 }} aria-hidden="true" />
-
-              <div className="h-[2px] w-full bg-white sm:hidden" />
-              <div
-                className="hidden sm:block"
-                style={{
-                  height: ojtActive ? LINE_ACTIVE_HEIGHT : 1,
-                  width: "100%",
-                  maxWidth: "100%",
-                  marginLeft: undefined,
-                  marginRight: undefined,
-                  backgroundColor: ojtActive
                     ? LINE_ACTIVE_COLOR
                     : "rgba(250,250,250,0.25)",
                 }}
