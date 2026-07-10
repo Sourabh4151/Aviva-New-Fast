@@ -4,33 +4,33 @@ import enrollmentImage from "../assets/enrollment.png";
 const STEPS = [
   {
     number: "01",
-    title: "Application & Screening",
+    title: "Application",
     description:
-      "Apply and go through a quick interview to assess readiness for field sales.",
+      "Submit your application details, and take the first step towards your career journey.",
   },
   {
     number: "02",
-    title: "Registration",
+    title: "Attend the Selection Interview",
     description:
-      "Secure your seat by paying the Rs 5,000 registration fee.",
+      "Appear for the interview at the designated interview location.",
   },
   {
     number: "03",
-    title: "Online Training",
+    title: "Receive Your Pre-Offer Letter",
     description:
-      "Attend a 1-month intensive program designed for real banking roles.",
+      "Candidates who successfully clear the interview will receive a pre-offer letter.",
   },
   {
     number: "04",
-    title: "Interview Drive",
+    title: "Complete Your Training",
     description:
-      "Participate in face-to-face interviews with leadingprivate sector banks",
+      "Attend the classroom training and build the skills needed for the role.",
   },
   {
     number: "05",
-    title: "Placement & Onboarding",
+    title: "Start Your Career",
     description:
-      "Secure your offer letter and begin your banking role with Rs 2.5 LPA + incentives.",
+      "Successfully complete the training and join your new role with confidence.",
   },
 ];
 
@@ -79,7 +79,7 @@ export default function EnrollmentProcess() {
           {/* Left: Image card */}
           <div className="flex-1 flex justify-start min-w-0">
             <div
-              className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[345px] sm:h-[460px] lg:h-[560px] p-0 sm:p-0 lg:p-6 lg:rounded-[10px] enrollment-image-mobile"
+              className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[345px] sm:h-[460px] lg:h-[575px] p-0 sm:p-0 lg:p-6 lg:rounded-[10px] enrollment-image-mobile"
             >
               <img
                 src={enrollmentImage}
