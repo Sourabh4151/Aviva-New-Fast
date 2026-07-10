@@ -652,3 +652,72 @@ body::-webkit-scrollbar {
     padding-right: 60px;
   }
 }
+
+/* Terms and Conditions section */
+.terms-section {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 1);
+  box-sizing: border-box;
+}
+
+.terms-inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px clamp(1rem, 4vw, 120px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.terms-inner > * {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.terms-heading {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: rgba(218, 218, 218, 1);
+}
+
+.terms-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.terms-item {
+  position: relative;
+  margin: 0;
+  padding-left: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: rgba(156, 156, 156, 1);
+}
+
+.terms-item::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: rgba(156, 156, 156, 1);
+}
+
+@media (min-width: 1024px) and (max-width: 1320px) {
+  .terms-inner {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}

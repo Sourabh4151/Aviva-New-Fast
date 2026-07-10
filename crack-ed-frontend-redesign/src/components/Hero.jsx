@@ -301,7 +301,7 @@ export default function Hero() {
               className="hero-title text-[40px] lg:text-[48px] font-semibold leading-[100%] tracking-[0em] text-[rgba(250,250,250,1)] mb-8"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
-              Help a friend get placed. Earn a commission of{" "}
+              Help a friend get placed. Earn a commission of upto{" "}
               <span className="text-[#1A9EB7]">Rs 10,000</span>
             </h1>
             <ul className="hero-bullet-list text-gray-200 space-y-5 mb-8 max-lg:mb-0">
@@ -322,7 +322,7 @@ export default function Hero() {
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
                   <span className="font-semibold">Quick 7-Day Payout:</span> Money hits your
-                  account 7 days post-enrollment.
+                  account 7 days post-admission.
                 </span>
               </li>
               <li className="flex items-start gap-2 sm:gap-3">
