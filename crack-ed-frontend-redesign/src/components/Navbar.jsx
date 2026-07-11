@@ -44,6 +44,9 @@ export default function Navbar() {
       <a href="#training" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
         Training
       </a>
+      <a href="#eligibility" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
+        Eligibility
+      </a>
       <a href="#enrollment-process" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
         Enrollment Process
       </a>
