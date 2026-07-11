@@ -1,9 +1,9 @@
 import React from "react";
 
 const REQUIREMENTS = [
-  "Candidates must have at least 6 months of sales experience.",
-  "A minimum aggregate score of 50% in graduation is required",
-  "Applicants should be up to 28 years of age",
+  "Open to both  candidates aged up to 35 years",
+  "A personal two-wheeler is required to support daily field travel",
+  "Strong communication skills and a confident, customer-focused attitude are essential",
 ];
 
 export default function Eligibility() {
