@@ -13,17 +13,22 @@ const CAREER_STAGES = [
   {
     title: "Relationship Manager",
     description:
-      "Build customer relationships, guide clients through the home loan process, and drive business growth through customer acquisition and service.",
+      "Develop strong relationships and contribute to the company's mission of bridging financial gaps.",
   },
   {
-    title: "Assistant Branch Manager",
+    title: "Senior Relationship Manager",
     description:
-      "Support branch operations, manage customer and builder relationships, and contribute to sales and portfolio growth.",
+      "Take on leadership responsibilities, guiding a team of Relationship Managers.",
   },
   {
     title: "Branch Manager",
     description:
-      "Lead branch operations, oversee teams, drive home loan business performance, and ensure excellent customer experience.",
+      "Oversee multiple teams across branches or regions, ensuring alignment with organizational goals.",
+  },
+  {
+    title: "Area Sales Head",
+    description:
+      "Lead large-scale operations across a significant geographical area.",
   },
 ];
 

@@ -204,7 +204,30 @@ export default function TrainingJourney() {
                         : DURATION_VALUE_COLOR_INACTIVE,
                     }}
                   >
-                    5 Weeks
+                    45 Days
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style={{
+                      ...DURATION_LABEL,
+                      color: classroomVisualActive
+                        ? DURATION_LABEL_COLOR_ACTIVE
+                        : DURATION_LABEL_COLOR_INACTIVE,
+                    }}
+                  >
+                    STIPEND
+                  </div>
+                  <div style={{ marginTop: 8 }} />
+                  <div
+                    style={{
+                      ...DURATION_VALUE,
+                      color: classroomVisualActive
+                        ? DURATION_VALUE_COLOR_ACTIVE
+                        : DURATION_VALUE_COLOR_INACTIVE,
+                    }}
+                  >
+                    Rs 10,000 / month
                   </div>
                 </div>
                 <div>
@@ -325,7 +348,7 @@ export default function TrainingJourney() {
                         : DURATION_VALUE_COLOR_INACTIVE,
                     }}
                   >
-                    8 Weeks
+                    2 Months
                   </div>
                 </div>
                 <div>
@@ -348,7 +371,7 @@ export default function TrainingJourney() {
                         : DURATION_VALUE_COLOR_INACTIVE,
                     }}
                   >
-                    Rs 10,000
+                    Rs 12,000 / month
                   </div>
                 </div>
               </div>

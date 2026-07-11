@@ -6,31 +6,25 @@ const STEPS = [
     number: "01",
     title: "Online Application",
     description:
-      "Fill in your details, choose your program, and take the first step towards your career journey.",
+      "Fill in your details and take the first step towards your career journey.",
   },
   {
     number: "02",
-    title: "Screening + AI Interview",
+    title: "Screening Interview",
     description:
-      "Candidates undergo an AI-led interview to assess communication skills, role fit, and professional readiness.",
+      "Candidates undergo a screening interview to assess communication skills, role fit, and professional readiness.",
   },
   {
     number: "03",
-    title: "Counselling & Selection",
+    title: "Complete Your Training",
     description:
-      "Shortlisted candidates receive one-on-one counselling to ensure clarity on the role, expectations, and career path.",
+      "Selected candidates will undergo a structured training program to prepare for the role.",
   },
   {
     number: "04",
-    title: "Offer & Enrollment",
+    title: "Start Your Career",
     description:
-      "Selected candidates receive a formal offer and complete enrollment into the program.",
-  },
-  {
-    number: "05",
-    title: "Program Onboarding",
-    description:
-      "Begin your learning journey with structured orientation, expectations setting, and readiness alignment.",
+      "Successfully complete the training and step into your role as a Relationship Manager at Piramal Housing Finance.",
   },
 ];
 

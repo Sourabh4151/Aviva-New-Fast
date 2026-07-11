@@ -383,7 +383,7 @@ export default function Hero() {
                     <span className="hero-tick">
                       <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                     </span>
-                    <span className="hero-subtitle font-normal text-[16px] leading-[1] lg:font-normal lg:text-[16px] lg:leading-[1] lg:tracking-[0] lg:text-[rgba(250,250,250,1)]">13-week program
+                    <span className="hero-subtitle font-normal text-[16px] leading-[1] lg:font-normal lg:text-[16px] lg:leading-[1] lg:tracking-[0] lg:text-[rgba(250,250,250,1)]">3.5-month program
                     </span>
                   </li>
                 </ul>
