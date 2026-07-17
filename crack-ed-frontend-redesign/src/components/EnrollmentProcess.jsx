@@ -36,7 +36,7 @@ export default function EnrollmentProcess() {
       id="enrollment-process"
       className="relative bg-black text-white scroll-mt-24 overflow-hidden"
     >
-      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-20">
+      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-12">
         {/* Top: Badge + Heading */}
         <div className="flex flex-col items-start text-left">
           <div
@@ -50,7 +50,7 @@ export default function EnrollmentProcess() {
           </div>
 
           <p
-            className="mt-4 sm:mt-6 text-[24px] font-medium tracking-normal leading-[31.2px]"
+            className="mt-3 sm:mt-4 text-[24px] font-medium tracking-normal leading-[31.2px]"
             style={{
               fontFamily:
                 "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
@@ -63,11 +63,11 @@ export default function EnrollmentProcess() {
         </div>
 
         {/* Bottom: Image + Steps */}
-        <div className="mt-8 sm:mt-12 flex flex-col lg:flex-row gap-6 lg:gap-8">
+        <div className="mt-6 sm:mt-8 flex flex-col lg:flex-row gap-6 lg:gap-8 lg:items-start">
           {/* Left: Image card */}
           <div className="flex-1 flex justify-start min-w-0">
           <div
-            className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[280px] sm:h-[380px] lg:h-[480px] p-0 sm:p-0 lg:p-6 lg:rounded-[10px] enrollment-image-mobile"
+            className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[280px] sm:h-[340px] lg:h-[392px] p-0 lg:rounded-[10px] enrollment-image-mobile"
           >
             <img
               src={enrollmentImage}
@@ -79,7 +79,7 @@ export default function EnrollmentProcess() {
 
           {/* Right: Steps */}
           <div className="flex-1 flex flex-col justify-center min-w-0">
-            <div className="flex flex-col gap-6 sm:gap-8 max-w-full lg:max-w-[426px]">
+            <div className="flex flex-col gap-4 sm:gap-5 max-w-full lg:max-w-[426px]">
               {STEPS.map((step) => (
                 <div
                   key={step.number}
@@ -91,7 +91,6 @@ export default function EnrollmentProcess() {
                     const isHovered = hoveredStep === step.number;
                     const accentColor = "rgba(237, 59, 37, 1)";
                     const defaultLineColor = "rgba(250,250,250,0.25)";
-                    const defaultTextColor = "rgba(250,250,250,1)";
 
                     return (
                       <>
@@ -113,7 +112,7 @@ export default function EnrollmentProcess() {
                         <div
                           className="flex flex-col"
                           style={{
-                            gap: 10,
+                            gap: 8,
                           }}
                         >
                           <h3

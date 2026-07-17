@@ -36,18 +36,55 @@ export default function Navbar() {
     }
   };
 
+  /** Scroll to a section, offset for the fixed nav. */
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    closeMobile();
+    const el = document.getElementById(sectionId);
+    if (!el) return;
+
+    // Wait for mobile menu to collapse so header height is correct
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const scroller =
+          document.body.scrollHeight > document.body.clientHeight
+            ? document.body
+            : document.documentElement;
+
+        const header = document.querySelector("header");
+        const navHeight = header ? header.getBoundingClientRect().height : 72;
+        const sectionTop = el.getBoundingClientRect().top + scroller.scrollTop;
+        const availableHeight = window.innerHeight - navHeight;
+        const showEnrollmentBottom =
+          sectionId === "enrollment-process" &&
+          el.offsetHeight > availableHeight;
+        const targetY = showEnrollmentBottom
+          ? sectionTop + el.offsetHeight - window.innerHeight
+          : sectionTop - navHeight;
+
+        scroller.scrollTo({
+          top: Math.max(0, targetY),
+          behavior: "smooth",
+        });
+        if (window.history?.pushState) {
+          window.history.pushState(null, "", `#${sectionId}`);
+        }
+      });
+    });
+  };
+
   const navLinks = (
     <>
-      <a href="#about" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
+      <a href="#about" className="text-white text-sm font-semibold hover:opacity-90" onClick={(e) => scrollToSection(e, "about")}>
         About Program
       </a>
-      <a href="#training" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
+      <a href="#training" className="text-white text-sm font-semibold hover:opacity-90" onClick={(e) => scrollToSection(e, "training")}>
         Training
       </a>
-      <a href="#enrollment-process" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
+      <a href="#enrollment-process" className="text-white text-sm font-semibold hover:opacity-90" onClick={(e) => scrollToSection(e, "enrollment-process")}>
         Enrollment Process
       </a>
-      <a href="#program-fee" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
+      <a href="#program-fee" className="text-white text-sm font-semibold hover:opacity-90" onClick={(e) => scrollToSection(e, "program-fee")}>
         Program Fee
       </a>
     </>
