@@ -10,16 +10,12 @@ import crackedLogo from "../assets/crack-ed.svg";
 import stateCities from "../data/indian_state_cities.json";
 
 const INDIAN_STATES = [
-  "Andhra Pradesh",
   "Assam",
-  "Bihar",
   "Delhi",
   "Haryana",
   "Jharkhand",
-  "Madhya Pradesh",
   "Meghalaya",
   "Mizoram",
-  "Rajasthan",
   "Uttarakhand",
   "West Bengal",
 ].filter((state) => Array.isArray(stateCities[state]));
