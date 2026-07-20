@@ -11,24 +11,19 @@ import growthIcon from "../assets/growth.svg";
 
 const CAREER_STAGES = [
   {
-    title: "Build Entrepreneurial Leadership",
+    title: "Business Analysis",
     description:
-      "Develop the mindset and decision-making skills to lead and grow your business.",
+      "Analyze your current or prospective business in the light of proven frameworks",
   },
   {
-    title: "Drive Business Growth",
+    title: "Founder Network",
     description:
-      "Strengthen your strategy, customer acquisition, and operational capabilities.",
+      "Network with startup founders and entrepreneur community",
   },
   {
-    title: "Scale with Structure",
+    title: "Scalable Growth",
     description:
-      "Create scalable systems across finance, people, and business operations.",
-  },
-  {
-    title: "Pitch with Confidence",
-    description:
-      "Develop an investor-ready business plan, financial model, and pitch.",
+      "Strengthen your business model and growth strategy for scale",
   },
 ];
 
@@ -91,24 +86,23 @@ function CareerStageRow({
       ref={(el) => {
         rowRefs.current[stageIndex] = el;
       }}
-      className={`career-roadmap-stage z-10 grid w-full max-w-full ${
-        isDesktop ? "absolute left-0" : "relative"
-      }`}
+      className={`career-roadmap-stage z-10 grid w-full max-w-full ${isDesktop ? "absolute left-0" : "relative"
+        }`}
       style={
         isDesktop
           ? {
-              top: layout?.top ?? 0,
-              marginLeft: layout?.marginLeft ?? 0,
-              columnGap: TEXT_GAP_PX,
-              rowGap: TITLE_DESC_GAP_PX,
-              maxWidth: layout?.maxWidth,
-              gridTemplateColumns: "auto minmax(0, 1fr)",
-            }
+            top: layout?.top ?? 0,
+            marginLeft: layout?.marginLeft ?? 0,
+            columnGap: TEXT_GAP_PX,
+            rowGap: TITLE_DESC_GAP_PX,
+            maxWidth: layout?.maxWidth,
+            gridTemplateColumns: "auto minmax(0, 1fr)",
+          }
           : {
-              gridTemplateColumns: "auto 1fr",
-              columnGap: TEXT_GAP_PX,
-              rowGap: TITLE_DESC_GAP_PX,
-            }
+            gridTemplateColumns: "auto 1fr",
+            columnGap: TEXT_GAP_PX,
+            rowGap: TITLE_DESC_GAP_PX,
+          }
       }
     >
       <span
@@ -123,11 +117,10 @@ function CareerStageRow({
         aria-hidden="true"
       />
       <span
-        className={`career-roadmap-title col-start-2 row-start-1 min-w-0 w-max max-w-full self-center ${
-          isDesktop
+        className={`career-roadmap-title col-start-2 row-start-1 min-w-0 w-max max-w-full self-center ${isDesktop
             ? "career-roadmap-title-desktop"
             : "career-roadmap-title-mobile"
-        }`}
+          }`}
         style={{
           backgroundColor: isActive
             ? ACTIVE_ACCENT
@@ -141,11 +134,10 @@ function CareerStageRow({
         {stage.title}
       </span>
       <p
-        className={`career-roadmap-desc col-start-2 row-start-2 min-w-0 w-full max-w-full ${
-          isDesktop
+        className={`career-roadmap-desc col-start-2 row-start-2 min-w-0 w-full max-w-full ${isDesktop
             ? "career-roadmap-desc-desktop"
             : "career-roadmap-desc-mobile"
-        }`}
+          }`}
       >
         {stage.description}
       </p>
@@ -314,18 +306,18 @@ export default function CareerGrowth() {
           index === 0
             ? 0
             : Math.max(
-                0,
-                Math.round(
-                  bottomX + (bottomCenterY - dotCenterY) / tanAngle - dotHalf
-                )
-              );
+              0,
+              Math.round(
+                bottomX + (bottomCenterY - dotCenterY) / tanAngle - dotHalf
+              )
+            );
 
         return {
           top: Math.round(tops[index]),
           marginLeft,
         };
       });
-      
+
       const applyLayoutToDom = (layout) => {
         layout.forEach((item, index) => {
           const row = rowRefs.current[index];
@@ -430,20 +422,20 @@ export default function CareerGrowth() {
       }
 
       const contentHeight =
-      Math.max(
-        ...fittedLayout.map((item, index) => item.top + heights[index])
-      ) + 16;
+        Math.max(
+          ...fittedLayout.map((item, index) => item.top + heights[index])
+        ) + 16;
 
-    const finalDotCenters = CAREER_STAGES.map((_, index) =>
-      toLocalCenter(dotRefs.current[index])
-    );
+      const finalDotCenters = CAREER_STAGES.map((_, index) =>
+        toLocalCenter(dotRefs.current[index])
+      );
 
       setStageLayout((prev) => {
         const changed = prev.some(
           (item, index) =>
             Math.abs(item.top - fittedLayout[index].top) > 1 ||
-          Math.abs(item.marginLeft - fittedLayout[index].marginLeft) > 1 ||
-          Math.abs((item.maxWidth ?? 0) - fittedLayout[index].maxWidth) > 1
+            Math.abs(item.marginLeft - fittedLayout[index].marginLeft) > 1 ||
+            Math.abs((item.maxWidth ?? 0) - fittedLayout[index].maxWidth) > 1
         );
         return changed ? fittedLayout : prev;
       });
@@ -554,7 +546,7 @@ export default function CareerGrowth() {
       className="relative bg-[rgba(28,50,214,0.1)] backdrop-blur-[100px] text-white scroll-mt-24 overflow-hidden"
     >
       <div className="relative z-10 px-4 py-section sm:px-6 md:px-8 lg:px-[120px] lg:pt-[110px] lg:pb-[110px]">
-      <div className="career-growth-card flex w-full flex-col items-start gap-24 lg:flex-row lg:items-stretch lg:justify-between lg:gap-x-12">
+        <div className="career-growth-card flex w-full flex-col items-start gap-24 lg:flex-row lg:items-stretch lg:justify-between lg:gap-x-12">
           {/* Left content */}
           <div className="w-full shrink-0 lg:w-[430px] lg:max-w-[430px]">
             <div
@@ -566,10 +558,10 @@ export default function CareerGrowth() {
 
             <div className="mt-3 sm:mt-4">
               <p className="career-growth-subtitle text-lg font-medium leading-tight text-white text-justify sm:text-xl lg:text-2xl">
-              Strengthen, scale, and future-proof your business.
+                Strengthen, scale, and future-proof your business.
               </p>
               <p className="career-growth-body mt-3 font-normal text-[16px] leading-[24px] text-[rgba(250,250,250,0.8)] text-justify sm:mt-4">
-              Develop the skills, strategy, and network to take your venture to the next stage.
+                Develop the skills, strategy, and network to take your venture to the next stage.
               </p>
             </div>
 

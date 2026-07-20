@@ -364,33 +364,33 @@ export default function Hero() {
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
                   <span className="hero-subtitle">
-                  Complete a 6-month hybrid fellowship designed for entrepreneurs and business leaders.
+                  A 6 month hybrid fellowship designed for existing and aspiring entreprenuers
                   </span>
                 </li>
                 <li className="flex items-center gap-2 sm:gap-3">
                   <span className="hero-tick shrink-0">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="hero-subtitle">Learn through 156 hours of expert-led, practical entrepreneurship training.
+                  <span className="hero-subtitle">Get 8 hours of mentorship by startup founders to learn the nuances and recieve practical wisdom.
                   </span>
                 </li>
                 <li className="flex items-center gap-2 sm:gap-3">
                   <span className="hero-tick shrink-0">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="hero-subtitle">Gain hands-on experience through IIM Lucknow campus immersions and industry visits.
+                  <span className="hero-subtitle">156 hours of intensive, hybrid curriculum covering everything from ideation to execution.
                   </span>
                 </li>
                 <li className="flex items-center gap-2 sm:gap-3">
                   <span className="hero-tick shrink-0">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="hero-subtitle">Pitch your venture to investors and unlock startup funding opportunities.
+                  <span className="hero-subtitle">Opportunity for select particpants to pitch your venture for investement*
                   </span>
                 </li>
               </ul>
               <div className="hero-backed-by">
-                <p className="hero-backed-by-label">Backed by</p>
+                <p className="hero-backed-by-label">Immersion at</p>
                 <div className="hero-backed-by-logo">
                   <img
                     src={iimLogo}
