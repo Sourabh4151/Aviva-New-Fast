@@ -14,8 +14,8 @@ export default function Eligibility() {
     >
       <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-20">
         <div className="mx-auto flex max-w-[1040px] flex-col items-start justify-between gap-8 lg:flex-row lg:gap-[10px]">
-          {/* Left: badge, heading, next steps */}
-          <div className="flex w-full min-w-0 flex-1 flex-col items-start text-left lg:min-h-[196px] lg:justify-between">
+          {/* Left: badge + heading */}
+          <div className="flex w-full min-w-0 flex-1 flex-col items-start text-left">
             <div className="flex w-full max-w-[498px] flex-col items-start gap-4">
               <div
                 className="inline-flex items-center justify-center rounded-full border border-white/30 px-4 py-1 tracking-normal sm:px-[30px]"
@@ -46,20 +46,6 @@ export default function Eligibility() {
                 Designed for ambitious entrepreneurs ready to build, grow, or
                 scale a business.
               </p>
-            </div>
-
-            <div
-              className="mt-8 inline-flex items-center justify-center rounded-full border border-white/30 px-4 py-1 tracking-normal sm:mt-10 sm:px-[30px] lg:mt-0"
-              style={{
-                fontFamily:
-                  "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                fontWeight: 500,
-                fontSize: "14px",
-                lineHeight: "27px",
-                color: "rgba(250, 250, 250, 0.7)",
-              }}
-            >
-              Your Next Steps
             </div>
           </div>
 
