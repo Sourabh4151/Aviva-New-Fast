@@ -427,7 +427,7 @@ export default function Hero() {
                     alt="Indian Institute of Management Lucknow"
                     width={195}
                     height={68}
-                    className="h-[68px] w-[195px] max-md:h-[40px] max-md:w-[145px]"
+                    className="hero-backed-by-logo-img"
                   />
                 </div>
               </div>
