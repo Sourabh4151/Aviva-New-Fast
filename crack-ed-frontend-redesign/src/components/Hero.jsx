@@ -349,43 +349,73 @@ export default function Hero() {
           <div className="hero-container relative max-lg:pb-8">
             <div className="absolute left-[120px] top-[70px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust max-lg:px-1">
               <div className="hero-logo-badge mb-3 md:mb-4">
-                <div
-                  className="hero-badge mt-4 md:mt-6 inline-flex items-center justify-center text-center text-[14px] font-semibold text-white rounded-full border border-white px-4 py-2 max-sm:max-w-[361px] max-sm:w-fit max-sm:h-[54px] max-sm:px-[10px] max-sm:py-[10px] max-sm:gap-[10px]"
-                >
+                <div className="hero-badge mt-4 md:mt-6 inline-flex items-center justify-center">
                   Entrepreneurship & Venture Creation
                 </div>
               </div>
-              <h1 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[1] mb-3 md:mb-4">
+              <h1 className="hero-title text-[32px] md:text-[40px] lg:text-[48px] font-semibold leading-[1] mb-3 md:mb-4">
               House of Founders Fellowship
               </h1>
-              <ul className="hero-bullet-list space-y-2 sm:space-y-4 mb-2 md:mb-4">
-                <li className="flex items-center gap-2 sm:gap-3">
+              {/* Mobile: 3 concise points (design spec) */}
+              <ul className="hero-bullet-list md:hidden">
+                <li className="flex items-start gap-2">
                   <span className="hero-tick shrink-0">
-                    <img src={tickSvg} alt="tick" className="hero-tick-icon" />
+                    <img src={tickSvg} alt="" className="hero-tick-icon" aria-hidden="true" />
                   </span>
                   <span className="hero-subtitle">
-                  A 6 month hybrid fellowship designed for existing and aspiring entreprenuers
+                    6-month hybrid fellowship for aspiring and existing entrepreneurs.
                   </span>
                 </li>
-                <li className="flex items-center gap-2 sm:gap-3">
+                <li className="flex items-start gap-2">
                   <span className="hero-tick shrink-0">
-                    <img src={tickSvg} alt="tick" className="hero-tick-icon" />
+                    <img src={tickSvg} alt="" className="hero-tick-icon" aria-hidden="true" />
                   </span>
-                  <span className="hero-subtitle">Get 8 hours of mentorship by startup founders to learn the nuances and recieve practical wisdom.
+                  <span className="hero-subtitle">
+                    156 hours of hybrid curriculum with 8+ hours of founder-led mentorship.
                   </span>
                 </li>
-                <li className="flex items-center gap-2 sm:gap-3">
+                <li className="flex items-start gap-2">
                   <span className="hero-tick shrink-0">
-                    <img src={tickSvg} alt="tick" className="hero-tick-icon" />
+                    <img src={tickSvg} alt="" className="hero-tick-icon" aria-hidden="true" />
                   </span>
-                  <span className="hero-subtitle">156 hours of intensive, hybrid curriculum covering everything from ideation to execution.
+                  <span className="hero-subtitle">
+                    Pitch your venture to investors with opportunities for select participants.*
                   </span>
                 </li>
-                <li className="flex items-center gap-2 sm:gap-3">
+              </ul>
+
+              {/* Desktop / tablet: fuller bullet list */}
+              <ul className="hero-bullet-list hidden md:block space-y-4 mb-4">
+                <li className="flex items-center gap-3">
                   <span className="hero-tick shrink-0">
-                    <img src={tickSvg} alt="tick" className="hero-tick-icon" />
+                    <img src={tickSvg} alt="" className="hero-tick-icon" aria-hidden="true" />
                   </span>
-                  <span className="hero-subtitle">Opportunity for select particpants to pitch your venture for investement*
+                  <span className="hero-subtitle">
+                    A 6 month hybrid fellowship designed for existing and aspiring entreprenuers
+                  </span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="hero-tick shrink-0">
+                    <img src={tickSvg} alt="" className="hero-tick-icon" aria-hidden="true" />
+                  </span>
+                  <span className="hero-subtitle">
+                    Get 8 hours of mentorship by startup founders to learn the nuances and recieve practical wisdom.
+                  </span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="hero-tick shrink-0">
+                    <img src={tickSvg} alt="" className="hero-tick-icon" aria-hidden="true" />
+                  </span>
+                  <span className="hero-subtitle">
+                    156 hours of intensive, hybrid curriculum covering everything from ideation to execution.
+                  </span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="hero-tick shrink-0">
+                    <img src={tickSvg} alt="" className="hero-tick-icon" aria-hidden="true" />
+                  </span>
+                  <span className="hero-subtitle">
+                    Opportunity for select particpants to pitch your venture for investement*
                   </span>
                 </li>
               </ul>
@@ -397,7 +427,7 @@ export default function Hero() {
                     alt="Indian Institute of Management Lucknow"
                     width={195}
                     height={68}
-                    className="h-[68px] w-[195px] max-sm:h-auto max-sm:w-[160px]"
+                    className="h-[68px] w-[195px] max-md:h-[40px] max-md:w-[145px]"
                   />
                 </div>
               </div>

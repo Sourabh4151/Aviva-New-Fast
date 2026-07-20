@@ -54,6 +54,24 @@ body::-webkit-scrollbar {
 }
 /* Checkmark vector: 9.42×7.15 at design scale; SVG viewBox 20×20 keeps proportions. Tick color rgba(30,30,30,1) is in tick.svg */
 
+/* Hero badge – desktop (text hug ~269×17): Montserrat 600, 14px, line-height 100% */
+.hero-badge {
+  width: fit-content;
+  max-width: 100%;
+  height: auto;
+  padding: 10px 16px;
+  border-radius: 100px;
+  border: 1px solid rgba(250, 250, 250, 1);
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: rgba(250, 250, 250, 1);
+  box-sizing: border-box;
+}
+
 /* Hero mobile typography – design specs (max-width: 768px) */
 @media (max-width: 768px) {
   /* Gaps: Frame 427 = 16px between sections; Frame 428 = 24px between title and list; Frame 307 = 8px between list items */
@@ -63,44 +81,61 @@ body::-webkit-scrollbar {
   .hero-left-adjust .hero-title {
     margin-bottom: 24px;
   }
-  .hero-left-adjust .hero-bullet-list {
-    margin-bottom: 8px;
+  /* Frame 24: fill width (max 361), hug height, gap 10, radius 12 — mobile list only */
+  .hero-left-adjust .hero-bullet-list:not(.hidden) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 361px;
+    height: auto;
+    margin-bottom: 24px;
+    gap: 10px;
+    border-radius: 12px;
   }
-  .hero-left-adjust .hero-bullet-list > li + li {
-    margin-top: 8px;
+  .hero-left-adjust .hero-bullet-list:not(.hidden) > li + li {
+    margin-top: 0;
   }
-  /* Aviva Nirmaan Program badge (Frame 299): 255×37, radius 100px, border 1px, padding 10px */
+  /* Keep desktop bullets hidden on mobile (overrides flex rule specificity) */
+  .hero-left-adjust .hero-bullet-list.hidden {
+    display: none;
+  }
+  /* Badge on mobile: same type, tighter horizontal padding */
   .hero-badge {
-    width: 255px;
-    min-height: 37px;
-    padding: 10px;
-    border-radius: 100px;
-    border: 1px solid rgba(250, 250, 250, 1);
+    padding: 10px 14px;
+  }
+  /* House of Founders Fellowship: Montserrat 600, 32px, line-height 100% */
+  .hero-title {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     font-weight: 600;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 1);
+  }
+  /* Subtitle bullet: Poppins 400, 14px, line-height 100%, color rgba(250,250,250,1) */
+  .hero-subtitle {
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);
-    box-sizing: border-box;
   }
-  /* Direct Sales Executive: Montserrat 600, 40px, line-height 100%, color rgba(250,250,250,1) */
-  .hero-title {
-    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
-    font-weight: 600;
-    font-size: 40px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    color: rgba(250, 250, 250, 1);
+  /* Tick sits on blue SVG; don't paint a white circle behind it on mobile */
+  .hero-tick {
+    background: transparent;
   }
-  /* Subtitle bullet: Poppins 400, 16px, line-height 100%, color rgba(250,250,250,1) */
-  .hero-subtitle {
-    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    color: rgba(250, 250, 250, 1);
+  /* IIM logo: 145×40 on mobile */
+  .hero-backed-by-logo,
+  .hero-backed-by-logo img {
+    width: 145px;
+    height: 40px;
+    min-width: 0;
+    min-height: 0;
+  }
+  /* Double gap between "Immersion at" label and logo */
+  .hero-backed-by {
+    gap: 16px;
   }
   /* Register Now button: Montserrat 600, 14px, line-height 100%, color rgba(30,30,30,1) – already in .register-btn */
   .register-btn {
@@ -875,8 +910,8 @@ select.hero-select::-ms-expand {
   }
   .hero-backed-by-logo,
   .hero-backed-by-logo img {
-    width: 160px;
-    height: auto;
+    width: 145px;
+    height: 40px;
     min-width: 0;
     min-height: 0;
   }
