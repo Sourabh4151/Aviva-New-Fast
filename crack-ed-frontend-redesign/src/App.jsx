@@ -24,7 +24,7 @@ export default function App() {
       <About />
       <CareerGrowth />
       <WhyThisFellowship />
-      <InvestorReadiness />
+      {/* <InvestorReadiness /> */}
       <TrainingJourney />
       <ClassroomTraining />
       <TrackGrowth />

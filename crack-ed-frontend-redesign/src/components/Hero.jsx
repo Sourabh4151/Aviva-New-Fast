@@ -364,28 +364,28 @@ export default function Hero() {
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
                   <span className="hero-subtitle">
-                    Join as a Assistant Manager with a CTC of Rs 4 LPA + incentives
+                  Complete a 6-month hybrid fellowship designed for entrepreneurs and business leaders.
                   </span>
                 </li>
                 <li className="flex items-center gap-2 sm:gap-3">
                   <span className="hero-tick shrink-0">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="hero-subtitle">6-month fellowship with 156 hours of structured learning
+                  <span className="hero-subtitle">Learn through 156 hours of expert-led, practical entrepreneurship training.
                   </span>
                 </li>
                 <li className="flex items-center gap-2 sm:gap-3">
                   <span className="hero-tick shrink-0">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="hero-subtitle">Founder mentorship, campus immersion & industry exposure
+                  <span className="hero-subtitle">Gain hands-on experience through IIM Lucknow campus immersions and industry visits.
                   </span>
                 </li>
                 <li className="flex items-center gap-2 sm:gap-3">
                   <span className="hero-tick shrink-0">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="hero-subtitle">Merit-based opportunity to pitch for up to ₹20 lakh in investment
+                  <span className="hero-subtitle">Pitch your venture to investors and unlock startup funding opportunities.
                   </span>
                 </li>
               </ul>

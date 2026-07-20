@@ -11,24 +11,24 @@ import growthIcon from "../assets/growth.svg";
 
 const CAREER_STAGES = [
   {
-    title: "Opportunity Discovery",
+    title: "Build Entrepreneurial Leadership",
     description:
-      "Identify high-potential business opportunities and validate your idea.",
+      "Develop the mindset and decision-making skills to lead and grow your business.",
   },
   {
-    title: "Build & Validate",
+    title: "Drive Business Growth",
     description:
-      "Develop your business model, acquire customers, and strengthen your unit economics.",
+      "Strengthen your strategy, customer acquisition, and operational capabilities.",
   },
   {
-    title: "Scale Your Venture",
+    title: "Scale with Structure",
     description:
-      "Build operational systems, lead teams, and create sustainable growth.",
+      "Create scalable systems across finance, people, and business operations.",
   },
   {
-    title: "Become Investment Ready",
+    title: "Pitch with Confidence",
     description:
-      "Develop your financial model, investor pitch, and business plan for Demo Day.",
+      "Develop an investor-ready business plan, financial model, and pitch.",
   },
 ];
 
@@ -49,15 +49,15 @@ const MOBILE_STAGE_GAP_PX = 40;
 
 const FEATURES = [
   {
-    text: "Build a scalable business model",
+    text: "Strengthen your business model and growth strategy",
     icon: growthIcon,
   },
   {
-    text: "Strengthen your strategy, leadership & operations",
+    text: "Build leadership, operations, and financial capabilities",
     icon: ctcIcon,
   },
   {
-    text: "Develop an investor-ready business plan & pitch",
+    text: "Prepare an investor-ready business plan and pitch",
     icon: careerIcon,
     alignBottomDot: true,
   },
@@ -566,10 +566,10 @@ export default function CareerGrowth() {
 
             <div className="mt-3 sm:mt-4">
               <p className="career-growth-subtitle text-lg font-medium leading-tight text-white text-justify sm:text-xl lg:text-2xl">
-              From idea to investor readiness.
+              Strengthen, scale, and future-proof your business.
               </p>
               <p className="career-growth-body mt-3 font-normal text-[16px] leading-[24px] text-[rgba(250,250,250,0.8)] text-justify sm:mt-4">
-              Build your business step by step throughout the fellowship.
+              Develop the skills, strategy, and network to take your venture to the next stage.
               </p>
             </div>
 
