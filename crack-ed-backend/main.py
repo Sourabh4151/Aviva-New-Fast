@@ -442,8 +442,8 @@ def _post_brochure_lead_to_nopaperforms(
         "source": _str_utm(utm_source),
         "medium": _str_utm(utm_medium),
         "campaign": _str_utm(utm_campaign),
-        "cf_form_name": "Brochure - Bandhan Bank - AM",
-        "cf_program": "Bandhan Bank - AM",
+        "cf_form_name": "Brochure - House of Founder Fellowship",
+        "cf_program": "House of Founder Fellowship",
         "cf_pg_program": "PG Program",
         "cf_batch_name": "Select Batch Name",
     }

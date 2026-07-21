@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const BROCHURE_HREF = "/PGP%20ASSISTANT%20MANAGER.pdf";
-const BROCHURE_FILENAME = "PGP ASSISTANT MANAGER.pdf";
+const BROCHURE_HREF = "/HOUSE_OF_FOUNDERS_FELLOWSHIP.pdf";
+const BROCHURE_FILENAME = "HOUSE_OF_FOUNDERS_FELLOWSHIP.pdf";
 
 function triggerBrochureDownload() {
   const link = document.createElement("a");

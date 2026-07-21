@@ -343,10 +343,8 @@ export default function ClassroomTraining() {
                   <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
                     <button
                       type="button"
-                      disabled
-                      aria-disabled="true"
-                      // onClick={() => setShowBrochureModal(true)}
-                      className="inline-flex items-center justify-center rounded-[10px] py-4 px-4 sm:px-6 bg-white text-[#1e1e1e] font-semibold text-sm border-0 cursor-not-allowed opacity-60 shadow-lg transition-colors"
+                      onClick={() => setShowBrochureModal(true)}
+                      className="inline-flex items-center justify-center rounded-[10px] py-4 px-4 sm:px-6 bg-white text-[#1e1e1e] font-semibold text-sm border-0 cursor-pointer shadow-lg hover:bg-[#d2d2d2] transition-colors"
                       style={{
                         fontFamily:
                           "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",

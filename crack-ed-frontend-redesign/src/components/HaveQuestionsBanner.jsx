@@ -1,12 +1,9 @@
 import React from "react";
+import { openRequestCallbackModal } from "./RequestCallbackModal";
 
 export default function HaveQuestionsBanner() {
-  const scrollToHero = () => {
-    if (typeof document === "undefined") return;
-    const heroSection = document.getElementById("hero");
-    if (heroSection) {
-      heroSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+  const openCallbackModal = () => {
+    openRequestCallbackModal();
   };
 
   return (
@@ -56,7 +53,7 @@ export default function HaveQuestionsBanner() {
 
             <button
               type="button"
-              onClick={scrollToHero}
+              onClick={openCallbackModal}
               className="rounded-[10px] cursor-pointer hover:opacity-95 transition-opacity w-fit"
               style={{
                 fontFamily:
