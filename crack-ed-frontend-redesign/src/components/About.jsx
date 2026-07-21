@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import DownloadBrochureModal from "./DownloadBrochureModal";
 
 export default function About() {
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
+
   return (
     <section id="about" className="bg-black text-white scroll-mt-24">
       <div className="mx-auto px-section py-section lg:px-[120px] lg:pt-[110px] lg:pb-[110px]">
@@ -11,8 +14,22 @@ export default function About() {
         <p className="about-body mt-4 sm:mt-6 text-[16px] leading-[27px] sm:text-[18px] sm:leading-[32px] font-normal text-white/80 sm:text-white text-justify">
         Most entrepreneurship programmes teach concepts through classroom learning and hypothetical case studies. The House of Founders Fellowship is different. Every framework, assignment, and mentoring session is designed to help you build, validate, and scale your own venture. Combining the academic rigour of a leading management institute with founder mentorship from the House of Founders, this fellowship gives entrepreneurs the tools, guidance, and network to turn ideas into scalable businesses.
         </p>
+
+        <div className="mt-6 flex justify-center md:hidden">
+          <button
+            type="button"
+            className="download-brochure-btn"
+            onClick={() => setShowBrochureModal(true)}
+          >
+            Download Brochure
+          </button>
+        </div>
       </div>
+
+      <DownloadBrochureModal
+        isOpen={showBrochureModal}
+        onClose={() => setShowBrochureModal(false)}
+      />
     </section>
   );
 }
-

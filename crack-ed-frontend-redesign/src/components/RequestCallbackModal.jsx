@@ -3,12 +3,6 @@ import stateCities from "../data/indian_state_cities.json";
 
 const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
 
-export const OPEN_REQUEST_CALLBACK_EVENT = "open-request-callback";
-
-export function openRequestCallbackModal() {
-  window.dispatchEvent(new CustomEvent(OPEN_REQUEST_CALLBACK_EVENT));
-}
-
 function friendlyBackendError(err) {
   const msg = (err && typeof err === "object" && "message" in err ? err.message : "") || "";
   const lowered = String(msg).toLowerCase();
@@ -369,10 +363,18 @@ export default function RequestCallbackModal({ isOpen, onClose }) {
           aria-modal="true"
           aria-labelledby="request-callback-title"
         >
+          <button
+            type="button"
+            onClick={onClose}
+            className="absolute right-4 top-4 sm:right-6 sm:top-5 z-20 w-8 h-8 flex items-center justify-center rounded text-[rgba(250,250,250,0.6)] hover:text-white hover:bg-[rgba(250,250,250,0.08)] transition-colors"
+            aria-label="Close"
+          >
+            <span className="text-2xl leading-none font-normal">×</span>
+          </button>
           <div>
             <h3
               id="request-callback-title"
-              className="hero-form-title text-[18px] font-semibold mb-1"
+              className="hero-form-title text-[18px] font-semibold mb-1 pr-8"
             >
               Apply Now!
             </h3>

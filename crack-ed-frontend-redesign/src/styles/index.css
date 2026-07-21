@@ -846,7 +846,7 @@ select.hero-select::-ms-expand {
 }
 
 @media (max-width: 767px) {
-  .download-brochure-btn {
+  #hero .download-brochure-btn {
     display: none;
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { openRequestCallbackModal } from "./RequestCallbackModal";
+import { openRequestCallbackModal } from "../utils/requestCallbackModal";
 
 export default function HaveQuestionsBanner() {
   const openCallbackModal = () => {

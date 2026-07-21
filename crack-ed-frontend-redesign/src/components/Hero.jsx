@@ -5,9 +5,8 @@ import heroImage from "../assets/desk.png";
 import tickSvg from "../assets/tick.svg";
 import scholarSvg from "../assets/scholar.svg";
 import DownloadBrochureModal from "./DownloadBrochureModal";
-import RequestCallbackModal, {
-  OPEN_REQUEST_CALLBACK_EVENT,
-} from "./RequestCallbackModal";
+import RequestCallbackModal from "./RequestCallbackModal";
+import { OPEN_REQUEST_CALLBACK_EVENT } from "../utils/requestCallbackModal";
 
 export default function Hero() {
   const [showBrochureModal, setShowBrochureModal] = useState(false);
