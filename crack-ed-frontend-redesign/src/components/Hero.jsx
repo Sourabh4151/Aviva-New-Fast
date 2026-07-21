@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect, useMemo } from "react";
 // Use desktop.jpg or aviva_ds_hero.jpg depending on which file you have in src/assets/.
 import heroImage from "../assets/desk.png";
 import tickSvg from "../assets/tick.svg";
-import iimLogo from "../assets/iim.svg";
+import scholarSvg from "../assets/scholar.svg";
 import stateCities from "../data/indian_state_cities.json";
 import DownloadBrochureModal from "./DownloadBrochureModal";
 
@@ -419,19 +419,20 @@ export default function Hero() {
                   </span>
                 </li>
               </ul>
-              <div className="hero-backed-by">
-                <p className="hero-backed-by-label">Immersion at</p>
-                <div className="hero-backed-by-logo">
-                  <img
-                    src={iimLogo}
-                    alt="Indian Institute of Management Lucknow"
-                    width={195}
-                    height={68}
-                    className="hero-backed-by-logo-img"
-                  />
-                </div>
+              <div className="hero-campus-immersion">
+                <img
+                  src={scholarSvg}
+                  alt=""
+                  width={24}
+                  height={24}
+                  className="hero-campus-immersion-icon hidden md:block"
+                  aria-hidden="true"
+                />
+                <span className="hero-campus-immersion-text">
+                  Campus Immersion at a Leading Management Institute
+                </span>
               </div>
-              <div className="register-btn-wrap mt-4">
+              <div className="register-btn-wrap mt-8 md:mt-4">
                 <button
                   type="button"
                   className="download-brochure-btn border-0"

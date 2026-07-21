@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -125,18 +125,34 @@ body::-webkit-scrollbar {
   .hero-tick {
     background: transparent;
   }
-  /* IIM logo: 145×40 on mobile */
-  .hero-backed-by-logo,
-  .hero-backed-by-logo img,
-  .hero-backed-by-logo-img {
-    width: 145px !important;
-    height: 40px !important;
-    min-width: 0;
-    min-height: 0;
+  /* Campus immersion badge: Frame 1371 mobile specs */
+  .hero-campus-immersion {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    max-width: 100vw;
+    height: auto;
+    margin-left: calc(50% - 50vw);
+    margin-right: 0;
+    margin-bottom: 0;
+    padding: 12px 8px;
+    gap: 12px;
+    border-radius: 0;
+    background: rgba(28, 50, 214, 1);
+    box-sizing: border-box;
   }
-  /* Double gap between "Immersion at" label and logo */
-  .hero-backed-by {
-    gap: 16px;
+  /* Mobile text: Poppins 500, 12px, line-height 100%, uppercase, center */
+  .hero-campus-immersion-text {
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgba(250, 250, 250, 1);
   }
   /* Register Now button: Montserrat 600, 14px, line-height 100%, color rgba(30,30,30,1) – already in .register-btn */
   .register-btn {
@@ -673,40 +689,63 @@ select.hero-select::-ms-expand {
   box-shadow: none;
 }
 
-/* Backed by: Montserrat 600, 12px, line-height 21px, uppercase, rgba(250,250,250,0.8); logo 195×68 */
-.hero-backed-by {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+/* Campus immersion badge: hug content, radius 8, gap 8, padding 8/12, bg rgba(28,50,214,1) */
+.hero-campus-immersion {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  height: auto;
   gap: 8px;
-  width: 100%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(28, 50, 214, 1);
+  box-sizing: border-box;
   margin-bottom: 16px;
 }
-.hero-backed-by-label {
-  margin: 0;
-  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+.hero-campus-immersion-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.hero-campus-immersion-text {
+  font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
   font-weight: 600;
   font-size: 12px;
   line-height: 21px;
   letter-spacing: 0%;
   text-transform: uppercase;
-  color: rgba(250, 250, 250, 0.8);
+  color: rgba(250, 250, 250, 1);
 }
-.hero-backed-by-logo {
-  width: 195px;
-  height: 68px;
-  background: #fff;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hero-backed-by-logo img,
-.hero-backed-by-logo-img {
-  width: 195px;
-  height: 68px;
-  display: block;
-  object-fit: contain;
+
+@media (max-width: 768px) {
+  .hero-campus-immersion-icon {
+    display: none !important;
+  }
+  /* Frame 1371: fill width, hug height, padding 12/8, gap 12, bg rgba(28,50,214,1) */
+  .hero-campus-immersion {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: auto;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 12px 8px !important;
+    gap: 12px;
+    border-radius: 0 !important;
+    background: rgba(28, 50, 214, 1);
+    box-sizing: border-box;
+  }
+  .hero-campus-immersion-text {
+    font-weight: 500;
+    line-height: 100%;
+    text-align: center;
+  }
 }
 
 /* Hero "Download Brochure" button (193×49, radius 10px) */
@@ -909,14 +948,6 @@ select.hero-select::-ms-expand {
     max-width: 400px;
     margin: 1.5rem auto 0;
     z-index: 20;
-  }
-  .hero-backed-by-logo,
-  .hero-backed-by-logo img,
-  .hero-backed-by-logo-img {
-    width: 145px !important;
-    height: 40px !important;
-    min-width: 0;
-    min-height: 0;
   }
 }
 

@@ -9,7 +9,7 @@ export default function About() {
         </div>
 
         <p className="about-body mt-4 sm:mt-6 text-[16px] leading-[27px] sm:text-[18px] sm:leading-[32px] font-normal text-white/80 sm:text-white text-justify">
-        Most entrepreneurship programmes teach concepts through classroom learning and hypothetical case studies. The House of Founders Fellowship is different. Every framework, assignment, and mentoring session is designed to help you build, validate, and scale your own venture. Combining the academic rigour of IIM Lucknow with founder mentorship from the House of Founders, this fellowship gives entrepreneurs the tools, guidance, and network to turn ideas into scalable businesses. 
+        Most entrepreneurship programmes teach concepts through classroom learning and hypothetical case studies. The House of Founders Fellowship is different. Every framework, assignment, and mentoring session is designed to help you build, validate, and scale your own venture. Combining the academic rigour of a leading management institute with founder mentorship from the House of Founders, this fellowship gives entrepreneurs the tools, guidance, and network to turn ideas into scalable businesses.
         </p>
       </div>
     </section>

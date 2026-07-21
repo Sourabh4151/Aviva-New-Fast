@@ -303,7 +303,7 @@ export default function TrainingJourney() {
                     color: classroomVisualActive ? "rgba(250,250,250,1)" : "rgba(250,250,250,0.5)",
                   }}
                 >
-                  IIM Lucknow Immersion
+                  Campus Immersion
                 </h3>
                 <p
                   style={{
