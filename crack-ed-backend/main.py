@@ -199,6 +199,7 @@ def _post_lead_to_nopaperforms(
         "medium": _str_utm(utm_medium),
         "campaign": _str_utm(utm_campaign),
         "cf_form_name": "Landing Page - IndusInd",
+        "cf_platform": "Website",
         "cf_program": "IndusInd",
         "cf_pg_program": "PG Program",
         "cf_batch_name": "Select Batch Name",
