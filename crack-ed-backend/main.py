@@ -202,6 +202,7 @@ def _post_lead_to_nopaperforms(
         "medium": _str_utm(utm_medium),
         "campaign": _str_utm(utm_campaign),
         "cf_form_name": "Landing Page - Aviva - DS",
+        "cf_platform": "Website",
         "cf_program": "Aviva - DS",
         "cf_pg_program": "PG Program",
         "cf_batch_name": "Select Batch Name",
