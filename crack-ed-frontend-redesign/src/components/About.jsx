@@ -18,7 +18,7 @@ export default function About() {
         <div className="mt-6 flex justify-center md:hidden">
           <button
             type="button"
-            className="download-brochure-btn"
+            className="download-brochure-btn about-download-brochure-btn border-0"
             onClick={() => setShowBrochureModal(true)}
           >
             Download Brochure
