@@ -203,6 +203,7 @@ def _post_lead_to_nopaperforms(
         "campaign": _str_utm(utm_campaign),
         "cf_form_name": "Landing Page - Aviva - AS",
         "cf_program": "Aviva - AS",
+        "cf_platform": "Website",
         "cf_pg_program": "PG Program",
         "cf_batch_name": "Select Batch Name",
         "cf_age": str(age).strip() if age is not None else "",
