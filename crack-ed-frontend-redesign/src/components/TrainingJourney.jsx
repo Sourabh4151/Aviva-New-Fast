@@ -311,7 +311,7 @@ export default function TrainingJourney() {
                     marginTop: CARD_GAP,
                   }}
                 >
-                 Get shortlisted for your interview, clear selection, and move into full-time employment with Quess post classroom training.
+                 Get shortlisted for your interview, clear selection, and move into full-time employment post classroom training.
                 </p>
               </div>
 
