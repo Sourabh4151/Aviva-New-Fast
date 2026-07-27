@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import stateCities from "../data/indian_state_cities.json";
+import DownloadBrochureModal from "./DownloadBrochureModal";
 
 // Import assets so Vite bundles them and production URLs work (raw /src/assets/ paths 404 after build).
 // Use desktop.jpg or aviva_ds_hero.jpg depending on which file you have in src/assets/.
@@ -44,6 +45,7 @@ export default function Hero() {
   const [otpDigits, setOtpDigits] = useState(["", "", "", ""]);
   const otpRefs = useRef([]);
   const [showPopup, setShowPopup] = useState(false);
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
   const [otpError, setOtpError] = useState("");
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
@@ -228,6 +230,7 @@ export default function Hero() {
     const utm_source = urlParams.get("utm_source") || "";
     const utm_medium = urlParams.get("utm_medium") || "";
     const utm_campaign = urlParams.get("utm_campaign") || "";
+    const utm_term = urlParams.get("utm_term") || "";
 
     try {
       const res = await fetch(`${baseUrl}/auth/callbackOtp/`, {
@@ -243,6 +246,7 @@ export default function Hero() {
           utm_source,
           utm_medium,
           utm_campaign,
+          utm_term,
         }),
       });
       const json = await res.json().catch(() => ({}));
@@ -405,9 +409,8 @@ export default function Hero() {
                 <div className="register-btn-wrap max-lg:mb-6 lg:mb-0">
                   <button
                     type="button"
-                    disabled
+                    onClick={() => setShowBrochureModal(true)}
                     className="download-brochure-btn"
-                    aria-label="Download brochure PDF unavailable"
                   >
                     Download Brochure
                   </button>
@@ -834,6 +837,10 @@ export default function Hero() {
           </div>
         </div>
       )}
+      <DownloadBrochureModal
+        isOpen={showBrochureModal}
+        onClose={() => setShowBrochureModal(false)}
+      />
     </section>
   );
 }

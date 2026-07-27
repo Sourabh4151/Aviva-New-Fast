@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import uthaanImg from "../assets/uthaan.png";
 import aarohanImg from "../assets/aarohan.png";
 import shikharImg from "../assets/shikhar.png";
+import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const MODULES = [
   {
@@ -37,6 +38,7 @@ export default function ClassroomTraining() {
   const modulesRef = useRef(null);
   const imageRefs = useRef([]);
   const [progress, setProgress] = useState(0);
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -278,9 +280,8 @@ export default function ClassroomTraining() {
                   <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
                     <button
                       type="button"
-                      disabled
+                      onClick={() => setShowBrochureModal(true)}
                       className="download-brochure-btn"
-                      aria-label="Download brochure PDF unavailable"
                     >
                       Download Brochure
                     </button>
@@ -291,6 +292,10 @@ export default function ClassroomTraining() {
           </div>
         </div>
       </div>
+      <DownloadBrochureModal
+        isOpen={showBrochureModal}
+        onClose={() => setShowBrochureModal(false)}
+      />
     </section>
   );
 }
