@@ -62,7 +62,7 @@ export default function Navbar() {
       style={{ backgroundColor: scrolled ? "rgba(0,0,0,0.85)" : "transparent" }}
     >
       <nav className={scrolled ? "backdrop-blur-sm" : ""}>
-        <div className="nav-container py-3 flex items-center justify-between">
+        <div className="nav-container py-3 lg:py-0 flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-4">
             <a
               href="#"

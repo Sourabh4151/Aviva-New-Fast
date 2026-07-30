@@ -292,8 +292,36 @@ export default function TrainingJourney() {
                 </p>
               </div>
 
-              {/* Desktop spacer replacing removed retention-bonus block */}
-              <div className="hidden sm:block" style={{ height: 51 }} aria-hidden="true" />
+              <div
+                className="flex flex-wrap gap-y-2 text-xs tracking-[0.16em]"
+                style={{ marginTop: 6 }}
+              >
+                <div>
+                  <div
+                    style={{
+                      ...DURATION_LABEL,
+                      textAlign: isMobile ? "left" : "justify",
+                      color: ojtVisualActive
+                        ? DURATION_LABEL_COLOR_ACTIVE
+                        : DURATION_LABEL_COLOR_INACTIVE,
+                    }}
+                  >
+                    Job type
+                  </div>
+                  <div style={{ marginTop: 0 }} />
+                  <div
+                    style={{
+                      ...DURATION_VALUE,
+                      textAlign: isMobile ? "left" : "justify",
+                      color: ojtVisualActive
+                        ? DURATION_VALUE_COLOR_ACTIVE
+                        : DURATION_VALUE_COLOR_INACTIVE,
+                    }}
+                  >
+                    Two-Year Contractual Role *
+                  </div>
+                </div>
+              </div>
 
               {/* Desktop-only spacer to align card bottoms */}
               <div className="hidden sm:block" style={{ flex: 1, minHeight: 0 }} aria-hidden="true" />
@@ -315,6 +343,22 @@ export default function TrainingJourney() {
             </div>
           </article>
 
+        </div>
+
+        <div className="mt-4 max-w-[1040px] mx-auto">
+          <p
+            style={{
+              maxWidth: 370,
+              fontFamily: FONT_MONTSERRAT,
+              fontWeight: 500,
+              fontSize: 11,
+              lineHeight: "24px",
+              letterSpacing: "0em",
+              color: "rgba(250, 250, 250, 0.5)",
+            }}
+          >
+            * Candidate will be subjected to review and performance appraisal
+          </p>
         </div>
       </div>
     </section>

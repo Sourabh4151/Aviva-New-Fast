@@ -11,22 +11,17 @@ import growthIcon from "../assets/growth.svg";
 
 const CAREER_STAGES = [
   {
-    title: "Sales Officer - DST",
+    title: "Sales Executive",
     description:
       "Generate vehicle loan leads at dealership networks, assisting customers with documentation, and completing preliminary credit assessments.",
   },
   {
-    title: "Senior Business Manager",
+    title: "Relationship Manager",
     description:
       "Manage key, high-volume dealer accounts, resolving complex customer queries, and driving higher-value financing portfolios.",
   },
   {
     title: "Area Sales Manager",
-    description:
-      "Manage a field sales team, monitoring monthly target achievements, and coaching off-role or junior sales executives.",
-  },
-  {
-    title: "Regional Sales Manager",
     description:
       "Drive overall automotive finance growth across a specific geography, empanelling new dealership networks, and aligning with credit and risk teams for business approvals.",
   },

@@ -16,9 +16,9 @@ const STEPS = [
   },
   {
     number: "03",
-    title: "Bank Interview",
+    title: "KMPL Interview",
     description:
-      "Appear for the Bank interview as part of the final selection process.",
+      "Appear for the KMPL interview as part of the final selection process.",
   },
   {
     number: "04",
@@ -28,9 +28,9 @@ const STEPS = [
   },
   {
     number: "05",
-    title: "Training & Joining",
+    title: "Assessment & Joining",
     description:
-      "Complete the classroom training and step into your full-time role as a Sales Officer.",
+      "Complete the assessment and step into your full-time role as a Sales Executive.",
   },
 ];
 

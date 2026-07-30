@@ -868,20 +868,20 @@ button.download-brochure-btn:disabled:active {
 .nav-container {
   padding-left: 120px;
   padding-right: 120px;
-  padding-top: 12px;
+  padding-top: 28px;
   padding-bottom: 12px;
-  height: 75px;
+  height: 88px;
 }
 
 .hero-container {
   padding-left: 0;
   padding-right: 0;
-  padding-top: 91px;
+  padding-top: 115px;
 }
 
 .hero-form-card {
   right: 120px;
-  top: 91px;
+  top: 115px;
   width: 373px;
 }
 

@@ -352,25 +352,16 @@ export default function Hero() {
         >
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
           <div className="hero-container relative">
-            {/* Frame 307: 8px logo → block • Frame 301: 32px bullets+title block ↔ CTA • 16px title ↔ bullets (half former 32) • 8px pill→title • list 12px */}
-            <div className="hero-left-adjust absolute left-[120px] top-[150px] flex w-[586px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start gap-[16px] text-white left-adjust">
-              <div className="hero-logo-badge flex h-[61px] w-[194px] max-w-full shrink-0 items-center justify-center overflow-hidden rounded-sm bg-white">
-                <img
-                  src={heroLogo}
-                  alt="Kotak Mahindra"
-                  width={194}
-                  height={61}
-                  className="block h-[61px] w-[194px] max-h-full max-w-full object-cover"
-                />
-              </div>
-              <div className="hero-frame-301 flex w-full min-w-0 flex-col items-start gap-[32px]">
+            {/* Frame 301: 16px content block ↔ CTA • 16px title ↔ bullets • 8px pill→title • list 12px • hiring partner Frame 1383 */}
+            <div className="hero-left-adjust absolute left-[120px] top-[130px] flex w-[586px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start text-white left-adjust">
+              <div className="hero-frame-301 flex w-full min-w-0 flex-col items-start gap-[16px]">
                 <div className="flex w-full min-w-0 flex-col items-start gap-[16px]">
                   <div className="flex w-full min-w-0 flex-col items-start gap-[8px]">
                     <div
                       className="hero-badge inline-flex items-center justify-center self-start whitespace-nowrap rounded-full border border-white px-4 py-2 text-center text-[14px] font-semibold leading-[100%] tracking-[0em] text-white max-lg:h-[37px] max-lg:w-[238px] max-lg:gap-[10px] max-lg:rounded-[100px] max-lg:px-[24px] max-lg:py-[10px]"
                       style={{ fontFamily: "Montserrat, sans-serif" }}
                     >
-                      Prime Starters Program
+                      Talent Accelerator Programme
                     </div>
                     <h1
                       className="hero-title w-full text-[40px] font-semibold leading-[100%] tracking-[0em] sm:text-[40px] md:text-[40px] lg:text-[48px]"
@@ -380,7 +371,8 @@ export default function Hero() {
                       <span className="lg:block">Your Future.</span>
                     </h1>
                   </div>
-                  <ul className="hero-bullet-list hero-frame-23 flex w-full flex-col gap-[12px] text-gray-200">
+                  <div className="flex w-full min-w-0 flex-col items-start">
+                    <ul className="hero-bullet-list hero-frame-23 flex w-full flex-col gap-[12px] text-gray-200">
                     <li className="flex items-start gap-2 sm:gap-3">
                       <span className="hero-tick">
                         <img src={tickSvg} alt="tick" className="hero-tick-icon" />
@@ -389,7 +381,7 @@ export default function Hero() {
                         className="hero-subtitle text-[16px] max-lg:text-[14px] font-normal leading-[1.55] tracking-[0em] max-lg:leading-[1.52]"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                        Join as a Sales Officer at Kotak Mahindra Prime Loans
+                        Join as a Sales Executive at Kotak Prime
                       </span>
                     </li>
                     <li className="flex items-start gap-2 sm:gap-3">
@@ -415,13 +407,28 @@ export default function Hero() {
                       </span>
                     </li>
                   </ul>
+                  <div className="hero-hiring-partner flex w-full flex-col items-start gap-[12px] pt-[16px] pb-[8px] px-[8px]">
+                    <span
+                      className="text-[12px] font-bold leading-[100%] tracking-[0em] text-[rgba(250,250,250,1)]"
+                      style={{ fontFamily: "Poppins, sans-serif" }}
+                    >
+                      HIRING PARTNER
+                    </span>
+                    <img
+                      src={heroLogo}
+                      alt="Kotak Mahindra Prime"
+                      width={169}
+                      height={49}
+                      className="block h-[49px] w-[169px] shrink-0 object-contain"
+                    />
+                  </div>
+                  </div>
                 </div>
                 <div className="register-btn-wrap max-lg:mb-0 lg:mb-0">
                   <button
                     type="button"
                     className="download-brochure-btn border-0"
-                    disabled
-                    aria-disabled="true"
+                    onClick={() => setShowBrochureModal(true)}
                   >
                     Download Brochure
                   </button>
