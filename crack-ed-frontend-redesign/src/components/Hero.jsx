@@ -57,6 +57,7 @@ export default function Hero() {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    gender: "",
     age: "",
     graduationYear: "",
     state: "",
@@ -68,12 +69,14 @@ export default function Hero() {
   const [stateOpen, setStateOpen] = useState(false);
   const [cityOpen, setCityOpen] = useState(false);
   const [gradYearOpen, setGradYearOpen] = useState(false);
+  const [genderOpen, setGenderOpen] = useState(false);
   const [stateQuery, setStateQuery] = useState("");
   const [cityQuery, setCityQuery] = useState("");
   const [cityHintActive, setCityHintActive] = useState(false);
   const stateRef = useRef(null);
   const cityRef = useRef(null);
   const gradYearRef = useRef(null);
+  const genderRef = useRef(null);
   const [showOtp, setShowOtp] = useState(false);
   const [otpDigits, setOtpDigits] = useState(["", "", "", ""]);
   const otpRefs = useRef([]);
@@ -173,6 +176,7 @@ export default function Hero() {
   );
   const parsedFormAge = parseAge(form.age);
   const isAgeOverLimit = parsedFormAge !== null && parsedFormAge > 28;
+  const isMaleSelected = form.gender === "Male";
 
   useEffect(() => {
     function onClickOutside(e) {
@@ -185,6 +189,9 @@ export default function Hero() {
       if (gradYearRef.current && !gradYearRef.current.contains(e.target)) {
         setGradYearOpen(false);
       }
+      if (genderRef.current && !genderRef.current.contains(e.target)) {
+        setGenderOpen(false);
+      }
     }
     window.addEventListener("pointerdown", onClickOutside);
     return () => window.removeEventListener("pointerdown", onClickOutside);
@@ -196,7 +203,7 @@ export default function Hero() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const { name, email, age, graduationYear, state, city, mobile } = form;
+    const { name, email, gender, age, graduationYear, state, city, mobile } = form;
     const newErrors = {};
     if (!name || !name.trim()) newErrors.name = "Full name is required.";
     const stateMatch = INDIAN_STATES.find(
@@ -210,6 +217,10 @@ export default function Hero() {
     else if (!cityMatch) newErrors.city = "Please select a valid city from the list.";
     if (!email || !email.trim()) newErrors.email = "Email is required.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "Invalid email format.";
+    if (!gender) newErrors.gender = "Gender is required.";
+    else if (gender !== "Female") {
+      newErrors.gender = "This program is open to women candidates only.";
+    }
     const ageNum = parseAge(age);
     if (!age || !age.trim()) newErrors.age = "Age is required.";
     else if (ageNum === null) newErrors.age = "Please enter a valid age.";
@@ -263,6 +274,7 @@ export default function Hero() {
         body: JSON.stringify({
           name,
           email,
+          gender,
           state: stateMatch || state,
           city: cityMatch || city,
           age: String(ageNum),
@@ -552,6 +564,92 @@ export default function Hero() {
                       {errors.email}
                     </p>
                   )}
+                  <div ref={genderRef} className="relative">
+                    <div className="relative flex items-center">
+                      <div
+                        tabIndex={0}
+                        role="button"
+                        aria-haspopup="listbox"
+                        aria-expanded={genderOpen}
+                        onClick={() => setGenderOpen(!genderOpen)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setGenderOpen(!genderOpen);
+                          } else if (e.key === "Escape") {
+                            setGenderOpen(false);
+                          }
+                        }}
+                        className="custom-select w-full px-4 pr-10 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] font-normal text-[14px] flex items-center cursor-pointer"
+                      >
+                        <span
+                          className={
+                            form.gender
+                              ? "text-[14px] text-white"
+                              : "text-[14px] text-[rgba(250,250,250,0.6)]"
+                          }
+                        >
+                          {form.gender || "Gender"}
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        tabIndex={-1}
+                        aria-label="Toggle gender list"
+                        onClick={() => setGenderOpen((open) => !open)}
+                        className="absolute right-3 flex h-6 w-6 items-center justify-center text-[rgba(250,250,250,0.6)]"
+                      >
+                        <svg
+                          className="h-4 w-4"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden
+                        >
+                          <path
+                            d="M6 8L10 12L14 8"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                    {genderOpen && (
+                      <ul
+                        role="listbox"
+                        className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2"
+                      >
+                        {["Female", "Male"].map((option) => (
+                          <li
+                            key={option}
+                            role="option"
+                            onMouseDown={(e) => e.preventDefault()}
+                            onClick={() => {
+                              setForm({ ...form, gender: option });
+                              setErrors((prev) => ({
+                                ...prev,
+                                gender:
+                                  option === "Female"
+                                    ? ""
+                                    : "This program is open to women candidates only.",
+                              }));
+                              setGenderOpen(false);
+                            }}
+                            className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
+                          >
+                            {option}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {errors.gender && (
+                      <p className="mt-1 text-[12px] text-red-400">
+                        {errors.gender}
+                      </p>
+                    )}
+                  </div>
                   <div className="flex gap-3">
                     <div className="min-w-0 flex-1">
                       <input
@@ -949,7 +1047,7 @@ export default function Hero() {
                       type="button"
                       onClick={(e) => (showOtp ? verifyOtp(e) : handleSubmit(e))}
                       className="h-[52px] w-[206px] rounded-[10px] bg-[rgba(227,24,55,1)] hover:bg-[rgba(159,17,38,1)] text-white text-[14px] font-medium tracking-[0.02em] shadow-[0_12px_30px_rgba(0,0,0,0.45)] transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
-                      disabled={isSendingOtp || isVerifyingOtp || (!showOtp && isAgeOverLimit)}
+                      disabled={isSendingOtp || isVerifyingOtp || (!showOtp && (isAgeOverLimit || isMaleSelected))}
                     >
                   {showOtp
                     ? isVerifyingOtp

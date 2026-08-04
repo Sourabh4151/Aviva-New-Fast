@@ -205,6 +205,7 @@ def _post_lead_to_nopaperforms(
         "cf_batch_name": "Select Batch Name",
         "cf_age": str(age).strip() if age is not None else "",
         "cf_graduation_year": _normalize_graduation_year(graduation_year),
+        "cf_gender": "Female",
     }
     if city_value and city_value.lower() != state_value.lower():
         payload["city"] = city_value
@@ -281,6 +282,14 @@ def send_callback_otp():
         return jsonify({"error": "Age must be 28 or below to apply"}), 400
     if age_num < 18:
         return jsonify({"error": "Age must be between 18 and 28"}), 400
+
+    gender_value = str(data.get("gender") or "").strip()
+    if not gender_value:
+        return jsonify({"error": "Gender is required"}), 400
+    if gender_value.lower() != "female":
+        return jsonify({
+            "error": "This program is open to women candidates only."
+        }), 400
 
     graduation_year_value = _normalize_graduation_year(data.get("graduation_year"))
     if not graduation_year_value:
