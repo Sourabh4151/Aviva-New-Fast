@@ -365,14 +365,14 @@ export default function Hero() {
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
                   <span className="hero-subtitle min-w-0 font-['Poppins',ui-sans-serif,system-ui,sans-serif] text-[14px] sm:text-base font-normal not-italic leading-[1.45] tracking-normal text-[rgba(250,250,250,1)] max-sm:max-w-[331px]">
-                    Join as a Sales Officer with a CTC of Rs 2.5 LPA + incentives
+                    Join as a Sales Officer with a CTC of Rs 2.75 LPA
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3 min-w-0">
                   <span className="hero-tick">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="hero-bullet-secondary min-w-0 max-sm:max-w-[331px] text-[14px] sm:text-[16px] leading-[1.45] font-normal font-['Poppins',ui-sans-serif,system-ui,sans-serif] text-[rgba(250,250,250,1)]">1-month program
+                  <span className="hero-bullet-secondary min-w-0 max-sm:max-w-[331px] text-[14px] sm:text-[16px] leading-[1.45] font-normal font-['Poppins',ui-sans-serif,system-ui,sans-serif] text-[rgba(250,250,250,1)]">3 weeks program
                   </span>
                 </li>
               </ul>

@@ -117,7 +117,7 @@ export default function ProgramFee() {
                     whiteSpace: "nowrap",
                   }}
                 >
-                  Rs 1,00,000
+                  Rs 60,000
                 </p>
               </div>
 
