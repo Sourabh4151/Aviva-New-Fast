@@ -173,9 +173,9 @@ def _post_lead_to_nopaperforms(
         "cf_pg_program": "PG Program",
         "cf_batch_name": "Select Batch Name",
     }
-    utm_source_clean = _str_utm(utm_source)
-    if utm_source_clean:
-        payload["cf_utm_id"] = utm_source_clean
+    utm_id = _str_utm(utm_source)
+    if utm_id:
+        payload["cf_utm_id"] = utm_id
     payload = _apply_partner_utm_to_payload(
         payload,
         utm_source=utm_source,
@@ -450,9 +450,9 @@ def _post_brochure_lead_to_nopaperforms(
         "cf_pg_program": "PG Program",
         "cf_batch_name": "Select Batch Name",
     }
-    utm_source_clean = _str_utm(utm_source)
-    if utm_source_clean:
-        payload["cf_utm_id"] = utm_source_clean
+    utm_id = _str_utm(utm_source)
+    if utm_id:
+        payload["cf_utm_id"] = utm_id
     payload = _apply_partner_utm_to_payload(
         payload,
         utm_source=utm_source,
