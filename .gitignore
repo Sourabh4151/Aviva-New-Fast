@@ -15,3 +15,24 @@ node_modules/
 dist/
 build/
 .vscode/
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Flask/runtime
+instance/
+nohup.out
+
+# Frontend
+node_modules/
+dist/
+
+# Local development
+.vscode/
+.idea/
