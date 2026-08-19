@@ -1,29 +1,22 @@
-# Python virtual environments
+# Python
 **/venv/
 **/.venv/
-
-# Environment files
-**/.env
-**/.env.*
-!.env.example
-
-# Node
-**/node_modules/
-
-# Frontend build
-**/dist/
-
-# Python cache
 **/__pycache__/
 *.py[cod]
 
-# SQLite database
+# Environment
+**/.env
+**/.env.*
+
+# Google credentials
+**/google_cloud_credentials.json
+
+# Node
+**/node_modules/
+**/dist/
+
+# SQLite
 **/instance/*.db
 
 # Logs
 *.log
-
-# OS/editor
-.DS_Store
-Thumbs.db
-.vscode/
