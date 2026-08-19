@@ -1,2 +1,29 @@
-crack-ed-frontend-redesign/node_modules/
-crack-ed-frontend-redesign/dist/
+# Python virtual environments
+**/venv/
+**/.venv/
+
+# Environment files
+**/.env
+**/.env.*
+!.env.example
+
+# Node
+**/node_modules/
+
+# Frontend build
+**/dist/
+
+# Python cache
+**/__pycache__/
+*.py[cod]
+
+# SQLite database
+**/instance/*.db
+
+# Logs
+*.log
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
