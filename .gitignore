@@ -1,16 +1,18 @@
-crack-ed-frontend-redesign/node_modules/
-crack-ed-frontend-redesign/dist/
-# Python
-venv/
-__pycache__/
+**/venv/
+**/node_modules/
+**/__pycache__/
 *.pyc
+*.pyo
 
-# Node
-node_modules/
+.env
+.env.*
+!.env.example
 
-# Env files
-# .env
+instance/
+nohup.out
+**/google_cloud_credentials.json
 
-# Build
 dist/
 build/
+.vscode/
+.idea/
