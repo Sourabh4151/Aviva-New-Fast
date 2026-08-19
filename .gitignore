@@ -1,17 +1,34 @@
+# Frontend dependencies
 crack-ed-frontend-redesign/node_modules/
+
+# Frontend build
 crack-ed-frontend-redesign/dist/
-# Python
-venv/
-__pycache__/
-*.pyc
 
 # Node
 node_modules/
 
-# Env files
-# .env
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Flask/runtime
+instance/
+nohup.out
 
 # Build
 dist/
 build/
+
+# IDE
 .vscode/
+.idea/
+
+# Credentials
+google_cloud_credentials.json
