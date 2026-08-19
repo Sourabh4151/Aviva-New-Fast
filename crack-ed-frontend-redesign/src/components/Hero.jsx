@@ -368,7 +368,7 @@ export default function Hero() {
                       style={{ fontFamily: "Montserrat, sans-serif" }}
                     >
                       <span className="lg:block">Drive Dreams. Drive </span>{" "}
-                      <span className="lg:block">Your Future.</span>
+                      <span className="lg:block">Yours Future.</span>
                     </h1>
                   </div>
                   <div className="flex w-full min-w-0 flex-col items-start">
