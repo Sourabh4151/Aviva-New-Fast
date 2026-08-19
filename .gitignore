@@ -36,3 +36,6 @@ dist/
 # Local development
 .vscode/
 .idea/
+
+# Google Cloud credentials
+**/google_cloud_credentials.json
