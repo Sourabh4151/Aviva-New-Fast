@@ -1,17 +1,35 @@
-crack-ed-frontend-redesign/node_modules/
-crack-ed-frontend-redesign/dist/
-# Python
-venv/
-__pycache__/
-*.pyc
+# Python virtual environments
+**/venv/
+**/.venv/
+
+# Python cache
+**/__pycache__/
+*.py[cod]
+
+# Environment files
+**/.env
+**/.env.*
+!.env.example
+
+# Google Cloud credentials
+**/google_cloud_credentials.json
 
 # Node
-node_modules/
+**/node_modules/
 
-# Env files
-# .env
+# Frontend build
+**/dist/
+**/build/
 
-# Build
-dist/
-build/
+# SQLite database
+**/instance/*.db
+
+# Logs / runtime files
+*.log
+**/nohup.out
+
+# OS/editor
+.DS_Store
+Thumbs.db
 .vscode/
+.idea/
