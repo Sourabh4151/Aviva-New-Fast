@@ -366,13 +366,13 @@ export default function Hero() {
               <h1 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[1] mb-3 md:mb-4">
                 Assistant Manager
               </h1>
-              <ul className="hero-bullet-list space-y-2 sm:space-y-4 mb-4 md:mb-8">
+              <ul className="hero-bullet-list space-y-2 sm:space-y-4 mb-4 md:mb-4">
                 <li className="flex items-start gap-2 sm:gap-3">
                   <span className="hero-tick">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
                   <span className="hero-subtitle min-w-0">
-                    Join as a Assistant Manager with a CTC of Rs 4 LPA
+                  Join as a Assistant Manager with a CTC of Rs 4 LPA* + Variables
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
@@ -382,6 +382,9 @@ export default function Hero() {
                   <span className="hero-subtitle">6-month program</span>
                 </li>
               </ul>
+              <p className="hero-disclaimer mb-4 md:mb-6 max-w-[586px]">
+                *Variable Pay for all eligible employees will be paid over and above their Annual Fixed Pay. This is however subject to performance of the Bank, Department, and Individual*
+              </p>
               <div className="register-btn-wrap mt-4 max-lg:mb-10">
                 <button
                   type="button"

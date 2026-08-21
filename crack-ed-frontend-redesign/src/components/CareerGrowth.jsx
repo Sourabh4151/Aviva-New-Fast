@@ -12,7 +12,7 @@ const FEATURES = [
       "font-medium text-[18px] leading-[1] text-[rgba(250,250,250,1)]",
   },
   {
-    text: "Earn a CTC of Rs. 4 LPA",
+    text: "Earn a CTC of Rs. 4 LPA* + variables",
     icon: ctcIcon,
     textClassName:
       "font-medium text-[18px] leading-[27px] text-[rgba(250,250,250,1)]",

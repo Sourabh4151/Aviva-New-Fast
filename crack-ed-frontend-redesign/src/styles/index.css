@@ -71,6 +71,16 @@ body::-webkit-scrollbar {
   }
 }
 
+/* Hero variable pay disclaimer – Lato 400, 12px */
+.hero-disclaimer {
+  font-family: 'Lato', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 120%;
+  letter-spacing: 0%;
+  color: rgba(250, 250, 250, 1);
+}
+
 /* Hero mobile typography – design specs (max-width: 768px) */
 @media (max-width: 768px) {
   /* Gaps: Frame 427 = 16px between sections; Frame 428 = 24px between title and list; Frame 307 = 8px between list items */
