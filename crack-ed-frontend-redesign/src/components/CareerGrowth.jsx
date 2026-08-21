@@ -11,12 +11,12 @@ import growthIcon from "../assets/growth.svg";
 
 const CAREER_STAGES = [
   {
-    title: "Bank Officer",
+    title: "Sales Officer",
     description:
       "Engage with customers, drive banking product sales, and support account acquisition and relationship management activities.",
   },
   {
-    title: "Senior Bank Officer",
+    title: "Senior Sales Officer",
     description:
       "Manage customer portfolios, strengthen client relationships, and contribute to business growth through banking and financial solutions.",
   },
