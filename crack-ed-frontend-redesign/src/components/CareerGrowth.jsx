@@ -26,9 +26,14 @@ const CAREER_STAGES = [
       "Oversee multiple teams across branches or regions, ensuring alignment with organizational goals.",
   },
   {
-    title: "Area Sales Head",
+    title: "Area Sales Head/Zonal Head",
     description:
       "Lead large-scale operations across a significant geographical area.",
+  },
+  {
+    title: "Vice President/Director",
+    description:
+      "Lead business strategy, growth, risk management, and overall organizational performance.",
   },
 ];
 
@@ -44,6 +49,7 @@ const INACTIVE_PILL_BG_MOBILE = "rgba(143, 143, 143, 1)";
 const TEXT_GAP_PX = 14;
 const TITLE_DESC_GAP_PX = 14;
 const TOP_STAGE_MIN_PX = 8;
+const MIN_STAGE_GAP_PX = 28;
 const MOBILE_STAGE_GAP_PX = 40;
 
 const VIEWPORT_THRESHOLD_DESKTOP = 0.75;
@@ -55,8 +61,8 @@ const ROADMAP_MIN_FILL_BEFORE_SCALE = 0.62;
 const MAX_ROADMAP_SCALE_UP = 2.75;
 
 const DEFAULT_LAYOUT = CAREER_STAGES.map((_, index) => ({
-  top: index * 140,
-  marginLeft: index * 28,
+  top: (CAREER_STAGES.length - 1 - index) * 160,
+  marginLeft: index * 36,
   maxWidth: undefined,
 }));
 
@@ -147,7 +153,9 @@ export default function CareerGrowth() {
   const animationStartedRef = useRef(false);
 
   const [stageLayout, setStageLayout] = useState(DEFAULT_LAYOUT);
-  const [roadmapMinHeight, setRoadmapMinHeight] = useState(420);
+  const [roadmapMinHeight, setRoadmapMinHeight] = useState(
+    CAREER_STAGES.length * 140
+  );
   const [connectorLine, setConnectorLine] = useState(null);
   const [isDesktopLayout, setIsDesktopLayout] = useState(
     () =>
@@ -268,6 +276,24 @@ export default function CareerGrowth() {
         const featureRect = lastFeature.getBoundingClientRect();
         bottomDotCenterY =
           featureRect.top + featureRect.height / 2 - roadmapRect.top;
+      }
+
+      const minPairDotDelta = CAREER_STAGES.slice(1).reduce(
+        (maxDelta, _, pairIndex) => {
+          const upperIndex = pairIndex + 1;
+          const lowerIndex = pairIndex;
+          const requiredDelta =
+            heights[upperIndex] +
+            MIN_STAGE_GAP_PX -
+            dotOffsets[upperIndex] +
+            dotOffsets[lowerIndex];
+          return Math.max(maxDelta, requiredDelta);
+        },
+        0
+      );
+      const minDotSpan = minPairDotDelta * (CAREER_STAGES.length - 1);
+      if (bottomDotCenterY - topDotCenterY < minDotSpan) {
+        bottomDotCenterY = topDotCenterY + minDotSpan;
       }
 
       const tops = CAREER_STAGES.map((_, index) => {
