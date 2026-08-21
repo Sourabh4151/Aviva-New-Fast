@@ -60,7 +60,7 @@ export default function ProgramFee() {
                 className="pointer-events-none absolute -inset-[40px] sm:-inset-[60px]"
                 style={{
                   background:
-                    "radial-gradient(circle at 0% 50%, rgba(239, 65, 35, 0.7) 0, transparent 60%), radial-gradient(circle at 100% 50%, rgba(239, 65, 35, 0.7) 0, transparent 60%), radial-gradient(circle at 50% 0%, rgba(239, 65, 35, 0.7) 0, transparent 60%), radial-gradient(circle at 50% 100%, rgba(239, 65, 35, 0.7) 0, transparent 60%)",
+                    "radial-gradient(circle at 0% 50%, rgba(239, 65, 35, 0.28) 0, transparent 60%), radial-gradient(circle at 100% 50%, rgba(239, 65, 35, 0.28) 0, transparent 60%), radial-gradient(circle at 50% 0%, rgba(239, 65, 35, 0.28) 0, transparent 60%), radial-gradient(circle at 50% 100%, rgba(239, 65, 35, 0.28) 0, transparent 60%)",
                   filter: "blur(25px)",
                   opacity: 1,
                 }}
@@ -110,6 +110,21 @@ export default function ProgramFee() {
                   }}
                 >
                   Rs 1,20,000
+                </p>
+
+                <p
+                  className="program-fee-tax"
+                  style={{
+                    fontFamily:
+                      "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                    fontWeight: 400,
+                    fontSize: "10px",
+                    lineHeight: "100%",
+                    letterSpacing: "0%",
+                    color: "rgba(250, 250, 250, 1)",
+                  }}
+                >
+                  *Inclusive of all Applicable Taxes
                 </p>
               </div>
 

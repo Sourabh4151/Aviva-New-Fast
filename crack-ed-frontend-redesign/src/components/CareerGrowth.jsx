@@ -33,7 +33,7 @@ const CAREER_STAGES = [
   {
     title: "Vice President/Director",
     description:
-      "Lead business strategy, growth, risk management, and overall organizational performance.",
+      "Contribute to the strategic direction of the company at the executive level",
   },
 ];
 
@@ -602,7 +602,7 @@ export default function CareerGrowth() {
                     "font-medium text-[18px] leading-[1] text-[rgba(250,250,250,1)]",
                 },
                 {
-                  text: "Earn a CTC of Rs 2.74 LPA + Variable",
+                  text: "Earn a CTC of Rs 2.74 LPA + Variables up to 3 LPA",
                   icon: ctcIcon,
                   textClassName:
                     "font-medium text-[18px] leading-[27px] text-[rgba(250,250,250,1)]",

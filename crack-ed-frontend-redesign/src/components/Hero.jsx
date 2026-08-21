@@ -376,7 +376,7 @@ export default function Hero() {
                       <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                     </span>
                     <span className="hero-subtitle font-normal text-[16px] leading-[1] lg:font-normal lg:text-[16px] lg:leading-[1] lg:tracking-[0] lg:text-[rgba(250,250,250,1)]">
-                      Join as a Relationship Manager with a CTC of Rs 2.74 LPA + variable
+                      Join as a Relationship Manager with a CTC of Rs 2.74 LPA + Variable*
                     </span>
                   </li>
                   <li className="flex items-start gap-2 sm:gap-3">

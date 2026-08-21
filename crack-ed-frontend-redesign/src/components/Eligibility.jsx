@@ -58,7 +58,7 @@ export default function Eligibility() {
                 className="pointer-events-none absolute -left-4 -right-4 -top-2 -bottom-10 sm:-left-6 sm:-right-6 sm:-top-4 sm:-bottom-12"
                 style={{
                   background:
-                    "radial-gradient(circle at 0% 50%, rgba(239, 65, 35, 0.7) 0, transparent 60%), radial-gradient(circle at 100% 50%, rgba(239, 65, 35, 0.7) 0, transparent 60%), radial-gradient(circle at 50% 0%, rgba(239, 65, 35, 0.7) 0, transparent 60%), radial-gradient(circle at 50% 100%, rgba(239, 65, 35, 0.7) 0, transparent 60%)",
+                    "radial-gradient(circle at 0% 50%, rgba(239, 65, 35, 0.28) 0, transparent 60%), radial-gradient(circle at 100% 50%, rgba(239, 65, 35, 0.28) 0, transparent 60%), radial-gradient(circle at 50% 0%, rgba(239, 65, 35, 0.28) 0, transparent 60%), radial-gradient(circle at 50% 100%, rgba(239, 65, 35, 0.28) 0, transparent 60%)",
                   filter: "blur(35px)",
                   opacity: 1,
                 }}
