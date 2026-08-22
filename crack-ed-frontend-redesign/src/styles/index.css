@@ -233,35 +233,6 @@ body::-webkit-scrollbar {
     background: rgba(0, 0, 0, 1);
   }
 
-  .program-fee-amount {
-    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 48px;
-    letter-spacing: 0%;
-    color: rgba(250, 250, 250, 1);
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    white-space: normal;
-  }
-
-  .program-fee-amount span {
-    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 48px;
-    letter-spacing: 0%;
-    color: rgba(250, 250, 250, 1);
-    white-space: nowrap;
-  }
-
-  @media (min-width: 640px) {
-    .program-fee-amount {
-      white-space: nowrap;
-    }
-  }
-
   .program-fee-card-label {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     font-weight: 600;
@@ -518,6 +489,41 @@ body::-webkit-scrollbar {
       margin-left: 0;
       margin-right: 0;
     }
+  }
+}
+
+/* Program Fee amount – desktop Figma specs (apply at all widths; mobile only overrides wrap) */
+.program-fee-amount {
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 48px;
+  letter-spacing: 0%;
+  color: rgba(250, 250, 250, 1);
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  white-space: nowrap;
+}
+
+.program-fee-amount span {
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 48px;
+  letter-spacing: 0%;
+  color: rgba(250, 250, 250, 1);
+  white-space: nowrap;
+}
+
+@media (max-width: 639px) {
+  .program-fee-amount {
+    white-space: normal;
+    line-height: 1.2;
+  }
+
+  .program-fee-amount span {
+    line-height: 1.4;
   }
 }
 
