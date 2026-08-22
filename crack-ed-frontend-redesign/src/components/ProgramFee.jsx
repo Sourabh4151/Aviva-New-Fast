@@ -96,20 +96,9 @@ export default function ProgramFee() {
                   PROGRAM FEE
                 </p>
 
-                <p
-                  className="program-fee-amount"
-                  style={{
-                    fontFamily:
-                      "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                    fontWeight: 500,
-                    fontSize: "32px",
-                    lineHeight: "48px",
-                    letterSpacing: "0%",
-                    color: "rgba(250, 250, 250, 1)",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  Rs 1,00,000
+                <p className="program-fee-amount">
+                  Rs 1,18,000{" "}
+                  <span>(Taxes Included)</span>
                 </p>
               </div>
 
