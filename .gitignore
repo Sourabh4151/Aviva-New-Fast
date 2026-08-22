@@ -9,7 +9,7 @@ __pycache__/
 node_modules/
 
 # Env files
-# .env
+**/.env
 
 # Build
 dist/
