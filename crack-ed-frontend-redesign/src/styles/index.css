@@ -243,8 +243,12 @@ body::-webkit-scrollbar {
   }
 
   .program-fee-amount span {
-    font-size: 18px;
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
     line-height: 48px;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 1);
   }
 
   .program-fee-card-label {
