@@ -576,7 +576,7 @@ export default function CareerGrowth() {
                     "font-medium text-[18px] leading-[1] text-[rgba(250,250,250,1)]",
                 },
                 {
-                  text: "Earn a CTC of up to Rs. 2.22 LPA + incentives",
+                  text: "Earn a CTC of up to Rs. 2.46 LPA + Incentives",
                   icon: ctcIcon,
                   textClassName:
                     "font-medium text-[18px] leading-[27px] text-[rgba(250,250,250,1)]",

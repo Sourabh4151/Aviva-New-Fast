@@ -379,7 +379,7 @@ export default function Hero() {
                         className="hero-subtitle text-[16px] max-lg:text-[14px] font-normal leading-[1.55] tracking-[0em] max-lg:leading-[1.52]"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                        Join as a Field Executive and secure a CTC of upto Rs 2.22 LPA + incentives
+                        Join as a Field Executive and secure a CTC of upto Rs 2.46 LPA + Incentives
                       </span>
                     </li>
                     <li className="flex items-start gap-2 sm:gap-3">

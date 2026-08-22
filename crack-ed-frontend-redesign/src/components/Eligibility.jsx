@@ -1,9 +1,9 @@
 import React from "react";
 
 const REQUIREMENTS = [
-  "12th pass with proficiency in the local language and be up to 30 years of age.",
-  "Comfortable with field sales and daily market travel; must own a two-wheeler with a valid driving licence.",
-  "Willingness to work in a field-based role with regular customer visits.",
+  "Graduate up to 30 years of age with proficiency in the local language.",
+  "Comfortable with field sales and daily market travel ; must own a two-wheeler with a valid driving license.",
+  "Willingness to work in a field-based role with regular customer visits (Fuel Reimbursement upto Rs 4,500 per month).",
 ];
 
 export default function Eligibility() {
