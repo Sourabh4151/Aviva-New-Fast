@@ -16,19 +16,14 @@ const CAREER_STAGES = [
       "Connect with customers, support vehicle loan sales, and build strong relationships through on-ground field engagement.",
   },
   {
-    title: "Senior Executive",
-    description:
-      "Manage customer interactions, drive loan business growth, and strengthen dealer and client relationships in the field.",
-  },
-  {
-    title: "Relationship Manager",
-    description:
-      "Handle customer portfolios, provide tailored financing solutions, and ensure long-term client engagement and satisfaction.",
-  },
-  {
     title: "Area Manager",
     description:
       "Lead regional sales operations, guide field teams, and drive business growth and portfolio performance across multiple locations.",
+  },
+  {
+    title: "Divisional Manager",
+    description:
+      "Lead overall divisional operations, drive business growth, manage teams, and achieve sales and portfolio targets across multiple locations.",
   },
 ];
 
