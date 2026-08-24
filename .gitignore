@@ -1,5 +1,6 @@
 crack-ed-frontend-redesign/node_modules/
 crack-ed-frontend-redesign/dist/
+
 # Python
 venv/
 __pycache__/
@@ -9,7 +10,8 @@ __pycache__/
 node_modules/
 
 # Env files
-# .env
+.env
+**/.env
 
 # Build
 dist/
