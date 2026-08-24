@@ -1,2 +1,15 @@
+# Environment files
+.env
+*.env
+
+# Python virtual environment
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Node
 crack-ed-frontend-redesign/node_modules/
 crack-ed-frontend-redesign/dist/
