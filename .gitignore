@@ -10,3 +10,6 @@ crack-ed-backend/venv/
 # Python cache
 __pycache__/
 *.pyc
+# Frontend dependencies/build
+crack-ed-frontend-redesign/node_modules/
+crack-ed-frontend-redesign/dist/
