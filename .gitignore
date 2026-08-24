@@ -1,2 +1,23 @@
-crack-ed-frontend-redesign/node_modules/
-crack-ed-frontend-redesign/dist/
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Environment files
+.env
+.env.*
+
+# Build
+dist/
+build/
+
+# Runtime
+*.log
+nohup.out
+instance/
+
+# IDE
+.vscode/
