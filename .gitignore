@@ -1,16 +1,12 @@
-crack-ed-frontend-redesign/node_modules/
-crack-ed-frontend-redesign/dist/
-# Python
-venv/
+# Backend environment
+crack-ed-backend/.env
+
+# Frontend environment
+crack-ed-frontend-redesign/.env
+
+# Python virtual environment
+crack-ed-backend/venv/
+
+# Python cache
 __pycache__/
 *.pyc
-
-# Node
-node_modules/
-
-# Env files
-# .env
-
-# Build
-dist/
-build/
