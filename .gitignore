@@ -18,3 +18,7 @@ crack-ed-backend/nohup.out
 # Frontend dependencies/build
 crack-ed-frontend-redesign/node_modules/
 crack-ed-frontend-redesign/dist/
+
+# VS Code
+.vscode/
+**/.vscode/
