@@ -1,0 +1,15 @@
+name: Deploy Kotak Gold
+
+on:
+  push:
+    branches:
+      - kotak-gold
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Deploy Kotak Gold
+        run: |
+          /srv/deploy/deploy-kotak-gold.sh
