@@ -13,7 +13,7 @@ const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b)
 
 const HERO_HIGHLIGHT_MESSAGES = [
   "Designed to Empower Women Candidates",
-  "Admissions Open • New Batch Starts in July",
+  "Admissions Open • New Batch Starts in September",
 ];
 
 function HeroHighlightMarquee({ size = "mobile" }) {
