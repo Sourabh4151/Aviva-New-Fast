@@ -1,6 +1,6 @@
 import React from "react";
 
-const MESSAGE = "Admissions Open • New Batch Starts in July";
+const MESSAGE = "Admissions Open • New Batch Starts in August";
 const REPEAT_COUNT = 8;
 
 export default function AdmissionStrip() {
