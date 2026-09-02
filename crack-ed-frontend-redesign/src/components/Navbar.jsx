@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import crackEdLogo from "../assets/crack-ed_logo.svg";
-import {
-  getPageScroller,
-  scrollToSectionAfterMenuClose,
-} from "../utils/scrollToSection";
+import { scrollToSectionAfterMenuClose } from "../utils/scrollToSection";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,23 +19,6 @@ export default function Navbar() {
   }, []);
 
   const closeMobile = () => setMobileOpen(false);
-
-  const handleLogoClick = (e) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    closeMobile();
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        const scroller = getPageScroller();
-        scroller.scrollTo({ top: 0, behavior: "smooth" });
-        if (window.history?.replaceState) {
-          window.history.replaceState(null, "", window.location.pathname + window.location.search);
-        }
-      });
-    });
-  };
 
   const handleNavClick = (e, hash) => {
     e.preventDefault();
@@ -95,10 +75,12 @@ export default function Navbar() {
         <div className="nav-container py-3 flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-4">
             <a
-              href="#"
-              onClick={handleLogoClick}
+              href="https://crack-ed.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMobile}
               className="focus:outline-none inline-block"
-              aria-label="Go to top"
+              aria-label="Go to Crack-ED"
             >
               <img
                 src={crackEdLogo}
