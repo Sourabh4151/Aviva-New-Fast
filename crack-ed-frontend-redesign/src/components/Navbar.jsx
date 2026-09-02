@@ -19,23 +19,6 @@ export default function Navbar() {
 
   const closeMobile = () => setMobileOpen(false);
 
-  const handleLogoClick = (e) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    closeMobile();
-    // Scroll to top: scrollIntoView on sentinel works regardless of which element scrolls
-    const sentinel = document.getElementById("navbar-scroll-sentinel");
-    if (sentinel) {
-      sentinel.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
-      document.body.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
-
   /** Scroll to a section, offset for the fixed nav. */
   const scrollToSection = (e, sectionId) => {
     e.preventDefault();
@@ -99,10 +82,12 @@ export default function Navbar() {
         <div className="nav-container py-3 flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-4">
             <a
-              href="#"
-              onClick={handleLogoClick}
+              href="https://crack-ed.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMobile}
               className="focus:outline-none inline-block"
-              aria-label="Go to top"
+              aria-label="Go to Crack-ED"
             >
               <img
                 src={crackEdLogo}
