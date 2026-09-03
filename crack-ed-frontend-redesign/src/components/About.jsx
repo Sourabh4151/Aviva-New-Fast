@@ -1,5 +1,5 @@
 import React from "react";
-
+//About section of the page
 export default function About() {
   return (
     <section id="about" className="bg-black text-white scroll-mt-24">
