@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import crackEdLogo from "../assets/crack-ed_logo.svg";
 import { scrollToSectionAfterMenuClose } from "../utils/scrollToSection";
+import { withUtmParams } from "../utils/utm";
+
+const CRACK_ED_HOME = "https://crack-ed.com/";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [logoHref, setLogoHref] = useState(CRACK_ED_HOME);
 
   useEffect(() => {
     const sentinel = document.getElementById("navbar-scroll-sentinel");
@@ -16,6 +20,10 @@ export default function Navbar() {
     );
     observer.observe(sentinel);
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    setLogoHref(withUtmParams(CRACK_ED_HOME));
   }, []);
 
   const closeMobile = () => setMobileOpen(false);
@@ -75,7 +83,7 @@ export default function Navbar() {
         <div className="nav-container py-3 flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-4">
             <a
-              href="https://crack-ed.com/"
+              href={logoHref}
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeMobile}
