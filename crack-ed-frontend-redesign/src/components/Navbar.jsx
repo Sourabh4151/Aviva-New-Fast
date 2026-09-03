@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from "react";
 import crackEdLogo from "../assets/crack-ed_logo.svg";
+import { withUtmParams } from "../utils/utm";
 
 const CRACK_ED_HOME = "https://crack-ed.com/";
-
-function getCrackEdHref() {
-  if (typeof window === "undefined") return CRACK_ED_HOME;
-  const incoming = new URLSearchParams(window.location.search);
-  const utm = new URLSearchParams();
-  for (const [key, value] of incoming.entries()) {
-    if (key.toLowerCase().startsWith("utm_") && value) {
-      utm.set(key, value);
-    }
-  }
-  const qs = utm.toString();
-  return qs ? `${CRACK_ED_HOME}?${qs}` : CRACK_ED_HOME;
-}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -34,7 +22,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setLogoHref(getCrackEdHref());
+    setLogoHref(withUtmParams(CRACK_ED_HOME));
   }, []);
 
   const closeMobile = () => setMobileOpen(false);
