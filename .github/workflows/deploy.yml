@@ -1,6 +1,6 @@
 name: Deploy Aviva AS
 
-# Deployment workflow for Aviva AS
+run-name: Deploy Aviva AS
 
 on:
   push:
