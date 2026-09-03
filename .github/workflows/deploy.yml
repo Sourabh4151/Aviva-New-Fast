@@ -1,7 +1,5 @@
 name: Deploy Aviva AS
 
-run-name: Deploy Aviva AS
-
 on:
   push:
     branches:
