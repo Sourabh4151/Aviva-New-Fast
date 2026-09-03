@@ -50,10 +50,7 @@ export default function EnrollmentProcess() {
   };
 
   return (
-    <section
-      id="enrollment-process"
-      className="relative bg-black text-white scroll-mt-24 overflow-hidden"
-    >
+    <section className="relative bg-black text-white overflow-hidden">
       <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-20">
         {/* Top: Badge + Heading */}
         <div className="flex flex-col items-start text-left">
@@ -98,10 +95,13 @@ export default function EnrollmentProcess() {
           {/* Right: Steps */}
           <div className="flex-1 flex flex-col justify-center min-w-0">
             <div className="flex flex-col gap-6 sm:gap-8 max-w-full lg:max-w-[426px]">
-              {STEPS.map((step) => (
+              {STEPS.map((step, index) => (
                 <div
                   key={step.number}
-                  className="flex flex-row items-stretch gap-3 sm:gap-4"
+                  id={index === 0 ? "enrollment-process" : undefined}
+                  className={`flex flex-row items-stretch gap-3 sm:gap-4${
+                    index === 0 ? " scroll-mt-28 md:scroll-mt-24" : ""
+                  }`}
                   onMouseEnter={() => handleHoverChange(step.number)}
                   onMouseLeave={() => handleHoverChange(null)}
                 >

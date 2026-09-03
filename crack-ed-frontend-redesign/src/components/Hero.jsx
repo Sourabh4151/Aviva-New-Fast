@@ -352,9 +352,9 @@ export default function Hero() {
         >
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
           <div className="hero-container relative">
-            {/* Frame 301: 16px content block ↔ CTA • 16px title ↔ bullets • 8px logo→pill→title • list 12px */}
+            {/* Frame 301: 32px content block ↔ CTA • 16px title ↔ bullets • 8px logo→pill→title • list 12px */}
             <div className="hero-left-adjust absolute left-[120px] top-[120px] flex w-[586px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start text-white left-adjust">
-              <div className="hero-frame-301 flex w-full min-w-0 flex-col items-start gap-[16px]">
+              <div className="hero-frame-301 flex w-full min-w-0 flex-col items-start gap-[24px]">
                 <div className="flex w-full min-w-0 flex-col items-start gap-[16px]">
                   <div className="flex w-full min-w-0 flex-col items-start gap-[8px]">
                     <img
@@ -378,7 +378,7 @@ export default function Hero() {
                       <span className="lg:block">with Gold Loans</span>
                     </h1>
                   </div>
-                  <div className="flex w-full min-w-0 flex-col items-start gap-[12px]">
+                  <div className="flex w-full min-w-0 flex-col items-start gap-[20px]">
                     <ul className="hero-bullet-list hero-frame-23 flex w-full flex-col gap-[12px] text-gray-200">
                     <li className="flex items-start gap-2 sm:gap-3">
                       <span className="hero-tick">

@@ -19,6 +19,25 @@ export default function Navbar() {
 
   const closeMobile = () => setMobileOpen(false);
 
+  const scrollToEnrollment = (e) => {
+    e.preventDefault();
+    const wasMobileOpen = mobileOpen;
+    closeMobile();
+
+    const run = () => {
+      const el = document.getElementById("enrollment-process");
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.replaceState(null, "", "#enrollment-process");
+    };
+
+    if (wasMobileOpen) {
+      setTimeout(run, 150);
+    } else {
+      run();
+    }
+  };
+
   const navLinks = (
     <>
       <a href="#about" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
@@ -30,7 +49,11 @@ export default function Navbar() {
       <a href="#eligibility" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
         Eligibility
       </a>
-      <a href="#enrollment-process" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
+      <a
+        href="#enrollment-process"
+        className="text-white text-sm font-semibold hover:opacity-90"
+        onClick={scrollToEnrollment}
+      >
         Enrollment Process
       </a>
       <a href="#program-fee" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
