@@ -1,9 +1,25 @@
 import React, { useEffect, useState } from "react";
 import crackEdLogo from "../assets/crack-ed_logo.svg";
 
+const CRACK_ED_HOME = "https://crack-ed.com/";
+
+function getCrackEdHref() {
+  if (typeof window === "undefined") return CRACK_ED_HOME;
+  const incoming = new URLSearchParams(window.location.search);
+  const utm = new URLSearchParams();
+  for (const [key, value] of incoming.entries()) {
+    if (key.toLowerCase().startsWith("utm_") && value) {
+      utm.set(key, value);
+    }
+  }
+  const qs = utm.toString();
+  return qs ? `${CRACK_ED_HOME}?${qs}` : CRACK_ED_HOME;
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [logoHref, setLogoHref] = useState(CRACK_ED_HOME);
 
   useEffect(() => {
     const sentinel = document.getElementById("navbar-scroll-sentinel");
@@ -15,6 +31,10 @@ export default function Navbar() {
     );
     observer.observe(sentinel);
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    setLogoHref(getCrackEdHref());
   }, []);
 
   const closeMobile = () => setMobileOpen(false);
@@ -48,7 +68,7 @@ export default function Navbar() {
         <div className="nav-container py-3 flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-4">
             <a
-              href="https://crack-ed.com/"
+              href={logoHref}
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeMobile}
