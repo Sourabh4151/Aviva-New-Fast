@@ -318,7 +318,7 @@ export default function TrainingJourney() {
                         : DURATION_VALUE_COLOR_INACTIVE,
                     }}
                   >
-                    2-years Fixed Term Contract
+                    2-years Fixed Term Contract*
                   </div>
                 </div>
               </div>
