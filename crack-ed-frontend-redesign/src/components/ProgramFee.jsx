@@ -151,7 +151,7 @@ export default function ProgramFee() {
                   }}
                 >
                   {[
-                    "Comprehensive training & placement support",
+                    "Comprehensive training & job opportunity",
                     "All learning materials and resources",
                   ].map((item) => (
                     <div

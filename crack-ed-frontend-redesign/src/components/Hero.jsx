@@ -437,8 +437,7 @@ export default function Hero() {
                   <button
                     type="button"
                     className="download-brochure-btn border-0"
-                    disabled
-                    aria-disabled="true"
+                    onClick={() => setShowBrochureModal(true)}
                   >
                     Download Brochure
                   </button>

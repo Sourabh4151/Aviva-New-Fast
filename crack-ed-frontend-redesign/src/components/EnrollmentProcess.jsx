@@ -26,6 +26,18 @@ const STEPS = [
     description:
       "Selected candidates receive a Enrolment Letter confirming their provisional selection for the program.",
   },
+  {
+    number: "05",
+    title: "Classroom Training",
+    description:
+      "Complete one month of intensive offline classroom training at the designated training location.",
+  },
+  {
+    number: "06",
+    title: "Onboarding",
+    description:
+      "Transition into a full-time role as a Gold Loan Relationship Officer upon successful completion of the training.",
+  },
 ];
 
 export default function EnrollmentProcess() {
@@ -73,7 +85,7 @@ export default function EnrollmentProcess() {
           {/* Left: Image card */}
           <div className="flex-1 flex justify-start min-w-0">
             <div
-              className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[400px] sm:h-[540px] lg:h-[465px] p-0 sm:p-0 lg:p-6 lg:rounded-[10px] enrollment-image-mobile"
+              className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[400px] sm:h-[540px] lg:h-[685px] p-0 sm:p-0 lg:p-6 lg:rounded-[10px] enrollment-image-mobile"
             >
               <img
                 src={enrollmentImage}

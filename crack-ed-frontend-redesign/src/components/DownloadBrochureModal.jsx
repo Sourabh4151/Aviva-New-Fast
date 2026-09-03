@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const BROCHURE_HREF = "/TALENT%20ACCELERATOR%20PROGRAM.pdf";
-const BROCHURE_FILENAME = "TALENT ACCELERATOR PROGRAM.pdf";
+const BROCHURE_HREF = "/Kotak%20Gold%20Excellence%20Program.pdf";
+const BROCHURE_FILENAME = "Kotak Gold Excellence Program.pdf";
 
 function triggerBrochureDownload() {
   const link = document.createElement("a");
