@@ -1,59 +1,103 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import uthaanImg from "../assets/uthaan.png";
-import aarohanImg from "../assets/aarohan.png";
-import shikharImg from "../assets/shikhar.png";
+import learnImg from "../assets/LEARN.png";
+import applyImg from "../assets/APPLY.png";
+import excelImg from "../assets/EXCEL.png";
+import immerseImg from "../assets/IMMERSE.png";
+import buildImg from "../assets/BUILD.png";
+import belongImg from "../assets/BELONG.png";
 import tickSvg from "../assets/tick.svg";
 import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const MODULES = [
   {
-    key: "uthaan",
+    key: "learn",
+    label: "Learn",
+    heading: "Where the founder mindset begins",
+    description:
+      "Live, interactive weekend sessions covering a practical, industry-focused curriculum taught by experienced founders and practitioners",
+    points: [
+      "Saturday & Sunday live classes",
+      "Industry-focused, practical curriculum",
+    ],
+    image: learnImg,
+  },
+  {
+    key: "apply",
+    label: "Apply",
+    heading: "Turn theory into traction",
+    description:
+      "Real founder case studies, AI implementation, and hands-on assignments — with direct mentor feedback at every step",
+    points: [
+      "Learn through real case studies",
+      "Hands-on assignments with mentor feedback",
+    ],
+    image: applyImg,
+  },
+  {
+    key: "excel",
+    label: "Excel",
+    heading: "Learn from those already ahead",
+    description:
+      "Exclusive visits to mentor-led startups, with personalized mentorship for top performers to accelerate their own venture.",
+    points: [
+      "Industrial visits to mentor-led startups",
+      "Personalized visits for top 3 performers",
+    ],
+    image: excelImg,
+  },
+  {
+    key: "immerse",
+    label: "Immerse",
+    heading: "Step onto India's top campus",
+    description:
+      "A 5-day immersive journey at India's top management institute, with faculty sessions and real founder networking.",
+    points: [
+      "Faculty-led classroom sessions",
+      "Networking with entrepreneurs and mentors",
+    ],
+    image: immerseImg,
+  },
+  {
+    key: "build",
     label: "Build",
-    heading: "Lay the right foundation",
+    heading: "Make it investor-ready",
     description:
-      "Develop an entrepreneurial mindset, validate opportunities, and build a strong business model.",
+      "Develop a fundraising-ready pitch deck and solve a real challenge from your own business as your capstone.",
     points: [
-      "Entrepreneurial Mindset & Opportunity Discovery",
-      "Customer Discovery & Business Model Design",
-      "Entrepreneurial Finance",
+      "Investor-ready pitch deck",
+      "Capstone project on your real business",
     ],
-    image: uthaanImg,
+    image: buildImg,
   },
   {
-    key: "aarohan",
-    label: "Grow",
-    heading: "Strengthen every aspect of your business",
+    key: "belong",
+    label: "Belong",
+    heading: "A network that outlasts the cohort",
     description:
-      "Learn how to attract customers, streamline operations, and lead with confidence.",
+      "Lifetime access to a founder community connecting you with investors, mentors, and industry leaders beyond the fellowship.",
     points: [
-      "Digital Marketing, Branding & Online Presence",
-      "Business Set-up, Legal & Expansion",
-      "Leadership & People Management",
+      "Lifetime community access",
+      "Network with founders, investors, mentors",
     ],
-    image: aarohanImg,
-  },
-  {
-    key: "shikhar",
-    label: "Scale",
-    heading: "Prepare your venture for long-term growth",
-    description:
-      "Refine your strategy, become investment-ready, and present your business with confidence.",
-    points: [
-      "Startup Pitch & Investment Readiness",
-      "Venture Capstone",
-    ],
-    image: shikharImg,
+    image: belongImg,
   },
 ];
 
 export default function ClassroomTraining() {
   const sectionRef = useRef(null);
   const modulesRef = useRef(null);
+  const progressColumnRef = useRef(null);
+  const headingRefs = useRef([]);
   const imageRefs = useRef([]);
   const [progress, setProgress] = useState(0);
   const [showBrochureModal, setShowBrochureModal] = useState(false);
+  const [dotLayout, setDotLayout] = useState({
+    lineTop: 0,
+    lineHeight: 0,
+    dots: [],
+  });
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -124,12 +168,51 @@ export default function ClassroomTraining() {
     };
   }, []);
 
-  const progressHeight = `${progress * 100}%`;
-  // Fine-tuned dot positions so 2nd and 3rd sit slightly above their cards
-  const dotPositions = [0, 35.5, 71.8];
-  const maxDotPosition = dotPositions[dotPositions.length - 1] || 100;
-  const dotOffsets = dotPositions.map(
-    (position) => (position / maxDotPosition) * 100
+  // Pin each timeline dot to the vertical center of its module heading.
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const measureDots = () => {
+      const column = progressColumnRef.current;
+      const headings = headingRefs.current.filter(Boolean);
+      if (!column || headings.length === 0) return;
+
+      const columnTop = column.getBoundingClientRect().top;
+      const dots = headings.map((heading) => {
+        const rect = heading.getBoundingClientRect();
+        return rect.top + rect.height / 2 - columnTop;
+      });
+
+      const lineTop = dots[0];
+      const lineHeight = dots[dots.length - 1] - dots[0];
+
+      setDotLayout((prev) => {
+        const unchanged =
+          prev.dots.length === dots.length &&
+          Math.abs(prev.lineTop - lineTop) < 0.5 &&
+          Math.abs(prev.lineHeight - lineHeight) < 0.5 &&
+          prev.dots.every((value, i) => Math.abs(value - dots[i]) < 0.5);
+        return unchanged ? prev : { lineTop, lineHeight, dots };
+      });
+    };
+
+    measureDots();
+
+    const resizeObserver = new ResizeObserver(measureDots);
+    if (progressColumnRef.current) resizeObserver.observe(progressColumnRef.current);
+    if (modulesRef.current) resizeObserver.observe(modulesRef.current);
+    window.addEventListener("resize", measureDots);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", measureDots);
+    };
+  }, []);
+
+  const progressHeight =
+    dotLayout.lineHeight > 0 ? `${progress * 100}%` : "0%";
+  const dotThresholds = dotLayout.dots.map((y) =>
+    dotLayout.lineHeight > 0 ? (y - dotLayout.lineTop) / dotLayout.lineHeight : 0
   );
 
   return (
@@ -155,36 +238,29 @@ export default function ClassroomTraining() {
         {/* Heading block */}
         <div className="w-full max-w-[1040px]">
           <div className="classroom-pill inline-flex items-center justify-center">
-          Curriculum
+          Learning Framework
           </div>
 
-          <p
-            className="classroom-subtitle mt-3 sm:mt-4 whitespace-normal sm:whitespace-nowrap"
-            style={{
-              fontFamily:
-                "Montserrat, ui-sans-serif, system-ui, sans-serif",
-              fontWeight: 500,
-              fontSize: 24,
-              lineHeight: "31.2px",
-              letterSpacing: "0%",
-              textAlign: "justify",
-              color: "rgba(250, 250, 250, 1)",
-            }}
-          >
-          6 Months. 156 Learning Hours. One Transformational Journey.
+          <p className="classroom-subtitle mt-3 sm:mt-4">
+            6 Months. 156 Learning Hours.{" "}
+            <em>One Transformational Journey.</em>
           </p>
         </div>
 
         {/* Modules with vertical progress marker */}
         <div className="mt-8 sm:mt-12 lg:mt-16 flex flex-col lg:flex-row gap-6 lg:gap-12">
           {/* Vertical progress bar + dots - hidden on mobile */}
-          <div className="hidden lg:block relative flex-shrink-0" style={{ width: 40 }}>
+          <div
+            ref={progressColumnRef}
+            className="hidden lg:block relative flex-shrink-0"
+            style={{ width: 40 }}
+          >
             <div
               className="absolute left-1/2 -translate-x-1/2"
               style={{
                 width: 4,
-                top: 96,
-                height: `${maxDotPosition}%`,
+                top: dotLayout.lineTop,
+                height: dotLayout.lineHeight,
               }}
             >
               {/* Grey base line */}
@@ -198,16 +274,13 @@ export default function ClassroomTraining() {
                 className="absolute left-1/2 -translate-x-1/2 top-0 w-full rounded-full"
                 style={{
                   height: progressHeight,
-                  backgroundColor: "rgba(28, 50, 214, 1)",
+                  backgroundColor: "rgba(227, 185, 9, 1)",
                 }}
               />
 
-              {/* Dots for each module */}
-              {dotPositions.map((position, index) => {
-                // Activate a dot only when the yellow line has visually
-                // reached (or passed) that dot within the container.
-                const threshold = dotOffsets[index] / 100;
-                const isActive = progress >= threshold;
+              {/* Dots aligned to each module heading */}
+              {dotLayout.dots.map((y, index) => {
+                const isActive = progress >= dotThresholds[index];
                 return (
                   <div
                     key={MODULES[index].key}
@@ -216,9 +289,9 @@ export default function ClassroomTraining() {
                       width: 16,
                       height: 16,
                       borderRadius: "999px",
-                      top: `calc(${dotOffsets[index]}% - 8px)`,
+                      top: y - dotLayout.lineTop - 8,
                       backgroundColor: isActive
-                        ? "rgba(28, 50, 214, 1)"
+                        ? "rgba(227, 185, 9, 1)"
                         : "rgba(63, 63, 63, 1)",
                     }}
                   />
@@ -232,61 +305,24 @@ export default function ClassroomTraining() {
             {MODULES.map((module, index) => (
               <div
                 key={module.key}
-                className={index === 0 ? "" : "mt-12 sm:mt-16 lg:mt-[192px]"}
+                className={index === 0 ? "" : "mt-6 sm:mt-8 lg:mt-[96px]"}
               >
                 <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-stretch">
                   <div className="order-2 lg:order-1 flex-1 rounded-[10px] bg-black/20 px-4 sm:px-6 lg:px-8 py-6 lg:py-8 max-w-full lg:max-w-[512px]">
-                    <div
-                      className="inline-flex items-center justify-center mb-4 text-sm font-medium tracking-normal"
-                      style={{
-                        borderRadius: 100,
-                        border: "1px solid rgba(28, 50, 214, 1)",
-                        backgroundColor: "rgba(28, 50, 214, 1)",
-                        paddingTop: 4,
-                        paddingBottom: 4,
-                        paddingLeft: 30,
-                        paddingRight: 30,
-                        fontFamily:
-                          "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                        fontWeight: 500,
-                        fontSize: 14,
-                        lineHeight: "27px",
-                        letterSpacing: "0%",
-                        color: "rgba(250, 250, 250, 1)",
-                        textAlign: "center",
-                      }}
-                    >
+                    <div className="classroom-module-label inline-flex items-center justify-center mb-4">
                       {module.label}
                     </div>
 
                     <h3
-                      className="classroom-module-heading"
-                      style={{
-                        fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
-                        fontWeight: 500,
-                        fontSize: 18,
-                        lineHeight: "27px",
-                        letterSpacing: "0%",
-                        textAlign: "justify",
-                        textTransform: "capitalize",
-                        color: "rgba(250, 250, 250, 1)",
+                      ref={(el) => {
+                        headingRefs.current[index] = el;
                       }}
+                      className="classroom-module-heading"
                     >
                       {module.heading}
                     </h3>
 
-                    <p
-                      className="classroom-module-body mt-3"
-                      style={{
-                        fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
-                        fontWeight: 400,
-                        fontSize: 16,
-                        lineHeight: "24px",
-                        letterSpacing: "0%",
-                        textAlign: "justify",
-                        color: "rgba(250, 250, 250, 0.8)",
-                      }}
-                    >
+                    <p className="classroom-module-body mt-3">
                       {module.description}
                     </p>
 
@@ -305,17 +341,7 @@ export default function ClassroomTraining() {
                             style={{ width: 20, height: 20 }}
                             aria-hidden="true"
                           />
-                          <span
-                            style={{
-                              fontFamily:
-                                "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                              fontWeight: 400,
-                              fontSize: 16,
-                              lineHeight: "100%",
-                              letterSpacing: "0%",
-                              color: "rgba(250, 250, 250, 1)",
-                            }}
-                          >
+                          <span className="classroom-module-point">
                             {point}
                           </span>
                         </li>
@@ -340,7 +366,7 @@ export default function ClassroomTraining() {
                 {/* Download brochure CTA only for the last module (Scale),
                     placed below the entire row so it sits visually under the image end */}
                 {index === MODULES.length - 1 && (
-                  <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
+                  <div className="mt-6 sm:mt-8 flex justify-center">
                     <button
                       type="button"
                       onClick={() => setShowBrochureModal(true)}

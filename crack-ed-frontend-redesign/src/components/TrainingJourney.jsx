@@ -11,20 +11,22 @@ import placementMobile from "../assets/placement_mobile.svg";
 
 const FONT_MONTSERRAT =
   "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+const FONT_NEWSREADER = "Newsreader, ui-serif, Georgia, serif";
 
 const CARD_PADDING = { paddingTop: 24, paddingRight: 16, paddingBottom: 24, paddingLeft: 16 };
 const CARD_GAP = 10;
 const CARD_RADIUS = 10;
 const CARD_MIN_HEIGHT = 276;
+const MOBILE_BODY_COLOR = "rgba(203, 203, 204, 1)";
 /** Background when card is hovered/active (design spec) */
-const CARD_ACTIVE_BG = "rgba(6, 10, 43, 1)";
+const CARD_ACTIVE_BG = "rgba(13, 11, 0, 1)";
 /** Bottom line when card is hovered/active: 2px, 304px wide, centered, dark blue */
 const LINE_ACTIVE_HEIGHT = 2;
 const LINE_ACTIVE_WIDTH = 304;
-const LINE_ACTIVE_COLOR = "rgba(28, 50, 214, 1)";
+const LINE_ACTIVE_COLOR = "rgba(227, 185, 9, 1)";
 
 export default function TrainingJourney() {
-  const [activeCard, setActiveCard] = useState("placement");
+  const [activeCard, setActiveCard] = useState("classroom");
   const classroomActive = activeCard === "classroom";
   const ojtActive = activeCard === "ojt";
   const placementActive = activeCard === "placement";
@@ -56,10 +58,9 @@ export default function TrainingJourney() {
         {/* Section header */}
         <div className="text-left sm:text-center">
           <div
-            className="inline-flex items-center justify-center rounded-full border border-white/30 py-1 px-4 sm:px-[30px]"
+            className="inline-flex items-center justify-center rounded-full border border-dashed sm:border-solid border-white/30 py-1 px-4 sm:px-[30px]"
             style={{
-              fontFamily:
-                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+              fontFamily: FONT_MONTSERRAT,
               fontWeight: 500,
               fontSize: 14,
               lineHeight: "27px",
@@ -74,29 +75,48 @@ export default function TrainingJourney() {
           <p
             className="mt-4 mx-auto text-left sm:text-center max-w-[1040px]"
             style={{
-              fontFamily:
-                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+              fontFamily: FONT_MONTSERRAT,
               fontWeight: 500,
               fontSize: 24,
-              lineHeight: isMobile ? "36px" : "31.2px",
+              lineHeight: isMobile ? "100%" : "31.2px",
+              letterSpacing: isMobile ? "-0.01em" : "0em",
               color: "rgba(250,250,250,1)",
               whiteSpace: isMobile ? "normal" : "nowrap",
+              maxWidth: isMobile ? 361 : undefined,
             }}
           >
-            A Fellowship Designed Around Building Your Venture
+            {isMobile ? (
+              <>
+                Classroom is only the{" "}
+                <span
+                  style={{
+                    fontFamily: FONT_NEWSREADER,
+                    fontWeight: 500,
+                    fontStyle: "italic",
+                    fontSize: 28,
+                    lineHeight: "100%",
+                    letterSpacing: "0em",
+                  }}
+                >
+                  Beginning
+                </span>
+              </>
+            ) : (
+              "Classroom is only the Beginning"
+            )}
           </p>
         </div>
 
         {/* Three cards, same specs: 336px fill, 316px height, radius 10px, padding 24/16, gap 10px */}
         <div
           className="mt-4 sm:mt-6 flex flex-col lg:flex-row gap-4 max-w-[1040px] mx-auto"
-          onMouseLeave={!isMobile ? () => setActiveCard("placement") : undefined}
+          onMouseLeave={!isMobile ? () => setActiveCard("classroom") : undefined}
         >
-          {/* Expert Advisory card */}
+          {/* Campus Immersion card */}
           <article
             className="flex-1 min-w-0 max-w-full lg:max-w-[336px] flex flex-col"
             style={{
-              backgroundColor: placementVisualActive
+              backgroundColor: classroomVisualActive
                 ? isMobile
                   ? "rgba(13, 11, 0, 1)"
                   : CARD_ACTIVE_BG
@@ -106,18 +126,18 @@ export default function TrainingJourney() {
               ...CARD_PADDING,
               gap: CARD_GAP,
             }}
-            onMouseEnter={!isMobile ? () => setActiveCard("placement") : undefined}
+            onMouseEnter={!isMobile ? () => setActiveCard("classroom") : undefined}
           >
             <div className="w-full flex flex-col flex-1" style={{ gap: CARD_GAP }}>
               <div>
                 <img
-                  src={placementMobile}
+                  src={classroomMobile}
                   alt=""
                   className="w-16 h-16 sm:hidden"
                   aria-hidden="true"
                 />
                 <img
-                  src={placementActive ? card3gold : card3}
+                  src={classroomActive ? card1gold : card1}
                   alt=""
                   className="hidden sm:block w-12 h-12 sm:w-16 sm:h-16"
                   aria-hidden="true"
@@ -130,45 +150,46 @@ export default function TrainingJourney() {
                     fontFamily: FONT_MONTSERRAT,
                     fontWeight: 600,
                     fontSize: 18,
-                    lineHeight: "27px",
+                    lineHeight: isMobile ? "100%" : "27px",
                     letterSpacing: "0em",
-                    textAlign: isMobile ? "left" : "justify",
-                    color: placementVisualActive ? "rgba(250,250,250,1)" : "rgba(250,250,250,0.5)",
+                    textAlign: "justify",
+                    color: classroomVisualActive ? "rgba(250,250,250,1)" : "rgba(250,250,250,0.5)",
                   }}
                 >
-                  Expert Advisory 
+                  Campus Immersion
                 </h3>
                 <p
                   style={{
                     fontFamily: FONT_MONTSERRAT,
                     fontWeight: 400,
-                    fontSize: 14,
-                    lineHeight: "21px",
+                    fontSize: isMobile ? 16 : 14,
+                    lineHeight: isMobile ? "100%" : "21px",
                     letterSpacing: "0em",
-                    textAlign: isMobile ? "left" : "justify",
-                    color: placementVisualActive
-                      ? "rgba(250,250,250,0.8)"
+                    textAlign: "justify",
+                    color: classroomVisualActive
+                      ? isMobile
+                        ? MOBILE_BODY_COLOR
+                        : "rgba(250,250,250,0.8)"
                       : "rgba(250,250,250,0.5)",
                     marginTop: CARD_GAP,
                   }}
                 >
-                  Receive guidance through Quarterly Expert Advisory Clinics and unlock merit-based enrichment, including venture review clinics, mentor business visits, and founder fireside conversations.
+                  Experience an immersive 5-day campus journey at India’s top management institute gaining valuable insights, building meaningful connections and networking on campus.
                 </p>
               </div>
 
-              {/* Spacer: pushes bottom line down so all three cards align */}
               <div style={{ flex: 1, minHeight: 0 }} aria-hidden="true" />
 
               <div className="h-[2px] w-full bg-white sm:hidden" />
               <div
                 className="hidden sm:block"
                 style={{
-                  height: placementActive ? LINE_ACTIVE_HEIGHT : 1,
-                  width: placementActive ? LINE_ACTIVE_WIDTH : "100%",
+                  height: classroomActive ? LINE_ACTIVE_HEIGHT : 1,
+                  width: classroomActive ? LINE_ACTIVE_WIDTH : "100%",
                   maxWidth: "100%",
-                  marginLeft: placementActive ? "auto" : undefined,
-                  marginRight: placementActive ? "auto" : undefined,
-                  backgroundColor: placementActive
+                  marginLeft: classroomActive ? "auto" : undefined,
+                  marginRight: classroomActive ? "auto" : undefined,
+                  backgroundColor: classroomActive
                     ? LINE_ACTIVE_COLOR
                     : "rgba(250,250,250,0.25)",
                 }}
@@ -214,9 +235,9 @@ export default function TrainingJourney() {
                     fontFamily: FONT_MONTSERRAT,
                     fontWeight: 600,
                     fontSize: 18,
-                    lineHeight: "27px",
+                    lineHeight: isMobile ? "100%" : "27px",
                     letterSpacing: "0em",
-                    textAlign: isMobile ? "left" : "justify",
+                    textAlign: "justify",
                     color: ojtVisualActive ? "rgba(250,250,250,1)" : "rgba(250,250,250,0.5)",
                   }}
                 >
@@ -226,17 +247,19 @@ export default function TrainingJourney() {
                   style={{
                     fontFamily: FONT_MONTSERRAT,
                     fontWeight: 400,
-                    fontSize: 14,
-                    lineHeight: "21px",
+                    fontSize: isMobile ? 16 : 14,
+                    lineHeight: isMobile ? "100%" : "21px",
                     letterSpacing: "0em",
-                    textAlign: isMobile ? "left" : "justify",
+                    textAlign: "justify",
                     color: ojtVisualActive
-                      ? "rgba(250,250,250,0.8)"
+                      ? isMobile
+                        ? MOBILE_BODY_COLOR
+                        : "rgba(250,250,250,0.8)"
                       : "rgba(250,250,250,0.5)",
                     marginTop: CARD_GAP,
                   }}
                 >
-                  Visit successful startups and businesses to observe how they operate, interact with founders, and learn from real entrepreneurial journeys.
+                  Visit 3 successful startups and businesses to observe how they operate, interact with founders, and learn from real entrepreneurial journeys.
                 </p>
               </div>
 
@@ -259,11 +282,11 @@ export default function TrainingJourney() {
             </div>
           </article>
 
-          {/* IIM Lucknow Immersion card */}
+          {/* Expert Advisory card */}
           <article
             className="flex-1 min-w-0 max-w-full lg:max-w-[336px] flex flex-col"
             style={{
-              backgroundColor: classroomVisualActive
+              backgroundColor: placementVisualActive
                 ? isMobile
                   ? "rgba(13, 11, 0, 1)"
                   : CARD_ACTIVE_BG
@@ -273,18 +296,18 @@ export default function TrainingJourney() {
               ...CARD_PADDING,
               gap: CARD_GAP,
             }}
-            onMouseEnter={!isMobile ? () => setActiveCard("classroom") : undefined}
+            onMouseEnter={!isMobile ? () => setActiveCard("placement") : undefined}
           >
             <div className="w-full flex flex-col flex-1" style={{ gap: CARD_GAP }}>
               <div>
                 <img
-                  src={classroomMobile}
+                  src={placementMobile}
                   alt=""
                   className="w-16 h-16 sm:hidden"
                   aria-hidden="true"
                 />
                 <img
-                  src={classroomActive ? card1gold : card1}
+                  src={placementActive ? card3gold : card3}
                   alt=""
                   className="hidden sm:block w-12 h-12 sm:w-16 sm:h-16"
                   aria-hidden="true"
@@ -297,29 +320,31 @@ export default function TrainingJourney() {
                     fontFamily: FONT_MONTSERRAT,
                     fontWeight: 600,
                     fontSize: 18,
-                    lineHeight: "27px",
+                    lineHeight: isMobile ? "100%" : "27px",
                     letterSpacing: "0em",
-                    textAlign: isMobile ? "left" : "justify",
-                    color: classroomVisualActive ? "rgba(250,250,250,1)" : "rgba(250,250,250,0.5)",
+                    textAlign: "justify",
+                    color: placementVisualActive ? "rgba(250,250,250,1)" : "rgba(250,250,250,0.5)",
                   }}
                 >
-                  Campus Immersion
+                  Expert Advisory
                 </h3>
                 <p
                   style={{
                     fontFamily: FONT_MONTSERRAT,
                     fontWeight: 400,
-                    fontSize: 14,
-                    lineHeight: "21px",
+                    fontSize: isMobile ? 16 : 14,
+                    lineHeight: isMobile ? "100%" : "21px",
                     letterSpacing: "0em",
-                    textAlign: isMobile ? "left" : "justify",
-                    color: classroomVisualActive
-                      ? "rgba(250,250,250,0.8)"
+                    textAlign: "justify",
+                    color: placementVisualActive
+                      ? isMobile
+                        ? MOBILE_BODY_COLOR
+                        : "rgba(250,250,250,0.8)"
                       : "rgba(250,250,250,0.5)",
                     marginTop: CARD_GAP,
                   }}
                 >
-                  Attend faculty masterclasses, interact with founders, and build meaningful connections during the mandatory campus immersion.
+                  Receive guidance through Quarterly Expert Advisory Clinics of experienced CAs, corporate lawyers, IP specialists, marketing, HR, and technology consultants and gain practical guidance with strategic insights that will draw informed business decisions.
                 </p>
               </div>
 
@@ -329,12 +354,12 @@ export default function TrainingJourney() {
               <div
                 className="hidden sm:block"
                 style={{
-                  height: classroomActive ? LINE_ACTIVE_HEIGHT : 1,
-                  width: classroomActive ? LINE_ACTIVE_WIDTH : "100%",
+                  height: placementActive ? LINE_ACTIVE_HEIGHT : 1,
+                  width: placementActive ? LINE_ACTIVE_WIDTH : "100%",
                   maxWidth: "100%",
-                  marginLeft: classroomActive ? "auto" : undefined,
-                  marginRight: classroomActive ? "auto" : undefined,
-                  backgroundColor: classroomActive
+                  marginLeft: placementActive ? "auto" : undefined,
+                  marginRight: placementActive ? "auto" : undefined,
+                  backgroundColor: placementActive
                     ? LINE_ACTIVE_COLOR
                     : "rgba(250,250,250,0.25)",
                 }}

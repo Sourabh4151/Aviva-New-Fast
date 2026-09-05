@@ -36,7 +36,7 @@ export default function EnrollmentProcess() {
       id="enrollment-process"
       className="relative bg-black text-white scroll-mt-24 overflow-hidden"
     >
-      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-20">
+      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:pl-[180px] lg:py-20">
         {/* Top: Badge + Heading */}
         <div className="flex flex-col items-start text-left">
           <div
@@ -49,15 +49,9 @@ export default function EnrollmentProcess() {
             Your Next Steps
           </div>
 
-          <p
-            className="mt-4 sm:mt-6 text-[24px] font-medium tracking-normal leading-[31.2px]"
-            style={{
-              fontFamily:
-                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-              color: "rgba(250, 250, 250, 1)",
-            }}
-          >
-            Graduate with a certificate, a stronger business, and a lifetime seat at the House of Founders table.
+          <p className="enrollment-heading mt-4 sm:mt-6">
+            Don't just graduate with a certificate,{" "}
+            <em>leave with a Business.</em>
           </p>
         </div>
 
@@ -86,7 +80,7 @@ export default function EnrollmentProcess() {
                 >
                   {(() => {
                     const isHovered = hoveredStep === step.number;
-                    const accentColor = "rgba(28, 50, 214, 1)";
+                    const accentColor = "rgba(227, 185, 9, 1)";
                     const defaultLineColor = "rgba(250,250,250,0.25)";
 
                     return (

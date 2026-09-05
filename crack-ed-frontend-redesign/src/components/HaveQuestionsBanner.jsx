@@ -21,19 +21,8 @@ export default function HaveQuestionsBanner() {
             }}
           >
             <div className="flex flex-col items-center max-w-[542px] w-full gap-[9px]">
-              <p
-                className="text-center w-full"
-                style={{
-                  fontFamily:
-                    "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                  fontWeight: 500,
-                  fontSize: "24px",
-                  lineHeight: "27px",
-                  letterSpacing: "0%",
-                  color: "rgba(250, 250, 250, 1)",
-                }}
-              >
-                Have Questions?
+              <p className="questions-banner-heading text-center w-full">
+                Your Idea won&apos;t <em>Build Itself.</em>
               </p>
               <p
                 className="text-center w-full"
@@ -47,7 +36,7 @@ export default function HaveQuestionsBanner() {
                   color: "rgba(250, 250, 250, 0.6)",
                 }}
               >
-                Request a callback and talk to our counsellors to know more
+                Request a callback and talk to our counsellors now to know more
               </p>
             </div>
 
@@ -62,12 +51,12 @@ export default function HaveQuestionsBanner() {
                 fontSize: "14px",
                 lineHeight: "100%",
                 letterSpacing: "0%",
-                color: "rgba(250, 250, 250, 1)",
+                color: "#003244",
                 padding: "14px 40px",
-                backgroundColor: "rgba(28, 50, 214, 1)",
+                backgroundColor: "rgba(227, 185, 9, 1)",
               }}
             >
-              Request a callback
+              Request a Callback
             </button>
           </div>
         </div>

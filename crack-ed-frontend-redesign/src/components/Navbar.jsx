@@ -36,13 +36,13 @@ export default function Navbar() {
 
   const navLinks = (
     <>
-      <a
+      {/* <a
         href="#about"
         className="text-white text-sm font-semibold hover:opacity-90"
         onClick={(e) => handleNavClick(e, "#about")}
       >
         About Program
-      </a>
+      </a> */}
       <a
         href="#training"
         className="text-white text-sm font-semibold hover:opacity-90"

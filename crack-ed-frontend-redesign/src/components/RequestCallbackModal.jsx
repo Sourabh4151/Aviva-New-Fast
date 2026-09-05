@@ -356,8 +356,7 @@ export default function RequestCallbackModal({ isOpen, onClose }) {
         role="presentation"
       >
         <aside
-          className="request-callback-modal-card relative z-10 w-full max-w-[579px] my-auto p-4 sm:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0"
-          style={{ backgroundColor: "rgba(6, 10, 43, 1)" }}
+          className="request-callback-modal-card relative z-10 w-full my-auto"
           onClick={(e) => e.stopPropagation()}
           role="dialog"
           aria-modal="true"
@@ -371,24 +370,25 @@ export default function RequestCallbackModal({ isOpen, onClose }) {
           >
             <span className="text-2xl leading-none font-normal">×</span>
           </button>
-          <div>
+          <div className="request-callback-modal-header">
             <h3
               id="request-callback-title"
-              className="hero-form-title text-[18px] font-semibold mb-1 pr-8"
+              className="hero-form-title text-[24px] font-semibold m-0"
             >
               Apply Now!
             </h3>
-            <p className="hero-form-subtitle text-sm text-[rgba(250,250,250,0.6)] mb-3">
+            <p className="hero-form-subtitle text-sm text-[rgba(250,250,250,0.6)] m-0">
             Fill in your details to begin your application. We'll contact you shortly.
             </p>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (showOtp) verifyOtp(e);
-                else handleSubmit(e);
-              }}
-              className="space-y-[13px]"
-            >
+          </div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (showOtp) verifyOtp(e);
+              else handleSubmit(e);
+            }}
+            className="request-callback-modal-form"
+          >
               {status?.message && !alreadyInSystem && status.type !== "info" && (
                 <div
                   className={`relative flex items-start gap-2 rounded-[10px] px-4 py-3 shadow-[0_10px_25px_rgba(0,0,0,0.35)] border ${
@@ -710,13 +710,12 @@ export default function RequestCallbackModal({ isOpen, onClose }) {
                 </>
               )}
             </form>
-          </div>
 
-          <div className={`flex flex-col items-center pt-4 ${alreadyInSystem ? "pb-6" : "pb-1"}`}>
+          <div className="request-callback-modal-btn-wrap">
             <button
               type="button"
               onClick={(e) => (showOtp ? verifyOtp(e) : handleSubmit(e))}
-              className="h-[52px] w-[206px] rounded-[10px] bg-[rgba(28,50,214,1)] hover:bg-[rgba(28,50,214,0.7)] text-white text-[14px] font-medium tracking-[0.02em] shadow-[0_12px_30px_rgba(0,0,0,0.45)] transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="apply-now-btn border-0"
               disabled={isSendingOtp || isVerifyingOtp}
             >
               {showOtp
