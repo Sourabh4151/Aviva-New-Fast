@@ -13,7 +13,7 @@ import iconWeeks from "../assets/Frame 343 (1).svg";
 import iconMasterclass from "../assets/Frame 343 (2).svg";
 import iconInvestor from "../assets/Frame 343 (3).svg";
 import iconCommunity from "../assets/Frame 343 (4).svg";
-import bidLogo from "../assets/bid.svg";
+import bidLogo from "../assets/BID.svg";
 
 const LEADERS = [
   {
