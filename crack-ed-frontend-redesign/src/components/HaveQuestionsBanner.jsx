@@ -73,6 +73,22 @@ export default function HaveQuestionsBanner() {
               Request a callback
             </button>
           </div>
+
+          <p
+            className="w-full max-w-[949px] text-left self-start mt-6"
+            style={{
+              fontFamily:
+                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+              fontWeight: 400,
+              fontSize: "12px",
+              lineHeight: "100%",
+              letterSpacing: "0%",
+              color: "rgba(255, 255, 255, 1)",
+            }}
+          >
+            *All the images are AI-generated image. Any resemblance to any
+            person, living or deceased, is purely coincidental and fictitious.
+          </p>
         </div>
       </div>
     </section>
