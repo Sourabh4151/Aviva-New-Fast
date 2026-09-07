@@ -86,7 +86,7 @@ export default function HaveQuestionsBanner() {
               color: "rgba(255, 255, 255, 1)",
             }}
           >
-            *All the images are AI-generated image. Any resemblance to any
+            *All the images are AI-generated. Any resemblance to any
             person, living or deceased, is purely coincidental and fictitious.
           </p>
         </div>
