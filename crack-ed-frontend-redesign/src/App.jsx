@@ -12,6 +12,7 @@ import EnrollmentProcess from "./components/EnrollmentProcess";
 import ProgramFee from "./components/ProgramFee";
 import HaveQuestionsBanner from "./components/HaveQuestionsBanner";
 import Footer from "./components/Footer";
+import StickyIcon from "./components/StickyMobileIcon";
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
       <ProgramFee />
       <HaveQuestionsBanner />
       <Footer />
+      <StickyIcon />
     </div>
   );
 }
