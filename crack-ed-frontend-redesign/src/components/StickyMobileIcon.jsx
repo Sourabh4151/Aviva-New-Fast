@@ -1,16 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const PHONE_NUMBER = "8810331340";
 
 export default function StickyMobileIcon() {
   const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef(null);
 
   const handleCallClick = () => {
     window.location.href = `tel:${PHONE_NUMBER}`;
   };
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const close = () => setIsOpen(false);
+
+    const handlePointerDown = (event) => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        close();
+      }
+    };
+
+    document.addEventListener("scroll", close, { capture: true, passive: true });
+    window.addEventListener("scroll", close, { capture: true, passive: true });
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown, { passive: true });
+
+    return () => {
+      document.removeEventListener("scroll", close, { capture: true });
+      window.removeEventListener("scroll", close, { capture: true });
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+    };
+  }, [isOpen]);
+
   return (
-    <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3">
+    <div
+      ref={containerRef}
+      className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3"
+    >
       {/* Talk to Us Card - shown when expanded */}
       {isOpen && (
         <div
@@ -69,7 +97,7 @@ export default function StickyMobileIcon() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                  fill="rgba(250, 250, 250, 1)"
+                  fill="rgba(10, 49, 82, 1)"
                 />
               </svg>
               <span
