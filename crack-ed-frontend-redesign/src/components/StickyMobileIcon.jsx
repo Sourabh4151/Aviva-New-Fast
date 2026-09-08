@@ -1,16 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const PHONE_NUMBER = "8810331340";
 
 export default function StickyMobileIcon() {
   const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef(null);
 
   const handleCallClick = () => {
     window.location.href = `tel:${PHONE_NUMBER}`;
   };
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const close = () => setIsOpen(false);
+
+    const handlePointerDown = (event) => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        close();
+      }
+    };
+
+    document.addEventListener("scroll", close, { capture: true, passive: true });
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
+
+    return () => {
+      document.removeEventListener("scroll", close, { capture: true });
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+    };
+  }, [isOpen]);
+
   return (
-    <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3">
+    <div
+      ref={containerRef}
+      className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3"
+    >
       {/* Talk to Us Card - shown when expanded */}
       {isOpen && (
         <div
