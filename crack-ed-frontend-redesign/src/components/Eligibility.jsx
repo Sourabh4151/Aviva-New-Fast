@@ -1,7 +1,8 @@
 import React from "react";
 
 const REQUIREMENTS = [
-  "Graduates from all streams are eligible to apply",
+  "Graduates upto 30 years with minimum 50%",
+  "A cibil score of 650 and above",
   "A valid driving licence is required for the role",
   "Candidates must own a two-wheeler ",
 ];

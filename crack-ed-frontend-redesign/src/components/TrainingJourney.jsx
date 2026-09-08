@@ -197,7 +197,7 @@ export default function TrainingJourney() {
                         : DURATION_VALUE_COLOR_INACTIVE,
                     }}
                   >
-                    3 Weeks
+                    15 Days
                   </div>
                 </div>
                 <div>

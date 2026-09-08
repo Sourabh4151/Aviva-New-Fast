@@ -11,7 +11,7 @@ import growthIcon from "../assets/growth.svg";
 
 const CAREER_STAGES = [
   {
-    title: "Sales Officer",
+    title: "Business Development Executive",
     description:
       "Engage with customers, drive banking product sales, and support account acquisition and relationship management activities.",
   },
@@ -571,7 +571,7 @@ export default function CareerGrowth() {
                     "font-medium text-[18px] leading-[1] text-[rgba(250,250,250,1)]",
                 },
                 {
-                  text: "Earn a CTC of Rs 2.75 LPA",
+                  text: "Earn a CTC of ₹2.75 - ₹3.25 LPA",
                   icon: ctcIcon,
                   textClassName:
                     "font-medium text-[18px] leading-[27px] text-[rgba(250,250,250,1)]",

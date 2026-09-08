@@ -348,7 +348,7 @@ export default function Hero() {
         >
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
           <div className="hero-container relative">
-            <div className="absolute left-[120px] top-[200px] lg:top-[250px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
+            <div className="absolute left-[120px] top-[200px] lg:top-[200px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
               <div className="hero-logo-badge mb-3 md:mb-4">
                 <div
                   className="hero-badge mt-4 md:mt-6 inline-flex items-center justify-center text-center text-[14px] font-semibold text-white rounded-full border border-white px-[10px] py-[10px] md:px-4 md:py-2"
@@ -357,7 +357,7 @@ export default function Hero() {
                 </div>
               </div>
               <h1 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[1] mb-3 md:mb-4">
-                Sales Officer
+              Business Development Executive
               </h1>
               <ul className="hero-bullet-list text-gray-200 space-y-2 sm:space-y-4 mb-4 md:mb-8">
                 <li className="flex items-start gap-2 sm:gap-3 min-w-0">
@@ -365,14 +365,14 @@ export default function Hero() {
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
                   <span className="hero-subtitle min-w-0 font-['Poppins',ui-sans-serif,system-ui,sans-serif] text-[14px] sm:text-base font-normal not-italic leading-[1.45] tracking-normal text-[rgba(250,250,250,1)] max-sm:max-w-[331px]">
-                    Join as a Sales Officer with a CTC of Rs 2.75 LPA
+                  Join as a Business Development Executive with a CTC of ₹2.75 to ₹3.25 LPA
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3 min-w-0">
                   <span className="hero-tick">
                     <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                   </span>
-                  <span className="hero-bullet-secondary min-w-0 max-sm:max-w-[331px] text-[14px] sm:text-[16px] leading-[1.45] font-normal font-['Poppins',ui-sans-serif,system-ui,sans-serif] text-[rgba(250,250,250,1)]">3 weeks program
+                  <span className="hero-bullet-secondary min-w-0 max-sm:max-w-[331px] text-[14px] sm:text-[16px] leading-[1.45] font-normal font-['Poppins',ui-sans-serif,system-ui,sans-serif] text-[rgba(250,250,250,1)]">15 days program
                   </span>
                 </li>
               </ul>
