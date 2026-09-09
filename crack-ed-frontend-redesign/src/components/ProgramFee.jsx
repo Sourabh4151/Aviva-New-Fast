@@ -183,6 +183,53 @@ export default function ProgramFee() {
                   ))}
                 </div>
               </div>
+
+              <a
+                href="https://smartpay.easebuzz.in/234234/bandhan_bank"
+                className="self-center lg:self-start inline-flex items-center justify-center hover:opacity-95 transition-opacity"
+                style={{
+                  width: "fit-content",
+                  height: 50,
+                  borderRadius: 10,
+                  padding: "16px 24px",
+                  gap: 8,
+                  boxSizing: "border-box",
+                  fontFamily:
+                    "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  fontWeight: 600,
+                  fontSize: 14,
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  color: "rgba(250, 250, 250, 1)",
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                  background:
+                    "linear-gradient(180deg, rgba(45, 77, 105, 1) 0%, rgba(10, 50, 82, 1) 100%)",
+                  boxShadow: "inset 0 1px 50px 0 rgba(10, 48, 81, 0.3)",
+                }}
+              >
+                Enrol & Pay Now
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  style={{ flexShrink: 0 }}
+                >
+                  <rect
+                    x="2"
+                    y="5"
+                    width="20"
+                    height="14"
+                    rx="2"
+                    stroke="white"
+                    strokeWidth="1.8"
+                  />
+                  <path d="M2 10H22" stroke="white" strokeWidth="1.8" />
+                </svg>
+              </a>
               </div>
             </div>
           </div>
