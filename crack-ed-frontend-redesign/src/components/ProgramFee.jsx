@@ -194,7 +194,7 @@ export default function ProgramFee() {
                 href="https://smartpay.easebuzz.in/234234/hhfl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center self-center lg:self-start no-underline"
+                className="program-fee-pay-btn inline-flex items-center justify-center self-center lg:self-start no-underline"
                 style={{
                   width: "fit-content",
                   height: 50,
