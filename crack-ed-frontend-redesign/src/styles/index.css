@@ -77,11 +77,17 @@ body::-webkit-scrollbar {
   background: linear-gradient(180deg, rgba(26, 92, 142, 1) 0%, rgba(10, 49, 82, 1) 100%);
   box-shadow: inset 0 1px 50px 0 rgba(10, 49, 82, 0.3);
   flex-shrink: 0;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 150ms ease, transform 150ms ease;
 }
 
 .program-fee-pay-btn:hover {
-  color: #ffffff;
-  filter: brightness(1.08);
+  opacity: 0.92;
+}
+
+.program-fee-pay-btn:active {
+  transform: translateY(1px);
 }
 
 /* Checkmark vector: 9.42×7.15 at design scale; SVG viewBox 20×20 keeps proportions. Tick color rgba(30,30,30,1) is in tick.svg */
