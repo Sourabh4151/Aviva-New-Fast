@@ -188,7 +188,7 @@ export default function ProgramFee() {
                 href="https://smartpay.easebuzz.in/234234/bandhan_bank"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="self-center lg:self-start inline-flex items-center justify-center hover:opacity-95 transition-opacity"
+                className="program-fee-pay-btn self-center lg:self-start inline-flex items-center justify-center"
                 style={{
                   width: "fit-content",
                   height: 50,
