@@ -177,27 +177,7 @@ export default function ProgramFee() {
                 href="https://smartpay.easebuzz.in/234234/Aviva_dse"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center self-center lg:self-start no-underline"
-                style={{
-                  width: "fit-content",
-                  height: 50,
-                  padding: "16px 24px",
-                  gap: 10,
-                  borderRadius: 10,
-                  background:
-                    "linear-gradient(180deg, rgba(255, 234, 111, 1) 0%, rgba(255, 217, 0, 1) 100%)",
-                  boxShadow: "inset 0 1px 50px 0 rgba(255, 217, 0, 0.3)",
-                  fontFamily:
-                    "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                  fontWeight: 600,
-                  fontSize: 14,
-                  lineHeight: "18px",
-                  color: "rgba(0, 0, 0, 1)",
-                  whiteSpace: "nowrap",
-                  boxSizing: "border-box",
-                  flexShrink: 0,
-                  cursor: "pointer",
-                }}
+                className="program-fee-enrol-btn self-center lg:self-start"
               >
                 Enrol & Pay Now
                 <svg
