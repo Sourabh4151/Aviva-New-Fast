@@ -198,6 +198,58 @@ export default function ProgramFee() {
                   ))}
                 </div>
               </div>
+
+              <a
+                href="https://smartpay.easebuzz.in/234234/piramal_rm"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center self-center lg:self-start shrink-0 no-underline"
+                style={{
+                  width: "fit-content",
+                  height: 50,
+                  padding: "16px 24px",
+                  gap: 10,
+                  borderRadius: 10,
+                  background:
+                    "linear-gradient(180deg, rgba(246, 84, 56, 1) 0%, rgba(239, 65, 35, 1) 100%)",
+                  boxShadow: "inset 0 1px 50px 0 rgba(239, 65, 35, 0.3)",
+                  fontFamily:
+                    "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  fontWeight: 600,
+                  fontSize: 14,
+                  lineHeight: 1,
+                  color: "#FFFFFF",
+                  whiteSpace: "nowrap",
+                  boxSizing: "border-box",
+                }}
+              >
+                Enrol & Pay Now
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="2.75"
+                    y="5.75"
+                    width="18.5"
+                    height="12.5"
+                    rx="2.25"
+                    stroke="white"
+                    strokeWidth="1.5"
+                  />
+                  <path d="M2.75 9.5H21.25" stroke="white" strokeWidth="1.5" />
+                  <path
+                    d="M6.5 14.5H10"
+                    stroke="white"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </a>
               </div>
             </div>
           </div>
