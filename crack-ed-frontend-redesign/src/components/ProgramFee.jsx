@@ -191,6 +191,38 @@ export default function ProgramFee() {
                   ))}
                 </div>
               </div>
+
+              <a
+                href="https://smartpay.easebuzz.in/234234/indusind_bde"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="program-fee-pay-btn self-center lg:self-start"
+              >
+                Enrol &amp; Pay Now
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="2.75"
+                    y="5.75"
+                    width="18.5"
+                    height="12.5"
+                    rx="2.25"
+                    stroke="white"
+                    strokeWidth="1.5"
+                  />
+                  <path
+                    d="M2.75 10.25H21.25"
+                    stroke="white"
+                    strokeWidth="1.5"
+                  />
+                </svg>
+              </a>
               </div>
             </div>
           </div>

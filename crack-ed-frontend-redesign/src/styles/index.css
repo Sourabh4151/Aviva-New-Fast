@@ -57,6 +57,33 @@ body::-webkit-scrollbar {
   object-fit: contain;
 }
 
+.program-fee-pay-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 50px;
+  padding: 16px 24px;
+  gap: 10px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-decoration: none;
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+  background: linear-gradient(180deg, rgba(26, 92, 142, 1) 0%, rgba(10, 49, 82, 1) 100%);
+  box-shadow: inset 0 1px 50px 0 rgba(10, 49, 82, 0.3);
+  flex-shrink: 0;
+}
+
+.program-fee-pay-btn:hover {
+  color: #ffffff;
+  filter: brightness(1.08);
+}
+
 /* Checkmark vector: 9.42×7.15 at design scale; SVG viewBox 20×20 keeps proportions. Tick color rgba(30,30,30,1) is in tick.svg */
 
 /* Hero mobile typography – design specs (max-width: 768px) */
