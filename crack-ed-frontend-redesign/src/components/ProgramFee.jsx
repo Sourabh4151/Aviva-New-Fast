@@ -172,6 +172,58 @@ export default function ProgramFee() {
                   ))}
                 </div>
               </div>
+
+              <a
+                href="https://smartpay.easebuzz.in/234234/Aviva_dse"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center self-center lg:self-start no-underline"
+                style={{
+                  width: "fit-content",
+                  height: 50,
+                  padding: "16px 24px",
+                  gap: 10,
+                  borderRadius: 10,
+                  background:
+                    "linear-gradient(180deg, rgba(255, 234, 111, 1) 0%, rgba(255, 217, 0, 1) 100%)",
+                  boxShadow: "inset 0 1px 50px 0 rgba(255, 217, 0, 0.3)",
+                  fontFamily:
+                    "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  fontWeight: 600,
+                  fontSize: 14,
+                  lineHeight: "18px",
+                  color: "rgba(0, 0, 0, 1)",
+                  whiteSpace: "nowrap",
+                  boxSizing: "border-box",
+                  flexShrink: 0,
+                  cursor: "pointer",
+                }}
+              >
+                Enrol & Pay Now
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="2.5"
+                    y="5.5"
+                    width="19"
+                    height="13"
+                    rx="2"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <path
+                    d="M2.5 9.5h19"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                </svg>
+              </a>
               </div>
             </div>
           </div>
