@@ -192,6 +192,8 @@ export default function ProgramFee() {
 
               <a
                 href="https://smartpay.easebuzz.in/234234/asix_mrl"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="program-fee-pay-btn self-center lg:self-start"
                 style={{
                   display: "inline-flex",
