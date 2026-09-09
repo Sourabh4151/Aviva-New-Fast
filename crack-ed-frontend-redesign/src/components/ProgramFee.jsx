@@ -177,7 +177,7 @@ export default function ProgramFee() {
                 href="https://smartpay.easebuzz.in/234234/Aviva_ase"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="program-fee-enrol-btn inline-flex items-center justify-center self-center lg:self-start shrink-0"
+                className="program-fee-pay-btn inline-flex items-center justify-center self-center lg:self-start shrink-0"
               >
                 Enrol & Pay Now
                 <svg
