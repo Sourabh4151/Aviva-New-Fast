@@ -203,7 +203,7 @@ export default function ProgramFee() {
                 href="https://smartpay.easebuzz.in/234234/piramal_rm"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center self-center lg:self-start shrink-0 no-underline"
+                className="program-fee-pay-btn inline-flex items-center justify-center self-center lg:self-start shrink-0 no-underline"
                 style={{
                   width: "fit-content",
                   height: 50,
