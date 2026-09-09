@@ -706,6 +706,19 @@ select.hero-select::-ms-expand {
   transform: translateY(0);
 }
 
+.program-fee-pay-btn {
+  cursor: pointer;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.program-fee-pay-btn:hover {
+  opacity: 0.92;
+}
+
+.program-fee-pay-btn:active {
+  transform: translateY(1px);
+}
+
 /* Disabled / unavailable — Figma: 193×49, radius 10, padding 16/24, gap 10 */
 .download-brochure-btn.download-brochure-btn--unavailable,
 button.download-brochure-btn:disabled {

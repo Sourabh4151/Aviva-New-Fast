@@ -189,6 +189,54 @@ export default function ProgramFee() {
                   ))}
                 </div>
               </div>
+
+              <a
+                href="https://smartpay.easebuzz.in/234234/asix_mrl"
+                className="program-fee-pay-btn"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "fit-content",
+                  height: 50,
+                  padding: "16px 24px",
+                  gap: 10,
+                  borderRadius: 10,
+                  background:
+                    "linear-gradient(180deg, rgba(99, 198, 244, 1) 0%, rgba(3, 149, 218, 1) 100%)",
+                  boxShadow: "inset 0 1px 50px 0 rgba(3, 149, 218, 0.3)",
+                  fontFamily:
+                    "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  color: "rgba(255, 255, 255, 1)",
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Enrol &amp; Pay Now
+                <svg
+                  width="18"
+                  height="14"
+                  viewBox="0 0 18 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="0.75"
+                    y="0.75"
+                    width="16.5"
+                    height="12.5"
+                    rx="2.25"
+                    stroke="white"
+                    strokeWidth="1.5"
+                  />
+                  <rect x="0.75" y="3.5" width="16.5" height="2.5" fill="white" />
+                </svg>
+              </a>
               </div>
             </div>
           </div>
