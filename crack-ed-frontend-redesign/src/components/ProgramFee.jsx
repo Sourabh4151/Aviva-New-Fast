@@ -190,6 +190,55 @@ export default function ProgramFee() {
                   ))}
                 </div>
               </div>
+
+              <a
+                href="https://smartpay.easebuzz.in/234234/prarambh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center self-center lg:self-start no-underline"
+                style={{
+                  height: 50,
+                  width: "fit-content",
+                  padding: "16px 24px",
+                  gap: 10,
+                  borderRadius: 10,
+                  background:
+                    "linear-gradient(180deg, rgba(236, 56, 83, 1) 0%, rgba(223, 24, 54, 1) 100%)",
+                  boxShadow: "inset 0 1px 50px 0 rgba(250, 20, 50, 0.3)",
+                  fontFamily:
+                    "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  lineHeight: "18px",
+                  color: "rgba(255, 255, 255, 1)",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Enrol & Pay Now
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="2.75"
+                    y="5.75"
+                    width="18.5"
+                    height="12.5"
+                    rx="2"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <path
+                    d="M3 10H21"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                </svg>
+              </a>
               </div>
             </div>
           </div>
