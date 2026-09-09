@@ -189,6 +189,55 @@ export default function ProgramFee() {
                   ))}
                 </div>
               </div>
+
+              <a
+                href="https://smartpay.easebuzz.in/234234/hhfl_com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center self-center lg:self-start"
+                style={{
+                  height: 50,
+                  width: "fit-content",
+                  padding: "16px 24px",
+                  gap: 10,
+                  borderRadius: 10,
+                  background:
+                    "linear-gradient(180deg, rgba(75, 61, 145, 1) 0%, rgba(58, 45, 125, 1) 100%)",
+                  boxShadow: "inset 0 1px 50px 0 rgba(58, 45, 125, 0.25)",
+                  fontFamily:
+                    "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  fontWeight: 600,
+                  fontSize: 14,
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  color: "rgba(255, 255, 255, 1)",
+                  whiteSpace: "nowrap",
+                  textDecoration: "none",
+                  boxSizing: "border-box",
+                  flexShrink: 0,
+                }}
+              >
+                Enrol & Pay Now
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="2.5"
+                    y="5"
+                    width="19"
+                    height="14"
+                    rx="2"
+                    stroke="white"
+                    strokeWidth="1.5"
+                  />
+                  <path d="M2.5 9.5H21.5" stroke="white" strokeWidth="1.5" />
+                </svg>
+              </a>
               </div>
             </div>
           </div>
