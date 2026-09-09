@@ -199,6 +199,56 @@ export default function ProgramFee() {
                   ))}
                 </div>
               </div>
+
+              <a
+                href="https://smartpay.easebuzz.in/234234/kotak_gl_ro"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="program-fee-pay-btn self-center lg:self-start"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "fit-content",
+                  height: 50,
+                  padding: "16px 24px",
+                  gap: 10,
+                  borderRadius: 10,
+                  background:
+                    "linear-gradient(180deg, rgba(255, 80, 103, 1) 0%, rgba(250, 20, 50, 1) 100%)",
+                  boxShadow: "inset 0 1px 50px 0 rgba(250, 20, 50, 0.3)",
+                  fontFamily:
+                    "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  fontWeight: 600,
+                  fontSize: 14,
+                  lineHeight: "100%",
+                  color: "#ffffff",
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                  boxSizing: "border-box",
+                }}
+              >
+                Enrol & Pay Now
+                <svg
+                  width="18"
+                  height="14"
+                  viewBox="0 0 18 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="0.75"
+                    y="0.75"
+                    width="16.5"
+                    height="12.5"
+                    rx="1.5"
+                    stroke="white"
+                    strokeWidth="1.5"
+                  />
+                  <path d="M0.75 4.5H17.25" stroke="white" strokeWidth="1.5" />
+                </svg>
+              </a>
               </div>
             </div>
           </div>

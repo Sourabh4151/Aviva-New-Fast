@@ -711,6 +711,17 @@ select.hero-select::-ms-expand {
   box-shadow: none;
 }
 
+.program-fee-pay-btn {
+  cursor: pointer;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+.program-fee-pay-btn:hover {
+  opacity: 0.92;
+}
+.program-fee-pay-btn:active {
+  transform: translateY(1px);
+}
+
 /* Hero "Download Brochure" button (193×49, radius 10px) */
 .download-brochure-btn {
   width: 193px;
