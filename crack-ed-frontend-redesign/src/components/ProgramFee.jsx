@@ -193,7 +193,7 @@ export default function ProgramFee() {
               </div>
 
               <a
-                href="https://smartpay.easebuzz.in/234234/indusind_bde"
+                href="https://smartpay.easebuzz.in/234234/bsp_so"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="program-fee-pay-btn self-center lg:self-start"
