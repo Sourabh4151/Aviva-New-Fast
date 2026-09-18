@@ -7,16 +7,24 @@
 html,
 body,
 #root {
-  height: 100%;
   /* Hide default page scrollbars while keeping scroll functional */
   scrollbar-width: none;
   /* Firefox */
 }
 
+html {
+  height: 100%;
+}
+
+body,
+#root {
+  min-height: 100%;
+}
+
 html,
 body {
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .container {
@@ -802,6 +810,7 @@ p.classroom-subtitle {
 
   .classroom-image-mobile {
     width: 100%;
+    max-width: none;
     height: 287px;
     margin-left: 0;
     transform: none;

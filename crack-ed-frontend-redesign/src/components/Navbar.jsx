@@ -3,6 +3,55 @@ import crackEdLogo from "../assets/crack-ed_logo.svg";
 import { withUtmParams } from "../utils/utm";
 
 const CRACK_ED_HOME = "https://crack-ed.com/";
+const SECTION_GAP = 16;
+
+const getHeaderHeight = () => {
+  const header = document.querySelector("header");
+  return header ? Math.ceil(header.getBoundingClientRect().height) : 88;
+};
+
+const getScroller = () => {
+  const body = document.body;
+  const html = document.documentElement;
+  if (body && body.scrollHeight > body.clientHeight + 1) return body;
+  if (html.scrollHeight > html.clientHeight + 1) return html;
+  return document.scrollingElement || html;
+};
+
+const getScrollY = () => {
+  const scroller = getScroller();
+  if (scroller === document.body || scroller === document.documentElement) {
+    return scroller.scrollTop || window.scrollY || 0;
+  }
+  return window.scrollY || 0;
+};
+
+/** Empty padding above the first real content (pill/heading). */
+const getLeadPadding = (el) => {
+  let offset = 0;
+  let node = el;
+  while (node) {
+    offset += parseFloat(window.getComputedStyle(node).paddingTop) || 0;
+    if (node.childElementCount !== 1) break;
+    node = node.firstElementChild;
+  }
+  return offset;
+};
+
+const scrollToId = (id) => {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const headerH = getHeaderHeight();
+  const lead = getLeadPadding(el);
+  const sectionTop = el.getBoundingClientRect().top + getScrollY();
+
+  // Skip empty section padding so the pill/heading sits just below the navbar
+  // and the rest of the section (cards, steps) is not cut off.
+  const top = Math.max(0, sectionTop + lead - headerH - SECTION_GAP);
+  getScroller().scrollTo({ top, behavior: "smooth" });
+  window.history.replaceState(null, "", `#${id}`);
+};
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,46 +74,45 @@ export default function Navbar() {
     setLogoHref(withUtmParams(CRACK_ED_HOME));
   }, []);
 
+  useEffect(() => {
+    const id = window.location.hash.replace("#", "");
+    if (!id) return;
+    const timer = window.setTimeout(() => scrollToId(id), 50);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   const closeMobile = () => setMobileOpen(false);
 
-  const scrollToEnrollment = (e) => {
+  const handleNavClick = (e, id) => {
     e.preventDefault();
     const wasMobileOpen = mobileOpen;
     closeMobile();
-
-    const run = () => {
-      const el = document.getElementById("enrollment-process");
-      if (!el) return;
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      window.history.replaceState(null, "", "#enrollment-process");
-    };
-
     if (wasMobileOpen) {
-      setTimeout(run, 150);
+      setTimeout(() => scrollToId(id), 150);
     } else {
-      run();
+      scrollToId(id);
     }
   };
 
   const navLinks = (
     <>
-      <a href="#about" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
+      <a href="#about" className="text-white text-sm font-semibold hover:opacity-90" onClick={(e) => handleNavClick(e, "about")}>
         About Program
       </a>
-      <a href="#training" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
+      <a href="#training" className="text-white text-sm font-semibold hover:opacity-90" onClick={(e) => handleNavClick(e, "training")}>
         Training
       </a>
-      <a href="#eligibility" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
+      <a href="#eligibility" className="text-white text-sm font-semibold hover:opacity-90" onClick={(e) => handleNavClick(e, "eligibility")}>
         Eligibility
       </a>
       <a
         href="#enrollment-process"
         className="text-white text-sm font-semibold hover:opacity-90"
-        onClick={scrollToEnrollment}
+        onClick={(e) => handleNavClick(e, "enrollment-process")}
       >
         Enrollment Process
       </a>
-      <a href="#program-fee" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
+      <a href="#program-fee" className="text-white text-sm font-semibold hover:opacity-90" onClick={(e) => handleNavClick(e, "program-fee")}>
         Program Fee
       </a>
     </>

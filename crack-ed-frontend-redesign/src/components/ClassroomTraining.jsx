@@ -39,6 +39,7 @@ export default function ClassroomTraining() {
   const modulesRef = useRef(null);
   const pillRefs = useRef([]);
   const [dotTops, setDotTops] = useState([0, 0, 0]);
+  const [progress, setProgress] = useState(0);
   const [showBrochureModal, setShowBrochureModal] = useState(false);
 
   useLayoutEffect(() => {
@@ -68,13 +69,47 @@ export default function ClassroomTraining() {
     };
   }, []);
 
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const modules = modulesRef.current;
+    if (!modules) return;
+
+    const clamp = (value) => Math.min(1, Math.max(0, value));
+
+    const update = () => {
+      const pills = pillRefs.current.filter(Boolean);
+      if (pills.length < 2) return;
+      const first =
+        pills[0].getBoundingClientRect().top + pills[0].offsetHeight / 2;
+      const last =
+        pills[pills.length - 1].getBoundingClientRect().top +
+        pills[pills.length - 1].offsetHeight / 2;
+      const marker = window.innerHeight * 0.5;
+      setProgress(clamp((marker - first) / Math.max(last - first, 1)));
+    };
+
+    const scroller = document.body;
+    scroller.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+
+    return () => {
+      scroller.removeEventListener("scroll", update);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
   const firstDot = dotTops[0] || 0;
   const lastDot = dotTops[dotTops.length - 1] || 0;
   const trackHeight = Math.max(lastDot - firstDot, 0);
+  const progressHeight = `${progress * 100}%`;
 
   return (
     <section
-      id="classroom-training"
+      id="training"
       className="relative bg-black text-white scroll-mt-24 overflow-hidden"
     >
       <div className="relative z-10 mx-auto w-full px-section py-section lg:pl-[120px] lg:pr-0 lg:pt-[110px] lg:pb-[110px]">
@@ -100,31 +135,46 @@ export default function ClassroomTraining() {
                   width: 2,
                   top: firstDot,
                   height: trackHeight,
-                  backgroundColor: "rgba(250,250,250,0.15)",
-                  borderRadius: 999,
                 }}
-              />
+              >
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{ backgroundColor: "rgba(250,250,250,0.15)" }}
+                />
+                <div
+                  className="absolute left-0 top-0 w-full rounded-full"
+                  style={{
+                    height: progressHeight,
+                    backgroundColor: ACCENT,
+                  }}
+                />
+              </div>
             )}
-            {dotTops.map((top, index) => (
-              <div
-                key={MODULES[index].key}
-                className="absolute left-1/2 -translate-x-1/2"
-                style={{
-                  width: 12,
-                  height: 12,
-                  borderRadius: "999px",
-                  top: top - 6,
-                  backgroundColor: index === 0 ? ACCENT : "rgba(63, 63, 63, 1)",
-                  boxShadow: index === 0 ? `0 0 10px ${ACCENT}` : "none",
-                }}
-              />
-            ))}
+            {dotTops.map((top, index) => {
+              const threshold =
+                trackHeight > 0 ? (top - firstDot) / trackHeight : 0;
+              const isActive = progress >= threshold - 0.01;
+              return (
+                <div
+                  key={MODULES[index].key}
+                  className="absolute left-1/2 -translate-x-1/2"
+                  style={{
+                    width: 12,
+                    height: 12,
+                    borderRadius: "999px",
+                    top: top - 6,
+                    backgroundColor: isActive ? ACCENT : "rgba(63, 63, 63, 1)",
+                    boxShadow: isActive ? `0 0 10px ${ACCENT}` : "none",
+                  }}
+                />
+              );
+            })}
           </div>
 
           <div className="flex flex-col gap-6 sm:gap-8 lg:gap-6 lg:pl-8">
             {MODULES.map((module) => (
               <div key={module.key} className="classroom-module-row">
-                <div className="classroom-module-split flex flex-col lg:grid lg:grid-cols-[326px_minmax(0,1fr)] gap-5 lg:gap-8 lg:items-start">
+                <div className="classroom-module-split flex flex-col lg:grid lg:grid-cols-[326px_minmax(0,1fr)] gap-5 lg:gap-[60px] lg:items-start">
                   <div className="order-2 lg:order-1 min-w-0">
                     <div
                       ref={(el) => {
