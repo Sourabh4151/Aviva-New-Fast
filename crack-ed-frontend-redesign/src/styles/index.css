@@ -1207,6 +1207,7 @@ button.download-brochure-btn:disabled:active {
   right: 120px;
   top: 115px;
   width: 373px;
+  scroll-margin-top: 88px;
 }
 
 @media (max-width: 1024px) {
@@ -1237,6 +1238,7 @@ button.download-brochure-btn:disabled:active {
     width: 100% !important;
     max-width: 400px;
     margin: 0 auto;
+    scroll-margin-top: 80px;
   }
 }
 

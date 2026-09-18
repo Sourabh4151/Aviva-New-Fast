@@ -6,12 +6,26 @@ const FONT_POPPINS =
   "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
 
 export default function HaveQuestionsBanner() {
-  const scrollToHero = () => {
+  const scrollToCallbackForm = () => {
     if (typeof document === "undefined") return;
-    const heroSection = document.getElementById("hero");
-    if (heroSection) {
-      heroSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    const form = document.getElementById("callback-form");
+    if (!form) return;
+
+    const header = document.querySelector("header");
+    const headerH = header ? Math.ceil(header.getBoundingClientRect().height) : 88;
+    const gap = 16;
+    const body = document.body;
+    const html = document.documentElement;
+    const scrollY = window.scrollY || html.scrollTop || body.scrollTop || 0;
+    const top = Math.max(0, form.getBoundingClientRect().top + scrollY - headerH - gap);
+
+    const scroller =
+      body && body.scrollHeight > body.clientHeight + 1
+        ? body
+        : html.scrollHeight > html.clientHeight + 1
+          ? html
+          : document.scrollingElement || html;
+    scroller.scrollTo({ top, behavior: "smooth" });
   };
 
   return (
@@ -58,7 +72,7 @@ export default function HaveQuestionsBanner() {
 
             <button
               type="button"
-              onClick={scrollToHero}
+              onClick={scrollToCallbackForm}
               className="rounded-[10px] cursor-pointer hover:opacity-95 transition-opacity w-fit"
               style={{
                 fontFamily: FONT_MONTSERRAT,
