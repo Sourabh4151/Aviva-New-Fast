@@ -124,8 +124,8 @@ export default function ClassroomTraining() {
           <div className="flex flex-col gap-6 sm:gap-8 lg:gap-6 lg:pl-8">
             {MODULES.map((module) => (
               <div key={module.key} className="classroom-module-row">
-                <div className="flex flex-col lg:flex-row lg:items-start gap-5 lg:gap-8">
-                  <div className="order-2 lg:order-1 lg:w-[326px] lg:flex-shrink-0">
+                <div className="classroom-module-split flex flex-col lg:grid lg:grid-cols-[326px_minmax(0,1fr)] gap-5 lg:gap-8 lg:items-start">
+                  <div className="order-2 lg:order-1 min-w-0">
                     <div
                       ref={(el) => {
                         const index = MODULES.findIndex(
@@ -145,11 +145,11 @@ export default function ClassroomTraining() {
                     </p>
                   </div>
 
-                  <div className="order-1 lg:order-2 classroom-image-mobile overflow-hidden w-full lg:flex-1">
+                  <div className="order-1 lg:order-2 classroom-image-mobile overflow-hidden w-full min-w-0 lg:h-[287px]">
                     <img
                       src={module.image}
                       alt={module.heading}
-                      className="w-full h-auto object-contain object-right"
+                      className="classroom-module-image"
                     />
                   </div>
                 </div>

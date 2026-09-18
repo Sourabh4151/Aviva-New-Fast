@@ -770,7 +770,7 @@ p.classroom-subtitle {
   overflow: hidden;
 }
 
-.classroom-image-mobile img {
+.classroom-module-image {
   display: block;
   width: 100%;
   height: auto;
@@ -801,13 +801,18 @@ p.classroom-subtitle {
   }
 
   .classroom-image-mobile {
-    width: auto;
-    max-width: none;
-    flex: 1 1 auto;
-    height: auto;
+    width: 100%;
+    height: 287px;
     margin-left: 0;
     transform: none;
     border-radius: 10px 0 0 10px;
+  }
+
+  .classroom-module-image {
+    width: 100%;
+    height: 287px;
+    object-fit: cover;
+    object-position: center center;
   }
 
   .career-growth-steps-pill {
@@ -1537,10 +1542,12 @@ button.download-brochure-btn:disabled:active {
   gap: 16px;
 }
 
-.enrollment-steps-grid {
+.enrollment-steps-grid,
+.enrollment-ticks {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   width: 100%;
+  column-gap: 20px;
 }
 
 .enrollment-step-num {
@@ -1567,16 +1574,21 @@ button.download-brochure-btn:disabled:active {
   width: 100%;
   height: 6px;
   background: rgba(59, 130, 246, 1);
+  border-radius: 999px;
+}
+
+.enrollment-ticks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
 .enrollment-tick {
-  position: absolute;
-  top: 50%;
+  justify-self: center;
+  align-self: center;
   width: 2px;
   height: 16px;
   background: rgba(250, 250, 250, 1);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
 }
 
 .enrollment-copy {
@@ -1600,7 +1612,7 @@ button.download-brochure-btn:disabled:active {
   font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
   font-weight: 400;
   font-size: 16px;
-  line-height: 100%;
+  line-height: 140%;
   letter-spacing: 0%;
   text-align: center;
   color: rgba(200, 203, 204, 1);

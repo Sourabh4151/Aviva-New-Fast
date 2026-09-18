@@ -74,14 +74,11 @@ export default function EnrollmentProcess() {
 
               <div className="enrollment-track">
                 <div className="enrollment-line" />
-                {STEPS.map((step, index) => (
-                  <span
-                    key={`tick-${step.number}`}
-                    className="enrollment-tick"
-                    style={{ left: `${((index + 0.5) / STEPS.length) * 100}%` }}
-                    aria-hidden="true"
-                  />
-                ))}
+                <div className="enrollment-ticks" aria-hidden="true">
+                  {STEPS.map((step) => (
+                    <span key={`tick-${step.number}`} className="enrollment-tick" />
+                  ))}
+                </div>
               </div>
             </div>
 
