@@ -267,6 +267,12 @@ export default function RequestCallbackModal({ isOpen, onClose }) {
       if (res.ok) {
         const alreadyInSystem = json.message && json.message.includes("already in our system");
         if (alreadyInSystem) {
+          if (typeof window.gtag === "function") {
+            window.gtag("event", "generate_lead", {
+              program_name: window.PROGRAM_NAME,
+              page_type: "microsite",
+            });
+          }
           setStatus({ type: "success", message: json.message });
           setShowOtp(false);
         } else {
@@ -315,6 +321,12 @@ export default function RequestCallbackModal({ isOpen, onClose }) {
       });
       const json = await res.json().catch(() => ({}));
       if (res.ok) {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "generate_lead", {
+            program_name: window.PROGRAM_NAME,
+            page_type: "microsite",
+          });
+        }
         setStatus({ type: "success", message: json.message || "We will contact you soon." });
         setShowPopup(true);
         setShowOtp(false);
