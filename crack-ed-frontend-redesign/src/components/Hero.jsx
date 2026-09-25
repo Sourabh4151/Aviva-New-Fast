@@ -445,6 +445,7 @@ export default function Hero() {
           <h3 className="hero-form-title text-[18px] font-semibold mb-1">Request a Callback!</h3>
           <p className="hero-form-subtitle text-sm text-[rgba(250,250,250,0.6)] mb-3">Talk to our counsellors to know more</p>
           <form
+            data-clarity-mask="true"
             onSubmit={(e) => {
               e.preventDefault();
               if (showOtp) verifyOtp(e);
