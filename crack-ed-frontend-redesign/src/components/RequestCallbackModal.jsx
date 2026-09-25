@@ -394,6 +394,7 @@ export default function RequestCallbackModal({ isOpen, onClose }) {
             </p>
           </div>
           <form
+            data-clarity-mask="true"
             onSubmit={(e) => {
               e.preventDefault();
               if (showOtp) verifyOtp(e);
