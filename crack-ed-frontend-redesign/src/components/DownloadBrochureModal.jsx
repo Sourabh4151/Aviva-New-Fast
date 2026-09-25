@@ -262,7 +262,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
           </p>
         </div>
 
-        <form onSubmit={primaryHandler} className="brochure-modal-form">
+        <form data-clarity-mask="true" onSubmit={primaryHandler} className="brochure-modal-form">
           {statusMessage && step !== "verified" && (
             <p className="text-sm text-red-400" role="alert">
               {statusMessage}
