@@ -949,7 +949,8 @@ p.classroom-subtitle {
   transform: translate(-50%, -50%);
   writing-mode: vertical-rl;
   text-orientation: sideways;
-  padding: 6px 3px;
+  line-height: 1.2;
+  padding: 8px 2px;
   background-color: rgb(26, 11, 6);
 }
 
