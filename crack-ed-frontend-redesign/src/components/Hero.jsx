@@ -383,7 +383,7 @@ export default function Hero() {
                         className="hero-subtitle text-[16px] font-normal leading-[100%] tracking-[0em] text-[rgba(250,250,250,1)]"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                        Join as a EdTech Sales Executive at Vedantu
+                        Join as an Academic Counsellor at Vedantu
                       </span>
                     </li>
                     <li className="flex h-6 items-center gap-2 sm:gap-3">
