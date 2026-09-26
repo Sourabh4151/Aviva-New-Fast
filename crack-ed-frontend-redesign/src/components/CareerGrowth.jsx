@@ -169,6 +169,7 @@ export default function CareerGrowth() {
   const sectionRef = useRef(null);
   const roadmapRef = useRef(null);
   const careerGrowthTagRef = useRef(null);
+  const headingRef = useRef(null);
   const lastFeatureRef = useRef(null);
   const rowRefs = useRef([]);
   const dotRefs = useRef([]);
@@ -287,7 +288,18 @@ export default function CareerGrowth() {
       let bottomDotCenterY =
         roadmapRect.height - heights[bottomStageIndex] / 2 - 16;
 
-      if (careerGrowthTag) {
+      const heading = headingRef.current;
+      if (heading) {
+        const headingRect = heading.getBoundingClientRect();
+        const headingTop = headingRect.top - roadmapRect.top;
+        // Keep the top role beside the heading. Anchoring it to the badge
+        // places the node above the heading, where 110% zoom hides it
+        // under the fixed header while the description stays visible.
+        topDotCenterY = Math.max(
+          TOP_STAGE_MIN_PX + dotOffsets[topStageIndex],
+          headingTop + dotOffsets[topStageIndex]
+        );
+      } else if (careerGrowthTag) {
         const tagRect = careerGrowthTag.getBoundingClientRect();
         topDotCenterY =
           tagRect.top + tagRect.height / 2 - roadmapRect.top;
@@ -493,6 +505,9 @@ export default function CareerGrowth() {
     if (careerGrowthTagRef.current) {
       observer.observe(careerGrowthTagRef.current);
     }
+    if (headingRef.current) {
+      observer.observe(headingRef.current);
+    }
     if (lastFeatureRef.current) {
       observer.observe(lastFeatureRef.current);
     }
@@ -591,8 +606,8 @@ export default function CareerGrowth() {
           filter: "blur(100px)",
         }}
       />
-      <div className="relative z-10 px-4 sm:px-6 md:px-8 py-section lg:pl-[120px] lg:pr-0 lg:pt-[110px] lg:pb-[110px]">
-        <div className="career-growth-card w-full flex flex-col lg:flex-row gap-8 lg:gap-12 rounded-[16px] bg-[rgba(10,49,82,0.2)]/0">
+      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:pt-[110px] lg:pb-[110px]">
+        <div className="career-growth-card mx-auto w-full max-w-[1040px] flex flex-col lg:flex-row justify-between gap-8 lg:gap-12 rounded-[16px] bg-[rgba(10,49,82,0.2)]/0">
           {/* Left content */}
           <div className="w-full lg:w-[430px] flex-shrink-0">
             <div
@@ -603,7 +618,10 @@ export default function CareerGrowth() {
             </div>
 
             <div className="mt-3 sm:mt-4">
-              <p className="career-growth-subtitle text-lg sm:text-xl lg:text-2xl font-medium text-white text-justify leading-tight">
+              <p
+                ref={headingRef}
+                className="career-growth-subtitle text-lg sm:text-xl lg:text-2xl font-medium text-white text-justify leading-tight"
+              >
               From your first role in EdTech to endless opportunities
               </p>
               <p className="career-growth-body mt-3 sm:mt-4 font-normal text-[16px] leading-[24px] text-[rgba(250,250,250,0.8)] text-justify">
@@ -655,9 +673,7 @@ export default function CareerGrowth() {
           {/* Career roadmap */}
           <div
             ref={roadmapRef}
-            className={`career-roadmap relative min-w-0 w-full flex-1 lg:min-h-full ${
-              isDesktopLayout ? "overflow-hidden" : "overflow-visible"
-            }`}
+            className="career-roadmap relative min-w-0 w-full flex-1 overflow-visible lg:min-h-full"
             style={isDesktopLayout ? { minHeight: roadmapMinHeight } : undefined}
           >
             {renderConnectorLines()}
