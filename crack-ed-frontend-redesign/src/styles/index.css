@@ -1630,7 +1630,7 @@ button.download-brochure-btn:disabled:active {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
   width: 100%;
-  justify-content: space-between;
+  column-gap: 16px;
 }
 
 .enrollment-step-num {
@@ -1687,7 +1687,9 @@ button.download-brochure-btn:disabled:active {
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: 0;
   gap: 10px;
+  padding: 0 4px;
 }
 
 .enrollment-step-title {
@@ -1699,6 +1701,7 @@ button.download-brochure-btn:disabled:active {
   text-align: center;
   color: rgba(250, 250, 250, 1);
   min-height: 60px;
+  overflow-wrap: break-word;
 }
 
 .enrollment-step-desc {
@@ -1709,6 +1712,7 @@ button.download-brochure-btn:disabled:active {
   letter-spacing: 0%;
   text-align: center;
   color: rgba(200, 203, 204, 1);
+  overflow-wrap: break-word;
 }
 
 .enrollment-mobile-list {
@@ -1757,15 +1761,20 @@ button.download-brochure-btn:disabled:active {
   .enrollment-process-frame {
     padding: 5rem 2rem;
   }
+
+  .enrollment-mobile-list {
+    gap: 32px;
+    max-width: 640px;
+  }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .enrollment-process-frame {
-    padding: 60px 100px;
+    padding: 60px 80px;
   }
 
   .enrollment-main {
-    padding: 40px;
+    padding: 40px 24px;
     gap: 40px;
   }
 

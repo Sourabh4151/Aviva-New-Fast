@@ -3,9 +3,10 @@ import React from "react";
 const ACCENT = "rgba(255, 105, 61, 1)";
 
 const REQUIREMENTS = [
-  "Ambitious and growth-minded individual.",
-  "Comfortable in communicating over calls.",
   "Any Full-Time Graduate from a recognized university up to 28 years.",
+  "Proficiency in English along with Tamil/Telugu/Kannada.",
+  "Comfortable in communicating over calls.",
+  "Owns a laptop",
 ];
 
 export default function Eligibility() {

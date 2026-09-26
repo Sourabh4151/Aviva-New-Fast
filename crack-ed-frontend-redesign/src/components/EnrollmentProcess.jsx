@@ -57,8 +57,8 @@ export default function EnrollmentProcess() {
         <div className="enrollment-main">
           <div className="enrollment-header">
             <div className="enrollment-pill" style={{ fontFamily: FONT_MONTSERRAT }}>
-              <span className="lg:hidden">Candidate's Journey</span>
-              <span className="hidden lg:inline">Candidate Journey</span>
+              <span className="xl:hidden">Candidate's Journey</span>
+              <span className="hidden xl:inline">Candidate Journey</span>
             </div>
             <p className="enrollment-heading">
               A simple, step-by-step process designed to help you get started with
@@ -67,7 +67,7 @@ export default function EnrollmentProcess() {
           </div>
 
           {/* Desktop timeline */}
-          <div className="enrollment-journey hidden lg:flex">
+          <div className="enrollment-journey hidden xl:flex">
             <div className="enrollment-journey-line">
               <div className="enrollment-steps-grid">
                 {STEPS.map((step) => (
@@ -98,7 +98,7 @@ export default function EnrollmentProcess() {
           </div>
 
           {/* Mobile stacked list */}
-          <ol className="enrollment-mobile-list lg:hidden">
+          <ol className="enrollment-mobile-list xl:hidden">
             {STEPS.map((step) => (
               <li key={step.number} className="enrollment-mobile-step">
                 <h3 className="enrollment-mobile-title">
