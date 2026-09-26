@@ -255,8 +255,7 @@ export default function ClassroomTraining() {
           <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start lg:pl-8">
             <button
               type="button"
-              disabled
-              aria-disabled="true"
+              onClick={() => setShowBrochureModal(true)}
               className="download-brochure-btn border-0"
               style={{ fontFamily: FONT_MONTSERRAT }}
             >
