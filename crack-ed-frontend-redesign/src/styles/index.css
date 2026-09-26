@@ -936,10 +936,21 @@ p.classroom-subtitle {
   background-color: transparent;
 }
 
+.career-roadmap-duration-anchor {
+  width: 0;
+  height: 0;
+}
+
 /* Mobile: sit on the connector so the line runs through the label */
 .career-roadmap-duration-on-line {
-  padding: 0 6px;
-  background-color: #0d0d0d;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
+  padding: 6px 3px;
+  background-color: rgb(26, 11, 6);
 }
 
 /* Career roadmap – dot specs (Figma, desktop + mobile) */

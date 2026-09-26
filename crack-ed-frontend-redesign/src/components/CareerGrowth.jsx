@@ -79,13 +79,14 @@ function getDurationLabelStyle(start, end, isDesktop) {
     const length = Math.hypot(dx, dy) || 1;
     left += (dy / length) * DURATION_LABEL_ABOVE_OFFSET_PX;
     top += (-dx / length) * DURATION_LABEL_ABOVE_OFFSET_PX;
+    return {
+      left,
+      top,
+      transform: `translate(-50%, -50%) rotate(${angleDeg}deg)`,
+    };
   }
 
-  return {
-    left,
-    top,
-    transform: `translate(-50%, -50%) rotate(${angleDeg}deg)`,
-  };
+  return { left, top };
 }
 
 function CareerStageRow({
@@ -654,22 +655,34 @@ export default function CareerGrowth() {
           {/* Career roadmap */}
           <div
             ref={roadmapRef}
-            className="career-roadmap relative min-w-0 w-full flex-1 overflow-hidden lg:min-h-full"
+            className={`career-roadmap relative min-w-0 w-full flex-1 lg:min-h-full ${
+              isDesktopLayout ? "overflow-hidden" : "overflow-visible"
+            }`}
             style={isDesktopLayout ? { minHeight: roadmapMinHeight } : undefined}
           >
             {renderConnectorLines()}
 
-            {durationLabels.map(({ label, style, key }) => (
-              <span
-                key={key}
-                className={`career-roadmap-duration pointer-events-none absolute z-[2] whitespace-nowrap${
-                  isDesktopLayout ? "" : " career-roadmap-duration-on-line"
-                }`}
-                style={style}
-              >
-                {label}
-              </span>
-            ))}
+            {durationLabels.map(({ label, style, key }) =>
+              isDesktopLayout ? (
+                <span
+                  key={key}
+                  className="career-roadmap-duration pointer-events-none absolute z-[2] whitespace-nowrap"
+                  style={style}
+                >
+                  {label}
+                </span>
+              ) : (
+                <span
+                  key={key}
+                  className="career-roadmap-duration-anchor pointer-events-none absolute z-[2]"
+                  style={style}
+                >
+                  <span className="career-roadmap-duration career-roadmap-duration-on-line">
+                    {label}
+                  </span>
+                </span>
+              )
+            )}
 
             {isDesktopLayout ? (
               <div
