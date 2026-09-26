@@ -4,6 +4,62 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EdTech Launchpad Program</title>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      var PROGRAM_NAME = 'EdTech Launchpad Program - Academic Counsellor';
+      gtag('set', {
+        program_name: PROGRAM_NAME,
+        page_type: 'microsite'
+      });
+      gtag('config', 'G-F0FFFY7C90', {
+        linker: {
+          domains: [
+            'crack-ed.com',
+            'www.crack-ed.com',
+            'house-of-founders.crack-ed.com',
+            'edtechse.crack-ed.com',
+            'kotakmahindraro.crack-ed.com',
+            'herofinancerm.crack-ed.com',
+            'herofinancecom.crack-ed.com',
+            'bandhanbankassistantmanager.crack-ed.com',
+            'bspso.crack-ed.com',
+            'axisquessfse.crack-ed.com',
+            'mahindrafinancebe.crack-ed.com',
+            'piramal.crack-ed.com',
+            'avivads.crack-ed.com',
+            'avivaas.crack-ed.com'
+          ]
+        }
+      });
+      gtag('event', 'page_view', {
+        program_name: PROGRAM_NAME,
+        page_type: 'microsite'
+      });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F0FFFY7C90"></script>
+    <script>
+      (function () {
+        var PROJECT_ID = 'ykr1n6yxrb';
+        var PROGRAM_NAME = 'EdTech Launchpad Program - Academic Counsellor';
+        function startClarity() {
+          if (window.clarity) return;
+          (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+            t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+          })(window, document, 'clarity', 'script', PROJECT_ID);
+          window.clarity('set', 'program_name', PROGRAM_NAME);
+          window.clarity('set', 'page_type', 'microsite');
+        }
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(startClarity, { timeout: 4000 });
+        } else {
+          setTimeout(startClarity, 2000);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
