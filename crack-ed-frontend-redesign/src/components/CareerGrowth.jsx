@@ -16,7 +16,7 @@ const CAREER_STAGES = [
       "Build expertise in sourcing home loan and mortgage business, managing customer relationships, and consistently achieving sales targets across assigned markets.",
   },
   {
-    title: "Senior Manager",
+    title: "Sales Manager",
     description:
       "Take on larger business portfolios, handle high-value customer relationships, mentor junior team members, and contribute to stronger business growth.",
   },
