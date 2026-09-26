@@ -1,6 +1,6 @@
 import React from "react";
 
-const ACCENT = "rgba(59, 130, 246, 1)";
+const ACCENT = "rgba(255, 105, 61, 1)";
 
 const REQUIREMENTS = [
   "Ambitious and growth-minded individual.",
@@ -55,7 +55,7 @@ export default function Eligibility() {
           {/* Right: requirements card with glow */}
           <div className="flex-1 flex justify-start lg:justify-end w-full lg:w-auto lg:-ml-10">
             <div className="relative w-full max-w-[364px] sm:max-w-[422px]">
-              {/* Glow around card – same blue ellipse as Program Fee */}
+              {/* Glow around card – same orange ellipse as Program Fee */}
               <div
                 className="pointer-events-none absolute left-1/2 top-1/2"
                 style={{
@@ -63,7 +63,7 @@ export default function Eligibility() {
                   height: 200,
                   maxWidth: "140%",
                   borderRadius: "50%",
-                  background: "rgba(59, 130, 246, 0.3)",
+                  background: "rgba(255, 105, 61, 0.4)",
                   filter: "blur(200px)",
                   transform: "translate(-50%, -50%) rotate(180deg)",
                 }}

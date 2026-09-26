@@ -6,6 +6,7 @@ import stateCities from "../data/indian_state_cities.json";
 // import heroImage from "../assets/desktop.jpg";
 import heroImage from "../assets/desk.png";
 import tickSvg from "../assets/tick.svg";
+import vedantuLogo from "../assets/vedantu-logo 1.svg";
 import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
@@ -354,9 +355,16 @@ export default function Hero() {
         />
         <div className="hero-container relative z-10">
             {/* Title + bullets: 609×hug, 8px gap. CTA sits below this block. */}
-            <div className="hero-left-adjust absolute left-[120px] top-[300px] flex w-[609px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start text-white left-adjust">
+            <div className="hero-left-adjust absolute left-[120px] top-[270px] flex w-[609px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start text-white left-adjust">
               <div className="hero-frame-301 flex w-full min-w-0 flex-col items-start gap-[24px]">
-                <div className="flex w-full min-w-0 flex-col items-start gap-[8px]">
+                <div className="flex w-full min-w-0 flex-col items-start gap-[16px]">
+                    <img
+                      src={vedantuLogo}
+                      alt="Vedantu"
+                      width={131}
+                      height={44}
+                      className="block h-[44px] w-[131px] shrink-0 object-contain"
+                    />
                     <h1
                       className="hero-title w-full text-[40px] font-semibold leading-[100%] tracking-[0em] text-[rgba(250,250,250,1)]"
                       style={{
@@ -375,7 +383,7 @@ export default function Hero() {
                         className="hero-subtitle text-[16px] font-normal leading-[100%] tracking-[0em] text-[rgba(250,250,250,1)]"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                        Join as a EdTech Sales Executive
+                        Join as a EdTech Sales Executive at Vedantu
                       </span>
                     </li>
                     <li className="flex h-6 items-center gap-2 sm:gap-3">
@@ -386,7 +394,7 @@ export default function Hero() {
                         className="text-[16px] font-normal leading-[100%] tracking-[0em] text-[rgba(250,250,250,1)]"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                        Earn a CTC of up to ₹4.5 LPA + incentives
+                        Earn a CTC of ₹4 LPA + incentives
                       </span>
                     </li>
                     <li className="flex h-6 items-center gap-2 sm:gap-3">

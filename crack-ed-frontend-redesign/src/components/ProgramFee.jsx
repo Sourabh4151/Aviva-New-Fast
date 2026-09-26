@@ -4,7 +4,7 @@ const FONT_MONTSERRAT =
   "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
 const FONT_POPPINS =
   "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
-const ACCENT = "rgba(59, 130, 246, 1)";
+const ACCENT = "rgba(255, 105, 61, 1)";
 
 const INCLUDES = [
   "Includes corporate specific job-role training.",
@@ -69,7 +69,7 @@ export default function ProgramFee() {
           <div className="w-full lg:w-[527px] lg:flex-none flex justify-center lg:justify-end">
             <div className="relative w-full max-w-[527px] flex flex-col gap-4">
               <div className="relative w-full">
-                {/* Ellipse 4 – 619×200, rgba(59,130,246,0.3), blur 200 */}
+                {/* Ellipse 4 – 619×200, rgba(255,105,61,0.4), blur 200 */}
                 <div
                   className="pointer-events-none absolute left-1/2 top-1/2"
                   style={{
@@ -77,7 +77,7 @@ export default function ProgramFee() {
                     height: 200,
                     maxWidth: "140%",
                     borderRadius: "50%",
-                    background: "rgba(59, 130, 246, 0.3)",
+                    background: "rgba(255, 105, 61, 0.4)",
                     filter: "blur(200px)",
                     transform: "translate(-50%, -50%) rotate(180deg)",
                   }}
@@ -190,7 +190,7 @@ export default function ProgramFee() {
                       gap: 8,
                       borderRadius: 10,
                       background:
-                        "linear-gradient(180deg, rgba(59, 130, 246, 1) 0%, rgba(32, 72, 137, 1) 100%)",
+                        "linear-gradient(90deg, rgba(255, 105, 61, 1) 0%, rgba(112, 46, 27, 1) 100%)",
                       fontFamily: FONT_MONTSERRAT,
                       fontWeight: 600,
                       fontSize: 14,

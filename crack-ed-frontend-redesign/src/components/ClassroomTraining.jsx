@@ -6,34 +6,69 @@ import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const FONT_MONTSERRAT =
   "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
-const ACCENT = "rgba(59, 130, 246, 1)";
+const ACCENT = "rgba(255, 105, 61, 1)";
 
 const MODULES = [
   {
     key: "uthaan",
     label: "Utthan",
     heading: "Building Strong Foundations",
-    description:
-      "Comprehensive pre-interview training that equips you with the fundamentals of inside sales, communication and customer engagement.",
+    intro: "Comprehensive pre-interview training:",
+    points: [
+      "Fundamentals of Inside Sales",
+      "Communication",
+      "Customer Engagement",
+    ],
     image: uthaanImg,
   },
   {
     key: "aarohan",
     label: "Aarohan",
     heading: "Product Mastery",
-    description:
-      "Post-selection training that teaches how to sell with confidence. Understand the EdTech Ecosystem, learn the product inside-out and master consultative selling to match learner needs with the right program.",
+    intro: "Post-selection training",
+    points: [
+      "Learn Product Inside Out",
+      "SPIN Selling Technique",
+      "Master Consultative Selling",
+    ],
     image: aarohanImg,
   },
   {
     key: "shikhar",
     label: "Shikhar",
     heading: "Corporate Readiness",
-    description:
-      "Learn how to perform on the job. Get familiar with workplace tools, CRM systems and sales processes, and prepare for real-world scenarios with AI-led role plays and shadowing.",
+    intro: "Learn how to perform on the job.",
+    points: [
+      "Workplace Tools",
+      "CRM systems",
+      "Mandatory 10 hours of AI role-play",
+    ],
     image: shikharImg,
   },
 ];
+
+function CheckIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      className="classroom-module-check"
+    >
+      <circle cx="8" cy="8" r="8" fill={ACCENT} />
+      <path
+        d="M4.7 8.15L6.85 10.3L11.3 5.7"
+        stroke="white"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export default function ClassroomTraining() {
   const modulesRef = useRef(null);
@@ -191,8 +226,18 @@ export default function ClassroomTraining() {
                       {module.heading}
                     </h3>
                     <p className="classroom-module-body mt-2 sm:mt-3">
-                      {module.description}
+                      {module.intro}
                     </p>
+                    <ul className="classroom-module-points">
+                      {module.points.map((point) => (
+                        <li key={point} className="classroom-module-point">
+                          <CheckIcon />
+                          <span className="classroom-module-point-text">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
                   <div className="order-1 lg:order-2 classroom-image-mobile overflow-hidden w-full min-w-0 lg:h-[287px]">

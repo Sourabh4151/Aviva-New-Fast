@@ -33,7 +33,7 @@ const CAREER_STAGES = [
 ];
 
 const LINE_ANGLE_DEG = 59.1;
-const ACTIVE_ACCENT = "rgba(59, 130, 246, 1)";
+const ACTIVE_ACCENT = "rgba(255, 105, 61, 1)";
 const ANIM_INITIAL_DELAY_MS = 500;
 const ANIM_STEP_DELAY_MS = 1000;
 const ANIM_DURATION_MS = 600;
@@ -535,7 +535,7 @@ export default function CareerGrowth() {
       ref={sectionRef}
       id="career-growth"
       className="relative text-white scroll-mt-24 overflow-hidden"
-      style={{ backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+      style={{ backgroundColor: "rgba(255, 105, 61, 0.1)" }}
     >
       <div
         aria-hidden="true"

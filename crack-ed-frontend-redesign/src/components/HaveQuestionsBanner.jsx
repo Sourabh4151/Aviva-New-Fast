@@ -38,7 +38,7 @@ export default function HaveQuestionsBanner() {
               gap: "30px",
               backgroundColor: "rgba(0, 0, 0, 1)",
               backgroundImage:
-                "linear-gradient(180deg, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.02) 100%)",
+                "linear-gradient(180deg, rgba(255, 105, 61, 0.22) 0%, rgba(255, 105, 61, 0) 100%)",
             }}
           >
             <div className="flex flex-col items-center max-w-[542px] w-full gap-[9px]">
@@ -82,7 +82,7 @@ export default function HaveQuestionsBanner() {
                 letterSpacing: "0%",
                 color: "rgba(250, 250, 250, 1)",
                 padding: "14px 40px",
-                backgroundColor: "rgba(59, 130, 246, 1)",
+                backgroundColor: "rgba(255, 105, 61, 1)",
               }}
             >
               Request a callback

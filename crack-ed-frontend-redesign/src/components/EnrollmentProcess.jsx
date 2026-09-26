@@ -14,31 +14,31 @@ const STEPS = [
     number: "02",
     title: "Pre-Interview Training",
     description:
-      "Pay registration fees of ₹2000 and attend one-week online training program that equips with industry awareness and skills, interview readiness and resume building.",
+      "Pay registration fees of ₹2000 and attend 3-5 days of online training program that equips with industry awareness and skills.",
   },
   {
     number: "03",
     title: "Clear Corporate Interview",
     description:
-      "Clear the assessment. Your recorded interviews will be shared with corporate employers, giving you 3 assured selection opportunities.",
+      "Clear the post training assessment. Your recorded interviews will be shared with Vedantu.",
   },
   {
     number: "04",
     title: "Selection & Fees",
     description:
-      "Selected candidates receive an Letter of Intent confirming their provisional selection, and will have to pay the full program fee.",
+      "Selected candidates receive a Letter of Intent confirming their provisional selection, and will have to pay the full program fee.",
   },
   {
     number: "05",
     title: "Classroom Training",
     description:
-      "2-3 weeks of intensive, AI-led online training that is built on practical knowledge and real-world scenarios to prepare you for the job.",
+      "3 weeks of intensive, AI-led online training that is built on practical knowledge and real-world scenarios to prepare you for the job.",
   },
   {
     number: "06",
-    title: "Onboarding",
+    title: "On the Job Training",
     description:
-      "Transition into a full-time role as an EdTech Sales Executive upon successful completion of the training.",
+      "Join up to 3 months of OJT as EdTech Sales Executive with stipend of ₹20,000 per month. Post OJT convert to full time role.",
   },
 ];
 
