@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const BROCHURE_HREF = "/Housing%20Finance%20Pragati%20Program.pdf";
-const BROCHURE_FILENAME = "Housing Finance Pragati Program.pdf";
+const BROCHURE_FILES = ["HHFPP (RM) online.pdf", "HHFPP (RM) offline.pdf"];
 
-function triggerBrochureDownload() {
-  const link = document.createElement("a");
-  link.href = BROCHURE_HREF;
-  link.download = BROCHURE_FILENAME;
-  link.rel = "noopener";
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+function triggerBrochureDownloads() {
+  BROCHURE_FILES.forEach((filename) => {
+    const link = document.createElement("a");
+    link.href = encodeURI(`/${filename}`);
+    link.download = filename;
+    link.rel = "noopener";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
 }
 
 function friendlyBackendError(err) {
@@ -125,7 +126,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
           setStep("verified");
           setStatusMessage(
             json.message ||
-              "Your mobile number is already verified. Your brochure is ready for download."
+              "Your mobile number is already verified. Your brochures are ready for download."
           );
         } else {
           setStep("otp");
@@ -170,7 +171,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
       const json = await res.json().catch(() => ({}));
 
       if (res.ok) {
-        triggerBrochureDownload();
+        triggerBrochureDownloads();
         onClose();
       } else {
         setOtpError(json.message || json.error || "Invalid OTP. Please enter the correct OTP.");
@@ -204,7 +205,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
       const json = await res.json().catch(() => ({}));
 
       if (res.ok) {
-        triggerBrochureDownload();
+        triggerBrochureDownloads();
         onClose();
       } else {
         setStatusMessage(json.error || json.message || "Unable to start download. Please try again.");
@@ -304,7 +305,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
             {step === "verified" && (
               <p className="brochure-modal-helper">
                 {statusMessage ||
-                  "Your mobile number is already verified. Your brochure is ready for download."}
+                  "Your mobile number is already verified. Your brochures are ready for download."}
               </p>
             )}
 
