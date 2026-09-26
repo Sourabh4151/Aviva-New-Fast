@@ -175,7 +175,7 @@ export default function ProgramFee() {
                   </div>
 
                   <a
-                    href="https://smartpay.easebuzz.in/234234/kotak_gl_ro"
+                    href="https://smartpay.easebuzz.in/234234/vedantu_ac"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="program-fee-pay-btn self-start"
