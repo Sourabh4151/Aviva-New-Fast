@@ -349,7 +349,7 @@ export default function Hero() {
     <section id="hero" className="relative max-lg:flex max-lg:flex-col max-lg:gap-10 max-lg:bg-black">
       {/* Hero background: fixed height on all screens – does NOT grow. Form comes after on mobile. */}
       <div
-        className="w-full min-h-[520px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[10%_center] lg:bg-center"
+        className="w-full min-h-[620px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[10%_center] lg:bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
         role="img"
         aria-label="Aviva hero"
@@ -401,7 +401,7 @@ export default function Hero() {
                         className="hero-subtitle text-[16px] max-lg:text-[14px] font-normal leading-[1.55] tracking-[0em] max-lg:leading-[1.52]"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                        Join as a Relationship Manager - Mortgage Sales and secure a CTC of Rs 2.75 LPA + incentives
+                      Join as a Relationship Manager - Mortgage Sales and secure a CTC of ₹3.6 LPA* + incentives
                       </span>
                     </li>
                     <li className="flex items-start gap-2 sm:gap-3">
@@ -417,14 +417,22 @@ export default function Hero() {
                     </li>
                   </ul>
                 </div>
-                <div className="register-btn-wrap max-lg:mb-6 lg:mb-0">
-                <button
-                    type="button"
-                    className="download-brochure-btn border-0"
-                    onClick={() => setShowBrochureModal(true)}
+                <div className="flex w-full min-w-0 flex-col items-start gap-4 max-lg:mb-6 lg:mb-0">
+                  <div className="register-btn-wrap">
+                    <button
+                      type="button"
+                      className="download-brochure-btn border-0"
+                      onClick={() => setShowBrochureModal(true)}
+                    >
+                      Download Brochure
+                    </button>
+                  </div>
+                  <p
+                    className="max-w-full text-[14px] font-normal leading-[100%] tracking-[0em] text-white lg:w-[344px]"
+                    style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    Download Brochure
-                  </button>
+                    *₹2.75 Fixed Salary + ₹ 85,000 average incentives
+                  </p>
                 </div>
               </div>
             </div>

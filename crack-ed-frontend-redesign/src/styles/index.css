@@ -217,18 +217,31 @@ body::-webkit-scrollbar {
     background: rgba(0, 0, 0, 1);
   }
 
+  .program-fee-row {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 4px 20px;
+    gap: 10px;
+    background: rgba(12, 9, 25, 1);
+  }
+
   .program-fee-amount {
     font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     font-weight: 500;
     font-size: 32px;
-    line-height: 48px;
+    line-height: 44px;
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);
   }
 
-  .program-fee-amount span {
-    font-size: 18px;
-    line-height: 48px;
+  .program-fee-mode {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 44px;
+    letter-spacing: 0%;
+    color: rgba(250, 250, 250, 1);
   }
 
   .program-fee-card-label {
@@ -504,8 +517,27 @@ body::-webkit-scrollbar {
   transform: translateY(1px);
 }
 
+/* Career roadmap duration label – rotated along the connector */
+.career-roadmap-duration {
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0;
+  color: rgba(250, 250, 250, 1);
+  height: 18px;
+  padding: 0 4px;
+  text-align: center;
+  background-color: #000000;
+}
+
 /* Career Growth – desktop specs (steps pill: 224 Fill × 50 Hug, gap 16px, padding 4px, bg rgba(250,250,250,0.7)) */
 @media (min-width: 1024px) {
+  .career-roadmap-duration {
+    background-color: transparent;
+    padding: 0;
+  }
+
 
   /* Classroom Training pill – desktop specs (197 Hug × 35 Hug) */
   .classroom-pill {

@@ -45,6 +45,12 @@ const DURATION_VALUE = {
 const DURATION_VALUE_COLOR_INACTIVE = "rgba(250,250,250,0.5)";
 const DURATION_VALUE_COLOR_ACTIVE = "rgba(250,250,250,1)";
 
+/** Classroom training modes shown under MODE / DURATION / STIPEND */
+const CLASSROOM_MODES = [
+  { mode: "Online", duration: "4 weeks", stipend: "NA" },
+  { mode: "Online + Offline", duration: "2 weeks+ 2 weeks", stipend: "₹10,000 per month" },
+];
+
 export default function TrainingJourney() {
   const [activeCard, setActiveCard] = useState("classroom");
   const classroomActive = activeCard === "classroom";
@@ -173,62 +179,56 @@ export default function TrainingJourney() {
                     marginTop: CARD_GAP,
                   }}
                 >
-                  Build strong role fundamentals through structured, instructor-led sessions focused on real-world scenarios.
+                Build strong role fundamentals through structured, instructor-led sessions focused on practical knowledge and real-world scenarios through fully online or hybrid mode.
                 </p>
               </div>
 
               <div
-                className="flex flex-wrap gap-x-20 sm:gap-x-[100px] gap-y-2 text-xs tracking-[0.16em]"
-                style={{ marginTop: 6 }}
+                style={{
+                  marginTop: 6,
+                  display: "grid",
+                  gridTemplateColumns: "minmax(0, 1.05fr) minmax(0, 1.2fr) minmax(0, 1.35fr)",
+                  columnGap: isMobile ? 8 : 16,
+                  rowGap: 2,
+                  alignItems: "start",
+                }}
               >
-                <div>
+                {["MODE", "DURATION", "STIPEND"].map((label) => (
                   <div
+                    key={label}
                     style={{
                       ...DURATION_LABEL,
-                      textAlign: isMobile ? "left" : "justify",
+                      fontSize: isMobile ? 12 : 16,
+                      lineHeight: isMobile ? "16px" : "21px",
+                      textAlign: "left",
                       color: classroomVisualActive
                         ? DURATION_LABEL_COLOR_ACTIVE
                         : DURATION_LABEL_COLOR_INACTIVE,
                     }}
                   >
-                    DURATION
+                    {label}
                   </div>
-                  <div style={{ marginTop: 0 }} />
-                  <div
-                    style={{
-                      ...DURATION_VALUE,
-                      textAlign: isMobile ? "left" : "justify",
-                      color: classroomVisualActive
-                        ? DURATION_VALUE_COLOR_ACTIVE
-                        : DURATION_VALUE_COLOR_INACTIVE,
-                    }}
-                  >
-                    4 Weeks
-                  </div>
-                </div>
-                <div>
-                  <div
-                    style={{
-                      ...DURATION_LABEL,
-                      color: classroomVisualActive
-                        ? DURATION_LABEL_COLOR_ACTIVE
-                        : DURATION_LABEL_COLOR_INACTIVE,
-                    }}
-                  >
-                    STIPEND
-                  </div>
-                  <div style={{ marginTop: 0 }} />
-                  <div
-                    style={{
-                      ...DURATION_VALUE,
-                      color: classroomVisualActive
-                        ? DURATION_VALUE_COLOR_ACTIVE
-                        : DURATION_VALUE_COLOR_INACTIVE,
-                    }}
-                  >
-                    Rs 5,000 / month
-                  </div>
-                </div>
+                ))}
+                {CLASSROOM_MODES.map((row) => (
+                  <React.Fragment key={row.mode}>
+                    {[row.mode, row.duration, row.stipend].map((value) => (
+                      <div
+                        key={value}
+                        style={{
+                          ...DURATION_VALUE,
+                          fontSize: isMobile ? 12 : 16,
+                          lineHeight: isMobile ? "16px" : "24px",
+                          textAlign: "left",
+                          color: classroomVisualActive
+                            ? DURATION_VALUE_COLOR_ACTIVE
+                            : DURATION_VALUE_COLOR_INACTIVE,
+                        }}
+                      >
+                        {value}
+                      </div>
+                    ))}
+                  </React.Fragment>
+                ))}
               </div>
 
               {/* Desktop-only spacer to align card bottoms */}

@@ -16,12 +16,12 @@ const CAREER_STAGES = [
       "Build expertise in sourcing home loan and mortgage business, managing customer relationships, and consistently achieving sales targets across assigned markets.",
   },
   {
-    title: "Senior Relationship Manager",
+    title: "Senior Manager",
     description:
       "Take on larger business portfolios, handle high-value customer relationships, mentor junior team members, and contribute to stronger business growth.",
   },
   {
-    title: "Sales Manager",
+    title: "Area Business Head",
     description:
       "Lead and develop a team of sales professionals, drive regional business performance, execute growth strategies, and ensure achievement of business objectives.",
   },
@@ -54,6 +54,38 @@ const DEFAULT_LAYOUT = CAREER_STAGES.map((_, index) => ({
   marginLeft: index * 28,
   maxWidth: undefined,
 }));
+
+const DURATION_LABELS = [
+  { from: 0, to: 1, text: "6 months" },
+  { from: 1, to: 2, text: "2 years" },
+];
+
+const DURATION_LABEL_ABOVE_OFFSET_PX = 16;
+
+function getDurationLabelStyle(connectorLine, isDesktop, fromIndex, toIndex) {
+  const start = connectorLine?.dotCenters?.[fromIndex];
+  const end = connectorLine?.dotCenters?.[toIndex];
+  if (!start || !end) return null;
+
+  const dx = end.x - start.x;
+  const dy = end.y - start.y;
+  const angleDeg = (Math.atan2(dy, dx) * 180) / Math.PI;
+
+  let left = (start.x + end.x) / 2;
+  let top = (start.y + end.y) / 2;
+
+  if (isDesktop) {
+    const length = Math.hypot(dx, dy) || 1;
+    left += (dy / length) * DURATION_LABEL_ABOVE_OFFSET_PX;
+    top += (-dx / length) * DURATION_LABEL_ABOVE_OFFSET_PX;
+  }
+
+  return {
+    left,
+    top,
+    transform: `translate(-50%, -50%) rotate(${angleDeg}deg)`,
+  };
+}
 
 function CareerStageRow({
   stage,
@@ -571,7 +603,7 @@ export default function CareerGrowth() {
                     "font-medium text-[18px] leading-[1] text-[rgba(250,250,250,1)]",
                 },
                 {
-                  text: "Earn a CTC of Rs 2.75 LPA + incentives",
+                  text: "Earn a CTC of ₹3.6 LPA*",
                   icon: ctcIcon,
                   textClassName:
                     "font-medium text-[18px] leading-[27px] text-[rgba(250,250,250,1)]",
@@ -610,6 +642,26 @@ export default function CareerGrowth() {
             style={isDesktopLayout ? { minHeight: roadmapMinHeight } : undefined}
           >
             {renderConnectorLines()}
+
+            {DURATION_LABELS.map((label) => {
+              const durationLabelStyle = getDurationLabelStyle(
+                connectorLine,
+                isDesktopLayout,
+                label.from,
+                label.to
+              );
+              if (!durationLabelStyle) return null;
+
+              return (
+                <span
+                  key={label.text}
+                  className="career-roadmap-duration pointer-events-none absolute z-[2] whitespace-nowrap"
+                  style={durationLabelStyle}
+                >
+                  {label.text}
+                </span>
+              );
+            })}
 
             {isDesktopLayout ? (
               <div

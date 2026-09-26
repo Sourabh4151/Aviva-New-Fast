@@ -102,21 +102,56 @@ export default function ProgramFee() {
                   PROGRAM FEE
                 </p>
 
-                <p
-                  className="program-fee-amount"
-                  style={{
-                    fontFamily:
-                      "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                    fontWeight: 500,
-                    fontSize: "32px",
-                    lineHeight: "48px",
-                    letterSpacing: "0%",
-                    color: "rgba(250, 250, 250, 1)",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  Rs 1,00,000
-                </p>
+                <div className="flex flex-col w-full" style={{ gap: 16 }}>
+                  {[
+                    { amount: "₹80,000", mode: "(online mode)" },
+                    { amount: "₹60,000", mode: "(offline mode)" },
+                  ].map((row) => (
+                    <div
+                      key={row.mode}
+                      className="program-fee-row flex items-center w-full"
+                      style={{
+                        width: "100%",
+                        boxSizing: "border-box",
+                        borderRadius: 4,
+                        padding: "4px 20px",
+                        gap: 10,
+                        background: "rgba(12, 9, 25, 1)",
+                      }}
+                    >
+                      <span
+                        className="program-fee-amount"
+                        style={{
+                          fontFamily:
+                            "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                          fontWeight: 500,
+                          fontSize: "32px",
+                          lineHeight: "44px",
+                          letterSpacing: "0%",
+                          color: "rgba(250, 250, 250, 1)",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {row.amount}
+                      </span>
+                      <span
+                        className="program-fee-mode"
+                        style={{
+                          fontFamily:
+                            "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                          fontWeight: 500,
+                          fontSize: "20px",
+                          lineHeight: "44px",
+                          letterSpacing: "0%",
+                          color: "rgba(250, 250, 250, 1)",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {row.mode}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div className="flex flex-col" style={{ gap: "10px" }}>
