@@ -17,7 +17,7 @@ const FEATURES = [
     icon: icon2,
     title: "Inside Sales is a Growing Career",
     description:
-      "Inside Sales hiring rose ~20% year-on-year, the opportunities are endless.",
+      "Inside Sales hiring rose ~11% year-on-year, the opportunities are endless.",
   },
   {
     icon: icon3,

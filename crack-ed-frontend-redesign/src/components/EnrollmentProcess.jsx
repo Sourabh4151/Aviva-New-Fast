@@ -40,6 +40,11 @@ const STEPS = [
     description:
       "Join up to 3 months of OJT as EdTech Sales Executive with stipend of ₹20,000 per month. Post OJT convert to full time role.",
   },
+  {
+    number: "07",
+    title: "Onboarding",
+    description: "After completion of OJT transition into full time role.",
+  },
 ];
 
 export default function EnrollmentProcess() {

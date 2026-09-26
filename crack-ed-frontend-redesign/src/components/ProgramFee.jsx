@@ -237,8 +237,7 @@ export default function ProgramFee() {
                   color: "rgba(250, 250, 250, 0.7)",
                 }}
               >
-                *₹2,000 + GST will be payable as the registration fee, and the remaining
-                amount will be payable only after you receive your offer letter.
+                *₹2,000 + GST will be payable as the registration fee.
               </p>
             </div>
           </div>

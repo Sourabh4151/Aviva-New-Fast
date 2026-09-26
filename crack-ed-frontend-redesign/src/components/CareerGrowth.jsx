@@ -11,24 +11,27 @@ import growthIcon from "../assets/growth.svg";
 
 const CAREER_STAGES = [
   {
-    title: "EdTech Sales Executive",
+    title: "Academic Counsellor",
     description:
       "Connect with learners, understand their needs, suggest programs and convert them into enrolments.",
+    durationToNext: "6-18 months",
+  },
+  {
+    title: "Senior Counsellor",
+    description:
+      "Counsel prospective learners, handle queries, and drive course enrolments.",
+    durationToNext: "12-24 months",
   },
   {
     title: "Team Lead",
     description:
-      "Coach sales executives, monitor performance and help your team achieve its targets.",
-  },
-  {
-    title: "Manager",
-    description:
       "Lead sales teams, drive revenue and shape the strategy behind business growth.",
+    durationToNext: "3-5 years",
   },
   {
-    title: "Cluster Head",
+    title: "Inside Sales Manager",
     description:
-      "Manage multiple sales teams and  improve sales performance.",
+      "Manage multiple sales teams and improve sales performance.",
   },
 ];
 
@@ -59,6 +62,31 @@ const DEFAULT_LAYOUT = CAREER_STAGES.map((_, index) => ({
   marginLeft: index * 28,
   maxWidth: undefined,
 }));
+
+const DURATION_LABEL_ABOVE_OFFSET_PX = 18;
+
+function getDurationLabelStyle(start, end, isDesktop) {
+  if (!start || !end) return null;
+
+  const dx = end.x - start.x;
+  const dy = end.y - start.y;
+  const angleDeg = (Math.atan2(dy, dx) * 180) / Math.PI;
+
+  let left = (start.x + end.x) / 2;
+  let top = (start.y + end.y) / 2;
+
+  if (isDesktop) {
+    const length = Math.hypot(dx, dy) || 1;
+    left += (dy / length) * DURATION_LABEL_ABOVE_OFFSET_PX;
+    top += (-dx / length) * DURATION_LABEL_ABOVE_OFFSET_PX;
+  }
+
+  return {
+    left,
+    top,
+    transform: `translate(-50%, -50%) rotate(${angleDeg}deg)`,
+  };
+}
 
 function CareerStageRow({
   stage,
@@ -530,6 +558,20 @@ export default function CareerGrowth() {
     );
   };
 
+  const durationLabels = (connectorLine?.dotCenters ?? [])
+    .slice(0, -1)
+    .map((start, index) => {
+      const label = CAREER_STAGES[index]?.durationToNext;
+      const style = getDurationLabelStyle(
+        start,
+        connectorLine.dotCenters[index + 1],
+        isDesktopLayout
+      );
+      if (!label || !style) return null;
+      return { label, style, key: `${label}-${index}` };
+    })
+    .filter(Boolean);
+
   return (
     <section
       ref={sectionRef}
@@ -616,6 +658,18 @@ export default function CareerGrowth() {
             style={isDesktopLayout ? { minHeight: roadmapMinHeight } : undefined}
           >
             {renderConnectorLines()}
+
+            {durationLabels.map(({ label, style, key }) => (
+              <span
+                key={key}
+                className={`career-roadmap-duration pointer-events-none absolute z-[2] whitespace-nowrap${
+                  isDesktopLayout ? "" : " career-roadmap-duration-on-line"
+                }`}
+                style={style}
+              >
+                {label}
+              </span>
+            ))}
 
             {isDesktopLayout ? (
               <div
