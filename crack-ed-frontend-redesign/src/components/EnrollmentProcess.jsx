@@ -82,21 +82,13 @@ export default function EnrollmentProcess() {
               </div>
             </div>
 
-            <div className="enrollment-copy">
-              <div className="enrollment-steps-grid">
-                {STEPS.map((step) => (
-                  <h3 key={`title-${step.number}`} className="enrollment-step-title">
-                    {step.title}
-                  </h3>
-                ))}
-              </div>
-              <div className="enrollment-steps-grid">
-                {STEPS.map((step) => (
-                  <p key={`desc-${step.number}`} className="enrollment-step-desc">
-                    {step.description}
-                  </p>
-                ))}
-              </div>
+            <div className="enrollment-copy enrollment-steps-grid">
+              {STEPS.map((step) => (
+                <div key={`copy-${step.number}`} className="enrollment-step">
+                  <h3 className="enrollment-step-title">{step.title}</h3>
+                  <p className="enrollment-step-desc">{step.description}</p>
+                </div>
+              ))}
             </div>
           </div>
 

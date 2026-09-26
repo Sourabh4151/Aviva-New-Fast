@@ -1586,22 +1586,22 @@ button.download-brochure-btn:disabled:active {
 .enrollment-journey {
   flex-direction: column;
   width: 100%;
-  gap: 8px;
+  gap: 20px;
 }
 
 .enrollment-journey-line {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 16px;
+  gap: 20px;
 }
 
 .enrollment-steps-grid,
 .enrollment-ticks {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 153.33px));
   width: 100%;
-  column-gap: 20px;
+  justify-content: space-between;
 }
 
 .enrollment-step-num {
@@ -1622,6 +1622,7 @@ button.download-brochure-btn:disabled:active {
   position: relative;
   width: 100%;
   height: 6px;
+  overflow: visible;
 }
 
 .enrollment-line {
@@ -1633,33 +1634,42 @@ button.download-brochure-btn:disabled:active {
 
 .enrollment-ticks {
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 24px;
+  transform: translateY(-50%);
   pointer-events: none;
 }
 
 .enrollment-tick {
   justify-self: center;
-  align-self: center;
+  align-self: stretch;
   width: 2px;
-  height: 16px;
-  background: rgba(250, 250, 250, 1);
+  height: 24px;
+  background: rgba(253, 253, 253, 1);
 }
 
 .enrollment-copy {
+  width: 100%;
+}
+
+.enrollment-step {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 8px;
+  gap: 10px;
 }
 
 .enrollment-step-title {
   font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
   font-weight: 600;
   font-size: 16px;
-  line-height: 100%;
+  line-height: 140%;
   letter-spacing: 0%;
   text-align: center;
   color: rgba(250, 250, 250, 1);
+  min-height: 60px;
 }
 
 .enrollment-step-desc {
