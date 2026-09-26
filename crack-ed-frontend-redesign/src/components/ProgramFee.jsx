@@ -128,7 +128,7 @@ export default function ProgramFee() {
                         color: "rgba(250, 250, 250, 1)",
                       }}
                     >
-                      ₹52,360*
+                      ₹50,000*
                     </p>
                   </div>
 
