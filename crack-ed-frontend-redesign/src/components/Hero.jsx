@@ -57,6 +57,18 @@ export default function Hero() {
     }
   }
 
+  function trackGaEvent(eventName) {
+    try {
+      if (typeof window !== "undefined" && typeof window.gtag === "function") {
+        window.gtag("event", eventName, {
+          program_name: "Channel Partner",
+          page_type: "channel_partner",
+        });
+      }
+    } catch (_) {
+    }
+  }
+
   function friendlyBackendError(err) {
     const msg = (err && typeof err === "object" && "message" in err ? err.message : "") || "";
     const lowered = String(msg).toLowerCase();
@@ -249,6 +261,7 @@ export default function Hero() {
         trackPixelEvent("Lead", {
           content_name: "Axis-MRL",
         });
+        trackGaEvent("generate_lead");
         setStatus({ type: "success", message: json.message || "We will contact you soon." });
         setShowPopup(true);
         setShowOtp(false);
@@ -352,6 +365,7 @@ export default function Hero() {
           <h3 className="hero-form-title text-[18px] font-semibold mb-1">Start Earning Today!</h3>
           <p className="hero-form-subtitle text-sm mb-3">Limited slots available. Join our partner network today.</p>
           <form
+            data-clarity-mask="true"
             onSubmit={(e) => {
               e.preventDefault();
               if (showOtp) verifyOtp(e);
