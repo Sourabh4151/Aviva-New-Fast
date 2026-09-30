@@ -1,17 +1,64 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const BROCHURE_FILES = ["HHFPP (RM) online.pdf", "HHFPP (RM) offline.pdf"];
+const BROCHURE_ITEMS = [
+  {
+    slug: "hero-rm-online",
+    href: encodeURI("/HHFPP (RM) online.pdf"),
+    filename: "HHFPP (RM) online.pdf",
+  },
+  {
+    slug: "hero-rm-offline",
+    href: encodeURI("/HHFPP (RM) offline.pdf"),
+    filename: "HHFPP (RM) offline.pdf",
+  },
+];
+const BROCHURE_CATALOG_ORIGIN = (
+  import.meta.env.VITE_BROCHURE_CATALOG_URL || "https://crack-ed.com"
+).replace(/\/$/, "");
 
-function triggerBrochureDownloads() {
-  BROCHURE_FILES.forEach((filename) => {
-    const link = document.createElement("a");
-    link.href = encodeURI(`/${filename}`);
-    link.download = filename;
-    link.rel = "noopener";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  });
+async function resolveBrochureDownload(slug, fallbackFilename) {
+  try {
+    const res = await fetch(`${BROCHURE_CATALOG_ORIGIN}/api/brochures/${slug}/`, {
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!data || !data.url) return null;
+    const fileUrl = String(data.url).startsWith("http")
+      ? data.url
+      : `${BROCHURE_CATALOG_ORIGIN}${data.url}`;
+    const fileRes = await fetch(fileUrl, { cache: "no-store" });
+    if (!fileRes.ok) return null;
+    const blob = await fileRes.blob();
+    return {
+      href: URL.createObjectURL(blob),
+      filename: data.filename || fallbackFilename,
+      revoke: true,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function clickBrochureLink(href, filename, revoke) {
+  const link = document.createElement("a");
+  link.href = href;
+  link.download = filename;
+  link.rel = "noopener";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  if (revoke) setTimeout(() => URL.revokeObjectURL(href), 1500);
+}
+
+async function triggerBrochureDownloads() {
+  const resolved = await Promise.all(
+    BROCHURE_ITEMS.map(async (item) => {
+      const remote = await resolveBrochureDownload(item.slug, item.filename);
+      return remote || { href: item.href, filename: item.filename, revoke: false };
+    })
+  );
+  resolved.forEach((item) => clickBrochureLink(item.href, item.filename, item.revoke));
 }
 
 function friendlyBackendError(err) {
@@ -171,7 +218,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
       const json = await res.json().catch(() => ({}));
 
       if (res.ok) {
-        triggerBrochureDownloads();
+        await triggerBrochureDownloads();
         onClose();
       } else {
         setOtpError(json.message || json.error || "Invalid OTP. Please enter the correct OTP.");
@@ -205,7 +252,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
       const json = await res.json().catch(() => ({}));
 
       if (res.ok) {
-        triggerBrochureDownloads();
+        await triggerBrochureDownloads();
         onClose();
       } else {
         setStatusMessage(json.error || json.message || "Unable to start download. Please try again.");
