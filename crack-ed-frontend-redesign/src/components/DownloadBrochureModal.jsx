@@ -1,17 +1,56 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const BROCHURE_HREF = "/Edtech%20launchpad%20program.pdf";
-const BROCHURE_FILENAME = "Edtech launchpad program.pdf";
+const BROCHURE_SLUG = "edtech-sales";
+const BROCHURE_FALLBACK_HREF = "/Edtech%20launchpad%20program.pdf";
+const BROCHURE_FALLBACK_FILENAME = "Edtech launchpad program.pdf";
+const BROCHURE_CATALOG_ORIGIN = (
+  import.meta.env.VITE_BROCHURE_CATALOG_URL || "https://crack-ed.com"
+).replace(/\/$/, "");
 
-function triggerBrochureDownload() {
+async function resolveBrochureDownload(slug, fallbackFilename) {
+  try {
+    const res = await fetch(`${BROCHURE_CATALOG_ORIGIN}/api/brochures/${slug}/`, {
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!data || !data.url) return null;
+    const fileUrl = String(data.url).startsWith("http")
+      ? data.url
+      : `${BROCHURE_CATALOG_ORIGIN}${data.url}`;
+    const fileRes = await fetch(fileUrl, { cache: "no-store" });
+    if (!fileRes.ok) return null;
+    const blob = await fileRes.blob();
+    return {
+      href: URL.createObjectURL(blob),
+      filename: data.filename || fallbackFilename,
+      revoke: true,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function clickBrochureLink(href, filename, revoke) {
   const link = document.createElement("a");
-  link.href = BROCHURE_HREF;
-  link.download = BROCHURE_FILENAME;
+  link.href = href;
+  link.download = filename;
   link.rel = "noopener";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+  if (revoke) setTimeout(() => URL.revokeObjectURL(href), 1500);
 }
+
+async function triggerBrochureDownload() {
+  const remote = await resolveBrochureDownload(BROCHURE_SLUG, BROCHURE_FALLBACK_FILENAME);
+  if (remote) {
+    clickBrochureLink(remote.href, remote.filename, true);
+    return;
+  }
+  clickBrochureLink(BROCHURE_FALLBACK_HREF, BROCHURE_FALLBACK_FILENAME, false);
+}
+
 
 function friendlyBackendError(err) {
   const msg = (err && typeof err === "object" && "message" in err ? err.message : "") || "";
@@ -170,7 +209,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
       const json = await res.json().catch(() => ({}));
 
       if (res.ok) {
-        triggerBrochureDownload();
+        await triggerBrochureDownload();
         onClose();
       } else {
         setOtpError(json.message || json.error || "Invalid OTP. Please enter the correct OTP.");
@@ -204,7 +243,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
       const json = await res.json().catch(() => ({}));
 
       if (res.ok) {
-        triggerBrochureDownload();
+        await triggerBrochureDownload();
         onClose();
       } else {
         setStatusMessage(json.error || json.message || "Unable to start download. Please try again.");
