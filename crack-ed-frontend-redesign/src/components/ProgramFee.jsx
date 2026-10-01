@@ -112,10 +112,10 @@ export default function ProgramFee() {
                     lineHeight: "48px",
                     letterSpacing: "0%",
                     color: "rgba(250, 250, 250, 1)",
-                    whiteSpace: "nowrap",
                   }}
                 >
-                  Rs 50,000
+                  ₹50,000{" "}
+                  <span>(Taxes Included)</span>
                 </p>
               </div>
 

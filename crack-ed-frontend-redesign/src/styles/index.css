@@ -706,6 +706,11 @@ select.hero-select::-ms-expand {
   transform: translateY(0);
 }
 
+.program-fee-amount span {
+  font-size: 18px;
+  line-height: 48px;
+}
+
 .program-fee-pay-btn {
   cursor: pointer;
   transition: background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
@@ -903,7 +908,7 @@ button.download-brochure-btn:disabled:active {
 
 .hero-form-card {
   right: 120px;
-  top: 139px;
+  top: 65px;
   width: 373px;
 }
 

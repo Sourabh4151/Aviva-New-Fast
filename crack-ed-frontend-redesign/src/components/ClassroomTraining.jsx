@@ -110,8 +110,8 @@ export default function ClassroomTraining() {
   }, []);
 
   const progressHeight = `${progress * 100}%`;
-  // Fine-tuned dot positions so 2nd and 3rd sit slightly above their cards
-  const dotPositions = [0, 35.5, 71.8];
+  // Fine-tuned dot positions so 2nd and 3rd sit with their cards (96px module gap)
+  const dotPositions = [0, 33.7, 67.4];
   const maxDotPosition = dotPositions[dotPositions.length - 1] || 100;
   const dotOffsets = dotPositions.map(
     (position) => (position / maxDotPosition) * 100
@@ -203,7 +203,7 @@ export default function ClassroomTraining() {
             {MODULES.map((module, index) => (
               <div
                 key={module.key}
-                className={index === 0 ? "" : "mt-12 sm:mt-16 lg:mt-[192px]"}
+                className={index === 0 ? "" : "mt-12 sm:mt-16 lg:mt-[96px]"}
               >
                 <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-stretch">
                   <div className="order-2 lg:order-1 flex-1 rounded-[10px] bg-black/20 px-4 sm:px-6 lg:px-8 py-6 lg:py-8 max-w-full lg:max-w-[512px]">

@@ -364,7 +364,7 @@ export default function Hero() {
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none max-lg:hidden" />
           <div className="hero-container relative max-lg:pb-4 lg:pb-0">
             {/* Frame 301: 32px bullets+title block ↔ CTA • 16px title ↔ bullets (half former 32) • 8px pill→title • list 12px */}
-            <div className="hero-left-adjust absolute left-[120px] top-[230px] max-lg:relative max-lg:left-auto max-lg:top-auto flex w-[586px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start gap-[12px] text-white left-adjust">
+            <div className="hero-left-adjust absolute left-[120px] lg:top-[252px] max-lg:relative max-lg:left-auto max-lg:top-auto flex w-[586px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start gap-[12px] text-white left-adjust">
               <div className="hero-frame-301 flex w-full min-w-0 flex-col items-start gap-[32px]">
                 <div className="flex w-full min-w-0 flex-col items-start gap-[16px]">
                   <div className="flex w-full min-w-0 flex-col items-start gap-[8px]">
@@ -407,14 +407,22 @@ export default function Hero() {
                   </ul>
                 </div>
                 <div className="register-btn-wrap max-lg:mb-0 lg:mb-0">
-                  <button
-                    type="button"
-                    disabled
-                    aria-disabled="true"
-                    className="download-brochure-btn"
-                  >
-                    Download Brochure
-                  </button>
+                  <div className="flex flex-col items-center gap-[16px] lg:items-start lg:gap-[32px]">
+                    <button
+                      type="button"
+                      disabled
+                      aria-disabled="true"
+                      className="download-brochure-btn"
+                    >
+                      Download Brochure
+                    </button>
+                    <p
+                      className="text-center text-[14px] font-normal leading-[100%] tracking-[0em] text-[rgba(250,250,250,1)] lg:text-left"
+                      style={{ fontFamily: "Poppins, sans-serif" }}
+                    >
+                      *T&C Apply
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -424,7 +432,7 @@ export default function Hero() {
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-4 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[120px] lg:mt-0 lg:w-[415px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${alreadyInSystem || hasValidationError ? "lg:min-h-[580px]" : "lg:min-h-[524px]"
+        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-4 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[65px] lg:mt-0 lg:w-[415px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${alreadyInSystem || hasValidationError ? "lg:min-h-[580px]" : "lg:min-h-[524px]"
           }`}
         style={{
           backgroundColor: "rgba(0, 0, 0, 1)",
