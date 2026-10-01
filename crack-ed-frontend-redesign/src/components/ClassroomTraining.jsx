@@ -280,7 +280,8 @@ export default function ClassroomTraining() {
                   <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
                     <button
                       type="button"
-                      onClick={() => setShowBrochureModal(true)}
+                      disabled
+                      aria-disabled="true"
                       className="download-brochure-btn"
                     >
                       Download Brochure

@@ -409,7 +409,8 @@ export default function Hero() {
                 <div className="register-btn-wrap max-lg:mb-0 lg:mb-0">
                   <button
                     type="button"
-                    onClick={() => setShowBrochureModal(true)}
+                    disabled
+                    aria-disabled="true"
                     className="download-brochure-btn"
                   >
                     Download Brochure

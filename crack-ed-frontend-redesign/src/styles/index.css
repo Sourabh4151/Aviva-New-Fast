@@ -719,6 +719,18 @@ select.hero-select::-ms-expand {
   transform: translateY(1px);
 }
 
+.program-fee-pay-btn:disabled {
+  background: rgba(217, 217, 217, 1) !important;
+  color: #8b8b8b !important;
+  box-shadow: none !important;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.program-fee-pay-btn:disabled:hover {
+  background: rgba(217, 217, 217, 1) !important;
+}
+
 /* Disabled / unavailable — Figma: 193×49, radius 10, padding 16/24, gap 10 */
 .download-brochure-btn.download-brochure-btn--unavailable,
 button.download-brochure-btn:disabled {

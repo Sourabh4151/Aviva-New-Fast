@@ -190,10 +190,10 @@ export default function ProgramFee() {
                 </div>
               </div>
 
-              <a
-                href="https://smartpay.easebuzz.in/234234/asix_mrl"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                disabled
+                aria-disabled="true"
                 className="program-fee-pay-btn self-center lg:self-start"
                 style={{
                   display: "inline-flex",
@@ -213,8 +213,8 @@ export default function ProgramFee() {
                   lineHeight: "100%",
                   letterSpacing: "0%",
                   color: "rgba(255, 255, 255, 1)",
-                  textDecoration: "none",
                   whiteSpace: "nowrap",
+                  border: "none",
                 }}
               >
                 Enrol &amp; Pay Now
@@ -232,12 +232,12 @@ export default function ProgramFee() {
                     width="16.5"
                     height="12.5"
                     rx="2.25"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeWidth="1.5"
                   />
-                  <rect x="0.75" y="3.5" width="16.5" height="2.5" fill="white" />
+                  <rect x="0.75" y="3.5" width="16.5" height="2.5" fill="currentColor" />
                 </svg>
-              </a>
+              </button>
               </div>
             </div>
           </div>
