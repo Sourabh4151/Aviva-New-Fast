@@ -1,0 +1,249 @@
+import React from "react";
+
+export default function ProgramFee() {
+  return (
+    <section
+      id="program-fee"
+      className="relative bg-black text-white scroll-mt-24 overflow-hidden"
+    >
+      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-20">
+        <div className="mx-auto flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-10 max-w-[1040px]">
+          {/* Left: badge, heading, note */}
+          <div className="flex-1 flex flex-col items-start text-left min-w-0 w-full">
+            <div
+              className="inline-flex items-center justify-center tracking-normal rounded-full border border-white/30 py-1 px-4 sm:px-[30px] program-fee-pill"
+              style={{
+                fontFamily:
+                  "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                fontWeight: 500,
+                fontSize: "14px",
+                lineHeight: "27px",
+                color: "rgba(250, 250, 250, 0.7)",
+              }}
+            >
+              Program Fees
+            </div>
+
+            <div className="mt-4 flex flex-col gap-4 max-w-full lg:max-w-[498px]">
+              <p
+                className="program-fee-heading"
+                style={{
+                  fontFamily:
+                    "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  fontWeight: 500,
+                  fontSize: "24px",
+                  lineHeight: "31.2px",
+                  letterSpacing: "0%",
+                  color: "rgba(250, 250, 250, 1)",
+                }}
+              >
+                An investment in your skills, preparation, and career progression.
+              </p>
+
+              <p
+                className="program-fee-note"
+                style={{
+                  fontFamily:
+                    "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  fontWeight: 500,
+                  fontSize: "12px",
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  color: "rgba(250, 250, 250, 0.7)",
+                }}
+              >
+                *Flexible EMI and education financing partners
+                available.
+              </p>
+            </div>
+          </div>
+
+          {/* Right: fee card with side/bottom glow */}
+          <div className="flex-1 flex justify-center lg:justify-end w-full lg:w-auto">
+            <div className="relative w-full max-w-[364px]">
+              {/* Glow around card – matches Figma layer color */}
+              <div
+                className="pointer-events-none absolute -left-4 -right-4 -top-2 -bottom-10 sm:-left-6 sm:-right-6 sm:-top-4 sm:-bottom-12"
+                style={{
+                  background:
+                    "radial-gradient(circle at 50% 50%, rgba(143, 40, 44, 0.7) 0, rgba(143, 40, 44, 0) 65%)",
+                  filter: "blur(35px)",
+                  opacity: 1,
+                }}
+              />
+
+              <div
+                className="relative flex flex-col shadow-2xl program-fee-card"
+                style={{
+                  width: 364,
+                  maxWidth: "100%",
+                  borderRadius: 10,
+                  padding: 24,
+                  gap: 16,
+                  background: "rgba(0, 0, 0, 1)",
+                  flexDirection: "column",
+                }}
+              >
+              {/* PROGRAM FEE + amount */}
+              <div className="flex flex-col" style={{ gap: 4 }}>
+                <p
+                  className="program-fee-card-label"
+                  style={{
+                    fontFamily:
+                      "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                    fontWeight: 600,
+                    fontSize: "12px",
+                    lineHeight: "21px",
+                    letterSpacing: "0%",
+                    color: "rgba(250, 250, 250, 0.8)",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  PROGRAM FEE
+                </p>
+
+                <p
+                  className="program-fee-amount"
+                  style={{
+                    fontFamily:
+                      "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                    fontWeight: 500,
+                    fontSize: "32px",
+                    lineHeight: "48px",
+                    letterSpacing: "0%",
+                    color: "rgba(250, 250, 250, 1)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Rs 50,000
+                </p>
+              </div>
+
+              <div className="flex flex-col" style={{ gap: "10px" }}>
+                <p
+                  className="program-fee-includes"
+                  style={{
+                    fontFamily:
+                      "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                    fontWeight: 400,
+                    fontSize: "12px",
+                    lineHeight: "100%",
+                    color: "rgba(250, 250, 250, 0.8)",
+                  }}
+                >
+                  The program fee includes:
+                </p>
+
+                <div
+                  className="flex flex-col"
+                  style={{
+                    gap: "10px",
+                  }}
+                >
+                  {[
+                    "Comprehensive training & placement support",
+                    "All learning materials and resources",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-start"
+                      style={{
+                        gap: 10,
+                      }}
+                    >
+                      <div
+                        className="flex items-center justify-center"
+                        style={{
+                          width: 16,
+                          height: 16,
+                          borderRadius: 100,
+                          backgroundColor: "rgba(250,250,250,0.3)",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <span
+                          style={{
+                            fontSize: 10,
+                            lineHeight: 1,
+                            color: "rgba(250,250,250,1)",
+                          }}
+                        >
+                          ✓
+                        </span>
+                      </div>
+
+                      <p
+                        className="program-fee-list-text"
+                        style={{
+                          fontFamily:
+                            "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                          fontWeight: 400,
+                          fontSize: "12px",
+                          lineHeight: "100%",
+                          color: "rgba(250, 250, 250, 1)",
+                        }}
+                      >
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <a
+                href="https://smartpay.easebuzz.in/234234/asix_mrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="program-fee-pay-btn self-center lg:self-start"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "fit-content",
+                  height: 50,
+                  padding: "16px 24px",
+                  gap: 10,
+                  borderRadius: 10,
+                  background: "rgba(143, 40, 44, 1)",
+                  boxShadow: "0 12px 30px rgba(0, 0, 0, 0.45)",
+                  fontFamily:
+                    "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  color: "rgba(255, 255, 255, 1)",
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Enrol &amp; Pay Now
+                <svg
+                  width="18"
+                  height="14"
+                  viewBox="0 0 18 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="0.75"
+                    y="0.75"
+                    width="16.5"
+                    height="12.5"
+                    rx="2.25"
+                    stroke="white"
+                    strokeWidth="1.5"
+                  />
+                  <rect x="0.75" y="3.5" width="16.5" height="2.5" fill="white" />
+                </svg>
+              </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
