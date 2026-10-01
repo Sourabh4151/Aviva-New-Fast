@@ -99,7 +99,7 @@ export default function ProgramFee() {
                     textTransform: "uppercase",
                   }}
                 >
-                  PROGRAM FEE
+                  PROGRAM FEES
                 </p>
 
                 <p
@@ -131,7 +131,7 @@ export default function ProgramFee() {
                     color: "rgba(250, 250, 250, 0.8)",
                   }}
                 >
-                  The program fee includes:
+                  The program fees includes:
                 </p>
 
                 <div
