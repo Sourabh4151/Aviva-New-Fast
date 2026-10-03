@@ -1,4 +1,5 @@
 name: Deploy Yes Bank SO
+run-name: Deploy Yes Bank SO
 
 on:
   push:
@@ -16,5 +17,6 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
+          command_timeout: 20m
           script: |
             /srv/deploy/deploy-yesbank-so.sh
