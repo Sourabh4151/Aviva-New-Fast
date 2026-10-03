@@ -938,7 +938,8 @@ button.download-brochure-btn:disabled:active {
 
   /* Wide desktop art: subject sits on the left — anchor there on mobile (not 50% center) */
   .hero-mobile-bg {
-    background-position: 22% 14%;
+    /* Shift crop left so the subject on the right edge stays fully in frame */
+    background-position: 18% 14%;
   }
 
   /* Center Register Now button on mobile, keep desktop width */
@@ -1087,7 +1088,7 @@ button.download-brochure-btn:disabled:active {
   }
 
   .hero-mobile-bg {
-    background-position: 10% 10%;
+    background-position: 15% 10%;
     min-height: 480px;
   }
 

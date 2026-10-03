@@ -606,6 +606,22 @@ export default function CareerGrowth() {
                 </div>
               ))}
             </div>
+
+            <p
+              className="mt-3 sm:mt-4 max-w-[689px] text-justify"
+              style={{
+                fontFamily:
+                  "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                fontWeight: 400,
+                fontSize: "14px",
+                lineHeight: "100%",
+                letterSpacing: "0%",
+                color: "rgba(250, 250, 250, 1)",
+              }}
+            >
+              * CTC for Graduates is ₹3.5 LPA + Incentives and for MBA Graduates ₹4.5 LPA +
+              Incentives.
+            </p>
           </div>
 
           {/* Career roadmap */}
