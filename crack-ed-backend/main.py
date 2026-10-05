@@ -168,8 +168,8 @@ def _post_lead_to_nopaperforms(
         "source": "Microsite",
         "medium": _str_utm(utm_medium),
         "campaign": _str_utm(utm_campaign),
-        "cf_form_name": "Microsite - Axis-MRL",
-        "cf_program": "Axis-MRL",
+        "cf_form_name": "Microsite - Axis-RO",
+        "cf_program": "Axis-RO",
         "cf_pg_program": "PG Program",
         "cf_batch_name": "Select Batch Name",
     }
@@ -445,8 +445,8 @@ def _post_brochure_lead_to_nopaperforms(
         "source": "Microsite",
         "medium": _str_utm(utm_medium),
         "campaign": _str_utm(utm_campaign),
-        "cf_form_name": "Brochure - Axis-MRL",
-        "cf_program": "Axis-MRL",
+        "cf_form_name": "Brochure - Axis-RO",
+        "cf_program": "Axis-RO",
         "cf_pg_program": "PG Program",
         "cf_batch_name": "Select Batch Name",
     }
