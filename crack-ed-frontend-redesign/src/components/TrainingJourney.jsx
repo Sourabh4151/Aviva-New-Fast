@@ -203,7 +203,7 @@ export default function TrainingJourney() {
                         : DURATION_VALUE_COLOR_INACTIVE,
                     }}
                   >
-                    1 Month
+                    21 Days
                   </div>
                 </div>
               </div>
