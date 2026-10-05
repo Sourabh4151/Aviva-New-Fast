@@ -109,13 +109,26 @@ export default function ProgramFee() {
                       "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                     fontWeight: 500,
                     fontSize: "32px",
-                    lineHeight: "48px",
+                    lineHeight: "32px",
                     letterSpacing: "0%",
                     color: "rgba(250, 250, 250, 1)",
-                    whiteSpace: "nowrap",
                   }}
                 >
-                  Rs 50,000
+                  ₹50,000{" "}
+                  <span
+                    className="program-fee-amount-note"
+                    style={{
+                      fontFamily:
+                        "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                      fontWeight: 400,
+                      fontSize: "18px",
+                      lineHeight: "32px",
+                      letterSpacing: "0%",
+                      color: "rgba(250, 250, 250, 1)",
+                    }}
+                  >
+                    (All taxes included)
+                  </span>
                 </p>
               </div>
 
