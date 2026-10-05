@@ -203,7 +203,7 @@ export default function TrainingJourney() {
                         : DURATION_VALUE_COLOR_INACTIVE,
                     }}
                   >
-                    21 Days
+                    21 Days (Online)
                   </div>
                 </div>
               </div>
