@@ -8,6 +8,7 @@ import heroImage from "../assets/desk.png";
 import tickSvg from "../assets/tick.svg";
 import heroLogo from "../assets/kotak_logo.svg";
 import DownloadBrochureModal from "./DownloadBrochureModal";
+import { trackGenerateLead } from "../utils/analytics";
 
 const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
 
@@ -256,6 +257,7 @@ export default function Hero() {
         if (alreadyInSystem) {
           setStatus({ type: "success", message: json.message });
           setShowOtp(false);
+          trackGenerateLead();
         } else {
           setStatus(null);
           setOtpDigits(["", "", "", ""]);
@@ -302,6 +304,7 @@ export default function Hero() {
       });
       const json = await res.json().catch(() => ({}));
       if (res.ok) {
+        trackGenerateLead();
         setStatus({ type: "success", message: json.message || "We will contact you soon." });
         setShowPopup(true);
         setShowOtp(false);
@@ -451,6 +454,7 @@ export default function Hero() {
           <h3 className="hero-form-title text-[18px] font-semibold mb-1">Request a Callback!</h3>
           <p className="hero-form-subtitle text-sm text-[rgba(250,250,250,0.6)] mb-3">Talk to our counsellors to know more</p>
           <form
+            data-clarity-mask="true"
             onSubmit={(e) => {
               e.preventDefault();
               if (showOtp) verifyOtp(e);
