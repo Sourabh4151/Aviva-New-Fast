@@ -113,12 +113,13 @@ export default function ProgramFee() {
                     fontFamily: FONT_MONTSERRAT,
                     fontWeight: 500,
                     fontSize: "32px",
-                    lineHeight: "48px",
+                    lineHeight: "32px",
                     letterSpacing: "0%",
                     color: "rgba(250, 250, 250, 1)",
                   }}
                 >
-                  ₹1,00,000
+                  ₹1,00,000{" "}
+                  <span>(Taxes Included)</span>
                 </p>
 
                 <p
