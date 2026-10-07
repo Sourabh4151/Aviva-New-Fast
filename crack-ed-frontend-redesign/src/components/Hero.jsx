@@ -410,9 +410,8 @@ export default function Hero() {
                   <div className="flex flex-col items-center gap-[16px] lg:items-start lg:gap-[32px]">
                     <button
                       type="button"
-                      disabled
-                      aria-disabled="true"
                       className="download-brochure-btn"
+                      onClick={() => setShowBrochureModal(true)}
                     >
                       Download Brochure
                     </button>

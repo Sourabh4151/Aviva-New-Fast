@@ -777,8 +777,7 @@ button.download-brochure-btn:disabled:active {
   max-width: 556px;
   padding: 24px 32px 28px;
   border-radius: 16px;
-  background-color: rgba(0, 0, 0, 1);
-  background-image: linear-gradient(rgba(143, 40, 44, 0.15), rgba(143, 40, 44, 0.15));
+  background-color: rgba(6, 10, 43, 1);
   border: 1px solid rgba(250, 250, 250, 0.15);
   gap: 24px;
   box-sizing: border-box;
@@ -883,7 +882,8 @@ button.download-brochure-btn:disabled:active {
   cursor: pointer;
 }
 
-.hero-form-card .otp-btn {
+.hero-form-card .otp-btn,
+.brochure-modal-card .otp-btn {
   background: rgba(28, 50, 214, 1);
 }
 
@@ -891,7 +891,8 @@ button.download-brochure-btn:disabled:active {
   background: rgba(120, 33, 37, 1);
 }
 
-.hero-form-card .otp-btn:hover:not(:disabled) {
+.hero-form-card .otp-btn:hover:not(:disabled),
+.brochure-modal-card .otp-btn:hover:not(:disabled) {
   background: rgba(22, 40, 176, 1);
 }
 

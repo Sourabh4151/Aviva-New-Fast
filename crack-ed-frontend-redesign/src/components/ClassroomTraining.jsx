@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import uthaanImg from "../assets/uthaan.jpg";
 import aarohanImg from "../assets/aarohan.png";
 import shikharImg from "../assets/shikhar.jpg";
+import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const ACCENT_BLUE = "rgba(28, 50, 214, 1)";
 const FONT =
@@ -99,6 +100,7 @@ export default function ClassroomTraining() {
   const imageRefs = useRef([]);
   const [progress, setProgress] = useState(0);
   const [timelineLayout, setTimelineLayout] = useState(EMPTY_TIMELINE);
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
 
   const measureTimeline = useCallback(() => {
     if (typeof window === "undefined") return;
@@ -367,11 +369,27 @@ export default function ClassroomTraining() {
                     />
                   </div>
                 </div>
+
+                {index === MODULES.length - 1 && (
+                  <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
+                    <button
+                      type="button"
+                      className="download-brochure-btn"
+                      onClick={() => setShowBrochureModal(true)}
+                    >
+                      Download Brochure
+                    </button>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
       </div>
+      <DownloadBrochureModal
+        isOpen={showBrochureModal}
+        onClose={() => setShowBrochureModal(false)}
+      />
     </section>
   );
 }

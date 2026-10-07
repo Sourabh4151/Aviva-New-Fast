@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const BROCHURE_SLUG = "axis-mortgage-sales";
-const BROCHURE_FALLBACK_HREF = "/Samriddhi%20Program.pdf";
-const BROCHURE_FALLBACK_FILENAME = "Samriddhi Program.pdf";
+const BROCHURE_SLUG = "yes-bank-rise";
+const BROCHURE_FALLBACK_HREF = "/Yes%20Bank%20Rise%20Program.pdf";
+const BROCHURE_FALLBACK_FILENAME = "Yes Bank Rise Program.pdf";
 const BROCHURE_CATALOG_ORIGIN = (
   import.meta.env.VITE_BROCHURE_CATALOG_URL || "https://crack-ed.com"
 ).replace(/\/$/, "");

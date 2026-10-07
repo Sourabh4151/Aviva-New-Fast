@@ -1,4 +1,5 @@
 import React from "react";
+import { ENROL_PAY_URL } from "../brochure";
 
 const ACCENT_SOFT = "rgba(28, 50, 214, 0.3)";
 const CARD_GLOW = `radial-gradient(circle at 50% 50%, ${ACCENT_SOFT} 0, rgba(28, 50, 214, 0) 65%)`;
@@ -194,11 +195,11 @@ export default function ProgramFee() {
                 </div>
               </div>
 
-              <button
-                type="button"
-                disabled
-                aria-disabled="true"
-                className="program-fee-pay-btn self-center lg:self-start"
+              <a
+                href={ENROL_PAY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="program-fee-pay-btn self-center lg:self-start no-underline"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -241,7 +242,7 @@ export default function ProgramFee() {
                   />
                   <rect x="0.75" y="3.5" width="16.5" height="2.5" fill="currentColor" />
                 </svg>
-              </button>
+              </a>
               </div>
             </div>
           </div>
