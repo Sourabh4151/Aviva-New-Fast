@@ -933,7 +933,7 @@ button.download-brochure-btn:disabled:active {
 
   /* Push hero copy lower on mobile so the subject stays visible above the text */
   .hero-container .left-adjust.hero-left-adjust {
-    margin-top: 3.5rem;
+    margin-top: 6.75rem;
   }
 
   /* Wide desktop art: subject sits on the left — anchor there on mobile (not 50% center) */
@@ -1084,12 +1084,12 @@ button.download-brochure-btn:disabled:active {
   }
 
   .hero-container .left-adjust.hero-left-adjust {
-    margin-top: 6.5rem;
+    margin-top: 10.5rem;
   }
 
   .hero-mobile-bg {
-    background-position: 15% 10%;
-    min-height: 480px;
+    background-position: 12% 6%;
+    min-height: 520px;
   }
 
   .hero-container .left-adjust:not(.hero-left-adjust) {

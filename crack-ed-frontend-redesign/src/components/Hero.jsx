@@ -364,7 +364,7 @@ export default function Hero() {
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none max-lg:hidden" />
           <div className="hero-container relative max-lg:pb-4 lg:pb-0">
             {/* Frame 301: 32px bullets+title block ↔ CTA • 16px title ↔ bullets (half former 32) • 8px pill→title • list 12px */}
-            <div className="hero-left-adjust absolute left-[120px] lg:top-[160px] max-lg:relative max-lg:left-auto max-lg:top-auto flex w-[586px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start gap-[12px] text-white left-adjust">
+            <div className="hero-left-adjust absolute left-[120px] lg:top-[188px] max-lg:relative max-lg:left-auto max-lg:top-auto flex w-[586px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start gap-[12px] text-white left-adjust">
               <div className="hero-frame-301 flex w-full min-w-0 flex-col items-start gap-[32px]">
                 <div className="flex w-full min-w-0 flex-col items-start gap-[16px]">
                   <div className="flex w-full min-w-0 flex-col items-start gap-[8px]">
