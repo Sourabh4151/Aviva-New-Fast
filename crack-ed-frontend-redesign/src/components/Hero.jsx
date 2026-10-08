@@ -395,7 +395,7 @@ export default function Hero() {
                         className="text-[16px] font-normal leading-[1.55] tracking-[0em] text-[rgba(250,250,250,1)] max-lg:leading-[1.52]"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                        Secure a CTC of Rs 3 LPA + incentives
+                        Secure a CTC of up to ₹3.5 LPA + Incentives
                       </span>
                     </li>
                     <li className="flex items-start gap-2 sm:gap-3">
