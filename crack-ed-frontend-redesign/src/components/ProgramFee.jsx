@@ -170,7 +170,7 @@ export default function ProgramFee() {
                     href="https://smartpay.easebuzz.in/234234/vedantu_ac"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="program-fee-pay-btn self-start"
+                    className="program-fee-pay-btn self-center lg:self-start"
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
