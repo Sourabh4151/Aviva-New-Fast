@@ -82,14 +82,17 @@ export default function Eligibility() {
                 }}
               >
                 <p
+                  className="program-fee-card-label"
                   style={{
+                    height: 20,
                     fontFamily:
                       "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                     fontWeight: 600,
-                    fontSize: "12px",
-                    lineHeight: "21px",
+                    fontSize: "16px",
+                    lineHeight: "100%",
                     letterSpacing: "0%",
-                    color: "rgba(250, 250, 250, 0.8)",
+                    textAlign: "justify",
+                    color: "rgba(200, 203, 204, 1)",
                     textTransform: "uppercase",
                   }}
                 >
@@ -130,12 +133,13 @@ export default function Eligibility() {
                       </svg>
 
                       <p
-                        className="text-[12px] sm:text-[14px]"
+                        className="eligibility-requirement-text"
                         style={{
                           fontFamily:
                             "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                           fontWeight: 400,
-                          lineHeight: 1.30,
+                          fontSize: "14px",
+                          lineHeight: "130%",
                           letterSpacing: "0%",
                           color: "rgba(250, 250, 250, 1)",
                         }}

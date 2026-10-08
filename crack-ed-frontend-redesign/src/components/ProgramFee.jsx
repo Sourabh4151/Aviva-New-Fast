@@ -18,7 +18,7 @@ export default function ProgramFee() {
       className="relative bg-black text-white scroll-mt-24 overflow-hidden"
     >
       <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-20">
-        <div className="mx-auto flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-10 max-w-[1040px]">
+        <div className="mx-auto flex flex-col lg:flex-row items-start justify-between gap-6 lg:gap-[10px] max-w-[1040px]">
           {/* Left: badge, heading, note */}
           <div className="flex-1 flex flex-col items-start text-left min-w-0 w-full">
             <div
@@ -65,116 +65,108 @@ export default function ProgramFee() {
             </div>
           </div>
 
-          {/* Right: investment card + registration note */}
-          <div className="w-full lg:w-[527px] lg:flex-none flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[527px] flex flex-col gap-4">
-              <div className="relative w-full">
-                {/* Ellipse 4 – 619×200, rgba(255,105,61,0.4), blur 200 */}
-                <div
-                  className="pointer-events-none absolute left-1/2 top-1/2"
-                  style={{
-                    width: 619,
-                    height: 200,
-                    maxWidth: "140%",
-                    borderRadius: "50%",
-                    background: "rgba(255, 105, 61, 0.4)",
-                    filter: "blur(200px)",
-                    transform: "translate(-50%, -50%) rotate(180deg)",
-                  }}
-                />
+          {/* Right: fee card – same shell/alignment as Eligibility requirements */}
+          <div className="flex-1 flex justify-start lg:justify-end w-full lg:w-auto lg:-ml-10">
+            <div className="relative w-full max-w-[364px] sm:max-w-[422px]">
+              <div
+                className="pointer-events-none absolute left-1/2 top-1/2"
+                style={{
+                  width: 619,
+                  height: 200,
+                  maxWidth: "140%",
+                  borderRadius: "50%",
+                  background: "rgba(255, 105, 61, 0.4)",
+                  filter: "blur(200px)",
+                  transform: "translate(-50%, -50%) rotate(180deg)",
+                }}
+              />
 
-                <div
-                  className="relative flex flex-col program-fee-card"
+              <div
+                className="relative flex flex-col shadow-2xl program-fee-card"
+                style={{
+                  width: "100%",
+                  borderRadius: 10,
+                  padding: 24,
+                  gap: 10,
+                  background: "rgba(0, 0, 0, 1)",
+                  flexDirection: "column",
+                }}
+              >
+                <p
+                  className="program-fee-card-label"
                   style={{
-                    width: "100%",
-                    maxWidth: 527,
-                    borderRadius: 4,
-                    padding: 20,
-                    gap: 20,
-                    background: "rgba(0, 0, 0, 1)",
+                    height: 20,
+                    fontFamily: FONT_MONTSERRAT,
+                    fontWeight: 600,
+                    fontSize: "16px",
+                    lineHeight: "100%",
+                    letterSpacing: "0%",
+                    textAlign: "justify",
+                    color: "rgba(200, 203, 204, 1)",
+                    textTransform: "uppercase",
                   }}
                 >
-                  <div className="flex flex-col" style={{ maxWidth: 487, width: "100%" }}>
-                    <p
-                      className="program-fee-card-label"
-                      style={{
-                        width: "100%",
-                        height: 20,
-                        fontFamily: FONT_MONTSERRAT,
-                        fontWeight: 600,
-                        fontSize: "16px",
-                        lineHeight: "100%",
-                        letterSpacing: "0%",
-                        textAlign: "justify",
-                        color: "rgba(200, 203, 204, 1)",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      Registration Fees
-                    </p>
+                  Registration Fees
+                </p>
 
-                    <p
-                      className="program-fee-amount"
-                      style={{
-                        width: "100%",
-                        height: 36,
-                        display: "flex",
-                        alignItems: "center",
-                        fontFamily: FONT_POPPINS,
-                        fontWeight: 600,
-                        fontSize: "24px",
-                        lineHeight: "100%",
-                        letterSpacing: "0%",
-                        color: "rgba(250, 250, 250, 1)",
-                      }}
-                    >
-                      ₹2,999
-                    </p>
-                  </div>
+                <p
+                  className="program-fee-amount"
+                  style={{
+                    fontFamily: FONT_POPPINS,
+                    fontWeight: 600,
+                    fontSize: "24px",
+                    lineHeight: "100%",
+                    letterSpacing: "0%",
+                    color: "rgba(250, 250, 250, 1)",
+                  }}
+                >
+                  ₹2,999
+                </p>
 
-                  <div className="flex flex-col" style={{ gap: "10px" }}>
-                    {INCLUDES.map((item) => (
-                      <div
-                        key={item}
-                        className="flex items-start"
-                        style={{ gap: 10 }}
+                <div className="flex flex-col" style={{ gap: 10 }}>
+                  {INCLUDES.map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-start"
+                      style={{ gap: 10 }}
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        style={{ flexShrink: 0, marginTop: 1 }}
                       >
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          aria-hidden="true"
-                          style={{ flexShrink: 0, marginTop: 1 }}
-                        >
-                          <circle cx="8" cy="8" r="8" fill={ACCENT} />
-                          <path
-                            d="M4.7 8.15L6.85 10.3L11.3 5.7"
-                            stroke="white"
-                            strokeWidth="1.6"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                        <circle cx="8" cy="8" r="8" fill={ACCENT} />
+                        <path
+                          d="M4.7 8.15L6.85 10.3L11.3 5.7"
+                          stroke="white"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
 
-                        <p
-                          className="program-fee-list-text"
-                          style={{
-                            fontFamily: FONT_POPPINS,
-                            fontWeight: 400,
-                            fontSize: "14px",
-                            lineHeight: "100%",
-                            color: "rgba(250, 250, 250, 0.8)",
-                          }}
-                        >
-                          {item}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                      <p
+                        className="program-fee-list-text"
+                        style={{
+                          fontFamily: FONT_POPPINS,
+                          fontWeight: 400,
+                          fontSize: "14px",
+                          lineHeight: "130%",
+                          letterSpacing: "0%",
+                          color: "rgba(200, 203, 204, 1)",
+                        }}
+                      >
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
 
-                  <a
+                <a
                     href="https://smartpay.easebuzz.in/234234/vedantu_ac"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -222,7 +214,6 @@ export default function ProgramFee() {
                       <path d="M0.75 4.5H17.25" stroke="white" strokeWidth="1.5" />
                     </svg>
                   </a>
-                </div>
               </div>
             </div>
           </div>
