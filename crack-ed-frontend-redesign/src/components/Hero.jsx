@@ -417,18 +417,7 @@ export default function Hero() {
                         className="text-[16px] font-normal leading-[100%] tracking-[0em] text-[rgba(250,250,250,1)]"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                        Program Fee ₹50,000/- to be paid after placement
-                      </span>
-                    </li>
-                    <li className="flex h-6 items-center gap-2 sm:gap-3">
-                      <span className="hero-tick">
-                        <img src={tickSvg} alt="tick" className="hero-tick-icon" />
-                      </span>
-                      <span
-                        className="text-[16px] font-normal leading-[100%] tracking-[0em] text-[rgba(250,250,250,1)]"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
-                        Enrolment fee ₹2,000 + GST
+                        Registration fee ₹2,999
                       </span>
                     </li>
                   </ul>

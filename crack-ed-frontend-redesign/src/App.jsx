@@ -32,7 +32,7 @@ export default function App() {
       <Eligibility />
       <ProgramFee />
       <HaveQuestionsBanner />
-      <Footer />
+      {/* <Footer /> */}
       <StickyIcon />
     </div>
   );

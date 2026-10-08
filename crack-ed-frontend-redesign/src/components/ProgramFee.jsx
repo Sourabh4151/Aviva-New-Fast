@@ -110,7 +110,7 @@ export default function ProgramFee() {
                         textTransform: "uppercase",
                       }}
                     >
-                      Investment
+                      Registration Fees
                     </p>
 
                     <p
@@ -128,7 +128,7 @@ export default function ProgramFee() {
                         color: "rgba(250, 250, 250, 1)",
                       }}
                     >
-                      ₹50,000*
+                      ₹2,999
                     </p>
                   </div>
 
@@ -163,9 +163,9 @@ export default function ProgramFee() {
                           style={{
                             fontFamily: FONT_POPPINS,
                             fontWeight: 400,
-                            fontSize: "12px",
+                            fontSize: "14px",
                             lineHeight: "100%",
-                            color: "rgba(250, 250, 250, 1)",
+                            color: "rgba(250, 250, 250, 0.8)",
                           }}
                         >
                           {item}
@@ -224,21 +224,6 @@ export default function ProgramFee() {
                   </a>
                 </div>
               </div>
-
-              <p
-                className="program-fee-disclaimer"
-                style={{
-                  maxWidth: 519,
-                  fontFamily: FONT_POPPINS,
-                  fontWeight: 400,
-                  fontSize: "14px",
-                  lineHeight: "150%",
-                  letterSpacing: "0%",
-                  color: "rgba(250, 250, 250, 0.7)",
-                }}
-              >
-                *₹2,000 + GST will be payable as the registration fee.
-              </p>
             </div>
           </div>
         </div>
