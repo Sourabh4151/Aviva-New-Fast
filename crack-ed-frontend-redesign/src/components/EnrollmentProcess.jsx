@@ -24,9 +24,9 @@ const STEPS = [
   },
   {
     number: "04",
-    title: "Selection & Fees",
+    title: "Selection",
     description:
-      "Selected candidates receive a Letter of Intent confirming their provisional selection, and will have to pay the full program fee.",
+      "Selected candidates receive a Letter of Intent confirming their provisional selection.",
   },
   {
     number: "05",
