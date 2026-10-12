@@ -3,7 +3,7 @@ import React from "react";
 const REQUIREMENTS = [
   "Any Full-Time Graduate from a recognized university with an aggregate score of 50% and above.",
   "Freshers or experienced from any sector.",
-  "Age – Under 28 years at the time of application.",
+  "Age – Under 27 years at the time of application.",
 ];
 
 export default function Eligibility() {
