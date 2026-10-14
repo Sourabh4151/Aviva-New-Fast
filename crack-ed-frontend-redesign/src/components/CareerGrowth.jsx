@@ -603,7 +603,7 @@ export default function CareerGrowth() {
                     "font-medium text-[18px] leading-[1] text-[rgba(250,250,250,1)]",
                 },
                 {
-                  text: "Earn a CTC of ₹3.6 LPA*",
+                  text: "Earn a CTC of up to ₹4.13 LPA*",
                   icon: ctcIcon,
                   textClassName:
                     "font-medium text-[18px] leading-[27px] text-[rgba(250,250,250,1)]",

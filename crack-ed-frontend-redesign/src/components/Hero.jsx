@@ -401,7 +401,7 @@ export default function Hero() {
                         className="hero-subtitle text-[16px] max-lg:text-[14px] font-normal leading-[1.55] tracking-[0em] max-lg:leading-[1.52]"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                      Join as a Relationship Manager - Mortgage Sales and secure a CTC of ₹3.6 LPA* + incentives
+                      Join as a Relationship Manager - Mortgage Sales and secure a CTC of up to ₹4.13 LPA*
                       </span>
                     </li>
                     <li className="flex items-start gap-2 sm:gap-3">
@@ -428,10 +428,10 @@ export default function Hero() {
                     </button>
                   </div>
                   <p
-                    className="max-w-full text-[14px] font-normal leading-[100%] tracking-[0em] text-white lg:w-[344px]"
+                    className="max-w-full text-[14px] font-normal leading-[100%] tracking-[0em] text-white lg:max-w-none lg:whitespace-nowrap"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    *₹2.75 Fixed Salary + ₹ 85,000 average incentives
+                    *₹3.28 Fixed Salary for Delhi, ₹2.75 Fixed Salary for other cities + ₹ 85,000 average incentives
                   </p>
                 </div>
               </div>
