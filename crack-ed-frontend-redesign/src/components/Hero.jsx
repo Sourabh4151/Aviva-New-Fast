@@ -343,7 +343,7 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative max-lg:bg-black">
-      {/* Hero background: fixed height on all screens – does NOT grow. Form comes after on mobile. */}
+      {/* Desktop: fixed 690px, overlay is absolute. Mobile: overlay is in normal flow so the photo grows with the title, bullets, and brochure button instead of letting them spill onto the callback card. */}
       <div
         className="w-full min-h-[520px] sm:min-h-[600px] lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[15%_center] lg:bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
@@ -351,16 +351,15 @@ export default function Hero() {
         aria-label="Aviva hero"
       >
         <div
-          className="absolute inset-0"
+          className="lg:absolute lg:inset-0 max-lg:relative max-lg:z-10 max-lg:min-h-[520px] sm:max-lg:min-h-[600px]"
           style={{
-            zIndex: 10,
             background:
               "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.8)), linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.5) 85%, rgba(0, 0, 0, 0.85) 95%, rgba(0, 0, 0, 1) 100%)",
           }}
         >
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
           <div className="hero-container relative">
-            <div className="absolute left-[120px] top-[200px] lg:top-[200px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
+            <div className="absolute left-[120px] top-[200px] lg:top-[200px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust max-lg:pb-8">
               <div className="hero-logo-badge mb-3 md:mb-4">
                 <div
                   className="hero-badge mt-4 md:mt-6 inline-flex items-center justify-center text-center text-[14px] font-semibold text-white rounded-full border border-white px-[10px] py-[10px] md:px-4 md:py-2"
