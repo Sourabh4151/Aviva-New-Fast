@@ -24,7 +24,7 @@ const STEPS = [
     number: "04",
     title: "Classroom Training",
     description:
-      "Complete one month of intensive offline classroom training at the designated training location.",
+      "Complete one month of intensive classroom training.",
   },
   {
     number: "05",
