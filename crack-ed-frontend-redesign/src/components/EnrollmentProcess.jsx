@@ -16,9 +16,9 @@ const STEPS = [
   },
   {
     number: "03",
-    title: "Get Selected",
+    title: "Selection & Offer Letter",
     description:
-      "Successfully clear the interview process and receive your pre-selection offer.",
+      "Successfully clear the interview process and receive your pre-selection offer confirming your provisional selection for the program.",
   },
   {
     number: "04",
@@ -79,7 +79,7 @@ export default function EnrollmentProcess() {
           {/* Left: Image card */}
           <div className="flex-1 flex justify-start min-w-0">
             <div
-              className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[400px] sm:h-[540px] lg:h-[573px] p-0 sm:p-0 lg:p-6 lg:rounded-[10px] enrollment-image-mobile"
+              className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[400px] sm:h-[540px] lg:h-[590px] p-0 sm:p-0 lg:p-6 lg:rounded-[10px] enrollment-image-mobile"
             >
               <img
                 src={enrollmentImage}
