@@ -14,7 +14,7 @@ const STEPS = [
     number: "02",
     title: "Pre-Interview Training",
     description:
-      "Pay registration fees of ₹2000 and attend 3-5 days of online training program that equips with industry awareness and skills.",
+      "Pay registration fees of ₹2,999 and attend 3-5 days of online training program.",
   },
   {
     number: "03",
