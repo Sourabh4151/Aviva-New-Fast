@@ -1,7 +1,7 @@
 import React from "react";
 
 const REQUIREMENTS = [
-  "Graduates aspiring to build long-term careers in banking",
+  "Graduates aspiring to build long-term careers in insurance",
   "Applicants should be up to 32 years of age.",
   "A valid driving licence is required for the role",
   "Candidates must own a two-wheeler ",
