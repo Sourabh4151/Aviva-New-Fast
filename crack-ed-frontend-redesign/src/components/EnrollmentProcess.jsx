@@ -16,9 +16,9 @@ const STEPS = [
   },
   {
     number: "03",
-    title: "Complete Your Training",
+    title: "Offer Letter & Training",
     description:
-      "Selected candidates will undergo a structured training program to prepare for the role.",
+      "Selected candidates will receive their provisional offer letter and will undergo a structured training program to prepare for the role.",
   },
   {
     number: "04",
@@ -67,7 +67,7 @@ export default function EnrollmentProcess() {
           {/* Left: Image card */}
           <div className="flex-1 flex justify-start min-w-0">
           <div
-            className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[280px] sm:h-[380px] lg:h-[468px] p-0 sm:p-0 lg:p-6 rounded-[10px] max-[639px]:rounded-none enrollment-image-mobile"
+            className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[280px] sm:h-[380px] lg:h-[484px] p-0 sm:p-0 lg:p-6 rounded-[10px] max-[639px]:rounded-none enrollment-image-mobile"
           >
             <img
               src={enrollmentImage}
