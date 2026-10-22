@@ -11,7 +11,7 @@ export default function Certification() {
       className="relative bg-black text-white scroll-mt-24 overflow-hidden"
     >
       <div className="relative z-10 mx-auto px-section py-12 lg:px-[120px] lg:py-12">
-        <div className="mx-auto flex max-w-[520px] flex-col items-start gap-[10px]">
+        <div className="mx-auto flex max-w-[1040px] flex-col items-start gap-[10px]">
           <div
             className="inline-flex h-[35px] items-center justify-center rounded-full border border-white/30 px-[30px] py-1 text-sm font-medium tracking-normal leading-[27px] text-white/70"
             style={{ fontFamily }}
