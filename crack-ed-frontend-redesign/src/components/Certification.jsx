@@ -45,9 +45,9 @@ export default function Certification() {
             <img
               src={certificateImage}
               alt="CRACK-ED Certificate of Completion"
-              className="h-auto w-full max-w-[1040px] rounded-[10px] object-contain"
-              width={1040}
-              height={368}
+              className="h-auto w-full max-w-[520px] rounded-[10px] object-contain"
+              width={520}
+              height={184}
             />
           </div>
         </div>
