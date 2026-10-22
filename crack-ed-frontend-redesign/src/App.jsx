@@ -8,11 +8,12 @@ import TrainingJourney from "./components/TrainingJourney";
 import ClassroomTraining from "./components/ClassroomTraining";
 import TrackGrowth from "./components/TrackGrowth";
 import Eligibility from "./components/Eligibility";
+import Certification from "./components/Certification";
 import EnrollmentProcess from "./components/EnrollmentProcess";
 import ProgramFee from "./components/ProgramFee";
 import HaveQuestionsBanner from "./components/HaveQuestionsBanner";
 import Footer from "./components/Footer";
-import StickyIcon from "./components/StickyMobileIcon";
+import StickyMobileIcon from "./components/StickyMobileIcon";
 
 export default function App() {
   return (
@@ -28,12 +29,12 @@ export default function App() {
       <ClassroomTraining />
       <TrackGrowth />
       <Eligibility />
+      <Certification />
       <EnrollmentProcess />
       <ProgramFee />
       <HaveQuestionsBanner />
       <Footer />
-      <StickyIcon />
+      <StickyMobileIcon />
     </div>
   );
 }
-
