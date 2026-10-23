@@ -13,6 +13,8 @@ const CARD_PADDING = { paddingTop: 24, paddingRight: 16, paddingBottom: 24, padd
 const CARD_GAP = 10;
 const CARD_RADIUS = 10;
 const CARD_MIN_HEIGHT = 274;
+/** Keeps MODE (left) and RETENTION BONUS (right) on one row on desktop */
+const CARD_COPY_MIN_HEIGHT = 132;
 /** Background when card is hovered/active (design spec) */
 const CARD_ACTIVE_BG = "rgba(12, 9, 25, 1)";
 /** Bottom line when card is hovered/active: 2px, 304px wide, centered, dark blue */
@@ -20,11 +22,11 @@ const LINE_ACTIVE_HEIGHT = 2;
 const LINE_ACTIVE_WIDTH = 304;
 const LINE_ACTIVE_COLOR = "rgba(58, 45, 125, 1)";
 
-/** DURATION/STIPEND label: 16px, 600, 21px line height, uppercase. Initial 0.3, on hover 0.6 */
+/** MODE/DURATION/STIPEND/RETENTION label: 12px, 600, 21px line height, uppercase. Initial 0.3, on hover 0.6 */
 const DURATION_LABEL = {
   fontFamily: FONT_MONTSERRAT,
   fontWeight: 600,
-  fontSize: 16,
+  fontSize: 12,
   lineHeight: "21px",
   letterSpacing: "0em",
   textTransform: "uppercase",
@@ -49,6 +51,11 @@ const DURATION_VALUE_COLOR_ACTIVE = "rgba(250,250,250,1)";
 const CLASSROOM_MODES = [
   { mode: "Online", duration: "4 weeks", stipend: "NA" },
   { mode: "Online + Offline", duration: "2 weeks+ 2 weeks", stipend: "₹10,000 per month" },
+];
+
+const RETENTION_LINES = [
+  "₹25,000 at the end of 12 months",
+  "₹25,000 at the end of 18 months",
 ];
 
 export default function TrainingJourney() {
@@ -151,7 +158,7 @@ export default function TrainingJourney() {
                 />
               </div>
 
-              <div>
+              <div style={{ minHeight: isMobile ? undefined : CARD_COPY_MIN_HEIGHT }}>
                 <h3
                   style={{
                     fontFamily: FONT_MONTSERRAT,
@@ -198,8 +205,6 @@ export default function TrainingJourney() {
                     key={label}
                     style={{
                       ...DURATION_LABEL,
-                      fontSize: isMobile ? 12 : 16,
-                      lineHeight: isMobile ? "16px" : "21px",
                       textAlign: "left",
                       color: classroomVisualActive
                         ? DURATION_LABEL_COLOR_ACTIVE
@@ -216,8 +221,6 @@ export default function TrainingJourney() {
                         key={value}
                         style={{
                           ...DURATION_VALUE,
-                          fontSize: isMobile ? 12 : 16,
-                          lineHeight: isMobile ? "16px" : "24px",
                           textAlign: "left",
                           color: classroomVisualActive
                             ? DURATION_VALUE_COLOR_ACTIVE
@@ -283,7 +286,7 @@ export default function TrainingJourney() {
                 />
               </div>
 
-              <div>
+              <div style={{ minHeight: isMobile ? undefined : CARD_COPY_MIN_HEIGHT }}>
                 <h3
                   style={{
                     fontFamily: FONT_MONTSERRAT,
@@ -315,8 +318,33 @@ export default function TrainingJourney() {
                 </p>
               </div>
 
-              {/* Desktop spacer replacing removed retention-bonus block */}
-              <div className="hidden sm:block" style={{ height: 51 }} aria-hidden="true" />
+              <div style={{ marginTop: 6 }}>
+                <div
+                  style={{
+                    ...DURATION_LABEL,
+                    textAlign: isMobile ? "left" : "justify",
+                    color: ojtVisualActive
+                      ? DURATION_LABEL_COLOR_ACTIVE
+                      : DURATION_LABEL_COLOR_INACTIVE,
+                  }}
+                >
+                  Retention Bonus
+                </div>
+                {RETENTION_LINES.map((line) => (
+                  <div
+                    key={line}
+                    style={{
+                      ...DURATION_VALUE,
+                      textAlign: isMobile ? "left" : "justify",
+                      color: ojtVisualActive
+                        ? DURATION_VALUE_COLOR_ACTIVE
+                        : DURATION_VALUE_COLOR_INACTIVE,
+                    }}
+                  >
+                    {line}
+                  </div>
+                ))}
+              </div>
 
               {/* Desktop-only spacer to align card bottoms */}
               <div className="hidden sm:block" style={{ flex: 1, minHeight: 0 }} aria-hidden="true" />
