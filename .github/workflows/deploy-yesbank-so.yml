@@ -1,5 +1,4 @@
 name: Deploy Yes Bank SO
-run-name: Deploy Yes Bank SO
 
 on:
   push:
