@@ -10,6 +10,7 @@ import TrackGrowth from "./components/TrackGrowth";
 import Differentiator from "./components/Differentiator";
 import Eligibility from "./components/Eligibility";
 import EnrollmentProcess from "./components/EnrollmentProcess";
+import Certification from "./components/Certification";
 import ProgramFee from "./components/ProgramFee";
 import HaveQuestionsBanner from "./components/HaveQuestionsBanner";
 import Footer from "./components/Footer";
@@ -30,6 +31,7 @@ export default function App() {
       {/* <TrackGrowth /> */}
       <Differentiator />
       <Eligibility />
+      <Certification />
       <ProgramFee />
       <HaveQuestionsBanner />
       {/* <Footer /> */}
