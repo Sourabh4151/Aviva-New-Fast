@@ -16,9 +16,9 @@ const STEPS = [
   },
   {
     number: "03",
-    title: "HFL Interview",
+    title: "HHFL Interview",
     description:
-      "Shortlisted candidates appear for the final interview with the Housing Finance hiring team ",
+      "Shortlisted candidates appear for the final interview with the Hero Housing Finance hiring team.",
   },
   {
     number: "04",
@@ -79,7 +79,7 @@ export default function EnrollmentProcess() {
           {/* Left: Image card */}
           <div className="flex-1 flex justify-start min-w-0">
             <div
-              className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[400px] sm:h-[540px] lg:h-[600px] p-0 sm:p-0 lg:p-6 lg:rounded-[10px] enrollment-image-mobile"
+              className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[400px] sm:h-[540px] lg:h-[575px] p-0 sm:p-0 lg:p-6 lg:rounded-[10px] enrollment-image-mobile"
             >
               <img
                 src={enrollmentImage}
