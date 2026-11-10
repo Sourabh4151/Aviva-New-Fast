@@ -927,7 +927,8 @@ select.hero-select::-ms-expand {
 @media (max-width: 640px) {
   .hero-form-card {
     width: calc(100% - 1.5rem) !important;
-    margin-top: 1.5rem;
+    margin-top: 2.5rem !important;
+    margin-bottom: 2rem !important;
     padding: 1rem 1.25rem !important;
   }
 }
@@ -1059,7 +1060,7 @@ select.hero-select::-ms-expand {
   }
 
   .hero-container .left-adjust.hero-left-adjust {
-    margin-top: 0.5rem;
+    margin-top: 12rem;
   }
 
   .hero-container .left-adjust:not(.hero-left-adjust) {

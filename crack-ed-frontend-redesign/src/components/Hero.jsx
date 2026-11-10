@@ -331,7 +331,7 @@ export default function Hero() {
     status.message.includes("already in our system");
 
   return (
-    <section id="hero" className="relative bg-[#231f20] pt-[96px] lg:-mb-[34.5px]">
+    <section id="hero" className="relative bg-[#fafafa] pt-[96px] lg:bg-[#231f20] lg:-mb-[34.5px]">
       <div className="hero-container relative z-0 min-h-[640px] w-full overflow-hidden lg:h-[626px] lg:min-h-0">
         <img
           src={heroImage}

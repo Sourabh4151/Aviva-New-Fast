@@ -27,8 +27,8 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-[100] border-t-[24px] border-solid border-[#97144d] bg-white">
-      <nav className="flex h-[72px] items-stretch bg-white">
+    <header className="fixed inset-x-0 top-0 z-[100] border-t-[24px] border-solid border-[#97144d] bg-[#97144d] lg:bg-white">
+      <nav className="flex h-[72px] items-stretch bg-[#97144d] lg:bg-white">
         <a
           href="#hero"
           onClick={handleLogoClick}
@@ -77,7 +77,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setMobileOpen((open) => !open)}
-          className="ml-auto flex h-[72px] w-14 items-center justify-center text-[#231f20] lg:hidden"
+          className="ml-auto flex h-[72px] w-14 items-center justify-center text-white lg:hidden"
           aria-expanded={mobileOpen}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >

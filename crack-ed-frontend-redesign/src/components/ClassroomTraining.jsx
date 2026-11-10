@@ -112,6 +112,49 @@ export default function ClassroomTraining() {
     const onBodyScroll = () => ScrollTrigger.update();
     document.body.addEventListener("scroll", onBodyScroll, { passive: true });
 
+    const desktopQuery = window.matchMedia("(min-width: 1024px)");
+    let imageTweens = [];
+
+    const clearImageTweens = () => {
+      imageTweens.forEach((tween) => {
+        tween.scrollTrigger?.kill();
+        tween.kill();
+      });
+      imageTweens = [];
+      frameRefs.current.forEach((frame) => {
+        const img = frame?.querySelector("img");
+        if (img) gsap.set(img, { clearProps: "transform" });
+      });
+    };
+
+    const setupImageTweens = () => {
+      clearImageTweens();
+      if (!desktopQuery.matches) return;
+
+      frameRefs.current.forEach((frame) => {
+        const img = frame?.querySelector("img");
+        if (!frame || !img) return;
+
+        imageTweens.push(
+          gsap.fromTo(
+            img,
+            { scale: 1 },
+            {
+              scale: 1.5,
+              transformOrigin: "center center",
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: frame,
+                start: "top 80%",
+                end: "bottom 40%",
+                scrub: true,
+              },
+            }
+          )
+        );
+      });
+    };
+
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: modules,
@@ -119,30 +162,14 @@ export default function ClassroomTraining() {
         end: "bottom bottom",
         onUpdate: (self) => setProgress(self.progress),
       });
-
-      frameRefs.current.forEach((frame) => {
-        const img = frame?.querySelector("img");
-        if (!frame || !img) return;
-
-        gsap.fromTo(
-          img,
-          { scale: 1 },
-          {
-            scale: 1.5,
-            transformOrigin: "center center",
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: frame,
-              start: "top 80%",
-              end: "bottom 40%",
-              scrub: true,
-            },
-          }
-        );
-      });
+      setupImageTweens();
     }, modules);
 
+    desktopQuery.addEventListener("change", setupImageTweens);
+
     return () => {
+      desktopQuery.removeEventListener("change", setupImageTweens);
+      clearImageTweens();
       document.body.removeEventListener("scroll", onBodyScroll);
       ctx.revert();
     };
@@ -215,7 +242,7 @@ export default function ClassroomTraining() {
             {MODULES.map((module, index) => (
               <article
                 key={module.key}
-                className="flex flex-col items-center gap-8 lg:h-[353px] lg:flex-row lg:items-center lg:gap-[60px]"
+                className="flex flex-col items-stretch gap-8 lg:h-[353px] lg:flex-row lg:items-center lg:gap-[60px]"
               >
                 <div className="w-full lg:w-[452px] lg:shrink-0">
                   <span
@@ -243,16 +270,20 @@ export default function ClassroomTraining() {
                   ref={(el) => {
                     frameRefs.current[index] = el;
                   }}
-                  className="h-[240px] w-full overflow-hidden rounded-[10px] sm:h-[300px] lg:h-[353px] lg:min-w-0 lg:flex-1 lg:rounded-l-[10px] lg:rounded-r-none"
+                  className="relative -mx-6 h-auto w-[calc(100%+3rem)] overflow-hidden sm:-mx-10 sm:w-[calc(100%+5rem)] lg:ml-0 lg:mr-[min(0px,calc((1280px-100vw)/2))] lg:h-[353px] lg:w-auto lg:min-w-0 lg:flex-1 lg:rounded-l-[10px] lg:rounded-r-none"
                 >
-                  <img src={module.image} alt={module.heading} className="h-full w-full object-cover" />
+                  <img
+                    src={module.image}
+                    alt={module.heading}
+                    className="h-auto w-full lg:h-full lg:object-cover"
+                  />
                 </div>
               </article>
             ))}
           </div>
         </div>
 
-        <div className="mt-4 flex justify-start lg:pl-10">
+        <div className="mt-4 flex justify-center lg:justify-start lg:pl-10">
           <button
             type="button"
             onClick={() => setShowBrochureModal(true)}
