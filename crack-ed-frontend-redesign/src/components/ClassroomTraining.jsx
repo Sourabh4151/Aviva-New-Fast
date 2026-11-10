@@ -1,44 +1,91 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import uthaanImg from "../assets/uthaan.png";
-import aarohanImg from "../assets/aarohan.png";
-import shikharImg from "../assets/shikhar.png";
+import utthanImg from "../assets/figma/utthan.png";
+import aarohanImg from "../assets/figma/aarohan.png";
+import shikharImg from "../assets/figma/shikhar.png";
+import checkIcon from "../assets/figma/check.svg";
+import downloadIcon from "../assets/figma/download.svg";
 import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const MODULES = [
   {
-    key: "uthaan",
+    key: "utthan",
     label: "Utthan",
-    heading: "Building Strong Foundations",
-    description:
-      "Uthhan is the foundation stage, focused on building the core skills needed to begin a career in the banking industry. It introduces learners to key banking products and services while strengthening communication skills required to handle customer interactions confidently over calls.",
-    image: uthaanImg,
+    heading: "Foundational Excellence",
+    intro: "Build a strong foundation for your career in:",
+    topics: [
+      "Core workspace skills",
+      "Banking fundamentals and the VRM role",
+      "Retail banking and financial products",
+      "Communication and customer engagement",
+    ],
+    image: utthanImg,
   },
   {
     key: "aarohan",
     label: "Aarohan",
-    heading: "Product Mastery",
-    description:
-      "Aarohan builds on this base by developing practical sales and relationship management skills. Learners are trained to understand customer needs, handle conversations effectively, and pitch relevant financial products, with a strong focus on persuasion and structured call handling through practice and simulations.",
+    heading: "Product & Process Mastery",
+    intro: "Deepen your understanding of:",
+    topics: [
+      "Financial products",
+      "Banking, investment and insurance solutions",
+      "Customer needs and relationship management",
+      "Service excellence and compliance",
+    ],
     image: aarohanImg,
   },
   {
     key: "shikhar",
     label: "Shikhar",
     heading: "Excel in Sales, Service & Growth",
-    description:
-      "Shikhar is the final stage, designed to prepare learners for real-world performance. It focuses on advanced conversation handling, objection resolution, and consistent target achievement, along with assessments and readiness checks to ensure learners are confident and job-ready from day one.",
+    intro: "Learn how to excel on the job through:",
+    topics: [
+      "Mastery in workplace tools",
+      "Virtual customer interaction simulations",
+      "Relationship deepening and cross-selling",
+      "Objection handling and service resolution",
+    ],
     image: shikharImg,
   },
 ];
 
+const EMPTY_TIMELINE = { top: 0, height: 1, dotTops: [0, 0, 0] };
+
 export default function ClassroomTraining() {
-  const sectionRef = useRef(null);
   const modulesRef = useRef(null);
-  const imageRefs = useRef([]);
+  const timelineColumnRef = useRef(null);
+  const labelRefs = useRef([]);
+  const frameRefs = useRef([]);
   const [progress, setProgress] = useState(0);
+  const [timelineLayout, setTimelineLayout] = useState(EMPTY_TIMELINE);
   const [showBrochureModal, setShowBrochureModal] = useState(false);
+
+  const measureTimeline = useCallback(() => {
+    if (typeof window === "undefined") return;
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
+
+    const column = timelineColumnRef.current;
+    const labels = labelRefs.current.filter(Boolean);
+    if (!column || labels.length !== MODULES.length) return;
+
+    const columnRect = column.getBoundingClientRect();
+    const centers = labels.map((label) => {
+      const rect = label.getBoundingClientRect();
+      return rect.top + rect.height / 2 - columnRect.top;
+    });
+
+    const trackTop = centers[0];
+    const trackHeight = centers[centers.length - 1] - centers[0];
+    if (trackHeight <= 0) return;
+
+    setTimelineLayout({
+      top: trackTop,
+      height: trackHeight,
+      dotTops: centers.map((center) => center - trackTop),
+    });
+    ScrollTrigger.refresh();
+  }, []);
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -48,41 +95,34 @@ export default function ClassroomTraining() {
     const modules = modulesRef.current;
     if (!modules) return;
 
-    // Pixel offset from the top of the modules container so that the
-    // scroll progress starts closer to "Building Strong Foundations".
-    const START_OFFSET_PX = 100;
+    // The page scrolls on <body> (html/body are height 100%), while ScrollTrigger
+    // follows document.scrollingElement. Report the body's scroll position.
+    const scrollProxy = {
+      scrollTop(value) {
+        if (arguments.length) document.body.scrollTop = value;
+        return document.body.scrollTop;
+      },
+      getBoundingClientRect() {
+        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+      },
+    };
+    [document.documentElement, document.body, document.scrollingElement].forEach((el) => {
+      if (el) ScrollTrigger.scrollerProxy(el, scrollProxy);
+    });
+    const onBodyScroll = () => ScrollTrigger.update();
+    document.body.addEventListener("scroll", onBodyScroll, { passive: true });
 
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: modules,
-        // "top+=OFFSET center" waits until the trigger has moved further
-        // before starting the animation.
-        start: `top+=${START_OFFSET_PX} center`,
+        start: "top+=100 center",
         end: "bottom bottom",
-        onUpdate: (self) => {
-          setProgress(self.progress);
-        },
+        onUpdate: (self) => setProgress(self.progress),
       });
-    });
 
-    return () => {
-      ctx.revert();
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-    };
-  }, []);
-
-  // Image zoom-in when roughly 60% of the image is in view.
-  useLayoutEffect(() => {
-    if (typeof window === "undefined") return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const images = imageRefs.current;
-    if (!images || images.length === 0) return;
-
-    const ctx = gsap.context(() => {
-      images.forEach((img) => {
-        if (!img) return;
+      frameRefs.current.forEach((frame) => {
+        const img = frame?.querySelector("img");
+        if (!frame || !img) return;
 
         gsap.fromTo(
           img,
@@ -92,9 +132,7 @@ export default function ClassroomTraining() {
             transformOrigin: "center center",
             ease: "power2.out",
             scrollTrigger: {
-              trigger: img,
-              // Approximate "60% visible": start zoom as image enters,
-              // reach full zoom when most of it is in the viewport.
+              trigger: frame,
               start: "top 80%",
               end: "bottom 40%",
               scrub: true,
@@ -102,219 +140,130 @@ export default function ClassroomTraining() {
           }
         );
       });
-    });
+    }, modules);
 
     return () => {
+      document.body.removeEventListener("scroll", onBodyScroll);
       ctx.revert();
     };
   }, []);
 
-  const progressHeight = `${progress * 100}%`;
-  // Fine-tuned dot positions so 2nd and 3rd sit slightly above their cards
-  const dotPositions = [0, 35.5, 71.8];
-  const maxDotPosition = dotPositions[dotPositions.length - 1] || 100;
-  const dotOffsets = dotPositions.map(
-    (position) => (position / maxDotPosition) * 100
-  );
+  useLayoutEffect(() => {
+    measureTimeline();
+
+    window.addEventListener("resize", measureTimeline);
+    const modules = modulesRef.current;
+    const observer =
+      typeof ResizeObserver !== "undefined" && modules ? new ResizeObserver(measureTimeline) : null;
+    observer?.observe(modules);
+
+    const images = frameRefs.current.map((frame) => frame?.querySelector("img")).filter(Boolean);
+    images.forEach((img) => {
+      if (!img.complete) img.addEventListener("load", measureTimeline);
+    });
+
+    return () => {
+      window.removeEventListener("resize", measureTimeline);
+      observer?.disconnect();
+      images.forEach((img) => img.removeEventListener("load", measureTimeline));
+    };
+  }, [measureTimeline]);
+
+  const { top: trackTop, height: trackHeight, dotTops } = timelineLayout;
 
   return (
-    <section
-      id="classroom-training"
-      ref={sectionRef}
-      className="relative bg-black text-white scroll-mt-24 overflow-hidden"
-    >
-      {/* Blurred yellow background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-[-80px] top-1/2 -translate-y-1/2"
-        style={{
-          width: 420,
-          height: 420,
-          borderRadius: "999px",
-          backgroundColor: "rgba(255, 217, 0, 0.05)",
-          filter: "blur(100px)",
-        }}
-      />
-
-      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:pt-[110px] lg:pb-[110px] lg:pr-0">
-        {/* Heading block */}
-        <div className="max-w-xl">
-          <div className="classroom-pill inline-flex items-center justify-center">
+    <section id="classroom-training" className="scroll-mt-28 overflow-hidden bg-[#fafafa]">
+      <div className="mx-auto max-w-[1280px] px-6 py-12 sm:px-10 lg:py-[60px] lg:pl-[102px] lg:pr-0">
+        <div className="max-w-[896px]">
+          <div className="inline-flex items-center justify-center rounded-full border border-[#97144d] px-[30px] py-1 text-[14px] font-medium capitalize leading-[27px] text-[#97144d]">
             Classroom Training
           </div>
-
-          <p
-            className="classroom-subtitle mt-3 sm:mt-4"
-            style={{
-              fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
-              fontWeight: 500,
-              fontSize: 24,
-              lineHeight: "31.2px",
-              letterSpacing: "0%",
-              textAlign: "justify",
-              color: "rgba(250, 250, 250, 1)",
-            }}
-          >
-            Three progressive modules guiding you toward professional readiness.
-          </p>
+          <h2 className="mt-4 text-[24px] font-medium leading-[31.2px] text-[#97144d]">
+            Three progressive modules guiding you towards professional readiness.
+          </h2>
         </div>
 
-        {/* Modules with vertical progress marker */}
-        <div className="mt-8 sm:mt-12 lg:mt-16 flex flex-col lg:flex-row gap-6 lg:gap-12">
-          {/* Vertical progress bar + dots - hidden on mobile */}
-          <div className="hidden lg:block relative flex-shrink-0" style={{ width: 40 }}>
+        <div className="mt-10 lg:mt-16 lg:flex">
+          <div ref={timelineColumnRef} className="relative hidden w-10 shrink-0 lg:block">
             <div
-              className="absolute left-1/2 -translate-x-1/2"
-              style={{
-                width: 4,
-                top: 96,
-                height: `${maxDotPosition}%`,
-              }}
+              className="absolute left-1/2 w-0.5 -translate-x-1/2"
+              style={{ top: trackTop, height: trackHeight }}
             >
-              {/* Grey base line */}
+              <div className="h-full w-full bg-[#D1D3D4]" />
               <div
-                className="w-full h-full rounded-full"
-                style={{ backgroundColor: "rgba(250,250,250,0.15)" }}
+                className="absolute inset-x-0 top-0 bg-[#97144d]"
+                style={{ height: `${progress * 100}%` }}
               />
-
-              {/* Yellow progress line */}
-              <div
-                className="absolute left-1/2 -translate-x-1/2 top-0 w-full rounded-full"
-                style={{
-                  height: progressHeight,
-                  backgroundColor: "rgba(151, 20, 77, 1)",
-                }}
-              />
-
-              {/* Dots for each module */}
-              {dotPositions.map((position, index) => {
-                // Activate a dot only when the yellow line has visually
-                // reached (or passed) that dot within the container.
-                const threshold = dotOffsets[index] / 100;
-                const isActive = progress >= threshold;
+              {dotTops.map((dotTop, index) => {
+                const isActive = progress >= dotTop / trackHeight;
                 return (
-                  <div
+                  <span
                     key={MODULES[index].key}
-                    className="absolute left-1/2 -translate-x-1/2"
+                    className="absolute left-1/2 size-4 -translate-x-1/2 rounded-full"
                     style={{
-                      width: 16,
-                      height: 16,
-                      borderRadius: "999px",
-                      top: `calc(${dotOffsets[index]}% - 8px)`,
-                      backgroundColor: isActive
-                        ? "rgba(151, 20, 77, 1)"
-                        : "rgba(63, 63, 63, 1)",
+                      top: dotTop - 8,
+                      backgroundColor: isActive ? "#97144d" : "#D1D3D4",
                     }}
+                    aria-hidden="true"
                   />
                 );
               })}
             </div>
           </div>
 
-          {/* Module rows */}
-          <div className="flex-1 flex flex-col gap-0 min-w-0" ref={modulesRef}>
+          <div ref={modulesRef} className="flex min-w-0 flex-1 flex-col gap-16 lg:gap-10">
             {MODULES.map((module, index) => (
-              <div
+              <article
                 key={module.key}
-                className={index === 0 ? "" : "mt-12 sm:mt-16 lg:mt-[192px]"}
+                className="flex flex-col items-center gap-8 lg:h-[353px] lg:flex-row lg:items-center lg:gap-[60px]"
               >
-                <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-stretch">
-                  <div className="order-2 lg:order-1 flex-1 rounded-[10px] bg-black/20 px-4 sm:px-6 lg:px-8 py-6 lg:py-8 max-w-full lg:max-w-[512px]">
-                    <div
-                      className="inline-flex items-center justify-center mb-4 text-sm font-medium tracking-normal"
-                      style={{
-                        borderRadius: 100,
-                        border: "1px solid rgba(151, 20, 77, 1)",
-                        backgroundColor: "rgba(151, 20, 77, 1)",
-                        paddingTop: 4,
-                        paddingBottom: 4,
-                        paddingLeft: 30,
-                        paddingRight: 30,
-                        fontFamily:
-                          "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                        fontWeight: 500,
-                        fontSize: 14,
-                        lineHeight: "27px",
-                        letterSpacing: "0%",
-                        color: "rgba(250, 250, 250, 1)",
-                        textAlign: "center",
-                      }}
-                    >
-                      {module.label}
-                    </div>
-
-                    <h3
-                      className="classroom-module-heading"
-                      style={{
-                        fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
-                        fontWeight: 500,
-                        fontSize: 18,
-                        lineHeight: "27px",
-                        letterSpacing: "0%",
-                        textAlign: "justify",
-                        textTransform: "capitalize",
-                        color: "rgba(250, 250, 250, 1)",
-                      }}
-                    >
-                      {module.heading}
-                    </h3>
-
-                    <p
-                      className="classroom-module-body mt-3"
-                      style={{
-                        fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
-                        fontWeight: 400,
-                        fontSize: 16,
-                        lineHeight: "24px",
-                        letterSpacing: "0%",
-                        textAlign: "justify",
-                        color: "rgba(250, 250, 250, 0.8)",
-                      }}
-                    >
-                      {module.description}
-                    </p>
-                  </div>
-
-                  <div
-                    className="order-1 lg:order-2 classroom-image-mobile overflow-hidden ml-0 lg:ml-auto w-full lg:w-[504px] lg:flex-shrink-0 h-[220px] sm:h-[280px] lg:h-[353px] rounded-none sm:rounded-t-[10px] sm:rounded-b-[10px] lg:rounded-l-[10px] lg:rounded-tr-none lg:rounded-br-none lg:bg-black/20"
+                <div className="w-full lg:w-[452px] lg:shrink-0">
+                  <span
+                    ref={(el) => {
+                      labelRefs.current[index] = el;
+                    }}
+                    className="inline-flex items-center justify-center rounded-full border border-[#97144d] bg-[#97144d] px-[30px] py-1 text-[14px] font-medium capitalize leading-[27px] text-white"
                   >
-                    <img
-                      ref={(el) => {
-                        imageRefs.current[index] = el;
-                      }}
-                      src={module.image}
-                      alt={module.heading}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                    {module.label}
+                  </span>
+                  <h3 className="mt-4 text-[18px] font-medium capitalize leading-[27px] text-[#97144d]">
+                    {module.heading}
+                  </h3>
+                  <p className="mt-1 text-[16px] text-[#231f20]">{module.intro}</p>
+                  <ul className="mt-2 flex flex-col gap-2">
+                    {module.topics.map((topic) => (
+                      <li key={topic} className="flex items-center gap-2.5">
+                        <img src={checkIcon} alt="" className="h-5 w-5 shrink-0" />
+                        <span className="text-[16px] text-[rgba(34,31,32,0.8)]">{topic}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                {/* Download brochure CTA only for the last module (Shikhar),
-                    placed below the entire row so it sits visually under the image end */}
-                {index === MODULES.length - 1 && (
-                  <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
-                    <button
-                      type="button"
-                      onClick={() => setShowBrochureModal(true)}
-                      className="inline-flex items-center justify-center rounded-[10px] py-4 px-4 sm:px-6 bg-white text-[#1e1e1e] font-semibold text-sm border-0 cursor-pointer shadow-lg hover:bg-[#d2d2d2] transition-colors"
-                      style={{
-                        fontFamily:
-                          "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                      }}
-                    >
-                      Download Brochure
-                    </button>
-                  </div>
-                )}
-              </div>
+                <div
+                  ref={(el) => {
+                    frameRefs.current[index] = el;
+                  }}
+                  className="h-[240px] w-full overflow-hidden rounded-[10px] sm:h-[300px] lg:h-[353px] lg:min-w-0 lg:flex-1 lg:rounded-l-[10px] lg:rounded-r-none"
+                >
+                  <img src={module.image} alt={module.heading} className="h-full w-full object-cover" />
+                </div>
+              </article>
             ))}
           </div>
         </div>
+
+        <div className="mt-4 flex justify-start lg:pl-10">
+          <button
+            type="button"
+            onClick={() => setShowBrochureModal(true)}
+            className="inline-flex items-center gap-2.5 rounded-[10px] border border-[#97144d] bg-[#fafafa] px-6 py-4 text-[14px] font-bold text-[#97144d] shadow-[0px_4px_4px_rgba(0,0,0,0.15),0px_1px_1.5px_rgba(0,0,0,0.3)]"
+          >
+            Download Brochure
+            <img src={downloadIcon} alt="" className="h-5 w-5" />
+          </button>
+        </div>
       </div>
-      <DownloadBrochureModal
-        isOpen={showBrochureModal}
-        onClose={() => setShowBrochureModal(false)}
-      />
+      <DownloadBrochureModal isOpen={showBrochureModal} onClose={() => setShowBrochureModal(false)} />
     </section>
   );
 }
-

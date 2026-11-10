@@ -1,199 +1,59 @@
 import React from "react";
+import checkIcon from "../assets/figma/check-fee.svg";
+import payIcon from "../assets/figma/arrow-pay.svg";
+
+const INCLUSIONS = [
+  "Comprehensive training and placement support",
+  "All learning materials and resources",
+];
+
+const PAYMENT_URL = "https://smartpay.easebuzz.in/234234/asix_vrm";
 
 export default function ProgramFee() {
   return (
-    <section
-      id="program-fee"
-      className="relative bg-black text-white scroll-mt-24 overflow-hidden"
-    >
-      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-20">
-        <div className="mx-auto flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-10 max-w-[1040px]">
-          {/* Left: badge, heading, note */}
-          <div className="flex-1 flex flex-col items-start text-left min-w-0 w-full">
-            <div
-              className="inline-flex items-center justify-center tracking-normal rounded-full border border-white/30 py-1 px-4 sm:px-[30px] program-fee-pill"
-              style={{
-                fontFamily:
-                  "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                fontWeight: 500,
-                fontSize: "14px",
-                lineHeight: "27px",
-                color: "rgba(250, 250, 250, 0.7)",
-              }}
-            >
-              Program Fee
-            </div>
-
-            <div className="mt-4 flex flex-col gap-4 max-w-full lg:max-w-[498px]">
-              <p
-                className="program-fee-heading"
-                style={{
-                  fontFamily:
-                    "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                  fontWeight: 500,
-                  fontSize: "24px",
-                  lineHeight: "31.2px",
-                  letterSpacing: "0%",
-                  color: "rgba(250, 250, 250, 1)",
-                }}
-              >
-                An investment in your skills, preparation, and career progression.
-              </p>
-
-              <p
-                className="program-fee-note"
-                style={{
-                  fontFamily:
-                    "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                  fontWeight: 500,
-                  fontSize: "12px",
-                  lineHeight: "100%",
-                  letterSpacing: "0%",
-                  color: "rgba(250, 250, 250, 0.7)",
-                }}
-              >
-                *Financing options available
-              </p>
-            </div>
+    <section id="program-fee" className="scroll-mt-28 bg-[#fafafa]">
+      <div className="mx-auto flex max-w-[1280px] flex-col items-start justify-between gap-10 px-6 py-12 sm:px-10 lg:flex-row lg:px-[120px] lg:py-12">
+        <div className="flex max-w-[498px] flex-col gap-4">
+          <div className="inline-flex w-fit items-center justify-center rounded-full border border-[#9d2257] px-[30px] py-1 text-[14px] font-semibold capitalize leading-5 text-[#9d2257]">
+            Program Fee
           </div>
-
-          {/* Right: fee card with side/bottom glow */}
-          <div className="flex-1 flex justify-center lg:justify-end w-full lg:w-auto">
-            <div className="relative w-full max-w-[364px]">
-              {/* Glow around card – matches Figma layer color */}
-              <div
-                className="pointer-events-none absolute -left-4 -right-4 -top-2 -bottom-10 sm:-left-6 sm:-right-6 sm:-top-4 sm:-bottom-12"
-                style={{
-                  background:
-                    "radial-gradient(circle at 0% 50%, rgba(151, 20, 77, 0.55) 0, rgba(151, 20, 77, 0.3) 30%, transparent 65%), radial-gradient(circle at 75% 50%, rgba(151, 20, 77, 0.45) 0, rgba(151, 20, 77, 0.22) 26%, transparent 60%), radial-gradient(circle at 50% 0%, rgba(151, 20, 77, 0.35) 0, rgba(151, 20, 77, 0.18) 24%, transparent 55%), radial-gradient(circle at 45% 100%, rgba(151, 20, 77, 0.35) 0, rgba(151, 20, 77, 0.18) 24%, transparent 55%)",
-                  filter: "blur(35px)",
-                  opacity: 0.5,
-                }}
-              />
-
-              <div
-              className="relative flex flex-col shadow-2xl program-fee-card"
-              style={{
-                width: 364,
-                maxWidth: "100%",
-                borderRadius: 10,
-                padding: 24,
-                gap: 10,
-                background: "rgba(0, 0, 0, 1)",
-                flexDirection: "column",
-              }}
-              >
-              {/* PROGRAM FEE + amount */}
-              <div className="flex flex-col" style={{ gap: "10px" }}>
-                <p
-                  className="program-fee-card-label"
-                  style={{
-                    fontFamily:
-                      "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                    fontWeight: 600,
-                    fontSize: "12px",
-                    lineHeight: "21px",
-                    letterSpacing: "0%",
-                    color: "rgba(250, 250, 250, 0.8)",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  PROGRAM FEE
-                </p>
-
-                <p
-                  className="program-fee-amount"
-                  style={{
-                    fontFamily:
-                      "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                    fontWeight: 500,
-                    fontSize: "32px",
-                    lineHeight: "48px",
-                    letterSpacing: "0%",
-                    color: "rgba(250, 250, 250, 1)",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  Rs 40,000
-                </p>
-              </div>
-
-              <div className="flex flex-col" style={{ gap: "10px" }}>
-                <p
-                  className="program-fee-includes"
-                  style={{
-                    fontFamily:
-                      "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                    fontWeight: 400,
-                    fontSize: "12px",
-                    lineHeight: "100%",
-                    color: "rgba(250, 250, 250, 1)",
-                  }}
-                >
-                  The program fee includes:
-                </p>
-
-                <div
-                  className="flex flex-col"
-                  style={{
-                    gap: "10px",
-                  }}
-                >
-                  {[
-                    "Comprehensive training & placement support",
-                    "All learning materials and resources",
-                  ].map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-start"
-                      style={{
-                        gap: 10,
-                      }}
-                    >
-                      <div
-                        className="flex items-center justify-center"
-                        style={{
-                          width: 16,
-                          height: 16,
-                          borderRadius: 100,
-                          backgroundColor: "rgba(250,250,250,0.3)",
-                          flexShrink: 0,
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontSize: 10,
-                            lineHeight: 1,
-                            color: "rgba(250,250,250,1)",
-                          }}
-                        >
-                          ✓
-                        </span>
-                      </div>
-
-                      <p
-                        className="program-fee-list-text"
-                        style={{
-                          fontFamily:
-                            "Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                          fontWeight: 400,
-                          fontSize: "12px",
-                          lineHeight: "100%",
-                          color: "rgba(250, 250, 250, 1)",
-                        }}
-                      >
-                        {item}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              </div>
-            </div>
+          <h2 className="text-[24px] font-semibold leading-normal text-[#9d2257]">
+            An investment in your skills, preparation, and career progression.
+          </h2>
+          <div className="space-y-2 text-[14px] text-[rgba(34,31,32,0.8)]">
+            <p>
+              *Enrolment fee of ₹2360 is payable over and above program fee. This covers the interview preparation and assessment fees, and is non-refundable.
+            </p>
+            <p>*Flexible EMI and education loan assistance available.</p>
           </div>
+        </div>
+
+        <div className="w-full max-w-[479px] rounded-[10px] border border-[#9d2257] bg-[#ffe7f1] p-6">
+          <p className="text-[14px] uppercase leading-[21px] text-[#231f20]">Program Fee</p>
+          <p className="mt-1 text-[#9d2257]">
+            <span className="text-[32px] font-semibold leading-8">₹49,500*</span>
+            <span className="text-[20px] font-semibold leading-8"> (+ Applicable Taxes &amp; Charges)</span>
+          </p>
+          <p className="mt-3 text-[16px] text-[rgba(34,31,32,0.8)]">The program fee includes:</p>
+          <ul className="mt-2 flex flex-col gap-1">
+            {INCLUSIONS.map((item) => (
+              <li key={item} className="flex items-start gap-2.5">
+                <img src={checkIcon} alt="" className="mt-0.5 h-4 w-4 shrink-0" />
+                <span className="text-[16px] text-[rgba(34,31,32,0.8)]">{item}</span>
+              </li>
+            ))}
+          </ul>
+          <a
+            href={PAYMENT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-2 rounded-[10px] bg-[#9d2257] px-6 py-4 text-[14px] font-semibold text-white shadow-[0px_2px_6px_rgba(0,0,0,0.15),0px_1px_2px_rgba(0,0,0,0.3)] transition-colors duration-200 hover:bg-[rgba(157,34,87,0.7)]"
+          >
+            Enrol &amp; Pay Now
+            <img src={payIcon} alt="" className="h-[18px] w-[18px]" />
+          </a>
         </div>
       </div>
     </section>
   );
 }
-

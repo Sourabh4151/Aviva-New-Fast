@@ -2,8 +2,9 @@ import React, { useState, useRef, useEffect, useMemo } from "react";
 
 // Import assets so Vite bundles them and production URLs work (raw /src/assets/ paths 404 after build).
 // Use desktop.jpg or aviva_ds_hero.jpg depending on which file you have in src/assets/.
-import heroImage from "../assets/desktop.png";
-import tickSvg from "../assets/tick.svg";
+import heroImage from "../assets/figma/hero.png";
+import tickSvg from "../assets/figma/hero-tick.svg";
+import downloadIcon from "../assets/figma/download.svg";
 import stateCities from "../data/indian_state_cities.json";
 import DownloadBrochureModal from "./DownloadBrochureModal";
 const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
@@ -330,82 +331,58 @@ export default function Hero() {
     status.message.includes("already in our system");
 
   return (
-    <section id="hero" className="relative max-lg:bg-black">
-      {/* Hero background: fixed height on lg+; on smaller screens height follows content so the callback form is not covered. */}
-      <div
-        className="w-full min-h-0 lg:h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[40%_center] lg:bg-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
-        role="img"
-        aria-label="Aviva hero"
-      >
-        {/* Gradient only: in-flow hero-container below must not sit inside a fixed-height absolute layer (mobile overflow painted over the callback form). */}
-        <div
-          className="pointer-events-none absolute inset-0 z-0"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.8)), linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.5) 85%, rgba(0, 0, 0, 0.85) 95%, rgba(0, 0, 0, 1) 100%)",
-          }}
-          aria-hidden
+    <section id="hero" className="relative bg-[#231f20] pt-[96px] lg:-mb-[34.5px]">
+      <div className="hero-container relative z-0 min-h-[640px] w-full overflow-hidden lg:h-[626px] lg:min-h-0">
+        <img
+          src={heroImage}
+          alt=""
+          className="hero-photo pointer-events-none absolute inset-0 h-full w-full object-cover"
         />
-        <div className="pointer-events-none absolute left-0 right-0 bottom-0 z-[1] h-8 bg-black" />
-        <div className="hero-container relative z-10 lg:h-full">
-          <div className="absolute left-[120px] top-[200px] lg:top-[152px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
-            <div className="hero-logo-badge mb-3 md:mb-4 flex flex-col items-start gap-4 max-lg:gap-3">
-              <div className="hero-badge inline-flex items-center justify-center text-center text-[14px] font-semibold text-white rounded-full border border-white px-4 py-2">
-                Elevate Banking Program
+        <div className="absolute left-6 top-[48px] z-10 flex w-[586px] max-w-[calc(100%-2rem)] flex-col gap-4 text-white left-adjust hero-left-adjust sm:left-10 lg:left-[120px] lg:top-[254px] lg:gap-7">
+          <div className="flex flex-col gap-3 lg:gap-4">
+            <div className="hero-logo-badge flex flex-col items-start gap-2">
+              <div className="hero-badge inline-flex items-center justify-center rounded-full border border-[#fafafa] px-6 py-2.5 text-center font-sans text-[14px] font-semibold leading-[normal] text-[#fafafa]">
+                Axis Bank Virtual Relationship Manager Program
               </div>
+              <h1 className="hero-title font-sans text-[36px] font-semibold leading-[normal] text-[#fafafa] sm:text-[48px]">
+                Accelerate your growth in Financial Services
+              </h1>
             </div>
-            <h1 className="hero-title text-[40px] sm:text-[40px] md:text-[40px] lg:text-[48px] font-semibold leading-[1] mb-3 md:mb-4">
-              Get Hired, Get Trained, Get Ahead
-            </h1>
-            <ul className="hero-bullet-list text-gray-200 space-y-2 sm:space-y-4 mb-2 lg:mb-8">
-              <li className="flex items-start gap-2 sm:gap-3 min-w-0">
-                <span className="hero-tick">
-                  <img src={tickSvg} alt="tick" className="hero-tick-icon" />
-                </span>
-                <span className="hero-subtitle min-w-0 font-['Poppins',ui-sans-serif,system-ui,sans-serif] text-[14px] sm:text-base font-normal not-italic leading-[1.45] tracking-normal text-[rgba(250,250,250,1)]">
-                  Join as a Virtual Relationship Manager and secure a CTC of upto Rs 2.41 LPA
+            <ul className="hero-bullet-list flex flex-col gap-2">
+              <li className="flex items-start gap-2.5">
+                <img src={tickSvg} alt="" className="mt-0.5 h-5 w-5 shrink-0" />
+                <span className="font-sans text-[16px] font-normal leading-[normal] text-[#fafafa]">
+                  Join as a Virtual Relationship Manager and secure a CTC of up to ₹3.5* LPA
                 </span>
               </li>
-              <li className="flex items-start gap-2 sm:gap-3 min-w-0">
-                <span className="hero-tick">
-                  <img src={tickSvg} alt="tick" className="hero-tick-icon" />
-                </span>
-                <span className="hero-bullet-secondary min-w-0 text-[14px] sm:text-[16px] leading-[1.45] font-normal font-['Poppins',ui-sans-serif,system-ui,sans-serif] text-[rgba(250,250,250,1)]">Build meaningful client relationships and drive real business impact through high-value conversations
-                </span>
-              </li>
-              <li className="flex items-start gap-2 sm:gap-3 min-w-0">
-                <span className="hero-tick">
-                  <img src={tickSvg} alt="tick" className="hero-tick-icon" />
-                </span>
-                <span className="hero-bullet-secondary min-w-0 text-[14px] sm:text-[16px] leading-[1.45] font-normal font-['Poppins',ui-sans-serif,system-ui,sans-serif] text-[rgba(250,250,250,1)]">4-week training designed to prepare you for the role
+              <li className="flex items-center gap-2.5">
+                <img src={tickSvg} alt="" className="h-5 w-5 shrink-0" />
+                <span className="font-sans text-[16px] font-normal leading-[normal] text-[#fafafa]">
+                  5-weeks online program
                 </span>
               </li>
             </ul>
-            <div className="register-btn-wrap mt-2 max-lg:mb-3 lg:mt-4">
-              <button
-                type="button"
-                className="download-brochure-btn border-0"
-                onClick={() => setShowBrochureModal(true)}
-              >
-                Download Brochure
-              </button>
-            </div>
+          </div>
+          <div className="register-btn-wrap max-lg:mb-3">
+            <button
+              type="button"
+              className="download-brochure-btn border-0"
+              onClick={() => setShowBrochureModal(true)}
+            >
+              Download Brochure
+              <img src={downloadIcon} alt="" className="h-5 w-5" />
+            </button>
           </div>
         </div>
       </div>
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:z-20 lg:absolute lg:right-[120px] lg:top-[70px] lg:mt-0 lg:w-[373px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${alreadyInSystem || hasValidationError ? "lg:min-h-[520px]" : "lg:min-h-[471px]"
-          }`}
-        style={{
-          backgroundColor: "rgba(21, 6, 7, 1)",
-        }}
+        className="hero-form-card relative z-20 mx-4 -mt-8 flex w-auto flex-col justify-between rounded-2xl bg-[#fafafa] p-6 text-[#231f20] shadow-[0px_4px_4px_rgba(0,0,0,0.15),0px_1px_1.5px_rgba(0,0,0,0.3)] sm:mx-auto sm:w-[373px] lg:absolute lg:right-[120px] lg:top-[112px] lg:mx-0 lg:mt-0 lg:w-[373px] lg:px-8 lg:py-6"
       >
         <div>
-          <h3 className="hero-form-title text-[18px] font-semibold mb-1">Request a Callback!</h3>
-          <p className="hero-form-subtitle text-sm text-[rgba(250,250,250,0.6)] mb-3">Talk to our counsellors to know more</p>
+          <h3 className="hero-form-title mb-1 text-[18px] font-semibold text-[#97144d]">Apply Now</h3>
+          <p className="hero-form-subtitle mb-4 text-[14px] leading-[21px] text-[#231f20]">Talk to our counsellors to know more</p>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -462,7 +439,7 @@ export default function Hero() {
               onChange={handleChange}
               required
               placeholder="Full Name"
-              className="callback-input w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)]"
+              className="callback-input w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[#231f20] bg-transparent text-[#231f20] outline-none placeholder:text-[#231f20] focus:border-[#97144d] focus:outline-none focus:ring-0"
             />
             {errors.name && (
               <p className="mt-1 text-[12px] text-red-400">
@@ -475,7 +452,7 @@ export default function Hero() {
               onChange={handleChange}
               required
               placeholder="Email"
-              className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] callback-input"
+              className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[#231f20] bg-transparent text-[#231f20] outline-none placeholder:text-[#231f20] focus:border-[#97144d] focus:outline-none focus:ring-0 callback-input"
             />
             {errors.email && (
               <p className="mt-1 text-[12px] text-red-400">
@@ -485,7 +462,7 @@ export default function Hero() {
             {/* Custom dropdown to ensure consistent styling across browsers */}
             <div ref={stateRef} className="relative">
               <div
-                className="custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] font-normal text-[14px] flex items-center justify-between gap-2 cursor-text"
+                className="custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[#231f20] bg-transparent text-[#231f20] outline-none placeholder:text-[#231f20] focus:border-[#97144d] focus:outline-none focus:ring-0 font-normal text-[14px] flex items-center justify-between gap-2 cursor-text"
               >
                 <input
                   ref={stateInputRef}
@@ -521,7 +498,7 @@ export default function Hero() {
                   autoComplete="off"
                   aria-autocomplete="list"
                   aria-expanded={stateOpen}
-                  className="w-full min-w-0 bg-transparent border-0 outline-none focus:outline-none focus:ring-0 text-[14px] text-white placeholder:text-[rgba(250,250,250,0.6)]"
+                  className="w-full min-w-0 border-0 bg-transparent text-[14px] text-[#231f20] outline-none placeholder:text-[#231f20] focus:outline-none focus:ring-0"
                 />
                 <button
                   type="button"
@@ -534,14 +511,14 @@ export default function Hero() {
                   }}
                   className="shrink-0"
                 >
-                  <svg className="h-4 w-4 text-[rgba(250,250,250,0.6)]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <svg className="h-4 w-4 text-[#231f20]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                     <path d="M6 8L10 12L14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               </div>
 
               {stateOpen && (
-                <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2">
+                <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[#231f20]/15 bg-white py-2 shadow-lg">
                   {filteredStates.length > 0 ? (
                     filteredStates.map((s) => (
                       <li
@@ -552,13 +529,13 @@ export default function Hero() {
                           e.preventDefault();
                           selectState(s);
                         }}
-                        className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
+                        className="cursor-pointer px-4 py-2 text-[14px] text-[#231f20] hover:bg-[#ffe7f1] hover:text-[#97144d]"
                       >
                         {s}
                       </li>
                     ))
                   ) : (
-                    <li className="px-4 py-2 text-[14px] text-[rgba(250,250,250,0.5)]">
+                    <li className="px-4 py-2 text-[14px] text-[rgba(34,31,32,0.5)]">
                       No states found
                     </li>
                   )}
@@ -574,7 +551,7 @@ export default function Hero() {
               <div
                 onMouseEnter={() => setCityHover(true)}
                 onMouseLeave={() => setCityHover(false)}
-                className={`custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] font-normal text-[14px] flex items-center justify-between gap-2 ${form.state ? "cursor-text" : "cursor-not-allowed opacity-60"
+                className={`custom-select w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[#231f20] bg-transparent text-[#231f20] outline-none placeholder:text-[#231f20] focus:border-[#97144d] focus:outline-none focus:ring-0 font-normal text-[14px] flex items-center justify-between gap-2 ${form.state ? "cursor-text" : "cursor-not-allowed opacity-60"
                   }`}
               >
                 {form.state ? (
@@ -612,10 +589,10 @@ export default function Hero() {
                     autoComplete="off"
                     aria-autocomplete="list"
                     aria-expanded={cityOpen}
-                    className="w-full min-w-0 bg-transparent border-0 outline-none focus:outline-none focus:ring-0 text-[14px] text-white placeholder:text-[rgba(250,250,250,0.6)]"
+                    className="w-full min-w-0 border-0 bg-transparent text-[14px] text-[#231f20] outline-none placeholder:text-[#231f20] focus:outline-none focus:ring-0"
                   />
                 ) : (
-                  <span className="flex-1 text-[14px] text-[rgba(250,250,250,0.6)]">
+                  <span className="flex-1 text-[14px] text-[#231f20]">
                     {cityHover ? "Select State First" : "City"}
                   </span>
                 )}
@@ -632,14 +609,14 @@ export default function Hero() {
                   }}
                   className="shrink-0 disabled:opacity-60"
                 >
-                  <svg className="h-4 w-4 text-[rgba(250,250,250,0.6)]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <svg className="h-4 w-4 text-[#231f20]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                     <path d="M6 8L10 12L14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               </div>
 
               {cityOpen && form.state && (
-                <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2">
+                <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[#231f20]/15 bg-white py-2 shadow-lg">
                   {filteredCities.length > 0 ? (
                     filteredCities.map((c) => (
                       <li
@@ -650,13 +627,13 @@ export default function Hero() {
                           e.preventDefault();
                           selectCity(c);
                         }}
-                        className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
+                        className="cursor-pointer px-4 py-2 text-[14px] text-[#231f20] hover:bg-[#ffe7f1] hover:text-[#97144d]"
                       >
                         {c}
                       </li>
                     ))
                   ) : (
-                    <li className="px-4 py-2 text-[14px] text-[rgba(250,250,250,0.5)]">
+                    <li className="px-4 py-2 text-[14px] text-[rgba(34,31,32,0.5)]">
                       No cities found
                     </li>
                   )}
@@ -676,7 +653,7 @@ export default function Hero() {
                   onChange={handleChange}
                   required
                   placeholder="Mobile Number"
-                  className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] callback-input"
+                  className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[#231f20] bg-transparent text-[#231f20] outline-none placeholder:text-[#231f20] focus:border-[#97144d] focus:outline-none focus:ring-0 callback-input"
                 />
                 {errors.mobile && (
                   <p className="mt-1 text-[12px] text-red-400">
@@ -684,7 +661,7 @@ export default function Hero() {
                   </p>
                 )}
                 {!alreadyInSystem && (
-                  <p className="hero-form-otp-text text-[12px] leading-[18px] font-normal text-[rgba(250,250,250,0.6)]">
+                  <p className="hero-form-otp-text text-[12px] font-normal leading-[18px] text-[#231f20]">
                     You’ll receive an OTP on this number for verification
                   </p>
                 )}
@@ -709,10 +686,10 @@ export default function Hero() {
                     />
                     <span
                       aria-hidden
-                      className="pointer-events-none block h-[8px] w-[8px] rounded-[1px] border border-[rgba(250,250,250,1)] bg-transparent transition-colors duration-150 peer-checked:bg-[rgba(250,250,250,1)]"
+                      className="pointer-events-none block h-[8px] w-[8px] rounded-[1px] border border-[#231f20] bg-transparent transition-colors duration-150 peer-checked:bg-[#97144d]"
                     />
                   </span>
-                  <span className="hero-form-otp-text min-w-0 flex-1 text-[12px] leading-[18px] font-normal text-[rgba(250,250,250,0.6)]">
+                  <span className="hero-form-otp-text min-w-0 flex-1 text-[12px] font-normal leading-[18px] text-[#231f20]">
                     I consent to being contacted by the Crack-ED team on the mobile number provided regarding this program
                   </span>
                 </label>
@@ -724,7 +701,7 @@ export default function Hero() {
 
             {showOtp && (
               <>
-                <p className="hero-form-otp-text text-[12px] leading-[18px] font-normal text-[rgba(250,250,250,0.6)]">
+                <p className="hero-form-otp-text text-[12px] font-normal leading-[18px] text-[#231f20]">
                   Enter OTP sent to your mobile number
                 </p>
                 <div className="flex gap-2">
@@ -747,7 +724,7 @@ export default function Hero() {
                           }
                         }
                       }}
-                      className="w-12 h-12 rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] text-center text-[18px] text-white callback-input"
+                      className="callback-input h-12 w-12 rounded-[10px] border border-[#231f20] bg-transparent text-center text-[18px] text-[#231f20] outline-none focus:border-[#97144d] focus:outline-none focus:ring-0"
                       aria-label={`OTP digit ${i + 1}`}
                     />
                   ))}
@@ -766,7 +743,7 @@ export default function Hero() {
           <button
             type="button"
             onClick={(e) => (showOtp ? verifyOtp(e) : handleSubmit(e))}
-            className="h-[52px] w-[206px] rounded-[10px] bg-[rgba(151,20,77,1)] hover:bg-[rgba(151,20,77,0.7)] text-white text-[14px] font-medium tracking-[0.02em] shadow-[0_12px_30px_rgba(0,0,0,0.45)] transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+            className="h-[52px] w-[206px] rounded-[10px] bg-[#97144d] font-sans text-[16px] font-medium tracking-[0.32px] text-[#fafafa] transition-colors duration-200 hover:bg-[rgba(151,20,77,0.7)] disabled:cursor-not-allowed disabled:opacity-70"
             disabled={isSendingOtp || isVerifyingOtp}
           >
             {showOtp

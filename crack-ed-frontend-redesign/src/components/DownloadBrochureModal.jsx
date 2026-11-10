@@ -303,7 +303,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
 
         <form onSubmit={primaryHandler} className="brochure-modal-form">
           {statusMessage && step !== "verified" && (
-            <p className="text-sm text-red-400" role="alert">
+            <p className="text-sm text-red-600" role="alert">
               {statusMessage}
             </p>
           )}
@@ -317,9 +317,9 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
                 if (errors.name) setErrors((prev) => ({ ...prev, name: "" }));
               }}
               placeholder="Full Name"
-              className="callback-input w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)]"
+              className="callback-input w-full px-4 h-[50px] rounded-[10px] border border-[#231f20] bg-transparent text-[#231f20] outline-none placeholder:text-[#231f20] focus:border-[#97144d] focus:outline-none focus:ring-0"
             />
-            {errors.name && <p className="text-[12px] text-red-400">{errors.name}</p>}
+            {errors.name && <p className="text-[12px] text-red-600">{errors.name}</p>}
 
             <input
               name="mobile"
@@ -330,9 +330,9 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
               }}
               placeholder="Mobile Number"
               inputMode="numeric"
-              className="callback-input w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)]"
+              className="callback-input w-full px-4 h-[50px] rounded-[10px] border border-[#231f20] bg-transparent text-[#231f20] outline-none placeholder:text-[#231f20] focus:border-[#97144d] focus:outline-none focus:ring-0"
             />
-            {errors.mobile && <p className="text-[12px] text-red-400">{errors.mobile}</p>}
+            {errors.mobile && <p className="text-[12px] text-red-600">{errors.mobile}</p>}
 
             {step === "form" && (
               <p className="brochure-modal-helper">
@@ -369,13 +369,13 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
                           otpRefs.current[i - 1]?.focus();
                         }
                       }}
-                      className="w-12 h-12 rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] text-center text-[18px] text-white callback-input"
+                      className="callback-input h-12 w-12 rounded-[10px] border border-[#231f20] bg-transparent text-center text-[18px] text-[#231f20] outline-none focus:border-[#97144d] focus:outline-none focus:ring-0"
                       aria-label={`OTP digit ${i + 1}`}
                     />
                   ))}
                 </div>
                 {otpError && (
-                  <p className="text-[12px] text-red-400" role="alert">
+                  <p className="text-[12px] text-red-600" role="alert">
                     {otpError}
                   </p>
                 )}
@@ -387,7 +387,7 @@ export default function DownloadBrochureModal({ isOpen, onClose }) {
             <button
               type="submit"
               disabled={primaryDisabled}
-              className="otp-btn h-[52px] w-[206px] shadow-[0_12px_30px_rgba(0,0,0,0.45)] disabled:opacity-70 disabled:cursor-not-allowed"
+              className="otp-btn h-[52px] w-[206px] font-sans text-[16px] font-medium tracking-[0.32px] disabled:cursor-not-allowed disabled:opacity-70"
             >
               {primaryLabel}
             </button>

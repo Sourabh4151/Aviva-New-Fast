@@ -1,164 +1,78 @@
 import React from "react";
-import enrollmentImage from "../assets/enrollment.png";
+import icon1 from "../assets/figma/journey-1.svg";
+import icon2 from "../assets/figma/journey-2.svg";
+import icon3 from "../assets/figma/journey-3.svg";
+import icon4 from "../assets/figma/journey-4.svg";
+import icon5 from "../assets/figma/journey-5.svg";
+import icon6 from "../assets/figma/journey-6.svg";
 
 const STEPS = [
   {
-    number: "01",
-    title: "Application & Screening",
-    description:
-      "Complete your application and AI interview. Pay the Rs 2,500 registration fee to  proceed to the employer round.",
+    icon: icon1,
+    title: "Screening",
+    detail: "Fill application form and appear for Crack-ED screening interview.",
   },
   {
-    number: "02",
-    title: "Selection & Offer",
-    description:
-      "Upon selection, receive your Letter of Intent (LOI) before you start training.",
+    icon: icon2,
+    title: "Assessment",
+    detail: "Complete the Axis Bank’s Assessment.",
   },
   {
-    number: "03",
-    title: "Enrollment & Training",
-    description:
-      "Finalize your enrollment by paying the balance program fee to begin your 4-week professional classroom training and certification.",
+    icon: icon3,
+    title: "HR & Technical Interview",
+    detail: "Appear online for Axis Bank’s HR & Technical Interview.",
   },
   {
-    number: "04",
-    title: "Proficiency Assessment",
-    description:
-      "Complete a communication test (Versant) during training to validate your skills, with a second attempt provided if required.",
+    icon: icon4,
+    title: "Enrollment",
+    detail: "Receive provisional offer letter and enroll for the program.",
   },
   {
-    number: "05",
+    icon: icon5,
+    title: "166 Hours Training",
+    detail: "Complete 5 weeks of virtual classroom training with Crack-ED.",
+  },
+  {
+    icon: icon6,
     title: "Onboarding",
-    description:
-      "Join full-time upon clearing the test. If unsuccessful after two attempts, receive a refund or an alternate placement.",
+    detail: "Join Axis Bank as a VRM (Assistant Manager Grade)",
   },
 ];
 
 export default function EnrollmentProcess() {
-  const [hoveredStep, setHoveredStep] = React.useState(null);
-
-  const handleHoverChange = (stepNumber) => {
-    if (typeof window !== "undefined" && window.innerWidth >= 1024) {
-      setHoveredStep(stepNumber);
-    }
-  };
-
   return (
-    <section
-      id="enrollment-process"
-      className="relative bg-black text-white scroll-mt-24 overflow-hidden"
-    >
-      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-20">
-        {/* Top: Badge + Heading */}
-        <div className="flex flex-col items-start text-left">
-          <div
-            className="inline-flex items-center justify-center h-[35px] text-sm font-medium tracking-normal rounded-full border border-white/30 py-1 px-[30px] text-white/70 leading-[27px]"
-            style={{
-              fontFamily:
-                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-            }}
-          >
-            Candidate Journey
+    <section id="enrollment-process" className="scroll-mt-28 bg-[#fafafa]">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-8 px-6 py-12 sm:px-10 lg:px-[80px] lg:py-12">
+        <div className="mx-auto flex max-w-[850px] flex-col items-center gap-4 text-center">
+          <div className="inline-flex items-center justify-center rounded-full border border-[#97144d] px-[30px] py-1 text-[14px] font-medium capitalize leading-[27px] text-[#97144d]">
+            Candidates Journey
           </div>
-
-          <p
-            className="mt-4 sm:mt-6 text-[24px] font-medium tracking-normal leading-[31.2px]"
-            style={{
-              fontFamily:
-                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-              color: "rgba(250, 250, 250, 1)",
-            }}
-          >
-            A simple, step-by-step process designed to help you get started with
-            confidence.
-          </p>
+          <h2 className="text-[22px] font-semibold leading-normal text-[#9d2257] sm:text-[24px]">
+            A simple, step-by-step process designed to help you get started with confidence.
+          </h2>
         </div>
 
-        {/* Bottom: Image + Steps */}
-        <div className="mt-8 sm:mt-12 flex flex-col lg:flex-row gap-6 lg:gap-8">
-          {/* Left: Image card */}
-          <div className="flex-1 flex justify-start min-w-0">
-            <div
-              className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[345px] sm:h-[460px] lg:h-[640px] p-0 sm:p-0 lg:p-6 lg:rounded-[10px] enrollment-image-mobile"
-            >
-              <img
-                src={enrollmentImage}
-                alt="Enrollment process"
-                className="w-full h-full object-cover sm:rounded-[10px]"
-              />
-            </div>
-          </div>
-
-          {/* Right: Steps */}
-          <div className="flex-1 flex flex-col justify-center min-w-0">
-            <div className="flex flex-col gap-6 sm:gap-8 max-w-full lg:max-w-[426px]">
-              {STEPS.map((step) => (
-                <div
-                  key={step.number}
-                  className="flex flex-row items-stretch gap-3 sm:gap-4"
-                  onMouseEnter={() => handleHoverChange(step.number)}
-                  onMouseLeave={() => handleHoverChange(null)}
-                >
-                  {(() => {
-                    const isHovered = hoveredStep === step.number;
-                    const accentColor = "rgba(151, 20, 77, 1)";
-                    const defaultLineColor = "rgba(250,250,250,0.25)";
-                    const defaultTextColor = "rgba(250,250,250,1)";
-
-                    return (
-                      <>
-                        {/* Line for this step */}
-                        {/* Mobile: dynamic height line with brand color */}
-                        <div
-                          className="block lg:hidden flex-shrink-0 w-0 border-l self-stretch"
-                          style={{ borderLeftColor: accentColor }}
-                        />
-                        {/* Desktop: dynamic line that reacts to hover */}
-                        <div
-                          className="hidden lg:block flex-shrink-0 w-0 self-stretch"
-                          style={{
-                            borderLeft: `${isHovered ? 2 : 1}px solid ${isHovered ? accentColor : defaultLineColor}`,
-                          }}
-                        />
-
-                        {/* Text block */}
-                        <div
-                          className="flex flex-col"
-                          style={{
-                            gap: 10,
-                          }}
-                        >
-                          <h3
-                            className="font-semibold text-[18px] leading-[27px] tracking-normal text-justify min-w-0"
-                            style={{
-                              fontFamily:
-                                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                              color: isHovered ? accentColor : "rgba(250, 250, 250, 1)",
-                            }}
-                          >
-                            {step.number} - {step.title}
-                          </h3>
-                          <p
-                            className="font-normal text-[14px] leading-[21px] tracking-normal text-justify"
-                            style={{
-                              fontFamily:
-                                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                              color: "rgba(250, 250, 250, 0.8)",
-                            }}
-                          >
-                            {step.description}
-                          </p>
-                        </div>
-                      </>
-                    );
-                  })()}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <ol className="relative grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
+          <span
+            className="pointer-events-none absolute inset-x-0 top-[39px] hidden h-[2px] rounded-full bg-[#97144d] lg:block"
+            aria-hidden="true"
+          />
+          {STEPS.map((step, index) => (
+            <li key={step.title} className="relative flex flex-col items-center text-center">
+              <div className="relative z-10 flex flex-col items-center">
+                <span className="flex h-20 w-20 items-center justify-center rounded-full border border-[#97144d] bg-[#fafafa]">
+                  <img src={step.icon} alt="" className="h-10 w-10" />
+                </span>
+                <span className="-mt-5 flex h-8 w-8 items-center justify-center rounded-full bg-[#97144d] text-[20px] font-medium text-[#fafafa]">
+                  {index + 1}
+                </span>
+              </div>
+              <p className="mt-3 text-[16px] font-medium leading-normal text-[#231f20]">{step.title}</p>
+              <p className="mt-2 text-[14px] leading-normal text-[rgba(35,31,32,0.8)]">{step.detail}</p>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
 }
-

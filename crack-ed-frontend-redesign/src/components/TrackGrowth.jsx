@@ -1,105 +1,67 @@
 import React from "react";
-import alignmentIcon from "../assets/alignment.svg";
-import progressIcon from "../assets/progress.svg";
-import reviewIcon from "../assets/review.svg";
+import jobIcon from "../assets/figma/icon-job.svg";
+import trainingIcon from "../assets/figma/icon-training.svg";
+import financeIcon from "../assets/figma/icon-finance.svg";
 
 const ITEMS = [
   {
-    key: "alignment",
-    icon: alignmentIcon,
-    title: "Role Alignment Reviews",
+    key: "job",
+    icon: jobIcon,
+    iconClass: "h-[60px] w-[60px]",
+    title: "Job Assured Program",
     description:
-      "Understand how your skills match real workplace expectations through guided check-ins at key stages of the program.",
+      "Land an on-roll role as an Assistant Manager with one of India's premier private banking institutions (T&C Apply).",
   },
   {
-    key: "progress",
-    icon: progressIcon,
-    title: "Module Progress Checks",
+    key: "training",
+    icon: trainingIcon,
+    iconClass: "h-5 w-[30px]",
+    title: "5 Weeks of Skill Training",
     description:
-      "Short, structured reviews after each module to help you strengthen your understanding and stay on track.",
+      "Complete a rigorous 166-hour virtual curriculum focused on core banking products, priority portfolio management, and soft skills.",
   },
   {
-    key: "review",
-    icon: reviewIcon,
-    title: "Final Readiness Review",
+    key: "finance",
+    icon: financeIcon,
+    iconClass: "h-10 w-10",
+    title: "Financial Assistance",
     description:
-      "A comprehensive evaluation that brings everything together to confirm you're prepared to step confidently into the role.",
+      "Continue your training journey without worrying about finances through our education loan options.",
   },
 ];
 
 export default function TrackGrowth() {
   return (
-    <section
-      id="track-growth"
-      className="relative bg-black text-white scroll-mt-24 overflow-hidden"
-    >
-      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-20">
-        {/* Heading block */}
-        <div className="max-w-4xl flex flex-col items-start text-left sm:items-center sm:text-center mx-auto">
-          <div
-            className="inline-flex items-center justify-center font-medium rounded-full border border-white/30 py-1 px-[30px] text-[14px] leading-[27px] text-white/70"
-            style={{
-              fontFamily:
-                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-            }}
-          >
-            Track Your Growth
+    <section id="why-this-program" className="scroll-mt-28 bg-[#fafafa]">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-8 px-6 py-12 sm:px-10 lg:px-[120px] lg:py-12">
+        <div className="mx-auto flex max-w-[805px] flex-col items-center gap-4 text-center">
+          <div className="inline-flex items-center justify-center rounded-full border border-[#97144d] px-[30px] py-1 text-[14px] font-semibold capitalize leading-5 text-[#97144d]">
+            Why this program?
           </div>
-
-          <p
-            className="mt-4 sm:mt-6 text-[24px] leading-[36px] font-medium text-white px-2"
-            style={{
-              fontFamily:
-                "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-            }}
-          >
-            Continuous feedback to help you grow into the role with confidence.
-          </p>
+          <h2 className="text-[22px] font-semibold leading-normal text-[#97144d] sm:text-[24px]">
+            Become employed by bridging the gap between your degree &amp; banking skills
+          </h2>
         </div>
 
-        {/* Cards */}
-        <div className="mt-8 sm:mt-12 flex flex-col lg:flex-row gap-4 lg:gap-6 justify-center items-stretch mx-auto max-w-[1040px]">
+        <div className="grid gap-6 lg:grid-cols-3 lg:gap-10">
           {ITEMS.map((item) => (
-            <div key={item.key} className="group flex-1 min-w-0">
-              <div
-                className="h-full rounded-[10px] bg-[#0d0d0d] transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-[0px_16px_40px_rgba(0,0,0,0.55)] pt-6 pb-6 px-4"
-              >
-                <div className="flex flex-col gap-[10px]">
-                  <div className="inline-flex items-center justify-center rounded-[10px] w-16 h-16 bg-[#202020]">
-                    <img
-                      src={item.icon}
-                      alt={item.title}
-                      className="w-16 h-16 object-contain"
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <h3
-                      className="font-semibold text-[18px] leading-[27px] text-white text-justify"
-                      style={{
-                        fontFamily:
-                          "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                      }}
-                    >
-                      {item.title}
-                    </h3>
-                    <p
-                      className="text-[14px] leading-[21px] text-white/80 text-justify"
-                      style={{
-                        fontFamily:
-                          "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                      }}
-                    >
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <article
+              key={item.key}
+              className="flex min-h-[222px] flex-col gap-2 rounded-[12px] border border-[#97144d] bg-[#ffe7f1] px-4 py-6 shadow-[0px_4px_4px_rgba(0,0,0,0.15),0px_1px_1.5px_rgba(0,0,0,0.3)]"
+            >
+              {item.key === "job" ? (
+                <img src={item.icon} alt="" className={item.iconClass} />
+              ) : (
+                <span className="flex h-[60px] w-[60px] items-center justify-center rounded-full border border-[#97144d] bg-[#fafafa]">
+                  <img src={item.icon} alt="" className={item.iconClass} />
+                </span>
+              )}
+              <h3 className="text-[18px] font-semibold text-[#97144d]">{item.title}</h3>
+              <p className="text-[16px] leading-normal text-[rgba(34,31,31,0.8)]">{item.description}</p>
+            </article>
           ))}
         </div>
       </div>
     </section>
   );
 }
-

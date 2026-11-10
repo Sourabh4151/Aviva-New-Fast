@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from "react";
-import crackEdLogo from "../assets/crack-ed_logo.svg";
+import React, { useState } from "react";
+import axisLogo from "../assets/figma/axis-logo.png";
+import crackEdLogo from "../assets/figma/cracked-logo.png";
+
+const SWOOSH_PATH =
+  "M0 0H88L81 1L77 2L74 3L72 4L70 5L68 6L67 7L66 8L64 9L63 10L62 11L61 12V13L60 14L59 15L58 16L57 17V18L56 19L55 20L54 21L53 22V23L52 24L51 25L50 26L49 27V28L48 29L47 30L46 31V32L45 33L44 34L43 35L42 36V37L41 38L40 39L39 40L38 41V42L37 43L36 44L35 45L34 46V47L33 48L32 49L31 50L30 51V52L29 53L28 54L27 55L26 56V57L25 58L24 59L23 60L22 61L21 62L19 63L18 64L16 65L15 66L13 67L10 68L7 69H0Z";
+
+const LINKS = [
+  { href: "#about", label: "About Program" },
+  { href: "#classroom-training", label: "Training" },
+  { href: "#enrollment-process", label: "Enrollment Process" },
+  { href: "#program-fee", label: "Program Fee" },
+];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const sentinel = document.getElementById("navbar-scroll-sentinel");
-    if (!sentinel) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setScrolled(!entry.isIntersecting),
-      { threshold: 0, rootMargin: "0px" }
-    );
-    observer.observe(sentinel);
-    return () => observer.disconnect();
-  }, []);
-
   const closeMobile = () => setMobileOpen(false);
 
   const handleLogoClick = (e) => {
@@ -25,93 +22,89 @@ export default function Navbar() {
       e.stopPropagation();
     }
     closeMobile();
-    // Scroll to top: scrollIntoView on sentinel works regardless of which element scrolls
-    const sentinel = document.getElementById("navbar-scroll-sentinel");
-    if (sentinel) {
-      sentinel.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
-      document.body.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.body.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const navLinks = (
-    <>
-      <a href="#about" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
-        About Program
-      </a>
-      <a href="#training" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
-        Training
-      </a>
-      <a href="#eligibility" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
-        Eligibility
-      </a>
-      <a href="#enrollment-process" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
-        Enrollment Process
-      </a>
-      <a href="#program-fee" className="text-white text-sm font-semibold hover:opacity-90" onClick={closeMobile}>
-        Program Fee
-      </a>
-    </>
-  );
-
   return (
-    <header
-      className="fixed inset-x-0 top-0 z-[100] transition-[background-color] duration-200"
-      style={{ backgroundColor: scrolled ? "rgba(0,0,0,0.85)" : "transparent" }}
-    >
-      <nav className={scrolled ? "backdrop-blur-sm" : ""}>
-        <div className="nav-container py-3 flex items-center justify-between">
-          <div className="flex items-center gap-2 sm:gap-4">
+    <header className="fixed inset-x-0 top-0 z-[100] border-t-[24px] border-solid border-[#97144d] bg-white">
+      <nav className="flex h-[72px] items-stretch bg-white">
+        <a
+          href="#hero"
+          onClick={handleLogoClick}
+          className="flex h-[72px] shrink-0 items-center bg-[#97144d] pl-4 pr-3 sm:pl-8 lg:w-[340.7px] lg:pl-[57px] lg:pr-0"
+          aria-label="Go to top"
+        >
+          <span className="flex -translate-y-3 items-center">
+          <img
+            src={axisLogo}
+            alt="Axis Bank"
+            className="h-[24px] w-auto max-w-[96px] object-contain lg:h-[30.51px] lg:w-[120px] lg:max-w-[120px]"
+          />
+          <span className="mx-2 h-[19px] w-px shrink-0 bg-white lg:mx-4 lg:h-[19.2px]" aria-hidden="true" />
+          <span className="relative block h-[28px] w-[96px] shrink-0 overflow-hidden lg:h-[36.64px] lg:w-[128px]">
+            <img
+              src={crackEdLogo}
+              alt="Crack-ED"
+              className="absolute max-w-none"
+              style={{ width: "115.08%", height: "142.67%", left: "-9.54%", top: "-28%" }}
+            />
+          </span>
+          </span>
+        </a>
+
+        <svg
+          viewBox="0 0 92 70"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          className="hidden h-[72px] w-[92px] shrink-0 lg:block"
+        >
+          <path fill="#97144d" d={SWOOSH_PATH} />
+        </svg>
+
+        <div className="hidden h-[72px] min-w-0 flex-1 items-center justify-end gap-6 pr-[57px] lg:flex">
+          {LINKS.map((link) => (
             <a
-              href="#"
-              onClick={handleLogoClick}
-              className="focus:outline-none inline-block"
-              aria-label="Go to top"
+              key={link.href}
+              href={link.href}
+              className="whitespace-nowrap text-[14px] font-normal leading-none text-[rgba(34,31,32,0.8)] hover:text-[#97144d]"
             >
-              <img
-                src={crackEdLogo}
-                alt="Crack-ED"
-                className="w-28 h-8 sm:w-36 sm:h-10 lg:w-[180px] lg:h-[51px] object-contain cursor-pointer"
-                onError={(e) => (e.currentTarget.style.display = "none")}
-              />
+              {link.label}
             </a>
-          </div>
-
-          {/* Desktop: links (login hidden for now) */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            {navLinks}
-          </div>
-
-          {/* Mobile: menu toggle — fixed size, no background */}
-          <div className="md:hidden flex items-center gap-2 shrink-0">
-            <button
-              type="button"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-white hover:text-white/80 transition-colors"
-              aria-expanded={mobileOpen}
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            >
-              {mobileOpen ? (
-                <span className="text-3xl leading-none font-medium tracking-tight">×</span>
-              ) : (
-                <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
-          </div>
+          ))}
         </div>
 
-        {/* Mobile dropdown menu (login hidden for now) */}
-        {mobileOpen && (
-          <div className="md:hidden border-t border-white/10 backdrop-blur-sm px-4 py-4 flex flex-col gap-3" style={{ backgroundColor: "rgba(0,0,0,0.85)" }}>
-            {navLinks}
-          </div>
-        )}
+        <button
+          type="button"
+          onClick={() => setMobileOpen((open) => !open)}
+          className="ml-auto flex h-[72px] w-14 items-center justify-center text-[#231f20] lg:hidden"
+          aria-expanded={mobileOpen}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+        >
+          {mobileOpen ? (
+            <span className="text-3xl leading-none">×</span>
+          ) : (
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
       </nav>
+
+      {mobileOpen && (
+        <div className="flex flex-col gap-3 border-t border-black/10 bg-white px-6 py-4 lg:hidden">
+          {LINKS.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={closeMobile}
+              className="text-[16px] text-[rgba(34,31,32,0.8)]"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
     </header>
   );
 }
-

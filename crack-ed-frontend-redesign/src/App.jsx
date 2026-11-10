@@ -3,35 +3,35 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import AdmissionStrip from "./components/AdmissionStrip";
 import About from "./components/About";
-import CareerGrowth from "./components/CareerGrowth";
-import TrainingJourney from "./components/TrainingJourney";
-import ClassroomTraining from "./components/ClassroomTraining";
 import TrackGrowth from "./components/TrackGrowth";
-import Eligibility from "./components/Eligibility";
+import CareerGrowth from "./components/CareerGrowth";
 import EnrollmentProcess from "./components/EnrollmentProcess";
+import ClassroomTraining from "./components/ClassroomTraining";
+import Eligibility from "./components/Eligibility";
+import Certificate from "./components/Certificate";
 import ProgramFee from "./components/ProgramFee";
+import Faq from "./components/Faq";
 import HaveQuestionsBanner from "./components/HaveQuestionsBanner";
 import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[#fafafa] text-[#231f20]">
       <Navbar />
-      {/* Sentinel for navbar scroll background: when this leaves the viewport, navbar gets black background */}
       <div id="navbar-scroll-sentinel" className="h-px w-full pointer-events-none" aria-hidden="true" />
       <Hero />
       <AdmissionStrip />
       <About />
-      <CareerGrowth />
-      <TrainingJourney />
-      <ClassroomTraining />
       <TrackGrowth />
-      <Eligibility />
+      <CareerGrowth />
       <EnrollmentProcess />
+      <ClassroomTraining />
+      <Eligibility />
+      <Certificate />
       <ProgramFee />
+      <Faq />
       <HaveQuestionsBanner />
-      <Footer/>
+      <Footer />
     </div>
   );
 }
-
