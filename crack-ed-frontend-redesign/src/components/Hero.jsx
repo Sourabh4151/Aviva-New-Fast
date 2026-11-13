@@ -36,8 +36,20 @@ const GRADUATION_YEARS = Array.from(
   (_, i) => String(CURRENT_YEAR - i)
 );
 
-const BROCHURE_PDF_FILE = "Housing Finance Pragati Program.pdf";
-const BROCHURE_PDF_URL = `/${encodeURI(BROCHURE_PDF_FILE)}`;
+const BROCHURE_PDF_FILES = ["HHFPP (RM) online.pdf", "HHFPP (RM) offline.pdf"];
+
+function downloadBrochures() {
+  BROCHURE_PDF_FILES.forEach((file, i) => {
+    setTimeout(() => {
+      const link = document.createElement("a");
+      link.href = `/${encodeURI(file)}`;
+      link.download = file;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }, i * 300);
+  });
+}
 
 function parseAge(value) {
   const trimmed = (value || "").trim();
@@ -383,13 +395,13 @@ export default function Hero() {
 
       {/* Hero background: desktop fixed height; mobile uses shorter min-height so content isn’t followed by a tall empty band before the form. */}
       <div
-        className="w-full min-h-[580px] sm:min-h-[600px] lg:h-[690px] lg:min-h-0 bg-cover bg-no-repeat relative max-lg:bg-[20%_center] max-lg:pb-4 lg:bg-center"
+        className="w-full min-h-[580px] sm:min-h-[600px] lg:h-[690px] lg:min-h-0 bg-cover bg-no-repeat relative max-lg:bg-[20%_center] lg:bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
         role="img"
         aria-label="Aviva hero"
       >
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 max-lg:relative max-lg:min-h-[580px] sm:max-lg:min-h-[600px] max-lg:pb-6"
           style={{
             zIndex: 10,
             background:
@@ -398,7 +410,7 @@ export default function Hero() {
         >
           <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none" />
           <div className="hero-container relative">
-            <div className="absolute left-[120px] top-[135px] lg:top-[200px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
+            <div className="absolute left-[120px] top-[135px] lg:top-[185px] w-[586px] max-w-[calc(100%-2rem)] text-white left-adjust hero-left-adjust">
               {/* Frame stack: vertical flow, 8px gap (Figma Frame 307) */}
               <div className="flex flex-col gap-2 w-full">
                 <div className="hero-logo-badge hero-finance-logo flex flex-col w-fit h-fit shrink-0">
@@ -422,7 +434,7 @@ export default function Hero() {
                     className="hero-subtitle text-[16px] leading-[120%] font-normal tracking-[0em] text-[rgba(250,250,250,1)]"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
-                    Join as a Relationship Manager - Mortgage Sales and secure a CTC of Rs 2.75 LPA + incentives
+                    Join as a Relationship Manager - Mortgage Sales and secure a CTC of up to ₹4.13 LPA*
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
@@ -444,15 +456,23 @@ export default function Hero() {
                   </span>
                 </li>
               </ul>
-              <div className="register-btn-wrap max-lg:mb-6 lg:mb-0">
-                <a
-                  href={BROCHURE_PDF_URL}
-                  download={BROCHURE_PDF_FILE}
-                  className="download-brochure-btn"
-                  aria-label="Download brochure PDF"
+              <div className="flex w-full min-w-0 flex-col items-start gap-4 max-lg:mb-6 lg:mb-0">
+                <div className="register-btn-wrap">
+                  <button
+                    type="button"
+                    onClick={downloadBrochures}
+                    className="download-brochure-btn border-0"
+                    aria-label="Download brochure PDFs"
+                  >
+                    Download Brochure
+                  </button>
+                </div>
+                <p
+                  className="w-full text-[14px] font-normal leading-[140%] tracking-[0em] text-white max-lg:text-center"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
                 >
-                  Download Brochure
-                </a>
+                  *₹3.28 Fixed Salary for Delhi, ₹2.75 Fixed Salary for other cities + ₹ 85,000 average incentives
+                </p>
               </div>
             </div>
           </div>
