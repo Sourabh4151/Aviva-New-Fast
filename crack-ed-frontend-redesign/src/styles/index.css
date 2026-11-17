@@ -1593,13 +1593,13 @@ body.nav-menu-open .hero-bg::before {
 .admission-strip__track {
   display: flex;
   width: max-content;
-  animation: admission-strip-scroll 35s linear infinite;
+  animation: admission-strip-scroll 62s linear infinite;
   will-change: transform;
 }
 
 .admission-strip__item {
   flex-shrink: 0;
-  padding: 0 2.5rem;
+  padding: 0 7.5rem;
   font-family: "Anek Latin", ui-sans-serif, system-ui, sans-serif;
   font-weight: 400;
   font-size: 24px;
@@ -1643,13 +1643,13 @@ body.nav-menu-open .hero-bg::before {
   }
 
   .admission-strip__item {
-    padding: 0 1.5rem;
+    padding: 0 4.5rem;
     font-size: 20px;
     line-height: 100%;
   }
 
   .admission-strip__track {
-    animation-duration: 25s;
+    animation-duration: 41.6s;
   }
 }
 
@@ -1660,13 +1660,13 @@ body.nav-menu-open .hero-bg::before {
   }
 
   .admission-strip__item {
-    padding: 0 1rem;
+    padding: 0 3rem;
     font-size: 18px;
     line-height: 100%;
   }
 
   .admission-strip__track {
-    animation-duration: 20s;
+    animation-duration: 31.7s;
   }
 }
 

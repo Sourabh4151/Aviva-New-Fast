@@ -220,7 +220,7 @@ export default function CareerGrowth() {
 
   return (
     <section id="career-growth" className="scroll-mt-24 bg-[#fff4d9] text-[#231f20]">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-8 px-4 py-10 sm:px-8 sm:py-[60px] lg:gap-4 lg:px-[100px]">
+      <div className="mx-auto flex w-full min-w-0 max-w-[1280px] flex-col gap-8 px-4 py-10 sm:px-8 sm:py-[60px] lg:gap-4 lg:px-10 xl:px-[100px]">
         <div className="inline-flex h-9 w-fit items-center rounded-[100px] border border-[#c7222a] bg-[#c7222a] px-[30px] py-2 font-['Anek_Latin',sans-serif] text-[20px] font-semibold leading-5 text-white lg:bg-transparent lg:text-[#c7222a]">
           Career Growth
         </div>
@@ -253,8 +253,8 @@ export default function CareerGrowth() {
           })}
         </ul>
 
-        <div className="flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
-          <div ref={desktopRef} className="relative hidden h-[250px] w-[464px] shrink-0 lg:mt-2 lg:block">
+        <div className="flex w-full min-w-0 flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
+          <div ref={desktopRef} className="relative hidden h-[250px] w-[464px] max-w-full shrink-0 lg:mt-2 lg:block">
             <LadderTrack
               points={desktopBox.points}
               activeIndex={activeIndex}
@@ -283,7 +283,7 @@ export default function CareerGrowth() {
             })}
           </div>
 
-          <article className="flex w-full flex-col gap-4 rounded-[12px] border border-[#c7222a] p-4 lg:h-[242px] lg:w-[631px] lg:shrink-0">
+          <article className="flex w-full min-w-0 flex-1 flex-col gap-4 rounded-[12px] border border-[#c7222a] p-4 xl:max-w-[631px]">
             <h3 className="font-['Anek_Latin',sans-serif] text-[18px] font-semibold leading-6 text-[#c7222a]">
               Job Responsibilities
             </h3>

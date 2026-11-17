@@ -45,7 +45,7 @@ const CARDS = [
 export default function Eligibility() {
   return (
     <section id="eligibility" className="scroll-mt-24 bg-[#fafafa] text-[#231f20]">
-      <div className="mx-auto max-w-[1280px] px-4 py-12 sm:px-8 lg:px-[120px] lg:py-14">
+      <div className="mx-auto max-w-[1280px] px-4 py-12 sm:px-8 lg:px-10 lg:py-14 xl:px-[120px]">
         <div className="flex flex-col items-start gap-4">
           <div className="inline-flex h-11 items-center justify-center rounded-[100px] border border-[#c7222a] px-[30px] py-2 font-['Anek_Latin',sans-serif] text-[20px] font-semibold leading-7 tracking-normal text-[#c7222a]">
             Eligibility
@@ -54,7 +54,7 @@ export default function Eligibility() {
             {CARDS.map((card) => (
               <article
                 key={card.title}
-                className="flex h-[119px] items-start gap-2 rounded-[12px] border border-[#c7222a] bg-white py-4 pl-2 pr-4 shadow-[0_1px_3px_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] transition-colors duration-200 hover:bg-[#fff4d9]"
+                className="flex min-h-[119px] items-start gap-2 rounded-[12px] border border-[#c7222a] bg-white py-4 pl-2 pr-4 shadow-[0_1px_3px_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] transition-colors duration-200 hover:bg-[#fff4d9]"
               >
                 <span className="shrink-0 text-[#c7222a]">{card.icon}</span>
                 <div className="flex min-w-0 flex-1 flex-col gap-2">

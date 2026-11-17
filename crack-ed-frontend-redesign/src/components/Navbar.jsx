@@ -62,27 +62,29 @@ export default function Navbar() {
           />
         </div>
 
-        <div className="hidden min-w-0 flex-1 items-center justify-end gap-6 rounded-bl-[14px] bg-[#c7222a] pr-4 md:flex lg:gap-[30px] lg:pr-10">
-          {links.map((link) => (
-            <a
-              key={link.id}
-              href={link.href}
-              onClick={scrollTo(link.id)}
-              className="whitespace-nowrap font-['Anek_Latin',sans-serif] text-[14px] font-normal text-white hover:opacity-90"
-            >
-              {link.label}
-            </a>
-          ))}
+        <div className="hidden min-w-0 flex-1 items-center justify-between gap-4 rounded-bl-[14px] bg-[#c7222a] pl-6 pr-4 min-[1100px]:flex lg:pl-8 xl:gap-0 xl:pr-10">
+          <div className="flex min-w-0 items-center gap-4 xl:gap-[30px]">
+            {links.map((link) => (
+              <a
+                key={link.id}
+                href={link.href}
+                onClick={scrollTo(link.id)}
+                className="whitespace-nowrap font-['Anek_Latin',sans-serif] text-[14px] font-normal text-white hover:opacity-90"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
           <a
             href="#hero"
             onClick={scrollTo("hero")}
-            className="inline-flex items-center justify-center rounded-[10px] bg-[#fafafa] px-5 py-2 font-['Anek_Latin',sans-serif] text-[14px] font-semibold text-[#c7222a]"
+            className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-[10px] bg-[#fafafa] px-5 py-2 font-['Anek_Latin',sans-serif] text-[14px] font-semibold text-[#c7222a]"
           >
             Apply Now
           </a>
         </div>
 
-        <div className="ml-auto flex items-center pr-3 md:hidden">
+        <div className="ml-auto flex items-center pr-3 min-[1100px]:hidden">
           <button
             type="button"
             onClick={() => setMobileOpen((open) => !open)}
@@ -102,7 +104,7 @@ export default function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div className="absolute inset-x-0 top-full flex w-full flex-col gap-4 bg-[#c7222a] px-5 py-[60px] md:hidden">
+        <div className="absolute inset-x-0 top-full flex w-full flex-col gap-4 bg-[#c7222a] px-5 py-[60px] min-[1100px]:hidden">
           {links.map((link) => (
             <a
               key={link.id}

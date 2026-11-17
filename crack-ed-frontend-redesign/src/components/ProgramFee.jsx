@@ -31,16 +31,16 @@ function TickList({ items }) {
 export default function ProgramFee() {
   return (
     <section id="program-fee" className="scroll-mt-24 bg-[#fafafa] text-[#231f20]">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-3 px-4 py-12 sm:px-8 lg:px-[120px] lg:py-12">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-3 px-4 py-12 sm:px-8 lg:px-10 lg:py-12 xl:px-[120px]">
         <div className="flex flex-col gap-8 lg:gap-10">
           <div className="inline-flex h-11 w-fit items-center justify-center gap-2.5 rounded-[100px] border border-[#c7222a] px-[30px] py-2 text-center font-['Anek_Latin',sans-serif] text-[20px] font-semibold leading-7 text-[#c7222a]">
             Program Fee
           </div>
 
-          <div className="flex flex-col gap-5 lg:flex-row lg:gap-[60px]">
-            <article className="flex flex-col gap-3 rounded-[10px] border border-[#c7222a] bg-[#fff4d9] p-6 lg:h-[265px] lg:w-[490px] lg:shrink-0">
+          <div className="flex min-w-0 flex-col gap-5 lg:flex-row lg:gap-6 xl:gap-[60px]">
+            <article className="flex min-w-0 flex-1 flex-col gap-3 rounded-[10px] border border-[#c7222a] bg-[#fff4d9] p-6 lg:min-h-[265px] xl:max-w-[490px]">
               <div>
-                <p className="font-['Anek_Latin',sans-serif] text-[32px] font-semibold leading-8 text-[#c7222a] lg:whitespace-nowrap">
+                <p className="font-['Anek_Latin',sans-serif] text-[32px] font-semibold leading-8 text-[#c7222a] xl:whitespace-nowrap">
                   ₹99,000* +
                   <br className="lg:hidden" />
                   <span className="text-[20px] font-semibold leading-8"> Applicable Taxes & Charges</span>
@@ -71,7 +71,7 @@ export default function ProgramFee() {
               </a>
             </article>
 
-            <article className="flex flex-col gap-2.5 rounded-[10px] border border-[#c7222a] bg-[#fff4d9] p-6 lg:h-[265px] lg:w-[490px] lg:shrink-0">
+            <article className="flex min-w-0 flex-1 flex-col gap-2.5 rounded-[10px] border border-[#c7222a] bg-[#fff4d9] p-6 lg:min-h-[265px] xl:max-w-[490px]">
               <h3 className="font-['Anek_Latin',sans-serif] text-[20px] font-semibold leading-6 text-[#c7222a]">
                 Reimbursement Of Fee:
               </h3>
