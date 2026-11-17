@@ -365,7 +365,7 @@ export default function Hero() {
           <div className="absolute left-0 right-0 bottom-0 h-8 pointer-events-none max-lg:hidden" />
           <div className="hero-container relative max-lg:pb-6 lg:pb-0">
             {/* Frame 301: 32px content block ↔ CTA • 16px title ↔ bullets • 8px logo→pill→title • list 12px */}
-            <div className="hero-left-adjust absolute left-[120px] top-[220px] flex w-[min(586px,calc(100%-653px))] min-w-0 flex-col items-start text-white left-adjust">
+            <div className="hero-left-adjust absolute left-[120px] top-[220px] flex w-[min(630px,calc(100%-653px))] min-w-0 flex-col items-start text-white left-adjust">
               <div className="hero-frame-301 flex w-full min-w-0 flex-col items-start gap-[24px]">
                 <div className="flex w-full min-w-0 flex-col items-start gap-[16px]">
                   <div className="flex w-full min-w-0 flex-col items-start gap-[8px]">
@@ -388,7 +388,8 @@ export default function Hero() {
                         <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                       </span>
                       <span className="hero-subtitle min-w-0">
-                        Join as a Certified Health Insurance Manager and secure a CTC of ₹3.5 LPA + Incentives.
+                        Join as a Certified Health Insurance Manager and secure a CTC of{" "}
+                        <span className="whitespace-nowrap">₹3.5 LPA + Incentives.</span>
                       </span>
                     </li>
                     <li className="flex min-w-0 items-start gap-2 sm:gap-3">
