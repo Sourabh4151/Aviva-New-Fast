@@ -15,7 +15,7 @@ const ITEMS = [
   },
   {
     icon: earn,
-    text: "Start Earning As Early as 30 Days",
+    text: "Start Earning\nAs Early as 30 Days",
   },
   {
     icon: reimburse,
@@ -33,7 +33,11 @@ export default function Highlights() {
               <img src={item.icon} alt="" className="h-8 w-8 object-contain" />
             </span>
             <p className="min-w-0 flex-1 font-['Anek_Latin',sans-serif] text-[16px] font-medium leading-6 tracking-normal text-[#c7222a]">
-              {item.text}
+              {item.text.split("\n").map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
             </p>
           </div>
         ))}
