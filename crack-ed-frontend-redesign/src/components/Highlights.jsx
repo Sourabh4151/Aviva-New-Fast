@@ -33,11 +33,20 @@ export default function Highlights() {
               <img src={item.icon} alt="" className="h-8 w-8 object-contain" />
             </span>
             <p className="min-w-0 flex-1 font-['Anek_Latin',sans-serif] text-[16px] font-medium leading-6 tracking-normal text-[#c7222a]">
-              {item.text.split("\n").map((line) => (
-                <span key={line} className="block">
-                  {line}
-                </span>
-              ))}
+              {item.text.includes("\n") ? (
+                <>
+                  <span className="whitespace-nowrap lg:hidden">{item.text.replace("\n", " ")}</span>
+                  <span className="hidden lg:contents">
+                    {item.text.split("\n").map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
+                  </span>
+                </>
+              ) : (
+                item.text
+              )}
             </p>
           </div>
         ))}
