@@ -136,7 +136,7 @@ export default function ClassroomTraining() {
       className="relative scroll-mt-24 overflow-hidden bg-[#fafafa] text-[#231f20]"
     >
       <div className="mx-auto flex max-w-[1280px] flex-col gap-8 px-4 py-12 sm:px-8 lg:gap-10 lg:py-12 lg:pl-[60px] lg:pr-0">
-        <div className="inline-flex h-11 w-fit items-center justify-center gap-2.5 rounded-[100px] border border-[#c7222a] px-[30px] py-2 text-center font-['Anek_Latin',sans-serif] text-[20px] font-semibold leading-7 text-[#c7222a]">
+        <div className="training-modules-pill">
           3 Progressive Training Modules
         </div>
 

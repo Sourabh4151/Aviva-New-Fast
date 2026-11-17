@@ -13,6 +13,11 @@ export default function Navbar() {
     setLogoHref(withUtmParams(CRACK_ED_HOME));
   }, []);
 
+  useEffect(() => {
+    document.body.classList.toggle("nav-menu-open", mobileOpen);
+    return () => document.body.classList.remove("nav-menu-open");
+  }, [mobileOpen]);
+
   const closeMobile = () => setMobileOpen(false);
 
   const scrollTo = (id) => (e) => {

@@ -568,7 +568,7 @@ body::-webkit-scrollbar {
   object-fit: contain;
 }
 
-/* Checkmark vector: 9.42×7.15 at design scale; SVG viewBox 20×20 keeps proportions. Tick color rgba(30,30,30,1) is in tick.svg */
+/* Checkmark circle is #C7222A in hero-tick.svg and tick.svg. */
 
 /* Hero mobile typography – design specs (max-width: 768px) */
 @media (max-width: 768px) {
@@ -924,6 +924,34 @@ body::-webkit-scrollbar {
   height: 18px;
   text-align: center;
   background-color: rgba(24, 3, 4, 1);
+}
+
+/* "3 Progressive Training Modules" — Figma: Anek Latin 600, 20/28, centered on one line inside the pill */
+.training-modules-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #c7222a;
+  border-radius: 100px;
+  padding: 8px 30px;
+  color: #c7222a;
+  font-family: "Anek Latin", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Narrow phones: 30px side padding forces "Modules" onto a second line that escapes the pill */
+@media (max-width: 389px) {
+  .training-modules-pill {
+    padding: 8px 16px;
+  }
 }
 
 /* Career Growth – desktop specs (steps pill: 224 Fill × 50 Hug, gap 16px, padding 4px, bg rgba(250,250,250,0.7)) */
@@ -1338,6 +1366,22 @@ button.download-brochure-btn:disabled:active {
   }
 }
 
+/* Dim only the hero photo while the mobile menu is open. Sits above the image and under the copy (z-10). */
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+  opacity: 0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+body.nav-menu-open .hero-bg::before {
+  opacity: 1;
+}
+
 .hero-form-card {
   right: 120px;
   top: 40px;
@@ -1499,13 +1543,18 @@ button.download-brochure-btn:disabled:active {
     padding-right: 12px;
   }
 
+  /* Taller photo, with the logo starting below the faces */
+  .hero-bg {
+    min-height: 640px;
+  }
+
   .hero-container {
     padding-top: 56px;
     padding-bottom: 1rem;
   }
 
   .hero-container .left-adjust.hero-left-adjust {
-    margin-top: 3.5rem;
+    margin-top: 12.5rem;
   }
 
   .hero-container .left-adjust:not(.hero-left-adjust) {
