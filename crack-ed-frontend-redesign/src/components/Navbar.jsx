@@ -44,7 +44,7 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-[100] bg-[#fafafa]">
       <nav className="flex h-[68px] w-full items-stretch">
-        <div className="flex shrink-0 items-center gap-2 pl-3 pr-2 sm:gap-3 sm:pl-6 sm:pr-4 lg:pl-10 lg:pr-8">
+        <div className="flex shrink-0 items-center gap-2 pl-6 pr-4 sm:gap-3 sm:pl-10 sm:pr-6 lg:pl-16 lg:pr-12">
           <a
             href={logoHref}
             target="_blank"
@@ -62,7 +62,7 @@ export default function Navbar() {
           />
         </div>
 
-        <div className="hidden min-w-0 flex-1 items-center justify-between gap-4 rounded-bl-[14px] bg-[#c7222a] pl-6 pr-4 min-[1100px]:flex lg:pl-8 xl:gap-0 xl:pr-10">
+        <div className="hidden min-w-0 flex-1 items-center justify-between gap-4 rounded-bl-[14px] bg-[#c7222a] pl-6 pr-16 min-[1100px]:flex lg:pl-8 xl:gap-0">
           <div className="flex min-w-0 items-center gap-4 xl:gap-[30px]">
             {links.map((link) => (
               <a
@@ -84,7 +84,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        <div className="ml-auto flex items-center pr-3 min-[1100px]:hidden">
+        <div className="ml-auto flex items-center pr-6 sm:pr-10 lg:pr-16 min-[1100px]:hidden">
           <button
             type="button"
             onClick={() => setMobileOpen((open) => !open)}

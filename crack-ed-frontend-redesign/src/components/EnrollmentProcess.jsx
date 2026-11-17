@@ -42,7 +42,7 @@ const STEPS = [
 export default function EnrollmentProcess() {
   return (
     <section id="enrollment-process" className="scroll-mt-24 bg-[#fafafa] text-[#231f20]">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-8 px-4 py-12 sm:px-8 lg:px-20">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-8 px-4 py-12 sm:px-8 lg:px-10 xl:px-[120px]">
         <div className="flex justify-start">
           <div className="inline-flex h-11 items-center justify-center gap-2.5 rounded-[100px] border border-[#c7222a] px-[30px] py-2 font-['Anek_Latin',sans-serif] text-[20px] font-semibold leading-7 tracking-normal text-[#c7222a]">
             Enrollment Process

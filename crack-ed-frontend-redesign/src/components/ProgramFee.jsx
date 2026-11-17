@@ -61,7 +61,7 @@ export default function ProgramFee() {
                 href={PAY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-auto inline-flex h-[50px] w-fit shrink-0 items-center gap-2 rounded-[10px] bg-[#c7222a] px-6 font-['Anek_Latin',sans-serif] text-[14px] font-semibold leading-none text-white"
+                className="mt-auto inline-flex h-[50px] w-fit shrink-0 cursor-pointer items-center gap-2 rounded-[10px] bg-[#c7222a] px-6 font-['Anek_Latin',sans-serif] text-[14px] font-semibold leading-none text-white transition-[background-color,box-shadow,transform] duration-150 hover:bg-[#a61c23] hover:shadow-[0_8px_20px_rgba(199,34,42,0.28)] active:translate-y-px active:shadow-none"
               >
                 Enrol & Pay Now
                 <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">

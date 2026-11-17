@@ -365,7 +365,7 @@ export default function Hero() {
           <div className="absolute left-0 right-0 bottom-0 h-8 pointer-events-none max-lg:hidden" />
           <div className="hero-container relative max-lg:pb-6 lg:pb-0">
             {/* Frame 301: 32px content block ↔ CTA • 16px title ↔ bullets • 8px logo→pill→title • list 12px */}
-            <div className="hero-left-adjust absolute left-[120px] top-[140px] flex w-[586px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start text-white left-adjust">
+            <div className="hero-left-adjust absolute left-[120px] top-[140px] flex w-[min(586px,calc(100%-653px))] min-w-0 flex-col items-start text-white left-adjust">
               <div className="hero-frame-301 flex w-full min-w-0 flex-col items-start gap-[24px]">
                 <div className="flex w-full min-w-0 flex-col items-start gap-[16px]">
                   <div className="flex w-full min-w-0 flex-col items-start gap-[8px]">
@@ -382,20 +382,20 @@ export default function Hero() {
                     </h1>
                   </div>
                   <div className="flex w-full min-w-0 flex-col items-start gap-[20px]">
-                    <ul className="hero-bullet-list hero-frame-23 flex w-full flex-col gap-[12px] text-gray-200">
-                    <li className="flex items-start gap-2 sm:gap-3">
+                    <ul className="hero-bullet-list hero-frame-23 flex w-full min-w-0 flex-col gap-[12px] text-gray-200">
+                    <li className="flex min-w-0 items-start gap-2 sm:gap-3">
                       <span className="hero-tick">
                         <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                       </span>
-                      <span className="hero-subtitle">
+                      <span className="hero-subtitle min-w-0">
                         Join as a Certified Health Insurance Manager and secure a CTC of ₹3.5 LPA + Incentives.
                       </span>
                     </li>
-                    <li className="flex items-start gap-2 sm:gap-3">
+                    <li className="flex min-w-0 items-start gap-2 sm:gap-3">
                       <span className="hero-tick">
                         <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                       </span>
-                      <span className="hero-body-copy">
+                      <span className="hero-body-copy min-w-0">
                         A dedicated 7-month program
                       </span>
                     </li>
@@ -426,7 +426,8 @@ export default function Hero() {
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-0 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[40px] lg:mt-0 lg:w-[373px] lg:z-30 w-full p-4 sm:p-6 lg:px-8 lg:py-6 rounded-2xl border-0 flex flex-col justify-between min-h-0 ${alreadyInSystem || hasValidationError ? "lg:min-h-[580px]" : ""
+        id="apply-now"
+        className={`hero-form-card scroll-mt-24 max-lg:relative max-lg:mx-4 max-lg:mt-0 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[40px] lg:mt-0 lg:w-[373px] lg:z-30 w-full p-4 sm:p-6 lg:px-8 lg:py-6 rounded-2xl border-0 flex flex-col justify-between min-h-0 ${alreadyInSystem || hasValidationError ? "lg:min-h-[580px]" : ""
           }`}
       >
         <div>

@@ -135,7 +135,7 @@ export default function ClassroomTraining() {
       ref={sectionRef}
       className="relative scroll-mt-24 overflow-hidden bg-[#fafafa] text-[#231f20]"
     >
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-8 px-4 py-12 sm:px-8 lg:gap-10 lg:py-12 lg:pl-[60px] lg:pr-0">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-8 px-4 py-12 sm:px-8 lg:gap-10 lg:py-12 lg:pl-10 lg:pr-0 xl:pl-[120px]">
         <div className="training-modules-pill">
           3 Progressive Training Modules
         </div>

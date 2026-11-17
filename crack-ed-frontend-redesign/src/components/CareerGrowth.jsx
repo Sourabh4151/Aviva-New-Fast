@@ -220,7 +220,7 @@ export default function CareerGrowth() {
 
   return (
     <section id="career-growth" className="scroll-mt-24 bg-[#fff4d9] text-[#231f20]">
-      <div className="mx-auto flex w-full min-w-0 max-w-[1280px] flex-col gap-8 px-4 py-10 sm:px-8 sm:py-[60px] lg:gap-4 lg:px-10 xl:px-[100px]">
+      <div className="mx-auto flex w-full min-w-0 max-w-[1280px] flex-col gap-8 px-4 py-10 sm:px-8 sm:py-[60px] lg:gap-4 lg:px-10 xl:px-[120px]">
         <div className="inline-flex h-9 w-fit items-center rounded-[100px] border border-[#c7222a] bg-[#c7222a] px-[30px] py-2 font-['Anek_Latin',sans-serif] text-[20px] font-semibold leading-5 text-white lg:bg-transparent lg:text-[#c7222a]">
           Career Growth
         </div>
