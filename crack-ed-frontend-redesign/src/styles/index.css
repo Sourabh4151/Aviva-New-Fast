@@ -1377,6 +1377,14 @@ button.download-brochure-btn:disabled:active {
   }
 }
 
+/* Mobile and tablet: keep the two people in the middle of the frame */
+@media (max-width: 1023px) {
+  .hero-bg {
+    background-size: cover;
+    background-position: 38% center;
+  }
+}
+
 /* Dim only the hero photo while the mobile menu is open. Sits above the image and under the copy (z-10). */
 .hero-bg::before {
   content: "";
