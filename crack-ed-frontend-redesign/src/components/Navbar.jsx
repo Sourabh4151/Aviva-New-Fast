@@ -44,7 +44,7 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-[100] bg-[#fafafa]">
       <nav className="flex h-[68px] w-full items-stretch">
-        <div className="flex shrink-0 items-center gap-2 pl-3 pr-2 sm:gap-3 sm:pl-8 sm:pr-4 lg:pl-[max(100px,calc((100%-1280px)/2+100px))] lg:pr-10">
+        <div className="flex shrink-0 items-center gap-2 pl-3 pr-2 sm:gap-3 sm:pl-6 sm:pr-4 lg:pl-10 lg:pr-8">
           <a
             href={logoHref}
             target="_blank"
@@ -54,7 +54,7 @@ export default function Navbar() {
           >
             <img src={crackEdLogo} alt="Crack-ED" className="h-[30px] w-auto sm:h-[42px]" />
           </a>
-          <span className="h-6 w-px bg-[#d0d0d0] sm:h-9" aria-hidden="true" />
+          <span className="h-6 w-px shrink-0 bg-[#d0d0d0]" aria-hidden="true" />
           <img
             src={abclLogo}
             alt="Aditya Birla Capital"
@@ -62,7 +62,7 @@ export default function Navbar() {
           />
         </div>
 
-        <div className="hidden min-w-0 flex-1 items-center justify-end gap-6 rounded-bl-[14px] bg-[#c7222a] pr-4 md:flex lg:gap-[30px] lg:pr-[max(100px,calc((100%-1280px)/2+100px))]">
+        <div className="hidden min-w-0 flex-1 items-center justify-end gap-6 rounded-bl-[14px] bg-[#c7222a] pr-4 md:flex lg:gap-[30px] lg:pr-10">
           {links.map((link) => (
             <a
               key={link.id}

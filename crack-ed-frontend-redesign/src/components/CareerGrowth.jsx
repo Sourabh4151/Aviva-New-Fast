@@ -1,17 +1,12 @@
-import React from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import humanSvg from "../assets/human.svg";
 import tickSvg from "../assets/hero-tick.svg";
 
-const LADDER = [
-  { role: "Business Development Manager", x: 148, y: 22 },
-  { role: "Senior Agency Sales Manager", x: 92, y: 96 },
-  { role: "Certified Health Insurance Manager", x: 36, y: 170 },
-];
-
-const MOBILE_ROLES = [
-  "Certified Health Insurance Manager",
-  "Senior Agency Sales Manager",
-  "Business Development Manager",
+// Index 0 is the starting role (bottom). The path climbs toward the last role.
+const STAGES = [
+  { role: "Certified Health Insurance Manager", x: 36, y: 192 },
+  { role: "Senior Agency Sales Manager", x: 76, y: 118 },
+  { role: "Business Development Manager", x: 115, y: 44 },
 ];
 
 const RESPONSIBILITIES = [
@@ -23,65 +18,269 @@ const RESPONSIBILITIES = [
   "Drives ongoing sales from the advisors and contribute towards regions achievements",
 ];
 
+const LINE = "rgba(65, 64, 66, 0.5)";
+const LINE_ACTIVE = "#c7222a";
+const ANIM_INITIAL_DELAY_MS = 500;
+const ANIM_STEP_DELAY_MS = 1000;
+const ANIM_DURATION_MS = 600;
+const VIEWPORT_THRESHOLD_DESKTOP = 0.75;
+const VIEWPORT_THRESHOLD_MOBILE = 0.25;
+
+function pillClass(isActive, size) {
+  const shape =
+    size === "desktop"
+      ? "absolute z-10 inline-flex items-center whitespace-nowrap rounded-[100px] border px-8 py-3"
+      : "inline-flex items-center rounded-[100px] border px-5 py-2.5";
+  const state = isActive
+    ? "border-[#c7222a] bg-[#c7222a] text-[#fafafa]"
+    : "border-[#c7222a] bg-[#fff4d9] text-[#c7222a]";
+  return `${shape} ${state} font-['Anek_Latin',sans-serif] text-[16px] font-semibold leading-5 transition-colors duration-[600ms] ease-in`;
+}
+
+function lengthUntil(points, index) {
+  const end = Math.max(0, Math.min(index, points.length - 1));
+  let length = 0;
+  for (let i = 1; i <= end; i += 1) {
+    length += Math.hypot(points[i].x - points[i - 1].x, points[i].y - points[i - 1].y);
+  }
+  return length;
+}
+
+function LadderTrack({ points, activeIndex, width, height }) {
+  if (!points.length || !width || !height) return null;
+
+  const allPoints = points.map((point) => `${point.x},${point.y}`).join(" ");
+  const personAt = points[Math.max(activeIndex, 0)];
+  const totalLength = lengthUntil(points, points.length - 1);
+  const drawnLength = activeIndex > 0 ? lengthUntil(points, activeIndex) : 0;
+
+  return (
+    <>
+      <svg
+        className="pointer-events-none absolute left-0 top-0 z-[1]"
+        width={width}
+        height={height}
+        viewBox={`0 0 ${width} ${height}`}
+        aria-hidden="true"
+      >
+        <polyline
+          points={allPoints}
+          fill="none"
+          stroke={LINE}
+          strokeWidth="1"
+          strokeDasharray="6 6"
+        />
+        {totalLength > 0 && (
+          <polyline
+            points={allPoints}
+            fill="none"
+            stroke={LINE_ACTIVE}
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{
+              strokeDasharray: totalLength,
+              strokeDashoffset: totalLength - drawnLength,
+              transition: `stroke-dashoffset ${ANIM_DURATION_MS}ms ease-in`,
+            }}
+          />
+        )}
+      </svg>
+      {personAt && (
+        <img
+          src={humanSvg}
+          alt=""
+          width={25}
+          height={43}
+          className="pointer-events-none absolute z-20"
+          style={{
+            left: personAt.x - 28,
+            top: personAt.y - 38,
+            transition: `left ${ANIM_DURATION_MS}ms ease-in, top ${ANIM_DURATION_MS}ms ease-in`,
+          }}
+        />
+      )}
+    </>
+  );
+}
+
+function useDotPoints(containerRef, dotRefs, stageCount) {
+  const [box, setBox] = useState({ width: 0, height: 0, points: [] });
+
+  const measure = useCallback(() => {
+    const root = containerRef.current;
+    if (!root || root.getClientRects().length === 0) return;
+    const rootRect = root.getBoundingClientRect();
+    const points = [];
+    for (let index = 0; index < stageCount; index += 1) {
+      const dot = dotRefs.current[index];
+      if (!dot) return;
+      const rect = dot.getBoundingClientRect();
+      points.push({
+        x: rect.left + rect.width / 2 - rootRect.left,
+        y: rect.top + rect.height / 2 - rootRect.top,
+      });
+    }
+    const width = Math.round(root.offsetWidth);
+    const height = Math.round(root.offsetHeight);
+    setBox((prev) => {
+      const sameSize = prev.width === width && prev.height === height;
+      const samePoints =
+        prev.points.length === points.length &&
+        prev.points.every(
+          (point, index) =>
+            Math.abs(point.x - points[index].x) < 0.5 &&
+            Math.abs(point.y - points[index].y) < 0.5
+        );
+      return sameSize && samePoints ? prev : { width, height, points };
+    });
+  }, [containerRef, dotRefs, stageCount]);
+
+  useLayoutEffect(() => {
+    measure();
+    const root = containerRef.current;
+    const observer = new ResizeObserver(measure);
+    if (root) observer.observe(root);
+    window.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [measure, containerRef]);
+
+  return box;
+}
+
 export default function CareerGrowth() {
+  const mobileRef = useRef(null);
+  const desktopRef = useRef(null);
+  const mobileDots = useRef([]);
+  const desktopDots = useRef([]);
+  const animationTimeouts = useRef([]);
+  const animationStarted = useRef(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+  const mobileBox = useDotPoints(mobileRef, mobileDots, STAGES.length);
+  const desktopBox = useDotPoints(desktopRef, desktopDots, STAGES.length);
+
+  const clearAnimation = useCallback(() => {
+    animationTimeouts.current.forEach((id) => clearTimeout(id));
+    animationTimeouts.current = [];
+  }, []);
+
+  const startAnimation = useCallback(() => {
+    clearAnimation();
+    const reduceMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      setActiveIndex(STAGES.length - 1);
+      return;
+    }
+
+    setActiveIndex(-1);
+    STAGES.forEach((_, step) => {
+      const timeoutId = setTimeout(() => {
+        setActiveIndex(step);
+      }, ANIM_INITIAL_DELAY_MS + step * ANIM_STEP_DELAY_MS);
+      animationTimeouts.current.push(timeoutId);
+    });
+  }, [clearAnimation]);
+
+  useEffect(() => {
+    const targets = [mobileRef.current, desktopRef.current].filter(Boolean);
+    if (!targets.length) return;
+
+    const thresholdFor = () =>
+      window.matchMedia("(min-width: 1024px)").matches
+        ? VIEWPORT_THRESHOLD_DESKTOP
+        : VIEWPORT_THRESHOLD_MOBILE;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const threshold = thresholdFor();
+        const visible = entries.some(
+          (entry) => entry.isIntersecting && entry.intersectionRatio >= threshold
+        );
+        if (visible && !animationStarted.current) {
+          animationStarted.current = true;
+          startAnimation();
+        }
+      },
+      { threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+
+    targets.forEach((target) => observer.observe(target));
+    return () => {
+      observer.disconnect();
+      clearAnimation();
+      animationStarted.current = false;
+    };
+  }, [startAnimation, clearAnimation]);
+
   return (
     <section id="career-growth" className="scroll-mt-24 bg-[#fff4d9] text-[#231f20]">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-8 px-4 py-10 sm:px-8 sm:py-[60px] lg:gap-[10px] lg:px-[100px]">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-8 px-4 py-10 sm:px-8 sm:py-[60px] lg:gap-4 lg:px-[100px]">
         <div className="inline-flex h-9 w-fit items-center rounded-[100px] border border-[#c7222a] bg-[#c7222a] px-[30px] py-2 font-['Anek_Latin',sans-serif] text-[20px] font-semibold leading-5 text-white lg:bg-transparent lg:text-[#c7222a]">
           Career Growth
         </div>
 
-        <ul className="relative flex h-[232px] w-full flex-col justify-between lg:hidden">
-          <span
-            className="pointer-events-none absolute bottom-[21px] left-[7px] top-[21px] border-l-2 border-dashed border-[#a09a8e]"
-            aria-hidden="true"
+        <ul
+          ref={mobileRef}
+          className="relative mt-1 flex h-[266px] w-full flex-col justify-between pl-8 pt-7 lg:hidden"
+        >
+          <LadderTrack
+            points={mobileBox.points}
+            activeIndex={activeIndex}
+            width={mobileBox.width}
+            height={mobileBox.height}
           />
-          {MOBILE_ROLES.map((role) => (
-            <li key={role} className="relative z-10 flex items-center gap-3">
-              <span className="h-4 w-4 shrink-0 rounded-full bg-[#c7222a]" aria-hidden="true" />
-              <span className="inline-flex items-center rounded-[100px] border border-[#c7222a] bg-[#fff4d9] px-5 py-2.5 font-['Anek_Latin',sans-serif] text-[16px] font-semibold leading-5 text-[#c7222a]">
-                {role}
-              </span>
-            </li>
-          ))}
+          {[...STAGES].reverse().map((stage) => {
+            const index = STAGES.findIndex((item) => item.role === stage.role);
+            const isActive = activeIndex >= index;
+            return (
+              <li key={stage.role} className="relative z-10 flex items-center gap-3">
+                <span
+                  ref={(el) => {
+                    mobileDots.current[index] = el;
+                  }}
+                  className="h-4 w-4 shrink-0 rounded-full bg-[#c7222a]"
+                  aria-hidden="true"
+                />
+                <span className={pillClass(isActive, "mobile")}>{stage.role}</span>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
-          <div className="relative hidden h-[232px] w-[464px] shrink-0 lg:block">
-            <svg className="absolute left-0 top-0" width="464" height="232" viewBox="0 0 464 232" aria-hidden="true">
-              <line
-                x1="148"
-                y1="22"
-                x2="36"
-                y2="170"
-                stroke="#C7222A"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeDasharray="0.1 7"
-              />
-            </svg>
-            {LADDER.map((step) => (
-              <div key={step.role}>
-                <span
-                  className="absolute z-10 h-4 w-4 rounded-full bg-[#c7222a]"
-                  style={{ left: step.x - 8, top: step.y - 8 }}
-                />
-                <span
-                  className="absolute z-10 inline-flex items-center whitespace-nowrap rounded-[100px] border border-[#c7222a] px-8 py-3 font-['Anek_Latin',sans-serif] text-[16px] font-semibold leading-5 text-[#c7222a]"
-                  style={{ left: step.x + 16, top: step.y - 22 }}
-                >
-                  {step.role}
-                </span>
-              </div>
-            ))}
-            <img
-              src={humanSvg}
-              alt=""
-              width={25}
-              height={43}
-              className="absolute z-20"
-              style={{ left: 28, top: 128 }}
+          <div ref={desktopRef} className="relative hidden h-[250px] w-[464px] shrink-0 lg:mt-2 lg:block">
+            <LadderTrack
+              points={desktopBox.points}
+              activeIndex={activeIndex}
+              width={desktopBox.width}
+              height={desktopBox.height}
             />
+            {STAGES.map((stage, index) => {
+              const isActive = activeIndex >= index;
+              return (
+                <div key={stage.role}>
+                  <span
+                    ref={(el) => {
+                      desktopDots.current[index] = el;
+                    }}
+                    className="absolute z-10 h-4 w-4 rounded-full bg-[#c7222a]"
+                    style={{ left: stage.x - 8, top: stage.y - 8 }}
+                  />
+                  <span
+                    className={pillClass(isActive, "desktop")}
+                    style={{ left: stage.x + 16, top: stage.y - 22 }}
+                  >
+                    {stage.role}
+                  </span>
+                </div>
+              );
+            })}
           </div>
 
           <article className="flex w-full flex-col gap-4 rounded-[12px] border border-[#c7222a] p-4 lg:h-[242px] lg:w-[631px] lg:shrink-0">
