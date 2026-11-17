@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anek+Latin:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek+Latin:wght@400;500;600;700&family=Lato:wght@500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,7 +9,7 @@
   --color-primary-red: #c7222a;
   --color-primary-red-rgb: 199, 34, 42;
   --color-secondary-red: #8b151b;
-  --color-form-surface: rgba(43, 6, 7, 1);
+  --color-form-surface: #ffffff;
   --font-family: 'Anek Latin', ui-sans-serif, system-ui, sans-serif;
 
   --text-hero-size: 32px;
@@ -183,11 +183,11 @@ body::-webkit-scrollbar {
 /* Callback form – Figma typography (all breakpoints) */
 .hero-form-title {
   font-family: var(--font-family);
-  font-weight: 400;
+  font-weight: 600;
   font-size: 18px;
   line-height: 27px;
   letter-spacing: 0;
-  color: rgba(250, 250, 250, 1);
+  color: #c7222a;
 }
 
 .hero-form-subtitle {
@@ -196,7 +196,7 @@ body::-webkit-scrollbar {
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 0;
-  color: rgba(250, 250, 250, 0.6);
+  color: #231f20;
 }
 
 .hero-form-card .callback-input,
@@ -212,12 +212,12 @@ body::-webkit-scrollbar {
 
 .hero-form-card .callback-input::placeholder,
 .brochure-modal-card .callback-input::placeholder {
-  color: rgba(250, 250, 250, 0.6);
+  color: #231f20;
 }
 
 .hero-form-card .callback-input,
 .brochure-modal-card .callback-input {
-  color: rgba(250, 250, 250, 1);
+  color: #231f20;
 }
 
 .hero-form-card .custom-select {
@@ -226,7 +226,7 @@ body::-webkit-scrollbar {
   font-size: 14px;
   line-height: 100%;
   letter-spacing: 0;
-  color: rgba(250, 250, 250, 0.6);
+  color: #231f20;
 }
 
 .hero-form-card .custom-select span[class*="text-white"] {
@@ -234,7 +234,8 @@ body::-webkit-scrollbar {
 }
 
 .hero-form-card {
-  background-color: var(--color-form-surface);
+  background-color: #ffffff;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
 .hero-form-otp-text {
@@ -243,7 +244,7 @@ body::-webkit-scrollbar {
   font-size: 12px;
   line-height: 18px;
   letter-spacing: 0;
-  color: rgba(250, 250, 250, 0.6);
+  color: #231f20;
 }
 
 /* Classroom Training – module blocks (Figma) */
@@ -267,13 +268,12 @@ body::-webkit-scrollbar {
 
 .classroom-module-heading {
   font-family: var(--font-family);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 18px;
-  line-height: 100%;
+  line-height: 1.3;
   letter-spacing: 0;
-  text-align: justify;
-  text-transform: capitalize;
-  color: rgba(250, 250, 250, 1);
+  text-align: left;
+  color: #c7222a;
 }
 
 .classroom-module-intro,
@@ -281,10 +281,10 @@ body::-webkit-scrollbar {
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 16px;
-  line-height: 100%;
+  line-height: 1.45;
   letter-spacing: 0;
-  text-align: justify;
-  color: rgba(250, 250, 250, 0.8);
+  text-align: left;
+  color: #414042;
 }
 
 /* Eligibility – Figma */
@@ -434,22 +434,22 @@ body::-webkit-scrollbar {
 /* Have Questions banner – typography (background: inline, see Yes Bank SO pattern) */
 .have-questions-title {
   font-family: var(--font-family);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 24px;
-  line-height: 100%;
+  line-height: 1.3;
   letter-spacing: 0;
   text-align: center;
-  color: rgba(250, 250, 250, 1);
+  color: #c7222a;
 }
 
 .have-questions-subtitle {
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 18px;
-  line-height: 100%;
+  font-size: 16px;
+  line-height: 1.4;
   letter-spacing: 0;
   text-align: center;
-  color: rgba(250, 250, 250, 0.6);
+  color: #414042;
 }
 
 .have-questions-cta {
@@ -468,10 +468,10 @@ body::-webkit-scrollbar {
 .footer-text {
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 24px;
   letter-spacing: 0;
-  color: rgba(250, 250, 245, 1);
+  color: #6b6b6b;
 }
 
 .program-fee-pay-btn {
@@ -601,14 +601,14 @@ body::-webkit-scrollbar {
     color: rgba(30, 30, 30, 1);
   }
 
-  /* OTP message: 12px / 18px line-height */
+  /* OTP and consent: 12px / 18px, dark on the white card */
   .hero-form-otp-text {
     font-family: 'Anek Latin', ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
     font-size: 12px;
     line-height: 18px;
-    letter-spacing: 0%;
-    color: rgba(250, 250, 250, 0.6);
+    letter-spacing: 0;
+    color: rgba(65, 64, 66, 0.9);
   }
 
   /* Program Fee – mobile design specs */
@@ -839,13 +839,13 @@ body::-webkit-scrollbar {
 
   .classroom-module-heading {
     font-family: 'Anek Latin', ui-sans-serif, system-ui, sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 18px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    text-align: justify;
-    text-transform: capitalize;
-    color: rgba(250, 250, 250, 1);
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-align: left;
+    text-transform: none;
+    color: #c7222a;
   }
 
   .classroom-module-body {
@@ -887,6 +887,18 @@ body::-webkit-scrollbar {
       margin-left: 0;
       margin-right: 0;
     }
+  }
+}
+
+@media (min-width: 1024px) {
+  div.classroom-image-mobile {
+    width: calc(504px + max(0px, (100vw - 1280px) / 2));
+    height: 341px;
+    margin-left: 0;
+    margin-right: calc(min(0px, (1280px - 100vw) / 2));
+    transform: none;
+    flex-shrink: 0;
+    border-radius: 16px 0 0 16px;
   }
 }
 
@@ -1137,6 +1149,16 @@ select.hero-select::-ms-expand {
   transform: none;
 }
 
+.download-brochure-btn--solid {
+  background: #c7222a;
+  color: #fafafa;
+}
+
+.download-brochure-btn--solid:hover {
+  background: #a61c23;
+  color: #fafafa;
+}
+
 .download-brochure-btn:active {
   box-shadow: none;
   transform: translateY(0);
@@ -1181,8 +1203,9 @@ button.download-brochure-btn:disabled:active {
   max-width: 556px;
   padding: 24px 32px;
   border-radius: 16px;
-  background-color: var(--color-form-surface);
-  border: 1px solid rgba(250, 250, 250, 0.15);
+  background-color: #ffffff;
+  border: 1px solid rgba(35, 31, 32, 0.12);
+  color: #231f20;
   gap: 24px;
   box-sizing: border-box;
 }
@@ -1201,7 +1224,7 @@ button.download-brochure-btn:disabled:active {
   font-size: 18px;
   line-height: 27px;
   letter-spacing: 0;
-  color: rgba(250, 250, 250, 1);
+  color: #c7222a;
 }
 
 .brochure-modal-subtitle {
@@ -1211,7 +1234,7 @@ button.download-brochure-btn:disabled:active {
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 0;
-  color: rgba(250, 250, 250, 0.6);
+  color: #231f20;
 }
 
 /* Form stack: 16px gap between fields group and button */
@@ -1237,7 +1260,7 @@ button.download-brochure-btn:disabled:active {
   font-size: 12px;
   line-height: 18px;
   letter-spacing: 0;
-  color: rgba(250, 250, 250, 0.6);
+  color: #414042;
 }
 
 .brochure-modal-btn-wrap {
@@ -1310,14 +1333,14 @@ button.download-brochure-btn:disabled:active {
 /* Desktop hero photo – tighter crop (zoom + focal point) */
 @media (min-width: 1024px) {
   .hero-bg {
-    background-size: 122%;
-    background-position: 89% 90%;
+    background-size: cover;
+    background-position: center center;
   }
 }
 
 .hero-form-card {
   right: 120px;
-  top: 115px;
+  top: 40px;
   width: 373px;
 }
 
@@ -1497,19 +1520,19 @@ button.download-brochure-btn:disabled:active {
   }
 }
 
-/* Admission strip – Figma: 56px height, Montserrat 500 18px/32px, rgba(250,250,250,1) text */
+/* Admission strip – 80px bar, Anek Latin 24px / 100% / 400, white */
 .admission-strip {
   width: 100%;
-  height: 56px;
+  height: 80px;
   overflow: hidden;
-  background-color: var(--color-primary-red);
+  background-color: #c7222a;
   display: flex;
   align-items: center;
 }
 
 @media (min-width: 1024px) {
   .admission-strip {
-    margin-top: 25px;
+    margin-top: 0;
   }
 }
 
@@ -1528,12 +1551,12 @@ button.download-brochure-btn:disabled:active {
 .admission-strip__item {
   flex-shrink: 0;
   padding: 0 2.5rem;
-  font-family: var(--font-family);
+  font-family: "Anek Latin", ui-sans-serif, system-ui, sans-serif;
   font-weight: 400;
   font-size: 24px;
   line-height: 100%;
   letter-spacing: 0;
-  color: rgba(255, 244, 217, 1);
+  color: rgba(255, 255, 255, 1);
   white-space: nowrap;
 }
 
@@ -1560,14 +1583,14 @@ button.download-brochure-btn:disabled:active {
 
 @media (max-width: 1023px) {
   .admission-strip {
-    margin-top: 1.5rem;
+    margin-top: 0;
   }
 }
 
 @media (max-width: 768px) {
   .admission-strip {
-    height: 48px;
-    margin-top: 1.25rem;
+    height: 56px;
+    margin-top: 0;
   }
 
   .admission-strip__item {
@@ -1583,8 +1606,8 @@ button.download-brochure-btn:disabled:active {
 
 @media (max-width: 480px) {
   .admission-strip {
-    height: 44px;
-    margin-top: 1rem;
+    height: 48px;
+    margin-top: 0;
   }
 
   .admission-strip__item {

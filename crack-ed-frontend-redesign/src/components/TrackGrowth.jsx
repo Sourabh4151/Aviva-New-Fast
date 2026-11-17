@@ -1,105 +1,59 @@
 import React from "react";
-import alignmentIcon from "../assets/alignment.svg";
-import progressIcon from "../assets/progress.svg";
-import reviewIcon from "../assets/review.svg";
+import roleIcon from "../assets/role.svg";
+import moduleIcon from "../assets/module.svg";
+import finalIcon from "../assets/final.svg";
 
 const ITEMS = [
   {
     key: "alignment",
-    icon: alignmentIcon,
     title: "Role Alignment Reviews",
     description:
       "Understand how your skills match real workplace expectations through guided check-ins at key stages of the program.",
+    icon: roleIcon,
   },
   {
     key: "progress",
-    icon: progressIcon,
     title: "Module Progress Checks",
     description:
       "Short, structured reviews after each module to help you strengthen your understanding and stay on track.",
+    icon: moduleIcon,
   },
   {
     key: "review",
-    icon: reviewIcon,
     title: "Final Readiness Review",
     description:
-      "A comprehensive evaluation that brings everything together to confirm you're prepared to step confidently into the role.",
+      "A comprehensive evaluation that brings everything together to confirm you’re prepared to step confidently into the role.",
+    icon: finalIcon,
   },
 ];
 
 export default function TrackGrowth() {
   return (
-    <section
-      id="track-growth"
-      className="relative bg-black text-white scroll-mt-24 overflow-hidden"
-    >
-      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-20">
-        {/* Heading block */}
-        <div className="max-w-4xl flex flex-col items-start text-left sm:items-center sm:text-center mx-auto">
-          <div
-            className="inline-flex items-center justify-center font-medium rounded-full border border-white/30 py-1 px-[30px] text-[14px] leading-[27px] text-white/70"
-            style={{
-              fontFamily:
-                "'Anek Latin', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-            }}
-          >
-            Track Your Growth
-          </div>
-
-          <p
-            className="mt-4 sm:mt-6 text-[24px] leading-[36px] font-medium text-white px-2"
-            style={{
-              fontFamily:
-                "'Anek Latin', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-            }}
-          >
-            Continuous feedback to help you grow into the role with confidence.
-          </p>
+    <section id="track-growth" className="scroll-mt-24 bg-[#fafafa] text-[#231f20]">
+      <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-8 px-4 py-12 sm:px-8 lg:gap-10 lg:px-[120px] lg:py-12">
+        <div className="inline-flex h-11 w-fit items-center justify-center gap-2.5 rounded-[100px] border border-[#c7222a] px-[30px] py-2 text-center font-['Anek_Latin',sans-serif] text-[20px] font-semibold leading-7 text-[#c7222a]">
+          Track Your Growth
         </div>
 
-        {/* Cards */}
-        <div className="mt-8 sm:mt-12 flex flex-col lg:flex-row gap-4 lg:gap-6 justify-center items-stretch mx-auto max-w-[1040px]">
+        <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-3">
           {ITEMS.map((item) => (
-            <div key={item.key} className="group flex-1 min-w-0">
-              <div
-                className="h-full rounded-[10px] bg-[#0d0d0d] transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-[0px_16px_40px_rgba(0,0,0,0.55)] pt-6 pb-6 px-4"
-              >
-                <div className="flex flex-col gap-[10px]">
-                  <div className="inline-flex items-center justify-center rounded-[10px] w-16 h-16 bg-[#202020]">
-                    <img
-                      src={item.icon}
-                      alt={item.title}
-                      className="w-16 h-16 object-contain"
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <h3
-                      className="font-semibold text-[18px] leading-[27px] text-white text-justify"
-                      style={{
-                        fontFamily:
-                          "'Anek Latin', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                      }}
-                    >
-                      {item.title}
-                    </h3>
-                    <p
-                      className="text-[14px] leading-[21px] text-white/80 text-justify"
-                      style={{
-                        fontFamily:
-                          "'Anek Latin', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                      }}
-                    >
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
+            <article
+              key={item.key}
+              className="flex flex-col gap-2.5 rounded-[12px] border border-[#c7222a] bg-[#fafafa] px-4 py-6 shadow-[0_1px_2px_rgba(0,0,0,0.3),0_2px_6px_2px_rgba(0,0,0,0.15)] lg:h-[216px]"
+            >
+              <img src={item.icon} alt="" width={60} height={60} className="h-[60px] w-[60px]" />
+              <div className="flex flex-col gap-4">
+                <h3 className="font-['Anek_Latin',sans-serif] text-[18px] font-semibold leading-none text-[#c7222a]">
+                  {item.title}
+                </h3>
+                <p className="text-justify font-['Anek_Latin',sans-serif] text-[16px] font-normal leading-6 text-[rgba(65,64,66,0.9)]">
+                  {item.description}
+                </p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
     </section>
   );
 }
-

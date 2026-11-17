@@ -2,17 +2,20 @@ import React from "react";
 
 export default function About() {
   return (
-    <section id="about" className="bg-black text-white scroll-mt-24">
-      <div className="mx-auto px-section py-section lg:px-[120px] lg:pt-[110px] lg:pb-[110px]">
-        <div className="about-pill inline-flex items-center justify-center text-[14px] leading-[27px] font-medium tracking-normal rounded-[100px] border border-white/30 py-1 px-[30px] text-white/70">
-          About The Program
+    <section id="about" className="scroll-mt-24 bg-[#f7f7f7] text-[#231f20]">
+      <div className="mx-auto max-w-[1280px] px-4 py-12 sm:px-8 lg:px-[120px] lg:py-16">
+        <h2 className="text-left font-['Anek_Latin',sans-serif] text-[24px] font-semibold leading-[20px] tracking-normal text-[#c7222a] sm:leading-normal">
+          About the Program
+        </h2>
+        <div className="mt-4 space-y-4 text-justify font-['Anek_Latin',sans-serif] text-[18px] font-normal leading-7 tracking-normal text-[rgba(65,64,66,0.9)] sm:text-left sm:text-[16px] sm:text-[#414042] lg:text-justify">
+          <p>
+            Aditya Birla Capital, in partnership with Crack-ED, introduces the ABC Finishing School Program, a career-readiness initiative for aspiring financial services professionals. India’s health insurance sector is expanding rapidly, creating strong demand for professionals who can understand customer needs and deliver the right health insurance solutions. The program bridges the gap between academic learning and industry expectations through structured training, practical exposure, and expert guidance.
+          </p>
+          <p>
+            As a Certified Health Insurance Manager, you will guide customers, build relationships, and drive insurance business through effective sales and service. The Aditya Birla Finishing School Program equips aspiring professionals with health insurance knowledge, customer engagement, and sales skills to build a rewarding career.
+          </p>
         </div>
-
-        <p className="about-body mt-4 sm:mt-6 text-[16px] leading-[27px] sm:text-[18px] sm:leading-[32px] font-normal text-white/80 sm:text-white text-justify">
-        India’s health insurance sector is expanding rapidly, creating strong demand for professionals who can understand customer needs and deliver the right health insurance solutions. As a Certified Health Insurance Manager, you will guide customers, build relationships, and drive insurance business through effective sales and service. The Aditya Birla Finishing School Program equips aspiring professionals with health insurance knowledge, customer engagement, and sales skills to build a rewarding career.
-        </p>
       </div>
     </section>
   );
 }
-

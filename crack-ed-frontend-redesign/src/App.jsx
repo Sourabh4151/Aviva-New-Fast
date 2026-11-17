@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import AdmissionStrip from "./components/AdmissionStrip";
+import Highlights from "./components/Highlights";
 import About from "./components/About";
 import CareerGrowth from "./components/CareerGrowth";
 import TrainingJourney from "./components/TrainingJourney";
@@ -15,20 +16,21 @@ import Footer from "./components/Footer";
 import StickyIcon from "./components/StickyMobileIcon";
 export default function App() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[#fafafa] pt-[68px] font-['Anek_Latin',sans-serif] text-[#231f20]">
       <Navbar />
       {/* Sentinel for navbar scroll background: when this leaves the viewport, navbar gets black background */}
       <div id="navbar-scroll-sentinel" className="h-px w-full pointer-events-none" aria-hidden="true" />
       <Hero />
       <AdmissionStrip />
+      <Highlights />
       <About />
-      <CareerGrowth />
       <TrainingJourney />
-      <ClassroomTraining />
-      <TrackGrowth />
       <Eligibility />
       <EnrollmentProcess />
+      <CareerGrowth />
       <ProgramFee />
+      <ClassroomTraining />
+      <TrackGrowth />
       <HaveQuestionsBanner />
       <Footer />
       <StickyIcon />

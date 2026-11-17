@@ -1,17 +1,16 @@
-name: Deploy Aditya Birla HIM
-run-name: Deploy Aditya Birla HIM
+name: Deploy Aditya Birla New HIM
 
 on:
   push:
     branches:
-      - aditya-birla
+      - aditya-birla-new
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy Aditya Birla HIM
+      - name: Deploy Aditya Birla New HIM
         uses: appleboy/ssh-action@v1.2.2
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -19,4 +18,4 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           command_timeout: 20m
           script: |
-            /srv/deploy/deploy-aditya-birla.sh
+            /srv/deploy/deploy-aditya-birla-new.sh

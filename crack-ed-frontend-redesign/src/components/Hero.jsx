@@ -4,15 +4,15 @@ import stateCities from "../data/indian_state_cities.json";
 // Import assets so Vite bundles them and production URLs work (raw /src/assets/ paths 404 after build).
 // Use desktop.jpg or aviva_ds_hero.jpg depending on which file you have in src/assets/.
 // import heroImage from "../assets/desktop.jpg";
-import heroImage from "../assets/desk.png";
-import tickSvg from "../assets/tick.svg";
-import heroLogo from "../assets/aditya.svg";
+import heroImage from "../assets/hero-office.jpg";
+import tickSvg from "../assets/hero-tick.svg";
+import heroLogo from "../assets/abc-finishing-school.png";
 import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const INDIAN_STATES = Object.keys(stateCities).sort((a, b) => a.localeCompare(b));
 
 const FORM_FIELD_BORDER =
-  "border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)]";
+  "border border-[#231f20] outline-none focus:outline-none focus:ring-0 focus:border-[#c7222a]";
 
 export default function Hero() {
   const [form, setForm] = useState({ name: "", email: "", state: "", city: "", mobile: "" });
@@ -346,10 +346,10 @@ export default function Hero() {
     status.message.includes("already in our system");
 
   return (
-    <section id="hero" className="relative max-lg:flex max-lg:flex-col max-lg:gap-8 max-lg:bg-black max-lg:pb-6">
+    <section id="hero" className="relative max-lg:flex max-lg:flex-col max-lg:gap-8 max-lg:bg-[#fafafa] max-lg:pb-6">
       {/* Desktop: fixed hero height. Mobile: bg block height follows content (see Yes Bank SO) so min-height does not expose raw photo below the gradient. */}
       <div
-        className="hero-bg w-full max-lg:min-h-0 max-lg:h-auto lg:h-[690px] lg:min-h-[690px] bg-cover bg-no-repeat relative max-lg:bg-[20%_center]"
+        className="hero-bg w-full max-lg:min-h-0 max-lg:h-auto lg:h-[724px] lg:min-h-[724px] bg-cover bg-center bg-no-repeat relative"
         style={{ backgroundImage: `url(${heroImage})` }}
         role="img"
         aria-label="Aditya Birla Capital Health Insurance Manager program hero"
@@ -359,26 +359,23 @@ export default function Hero() {
           style={{
             zIndex: 10,
             background:
-              "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.8)), linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.5) 85%, rgba(0, 0, 0, 0.85) 95%, rgba(0, 0, 0, 1) 100%)",
+              "linear-gradient(149deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.45) 38%, rgba(0, 0, 0, 0.45) 70%)",
           }}
         >
-          <div className="absolute left-0 right-0 bottom-0 h-8 bg-black pointer-events-none max-lg:hidden" />
+          <div className="absolute left-0 right-0 bottom-0 h-8 pointer-events-none max-lg:hidden" />
           <div className="hero-container relative max-lg:pb-6 lg:pb-0">
             {/* Frame 301: 32px content block ↔ CTA • 16px title ↔ bullets • 8px logo→pill→title • list 12px */}
-            <div className="hero-left-adjust absolute left-[120px] top-[120px] lg:top-[172px] flex w-[586px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start text-white left-adjust">
+            <div className="hero-left-adjust absolute left-[120px] top-[140px] flex w-[586px] max-w-[calc(100%-2rem)] min-w-0 flex-col items-start text-white left-adjust">
               <div className="hero-frame-301 flex w-full min-w-0 flex-col items-start gap-[24px]">
                 <div className="flex w-full min-w-0 flex-col items-start gap-[16px]">
                   <div className="flex w-full min-w-0 flex-col items-start gap-[8px]">
                     <img
                       src={heroLogo}
-                      alt="Aditya Birla Capital"
-                      width={183}
-                      height={60}
-                      className="hero-brand-logo block h-[60px] w-[183px] shrink-0 object-contain"
+                      alt="ABC Finishing School"
+                      width={180}
+                      height={49}
+                      className="hero-brand-logo block h-[49px] w-[180px] shrink-0 object-contain object-left"
                     />
-                    <div className="hero-badge inline-flex items-center justify-center self-start whitespace-nowrap text-center">
-                      ABC Finishing School Program
-                    </div>
                     <h1 className="hero-title type-hero w-full max-w-[586px] font-medium">
                       <span className="block">Shape Better Health.</span>
                       <span className="block">Build a Better Career.</span>
@@ -399,7 +396,7 @@ export default function Hero() {
                         <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                       </span>
                       <span className="hero-body-copy">
-                        A dedicated 7-month path to help you transition into your new role with confidence.
+                        A dedicated 7-month program
                       </span>
                     </li>
                   </ul>
@@ -414,6 +411,12 @@ export default function Hero() {
                     Download Brochure
                   </button>
                 </div>
+                <div className="flex flex-col gap-2 text-[16px] leading-normal text-[#fafafa]">
+                  <p>#YourSmartCareerMove</p>
+                  <p>
+                    Enriching Lives. Winning as <span className="text-[#c7222a]">One.</span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -422,11 +425,11 @@ export default function Hero() {
 
       {/* Request a Callback form: on mobile it sits below the hero (its own space); on desktop it overlays the hero on the right. z-30 ensures it stays above the hero gradient overlay (z-10) and navbar strip (z-20). */}
       <aside
-        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-0 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[70px] lg:mt-0 lg:w-[415px] lg:z-30 w-full p-4 sm:p-6 lg:p-[24px_32px_28px_32px] rounded-2xl border border-[rgba(250,250,250,0.15)] flex flex-col justify-between min-h-0 ${alreadyInSystem || hasValidationError ? "lg:min-h-[580px]" : "lg:min-h-[524px]"
+        className={`hero-form-card max-lg:relative max-lg:mx-4 max-lg:mt-0 max-lg:max-w-[calc(100%-2rem)] lg:absolute lg:right-[120px] lg:top-[40px] lg:mt-0 lg:w-[373px] lg:z-30 w-full p-4 sm:p-6 lg:px-8 lg:py-6 rounded-2xl border-0 flex flex-col justify-between min-h-0 ${alreadyInSystem || hasValidationError ? "lg:min-h-[580px]" : ""
           }`}
       >
         <div>
-          <h3 className="hero-form-title mb-1">Request a Callback!</h3>
+          <h3 className="hero-form-title mb-1">Apply Now!</h3>
           <p className="hero-form-subtitle mb-3">Talk to our counsellors to know more</p>
           <form
             data-clarity-mask="true"
@@ -485,7 +488,7 @@ export default function Hero() {
               onChange={handleChange}
               required
               placeholder="Full Name"
-              className="callback-input w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)]"
+              className="callback-input w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[#231f20] outline-none focus:outline-none focus:ring-0 focus:border-[#c7222a]"
             />
             {errors.name && (
               <p className="mt-1 text-[12px] text-red-400">
@@ -498,7 +501,7 @@ export default function Hero() {
               onChange={handleChange}
               required
               placeholder="Email"
-              className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] callback-input"
+              className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[#231f20] outline-none focus:outline-none focus:ring-0 focus:border-[#c7222a] callback-input"
             />
             {errors.email && (
               <p className="mt-1 text-[12px] text-red-400">
@@ -541,7 +544,7 @@ export default function Hero() {
                   autoComplete="off"
                   aria-autocomplete="list"
                   aria-expanded={stateOpen}
-                  className="w-full min-w-0 bg-transparent border-0 outline-none focus:outline-none focus:ring-0 text-[14px] text-white placeholder:text-[rgba(250,250,250,0.6)]"
+                  className="w-full min-w-0 bg-transparent border-0 outline-none focus:outline-none focus:ring-0 text-[14px] text-[#231f20] placeholder:text-[#231f20]"
                 />
                 <button
                   type="button"
@@ -554,14 +557,14 @@ export default function Hero() {
                   }}
                   className="shrink-0"
                 >
-                  <svg className="h-4 w-4 text-[rgba(250,250,250,0.6)]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <svg className="h-4 w-4 text-[#231f20]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                     <path d="M6 8L10 12L14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               </div>
 
               {stateOpen && (
-                <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2">
+                <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-white shadow-lg border border-[#ececec] py-2">
                   {filteredStates.length > 0 ? (
                     filteredStates.map((s) => (
                       <li
@@ -572,7 +575,7 @@ export default function Hero() {
                           e.preventDefault();
                           selectState(s);
                         }}
-                        className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
+                        className="px-4 py-2 text-[14px] text-[#231f20] hover:bg-[#fff1f1] cursor-pointer"
                       >
                         {s}
                       </li>
@@ -632,10 +635,10 @@ export default function Hero() {
                     autoComplete="off"
                     aria-autocomplete="list"
                     aria-expanded={cityOpen}
-                    className="w-full min-w-0 bg-transparent border-0 outline-none focus:outline-none focus:ring-0 text-[14px] text-white placeholder:text-[rgba(250,250,250,0.6)]"
+                    className="w-full min-w-0 bg-transparent border-0 outline-none focus:outline-none focus:ring-0 text-[14px] text-[#231f20] placeholder:text-[#231f20]"
                   />
                 ) : (
-                  <span className="flex-1 text-[14px] text-[rgba(250,250,250,0.6)]">
+                  <span className="flex-1 text-[14px] text-[#231f20]">
                     {cityHover ? "Select State First" : "City"}
                   </span>
                 )}
@@ -652,14 +655,14 @@ export default function Hero() {
                   }}
                   className="shrink-0 disabled:opacity-60"
                 >
-                  <svg className="h-4 w-4 text-[rgba(250,250,250,0.6)]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <svg className="h-4 w-4 text-[#231f20]" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                     <path d="M6 8L10 12L14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               </div>
 
               {cityOpen && form.state && (
-                <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-black/95 py-2">
+                <ul role="listbox" className="custom-options absolute z-50 mt-2 max-h-56 w-full overflow-auto rounded border border-[rgba(255,255,255,0.06)] bg-white shadow-lg border border-[#ececec] py-2">
                   {filteredCities.length > 0 ? (
                     filteredCities.map((c) => (
                       <li
@@ -670,7 +673,7 @@ export default function Hero() {
                           e.preventDefault();
                           selectCity(c);
                         }}
-                        className="px-4 py-2 text-[14px] text-white hover:bg-blue-600 hover:text-white cursor-pointer"
+                        className="px-4 py-2 text-[14px] text-[#231f20] hover:bg-[#fff1f1] cursor-pointer"
                       >
                         {c}
                       </li>
@@ -696,7 +699,7 @@ export default function Hero() {
                   onChange={handleChange}
                   required
                   placeholder="Mobile Number"
-                  className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] callback-input"
+                  className="w-full px-4 h-[50px] rounded-[10px] bg-transparent border border-[#231f20] outline-none focus:outline-none focus:ring-0 focus:border-[#c7222a] callback-input"
                 />
                 {errors.mobile && (
                   <p className="mt-1 text-[12px] text-red-400">
@@ -729,7 +732,7 @@ export default function Hero() {
                     />
                     <span
                       aria-hidden
-                      className="pointer-events-none block h-[8px] w-[8px] rounded-[1px] border border-[rgba(250,250,250,1)] bg-transparent transition-colors duration-150 peer-checked:bg-[rgba(250,250,250,1)]"
+                      className="pointer-events-none block h-[8px] w-[8px] rounded-[1px] border border-[#414042] bg-transparent transition-colors duration-150 peer-checked:bg-[#c7222a]"
                     />
                   </span>
                   <span className="hero-form-otp-text min-w-0 flex-1">
@@ -767,7 +770,7 @@ export default function Hero() {
                           }
                         }
                       }}
-                      className="w-12 h-12 rounded-[10px] bg-transparent border border-[rgba(250,250,250,0.3)] outline-none focus:outline-none focus:ring-0 focus:border-[rgba(250,250,250,0.55)] text-center text-[18px] text-white callback-input"
+                      className="w-12 h-12 rounded-[10px] bg-white border border-[#231f20] outline-none focus:outline-none focus:ring-0 focus:border-[#c7222a] text-center text-[18px] text-[#231f20] callback-input"
                       aria-label={`OTP digit ${i + 1}`}
                     />
                   ))}
@@ -794,10 +797,10 @@ export default function Hero() {
             {showOtp
               ? isVerifyingOtp
                 ? "Verifying..."
-                : "Request a callback"
+                : "Submit"
               : isSendingOtp
                 ? "Sending OTP..."
-                : "Get OTP"}
+                : "Register"}
           </button>
         </div>
       </aside>
@@ -812,7 +815,7 @@ export default function Hero() {
             <button
               type="button"
               onClick={handleClosePopup}
-              className="absolute right-5 top-5 text-2xl leading-none text-[rgba(250,250,250,0.6)] hover:text-white"
+              className="absolute right-5 top-5 text-2xl leading-none text-[#231f20] hover:text-white"
               aria-label="Close"
             >
               ×

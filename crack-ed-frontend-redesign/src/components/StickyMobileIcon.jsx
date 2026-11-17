@@ -44,10 +44,8 @@ export default function StickyMobileIcon() {
         <div
           className="rounded-2xl shadow-2xl overflow-hidden"
           style={{
-            background: "linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%)",
-            backdropFilter: "blur(16px)",
-            WebkitBackdropFilter: "blur(16px)",
-            border: "1px solid rgba(255, 255, 255, 0.15)",
+            background: "#ffffff",
+            border: "1px solid rgba(199, 34, 42, 0.18)",
             padding: "24px",
             minWidth: "240px",
           }}
@@ -56,7 +54,7 @@ export default function StickyMobileIcon() {
           <div className="flex justify-end mb-2">
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white/60 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10"
+              className="text-[#6b6b6b] hover:text-[#231f20] transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5"
               aria-label="Close"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +72,7 @@ export default function StickyMobileIcon() {
                   fontWeight: 600,
                   fontSize: "16px",
                   lineHeight: "24px",
-                  color: "rgba(250, 250, 250, 1)",
+                  color: "#231f20",
                 }}
               >
                 Talk to Us
@@ -85,7 +83,7 @@ export default function StickyMobileIcon() {
                   fontWeight: 400,
                   fontSize: "12px",
                   lineHeight: "18px",
-                  color: "rgba(250, 250, 250, 0.6)",
+                  color: "#6b6b6b",
                 }}
               >
                 Our counsellors are here to help
@@ -93,7 +91,7 @@ export default function StickyMobileIcon() {
             </div>
 
             {/* Phone number display */}
-            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#fff1f1]">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
@@ -105,7 +103,7 @@ export default function StickyMobileIcon() {
                   fontFamily: "'Anek Latin', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                   fontWeight: 600,
                   fontSize: "14px",
-                  color: "rgba(250, 250, 250, 1)",
+                  color: "#231f20",
                 }}
               >
                 {PHONE_NUMBER}

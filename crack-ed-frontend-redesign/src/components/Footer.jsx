@@ -20,27 +20,25 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-black">
-      <div className="mx-auto w-full max-w-[1280px] px-6 py-8 lg:px-[120px] lg:py-[48px]">
-        <div className="hidden w-full border-t border-[rgba(250,250,250,0.1)] lg:block" />
+    <footer className="bg-[#fafafa]">
+      <div className="mx-auto w-full max-w-[1280px] px-6 py-8 lg:px-[120px] lg:py-10">
+        <div className="hidden w-full border-t border-[#e6e6e6] lg:block" />
         <div className="flex flex-col gap-3 pt-0 lg:flex-row lg:items-center lg:justify-between lg:pt-6">
-          <nav className="order-1 flex flex-col items-start gap-2 lg:order-2 lg:flex-row lg:items-center lg:gap-x-8 lg:gap-y-2">
+          <p className="footer-text order-3 lg:order-1">© 2026 Crack-ED. All rights reserved.</p>
+          <div className="order-2 h-px w-full bg-[#e6e6e6] lg:hidden" />
+          <nav className="order-1 flex flex-col items-start gap-2 lg:order-2 lg:flex-row lg:items-center lg:gap-8">
             {links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="footer-text hover:text-white transition-colors"
+                className="footer-text transition-colors hover:text-[#231f20]"
               >
                 {link.label}
               </a>
             ))}
           </nav>
-          <div className="order-2 h-px w-full bg-[rgba(250,250,250,0.1)] lg:hidden" />
-          <p className="footer-text order-3 lg:order-1">
-            © 2026 Crack-ED. All rights reserved.
-          </p>
         </div>
       </div>
     </footer>

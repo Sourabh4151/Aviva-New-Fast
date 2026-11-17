@@ -1,127 +1,82 @@
 import React from "react";
-import enrollmentImage from "../assets/enrollment.png";
+import step1 from "../assets/1st.svg";
+import step2 from "../assets/2nd.svg";
+import step3 from "../assets/3rd.svg";
+import step4 from "../assets/4th.svg";
+import step5 from "../assets/5th.svg";
+import step6 from "../assets/6th.svg";
 
 const STEPS = [
   {
-    number: "01",
-    title: "Online Application",
-    description:
-      "Start your journey by applying online for the Aditya Birla Capital Finishing School Program.",
+    title: "Screening",
+    description: "Fill application form and appear for Crack-ED screening interview.",
+    icon: step1,
   },
   {
-    number: "02",
-    title: "Interview Preparation & Final Interview",
-    description:
-      "Join a virtual interview preparation session and appear for the Aditya Birla Capital interview.",
+    title: "Assessment & Interview",
+    description: "Complete the ABC Assessment & Interview.",
+    icon: step2,
   },
   {
-    number: "03",
     title: "Provisional Offer",
-    description:
-      "Receive a provisional offer from Aditya Birla Capital, with your final role confirmed upon completing the training.",
+    description: "Receive a provisional offer from Aditya Birla Health Insurance Co. Ltd.",
+    icon: step3,
   },
   {
-    number: "04",
     title: "Campus Training",
-    description:
-      "Build your skills through intensive offline classroom training at Crack-ED.",
+    description: "Complete one month of offline classroom training at Crack-ED.",
+    icon: step4,
   },
   {
-    number: "05",
-    title: "Start Your Career at Aditya Birla Capital",
-    description:
-      "Upon successful completion, you'll officially join Aditya Birla Capital as a full-time employee.",
+    title: "Join Aditya Birla Capital",
+    description: "Join Aditya Birla Capital as a full-time employee.",
+    icon: step5,
   },
   {
-    number: "06",
     title: "Internship & OJT",
-    description:
-      "Gain hands-on experience through 3 months internship and 3 months OJT with Aditya Birla Capital.",
+    description: "Complete 3 months internship & 3 months OJT.",
+    icon: step6,
   },
 ];
 
 export default function EnrollmentProcess() {
-  const [hoveredStep, setHoveredStep] = React.useState(null);
-
-  const handleHoverChange = (stepNumber) => {
-    if (typeof window !== "undefined" && window.innerWidth >= 1024) {
-      setHoveredStep(stepNumber);
-    }
-  };
-
   return (
-    <section className="relative bg-black text-white overflow-hidden">
-      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-20">
-        <div className="flex flex-col items-start text-left">
-          <div className="enrollment-pill inline-flex items-center justify-center h-[35px] rounded-full border border-white/30 py-1 px-[30px]">
-            Candidate Journey
-          </div>
-
-          <p className="enrollment-heading mt-4 sm:mt-6 max-w-[818px]">
-            A simple, step-by-step process designed to help you get started with confidence.
-          </p>
-        </div>
-
-        <div className="mt-8 sm:mt-12 flex flex-col lg:flex-row gap-6 lg:gap-8">
-          <div className="flex-1 flex justify-start min-w-0">
-            <div className="overflow-hidden bg-black w-full max-w-none lg:max-w-[582px] h-[400px] sm:h-[540px] lg:h-[560px] p-0 sm:p-0 lg:p-6 lg:rounded-[10px] enrollment-image-mobile">
-              <img
-                src={enrollmentImage}
-                alt="Enrollment process"
-                className="w-full h-full object-cover sm:rounded-[10px]"
-              />
-            </div>
-          </div>
-
-          <div className="flex-1 flex flex-col justify-center min-w-0">
-            <div className="flex flex-col gap-6 sm:gap-8 max-w-full lg:max-w-[534px]">
-              {STEPS.map((step, index) => (
-                <div
-                  key={step.number}
-                  id={index === 0 ? "enrollment-process" : undefined}
-                  className={`flex flex-row items-stretch gap-3 sm:gap-4${
-                    index === 0 ? " scroll-mt-28 md:scroll-mt-24" : ""
-                  }`}
-                  onMouseEnter={() => handleHoverChange(step.number)}
-                  onMouseLeave={() => handleHoverChange(null)}
-                >
-                  {(() => {
-                    const isHovered = hoveredStep === step.number;
-                    const accentColor = "#c7222a";
-                    const defaultLineColor = "rgba(250,250,250,0.25)";
-
-                    return (
-                      <>
-                        <div
-                          className="block lg:hidden flex-shrink-0 w-0 border-l self-stretch"
-                          style={{ borderLeftColor: accentColor }}
-                        />
-                        <div
-                          className="hidden lg:block flex-shrink-0 w-0 self-stretch"
-                          style={{
-                            borderLeft: `${isHovered ? 2 : 1}px solid ${isHovered ? accentColor : defaultLineColor}`,
-                          }}
-                        />
-
-                        <div className="flex flex-col gap-[10px] min-w-0">
-                          <h3
-                            className="enrollment-step-title"
-                            style={{
-                              color: isHovered ? accentColor : "rgba(250, 250, 250, 1)",
-                            }}
-                          >
-                            {step.number} - {step.title}
-                          </h3>
-                          <p className="enrollment-step-desc">{step.description}</p>
-                        </div>
-                      </>
-                    );
-                  })()}
-                </div>
-              ))}
-            </div>
+    <section id="enrollment-process" className="scroll-mt-24 bg-[#fafafa] text-[#231f20]">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-8 px-4 py-12 sm:px-8 lg:px-20">
+        <div className="flex justify-start">
+          <div className="inline-flex h-11 items-center justify-center gap-2.5 rounded-[100px] border border-[#c7222a] px-[30px] py-2 font-['Anek_Latin',sans-serif] text-[20px] font-semibold leading-7 tracking-normal text-[#c7222a]">
+            Enrollment Process
           </div>
         </div>
+
+        <ol className="relative flex flex-col gap-6 lg:grid lg:grid-cols-6 lg:gap-2">
+          <span
+            className="pointer-events-none absolute top-[39px] hidden h-[2px] bg-[#c7222a] lg:block"
+            style={{ left: "calc((100% - 40px) / 12 - 60px)", right: "calc((100% - 40px) / 12 - 60px)" }}
+            aria-hidden="true"
+          />
+          {STEPS.map((step, index) => (
+            <li key={step.title} className="relative flex items-start gap-4 text-left lg:flex-col lg:items-center lg:gap-0 lg:text-center">
+              {index < STEPS.length - 1 && (
+                <span className="absolute left-[39px] top-[81px] -bottom-6 w-[2px] bg-[#c7222a] lg:hidden" aria-hidden="true" />
+              )}
+              <span className="relative z-10 flex h-[81px] w-[80px] shrink-0 items-start justify-center lg:h-[111px] lg:w-full">
+                <img src={step.icon} alt="" width={80} height={81} />
+                <span className="absolute bottom-[26px] left-[calc(50%-38px)] flex h-8 w-8 items-center justify-center rounded-full bg-[#c7222a] py-1 font-['Lato',sans-serif] text-[20px] font-medium leading-none text-[#fafafa]">
+                  {index + 1}
+                </span>
+              </span>
+              <div className="flex min-w-0 flex-1 flex-col gap-2.5 pt-3 lg:mt-5 lg:w-full lg:items-center lg:gap-2 lg:pt-0">
+                <h3 className="font-['Anek_Latin',sans-serif] text-[16px] font-medium leading-none text-[#231f20]">
+                  {step.title}
+                </h3>
+                <p className="font-['Anek_Latin',sans-serif] text-[14px] font-normal leading-5 text-[rgba(65,64,66,0.9)]">
+                  {step.description}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

@@ -1,10 +1,10 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import uthaanImg from "../assets/uthaan.png";
-import aarohanImg from "../assets/aarohan.png";
-import shikharImg from "../assets/shikhar.png";
-import tickSvg from "../assets/tick.svg";
+import uthaanImg from "../assets/uthaan.jpg";
+import aarohanImg from "../assets/aarohan.jpg";
+import shikharImg from "../assets/shikhar.jpg";
+import tickSvg from "../assets/hero-tick.svg";
 import DownloadBrochureModal from "./DownloadBrochureModal";
 
 const MODULES = [
@@ -38,12 +38,12 @@ const MODULES = [
     key: "shikhar",
     label: "Shikhar",
     heading: "Excel In Sales, Service & Growth",
-    intro: "Take your skills to the next level:",
+    intro: "Learn how to perform on the job through:",
     items: [
-      "Excel Relationship Management",
-      "Improve Sales Performance",
+      "Excelling in Relationship Management",
+      "Improved Sales Performance",
       "Resolving Customer Needs",
-      "Deliver strong business outcomes",
+      "Delivering strong business outcomes",
     ],
     image: shikharImg,
   },
@@ -53,34 +53,33 @@ export default function ClassroomTraining() {
   const sectionRef = useRef(null);
   const modulesRef = useRef(null);
   const imageRefs = useRef([]);
+  const badgeRefs = useRef([]);
   const [progress, setProgress] = useState(0);
+  const [lineBox, setLineBox] = useState({ top: 0, height: 0, markers: [0, 0.5, 1] });
   const [showBrochureModal, setShowBrochureModal] = useState(false);
 
   useLayoutEffect(() => {
-    if (typeof window === "undefined") return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const modules = modulesRef.current;
-    if (!modules) return;
-
-    const START_OFFSET_PX = 100;
-
-    const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: modules,
-        start: `top+=${START_OFFSET_PX} center`,
-        end: "bottom bottom",
-        onUpdate: (self) => {
-          setProgress(self.progress);
-        },
+    const measure = () => {
+      const root = modulesRef.current;
+      const badges = badgeRefs.current.filter(Boolean);
+      if (!root || badges.length < 2) return;
+      const rootTop = root.getBoundingClientRect().top;
+      const centers = badges.map((badge) => {
+        const rect = badge.getBoundingClientRect();
+        return rect.top - rootTop + rect.height / 2;
       });
-    });
-
-    return () => {
-      ctx.revert();
-      ScrollTrigger.getAll().forEach((st) => st.kill());
+      const top = centers[0];
+      const height = centers[centers.length - 1] - top;
+      setLineBox({
+        top,
+        height,
+        markers: centers.map((center) => (height ? (center - top) / height : 0)),
+      });
     };
+
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
   }, []);
 
   useLayoutEffect(() => {
@@ -88,10 +87,21 @@ export default function ClassroomTraining() {
 
     gsap.registerPlugin(ScrollTrigger);
 
+    const modules = modulesRef.current;
     const images = imageRefs.current;
-    if (!images || images.length === 0) return;
+    if (!modules) return;
 
     const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: modules,
+        scroller: document.body,
+        start: "top+=100 center",
+        end: "bottom bottom",
+        onUpdate: (self) => {
+          setProgress(self.progress);
+        },
+      });
+
       images.forEach((img) => {
         if (!img) return;
 
@@ -104,6 +114,7 @@ export default function ClassroomTraining() {
             ease: "power2.out",
             scrollTrigger: {
               trigger: img,
+              scroller: document.body,
               start: "top 80%",
               end: "bottom 40%",
               scrub: true,
@@ -118,129 +129,91 @@ export default function ClassroomTraining() {
     };
   }, []);
 
-  const progressHeight = `${progress * 100}%`;
-  const dotPositions = [0, 33.7, 67.2];
-  const maxDotPosition = dotPositions[dotPositions.length - 1] || 100;
-  const dotOffsets = dotPositions.map(
-    (position) => (position / maxDotPosition) * 100
-  );
-
   return (
     <section
       id="classroom-training"
       ref={sectionRef}
-      className="relative bg-black text-white scroll-mt-24 overflow-hidden"
+      className="relative scroll-mt-24 overflow-hidden bg-[#fafafa] text-[#231f20]"
     >
-      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:pt-[110px] lg:pb-[110px] lg:pr-0">
-        <div className="max-w-xl">
-          <div className="classroom-pill inline-flex items-center justify-center">
-            Classroom Training
-          </div>
-
-          <p className="classroom-subtitle mt-3 sm:mt-4">
-            Three progressive modules guiding you toward professional readiness.
-          </p>
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-8 px-4 py-12 sm:px-8 lg:gap-10 lg:py-12 lg:pl-[60px] lg:pr-0">
+        <div className="inline-flex h-11 w-fit items-center justify-center gap-2.5 rounded-[100px] border border-[#c7222a] px-[30px] py-2 text-center font-['Anek_Latin',sans-serif] text-[20px] font-semibold leading-7 text-[#c7222a]">
+          3 Progressive Training Modules
         </div>
 
-        <div className="mt-8 sm:mt-12 lg:mt-16 flex flex-col lg:flex-row gap-6 lg:gap-12">
-          <div className="hidden lg:block relative flex-shrink-0" style={{ width: 40 }}>
+        <div ref={modulesRef} className="relative">
+          <div
+            className="pointer-events-none absolute left-[6px] hidden w-1 lg:block"
+            style={{ top: lineBox.top, height: lineBox.height }}
+          >
+            <div className="h-full w-full rounded-full bg-[rgba(199,34,42,0.18)]" />
             <div
-              className="absolute left-1/2 -translate-x-1/2"
-              style={{
-                width: 4,
-                top: 96,
-                height: `${maxDotPosition}%`,
-              }}
-            >
-              <div
-                className="w-full h-full rounded-full"
-                style={{ backgroundColor: "rgba(250,250,250,0.15)" }}
-              />
-
-              <div
-                className="absolute left-1/2 -translate-x-1/2 top-0 w-full rounded-full"
+              className="absolute left-0 top-0 w-full rounded-full bg-[#c7222a]"
+              style={{ height: `${progress * 100}%` }}
+            />
+            {lineBox.markers.map((threshold) => (
+              <span
+                key={threshold}
+                className="absolute left-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full"
                 style={{
-                  height: progressHeight,
-                  backgroundColor: "#c7222a",
+                  top: `${threshold * 100}%`,
+                  backgroundColor: progress >= threshold - 0.001 ? "#c7222a" : "#f3d4d6",
                 }}
               />
-
-              {dotPositions.map((position, index) => {
-                const threshold = dotOffsets[index] / 100;
-                const isActive = progress >= threshold;
-                return (
-                  <div
-                    key={MODULES[index].key}
-                    className="absolute left-1/2 -translate-x-1/2"
-                    style={{
-                      width: 16,
-                      height: 16,
-                      borderRadius: "999px",
-                      top: `calc(${dotOffsets[index]}% - 8px)`,
-                      backgroundColor: isActive
-                        ? "#c7222a"
-                        : "rgba(63, 63, 63, 1)",
-                    }}
-                  />
-                );
-              })}
-            </div>
+            ))}
           </div>
 
-          <div className="flex-1 flex flex-col gap-0 min-w-0" ref={modulesRef}>
+          <div className="flex flex-col gap-10 lg:gap-8">
             {MODULES.map((module, index) => (
               <div
                 key={module.key}
-                className={index === 0 ? "" : "mt-12 sm:mt-16 lg:mt-[96px]"}
+                className="flex flex-col items-stretch gap-6 bg-[#fafafa] lg:h-[341px] lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:pl-10"
               >
-                <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-stretch">
-                  <div className="order-2 lg:order-1 flex-1 rounded-[10px] bg-black/20 px-4 sm:px-6 lg:px-8 py-6 lg:py-8 max-w-full lg:max-w-[512px]">
-                    <div className="classroom-module-badge mb-4">{module.label}</div>
-
-                    <h3 className="classroom-module-heading">{module.heading}</h3>
-
-                    <p className="classroom-module-intro mt-3">{module.intro}</p>
-
-                    <ul className="mt-3 flex flex-col gap-3">
-                      {module.items.map((item) => (
-                        <li key={item} className="flex items-start gap-2 sm:gap-3">
-                          <span className="hero-tick shrink-0">
-                            <img src={tickSvg} alt="" className="hero-tick-icon" aria-hidden="true" />
-                          </span>
-                          <span className="classroom-module-list-text min-w-0 flex-1">
-                            {item}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+                <div className="min-w-0 lg:max-w-[520px]">
+                  <div
+                    ref={(el) => {
+                      badgeRefs.current[index] = el;
+                    }}
+                    className="classroom-module-badge mb-3"
+                  >
+                    {module.label}
                   </div>
-
-                  <div className="order-1 lg:order-2 classroom-image-mobile overflow-hidden ml-0 lg:ml-auto w-full lg:w-[504px] lg:flex-shrink-0 h-[220px] sm:h-[280px] lg:h-[353px] rounded-none sm:rounded-t-[10px] sm:rounded-b-[10px] lg:rounded-l-[10px] lg:rounded-tr-none lg:rounded-br-none lg:bg-black/20">
-                    <img
-                      ref={(el) => {
-                        imageRefs.current[index] = el;
-                      }}
-                      src={module.image}
-                      alt={module.heading}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  <h3 className="classroom-module-heading">{module.heading}</h3>
+                  <p className="classroom-module-intro mt-2">{module.intro}</p>
+                  <ul className="mt-3 flex flex-col gap-2">
+                    {module.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <span className="hero-tick shrink-0">
+                          <img src={tickSvg} alt="" className="hero-tick-icon" aria-hidden="true" />
+                        </span>
+                        <span className="classroom-module-list-text min-w-0 flex-1">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                {index === MODULES.length - 1 && (
-                  <div className="mt-6 sm:mt-8 flex justify-center sm:justify-start">
-                    <button
-                      type="button"
-                      onClick={() => setShowBrochureModal(true)}
-                      className="download-brochure-btn border-0"
-                    >
-                      Download Brochure
-                    </button>
-                  </div>
-                )}
+                <div className="classroom-image-mobile h-[220px] w-full overflow-hidden rounded-none sm:h-[280px]">
+                  <img
+                    ref={(el) => {
+                      imageRefs.current[index] = el;
+                    }}
+                    src={module.image}
+                    alt={module.heading}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="flex justify-center sm:justify-start">
+          <button
+            type="button"
+            onClick={() => setShowBrochureModal(true)}
+            className="download-brochure-btn download-brochure-btn--solid border-0"
+          >
+            Download Brochure
+          </button>
         </div>
       </div>
       <DownloadBrochureModal

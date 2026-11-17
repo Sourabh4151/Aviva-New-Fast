@@ -1,106 +1,92 @@
 import React from "react";
-import tickSvg from "../assets/tick.svg";
+import tickSvg from "../assets/hero-tick.svg";
 
-const FEE_INCLUDES = [
-  "Comprehensive training & placement support",
+const PAY_URL = "https://smartpay.easebuzz.in/234234/abcfs";
+
+const INCLUDES = [
+  "Comprehensive counseling, grooming and training.",
   "All learning materials and resources",
 ];
 
+const TRANCHES = [
+  "1st Year - 50% of Program Fee",
+  "2nd Year - Remaining 50% of Program Fee",
+];
+
+function TickList({ items }) {
+  return (
+    <ul className="flex flex-col gap-2.5">
+      {items.map((item) => (
+        <li key={item} className="flex items-start gap-2">
+          <img src={tickSvg} alt="" width={16} height={16} className="mt-0.5 shrink-0" />
+          <span className="font-['Anek_Latin',sans-serif] text-[16px] font-normal leading-5 text-[rgba(65,64,66,0.9)]">
+            {item}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function ProgramFee() {
   return (
-    <section
-      id="program-fee"
-      className="relative bg-black text-white scroll-mt-24 overflow-hidden"
-    >
-      <div className="relative z-10 mx-auto px-section py-section lg:px-[120px] lg:py-20">
-        <div className="mx-auto flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-10 max-w-[1040px]">
-          {/* Left: badge, heading, note */}
-          <div className="flex-1 flex flex-col items-start text-left min-w-0 w-full">
-            <div className="program-fee-pill inline-flex items-center justify-center tracking-normal rounded-full border border-white/30 py-1 px-4 sm:px-[30px]">
-              Program Fee
-            </div>
-
-            <div className="mt-4 flex flex-col gap-4 max-w-full lg:max-w-[498px]">
-              <p className="program-fee-heading">
-                An investment in your skills, preparation, and career progression.
-              </p>
-
-              <p className="program-fee-note">
-                *Flexible EMI and education loan assistance available.
-              </p>
-            </div>
+    <section id="program-fee" className="scroll-mt-24 bg-[#fafafa] text-[#231f20]">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-3 px-4 py-12 sm:px-8 lg:px-[120px] lg:py-12">
+        <div className="flex flex-col gap-8 lg:gap-10">
+          <div className="inline-flex h-11 w-fit items-center justify-center gap-2.5 rounded-[100px] border border-[#c7222a] px-[30px] py-2 text-center font-['Anek_Latin',sans-serif] text-[20px] font-semibold leading-7 text-[#c7222a]">
+            Program Fee
           </div>
 
-          {/* Right: fee card with glow */}
-          <div className="flex-1 flex justify-center lg:justify-end w-full lg:w-auto">
-            <div className="relative w-full max-w-[364px]">
-              <div
-                className="pointer-events-none absolute -left-4 -right-4 -top-2 -bottom-10 sm:-left-6 sm:-right-6 sm:-top-4 sm:-bottom-12"
-                style={{
-                  background:
-                    "radial-gradient(circle at 50% 50%, rgba(199, 34, 42, 0.7) 0, rgba(199, 34, 42, 0) 65%)",
-                  filter: "blur(35px)",
-                  opacity: 1,
-                }}
-              />
-
-              <div className="relative flex flex-col shadow-2xl program-fee-card">
-                <div className="flex flex-col gap-1">
-                  <p className="program-fee-card-label">Program fee</p>
-                  <p className="program-fee-amount">₹99,000 + GST</p>
-                </div>
-
-                <div className="flex flex-col gap-[10px]">
-                  <p className="program-fee-includes">The program fee includes:</p>
-
-                  <div className="flex flex-col gap-[10px]">
-                    {FEE_INCLUDES.map((item) => (
-                      <div key={item} className="flex items-start gap-[10px]">
-                        <span className="hero-tick shrink-0">
-                          <img
-                            src={tickSvg}
-                            alt=""
-                            className="hero-tick-icon"
-                            aria-hidden="true"
-                          />
-                        </span>
-                        <p className="program-fee-list-text min-w-0 flex-1">{item}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <a
-                  href="https://smartpay.easebuzz.in/234234/kotak_gl_ro"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="program-fee-pay-btn self-center lg:self-start"
-                >
-                  Enrol & Pay Now
-                  <svg
-                    width="18"
-                    height="14"
-                    viewBox="0 0 18 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                  >
-                    <rect
-                      x="0.75"
-                      y="0.75"
-                      width="16.5"
-                      height="12.5"
-                      rx="1.5"
-                      stroke="white"
-                      strokeWidth="1.5"
-                    />
-                    <path d="M0.75 4.5H17.25" stroke="white" strokeWidth="1.5" />
-                  </svg>
-                </a>
+          <div className="flex flex-col gap-5 lg:flex-row lg:gap-[60px]">
+            <article className="flex flex-col gap-3 rounded-[10px] border border-[#c7222a] bg-[#fff4d9] p-6 lg:h-[265px] lg:w-[490px] lg:shrink-0">
+              <div>
+                <p className="font-['Anek_Latin',sans-serif] text-[32px] font-semibold leading-8 text-[#c7222a] lg:whitespace-nowrap">
+                  ₹99,000* +
+                  <br className="lg:hidden" />
+                  <span className="text-[20px] font-semibold leading-8"> Applicable Taxes & Charges</span>
+                </p>
+                <p className="text-right font-['Anek_Latin',sans-serif] text-[12px] font-normal leading-none text-[rgba(65,64,66,0.9)]">
+                  *In the Business
+                </p>
               </div>
-            </div>
+
+              <div className="flex flex-col gap-2.5">
+                <p className="font-['Anek_Latin',sans-serif] text-[16px] font-normal leading-6 text-[rgba(65,64,66,0.9)]">
+                  The program fee includes:
+                </p>
+                <TickList items={INCLUDES} />
+              </div>
+
+              <a
+                href={PAY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-auto inline-flex h-[50px] w-fit shrink-0 items-center gap-2 rounded-[10px] bg-[#c7222a] px-6 font-['Anek_Latin',sans-serif] text-[14px] font-semibold leading-none text-white"
+              >
+                Enrol & Pay Now
+                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">
+                  <rect x="0.75" y="0.75" width="16.5" height="12.5" rx="1.5" stroke="white" strokeWidth="1.5" />
+                  <path d="M0.75 4.5H17.25" stroke="white" strokeWidth="1.5" />
+                </svg>
+              </a>
+            </article>
+
+            <article className="flex flex-col gap-2.5 rounded-[10px] border border-[#c7222a] bg-[#fff4d9] p-6 lg:h-[265px] lg:w-[490px] lg:shrink-0">
+              <h3 className="font-['Anek_Latin',sans-serif] text-[20px] font-semibold leading-6 text-[#c7222a]">
+                Reimbursement Of Fee:
+              </h3>
+              <p className="font-['Anek_Latin',sans-serif] text-[40px] font-semibold leading-none text-[#c7222a]">100%</p>
+              <p className="font-['Anek_Latin',sans-serif] text-[16px] font-normal leading-6 text-[rgba(65,64,66,0.9)]">
+                The reimbursement will be shared in the following two tranches
+              </p>
+              <TickList items={TRANCHES} />
+            </article>
           </div>
         </div>
+
+        <p className="font-['Anek_Latin',sans-serif] text-[14px] font-normal leading-[15px] text-[rgba(65,64,66,0.9)]">
+          *Flexible EMI and education loan assistance available. Terms and conditions apply.
+        </p>
       </div>
     </section>
   );

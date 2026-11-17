@@ -1,25 +1,13 @@
 import React, { useEffect, useState } from "react";
-import crackEdLogo from "../assets/crack-ed_logo.svg";
+import crackEdLogo from "../assets/nav-cracked.svg";
+import abclLogo from "../assets/nav-abcl.svg";
 import { withUtmParams } from "../utils/utm";
 
 const CRACK_ED_HOME = "https://crack-ed.com/";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [logoHref, setLogoHref] = useState(CRACK_ED_HOME);
-
-  useEffect(() => {
-    const sentinel = document.getElementById("navbar-scroll-sentinel");
-    if (!sentinel) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setScrolled(!entry.isIntersecting),
-      { threshold: 0, rootMargin: "0px" }
-    );
-    observer.observe(sentinel);
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     setLogoHref(withUtmParams(CRACK_ED_HOME));
@@ -27,107 +15,108 @@ export default function Navbar() {
 
   const closeMobile = () => setMobileOpen(false);
 
-  const scrollToEnrollment = (e) => {
+  const scrollTo = (id) => (e) => {
     e.preventDefault();
     const wasMobileOpen = mobileOpen;
     closeMobile();
-
     const run = () => {
-      const el = document.getElementById("enrollment-process");
+      const el = document.getElementById(id);
       if (!el) return;
       el.scrollIntoView({ behavior: "smooth", block: "start" });
-      window.history.replaceState(null, "", "#enrollment-process");
+      window.history.replaceState(null, "", `#${id}`);
     };
-
-    if (wasMobileOpen) {
-      setTimeout(run, 150);
-    } else {
-      run();
-    }
+    if (wasMobileOpen) setTimeout(run, 150);
+    else run();
   };
 
-  const navLinks = (
-    <>
-      <a href="#about" className="nav-link hover:opacity-90" onClick={closeMobile}>
-        About Program
-      </a>
-      <a href="#training" className="nav-link hover:opacity-90" onClick={closeMobile}>
-        Training
-      </a>
-      <a href="#eligibility" className="nav-link hover:opacity-90" onClick={closeMobile}>
-        Eligibility
-      </a>
-      <a
-        href="#enrollment-process"
-        className="nav-link hover:opacity-90"
-        onClick={scrollToEnrollment}
-      >
-        Enrollment Process
-      </a>
-      <a href="#program-fee" className="nav-link hover:opacity-90" onClick={closeMobile}>
-        Program Fee
-      </a>
-    </>
-  );
+  const links = [
+    { href: "#about", label: "About Program", id: "about" },
+    { href: "#training", label: "Training", id: "training" },
+    { href: "#enrollment-process", label: "Enrollment Process", id: "enrollment-process" },
+    { href: "#program-fee", label: "Program Fee", id: "program-fee" },
+  ];
 
   return (
-    <header
-      className="fixed inset-x-0 top-0 z-[100] transition-[background-color] duration-200"
-      style={{ backgroundColor: scrolled ? "rgba(0,0,0,0.85)" : "transparent" }}
-    >
-      <nav className={scrolled ? "backdrop-blur-sm" : ""}>
-        <div className="nav-container py-3 lg:py-0 flex items-center justify-between">
-          <div className="flex items-center gap-2 sm:gap-4">
-            <a
-              href={logoHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={closeMobile}
-              className="focus:outline-none inline-block"
-              aria-label="Go to Crack-ED"
-            >
-              <img
-                src={crackEdLogo}
-                alt="Crack-ED"
-                className="w-28 h-8 sm:w-36 sm:h-10 lg:w-[180px] lg:h-[51px] object-contain cursor-pointer"
-                onError={(e) => (e.currentTarget.style.display = "none")}
-              />
-            </a>
-          </div>
-
-          {/* Desktop: links (login hidden for now) */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            {navLinks}
-          </div>
-
-          {/* Mobile: menu toggle — fixed size, no background */}
-          <div className="md:hidden flex items-center gap-2 shrink-0">
-            <button
-              type="button"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-white hover:text-white/80 transition-colors"
-              aria-expanded={mobileOpen}
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            >
-              {mobileOpen ? (
-                <span className="text-3xl leading-none font-medium tracking-tight">×</span>
-              ) : (
-                <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
-          </div>
+    <header className="fixed inset-x-0 top-0 z-[100] bg-[#fafafa]">
+      <nav className="flex h-[68px] w-full items-stretch">
+        <div className="flex shrink-0 items-center gap-2 pl-3 pr-2 sm:gap-3 sm:pl-8 sm:pr-4 lg:pl-[max(100px,calc((100%-1280px)/2+100px))] lg:pr-10">
+          <a
+            href={logoHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center"
+            aria-label="Go to Crack-ED"
+          >
+            <img src={crackEdLogo} alt="Crack-ED" className="h-[30px] w-auto sm:h-[42px]" />
+          </a>
+          <span className="h-6 w-px bg-[#d0d0d0] sm:h-9" aria-hidden="true" />
+          <img
+            src={abclLogo}
+            alt="Aditya Birla Capital"
+            className="h-[22px] w-auto sm:h-[36px]"
+          />
         </div>
 
-        {/* Mobile dropdown menu (login hidden for now) */}
-        {mobileOpen && (
-          <div className="md:hidden border-t border-white/10 backdrop-blur-sm px-4 py-4 flex flex-col gap-3" style={{ backgroundColor: "rgba(0,0,0,0.85)" }}>
-            {navLinks}
-          </div>
-        )}
+        <div className="hidden min-w-0 flex-1 items-center justify-end gap-6 rounded-bl-[14px] bg-[#c7222a] pr-4 md:flex lg:gap-[30px] lg:pr-[max(100px,calc((100%-1280px)/2+100px))]">
+          {links.map((link) => (
+            <a
+              key={link.id}
+              href={link.href}
+              onClick={scrollTo(link.id)}
+              className="whitespace-nowrap font-['Anek_Latin',sans-serif] text-[14px] font-normal text-white hover:opacity-90"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="#hero"
+            onClick={scrollTo("hero")}
+            className="inline-flex items-center justify-center rounded-[10px] bg-[#fafafa] px-5 py-2 font-['Anek_Latin',sans-serif] text-[14px] font-semibold text-[#c7222a]"
+          >
+            Apply Now
+          </a>
+        </div>
+
+        <div className="ml-auto flex items-center pr-3 md:hidden">
+          <button
+            type="button"
+            onClick={() => setMobileOpen((open) => !open)}
+            className="flex h-11 w-11 items-center justify-center rounded-[10px] bg-[#c7222a] text-white"
+            aria-expanded={mobileOpen}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileOpen ? (
+              <span className="text-3xl leading-none">×</span>
+            ) : (
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+        </div>
       </nav>
+
+      {mobileOpen && (
+        <div className="absolute inset-x-0 top-full flex w-full flex-col gap-4 bg-[#c7222a] px-5 py-[60px] md:hidden">
+          {links.map((link) => (
+            <a
+              key={link.id}
+              href={link.href}
+              onClick={scrollTo(link.id)}
+              className="font-['Anek_Latin',sans-serif] text-[14px] font-normal leading-none text-white"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="#hero"
+            onClick={scrollTo("hero")}
+            className="inline-flex w-fit items-center justify-center rounded-[100px] bg-white px-5 py-1.5 font-['Anek_Latin',sans-serif] text-[14px] font-semibold leading-none text-[#c7222a]"
+          >
+            Apply Now
+          </a>
+        </div>
+      )}
     </header>
   );
 }
-
