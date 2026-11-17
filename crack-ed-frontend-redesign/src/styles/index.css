@@ -558,16 +558,19 @@ body::-webkit-scrollbar {
   }
 }
 
-/* Hero tick icon – fixed specs for mobile and desktop */
+/* Hero tick icon – fixed specs for mobile and desktop.
+   Stay on the first line of a wrapped point, not centered on the block. */
 .hero-tick {
   width: 20px;
   height: 20px;
+  margin-top: 2px;
   border-radius: 100px;
   background: transparent;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  align-self: flex-start;
 }
 
 .hero-tick-icon {
