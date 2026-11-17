@@ -27,7 +27,7 @@ function MapMarkerIcon() {
 const CARDS = [
   {
     title: "Qualification",
-    text: "Graduate in any stream with 50% or above.",
+    text: "Graduate in any stream with 50% or\u00A0above.",
     icon: <SchoolIcon />,
   },
   {

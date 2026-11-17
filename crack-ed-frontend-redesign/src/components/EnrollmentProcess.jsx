@@ -9,32 +9,32 @@ import step6 from "../assets/6th.svg";
 const STEPS = [
   {
     title: "Screening",
-    description: "Fill application form and appear for Crack-ED screening interview.",
+    description: "Fill\u00A0application\u00A0form and\u00A0appear\u00A0for\u00A0Crack-ED screening\u00A0interview.",
     icon: step1,
   },
   {
     title: "Assessment & Interview",
-    description: "Complete the ABC Assessment & Interview.",
+    description: "Complete\u00A0the ABC\u00A0Assessment &\u00A0Interview.",
     icon: step2,
   },
   {
     title: "Provisional Offer",
-    description: "Receive a provisional offer from Aditya Birla Health Insurance Co. Ltd.",
+    description: "Receive\u00A0a\u00A0provisional\u00A0offer from\u00A0Aditya\u00A0Birla\u00A0Health Insurance\u00A0Co.\u00A0Ltd.",
     icon: step3,
   },
   {
     title: "Campus Training",
-    description: "Complete one month of offline classroom training at Crack-ED.",
+    description: "Complete\u00A0one\u00A0month\u00A0of offline\u00A0classroom\u00A0training at\u00A0Crack-ED.",
     icon: step4,
   },
   {
-    title: "Join Aditya Birla Capital",
-    description: "Join Aditya Birla Capital as a full-time employee.",
+    title: "Join\nAditya Birla Capital",
+    description: "Join\u00A0Aditya\u00A0Birla\u00A0Capital as\u00A0a\u00A0full-time\u00A0employee.",
     icon: step5,
   },
   {
     title: "Internship & OJT",
-    description: "Complete 3 months internship & 3 months OJT.",
+    description: "Complete\u00A03\u00A0months\u00A0internship &\u00A03\u00A0months\u00A0OJT.",
     icon: step6,
   },
 ];
@@ -68,7 +68,11 @@ export default function EnrollmentProcess() {
               </span>
               <div className="flex min-w-0 flex-1 flex-col gap-2.5 pt-3 lg:mt-5 lg:w-full lg:items-center lg:gap-2 lg:pt-0">
                 <h3 className="font-['Anek_Latin',sans-serif] text-[16px] font-medium leading-none text-[#231f20]">
-                  {step.title}
+                  {step.title.split("\n").map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
                 </h3>
                 <p className="font-['Anek_Latin',sans-serif] text-[14px] font-normal leading-5 text-[rgba(65,64,66,0.9)]">
                   {step.description}

@@ -62,7 +62,7 @@ export default function Navbar() {
           />
         </div>
 
-        <div className="hidden min-w-0 flex-1 items-center justify-between gap-4 rounded-bl-[14px] bg-[#c7222a] pl-6 pr-16 min-[1100px]:flex lg:pl-8 xl:gap-0">
+        <div className="hidden h-[calc(100%+2px)] min-w-0 flex-1 items-center justify-between gap-4 self-start rounded-bl-[14px] bg-[#c7222a] pl-6 pr-16 shadow-[0_2px_0_0_#c7222a] min-[1100px]:flex lg:pl-8 xl:gap-0">
           <div className="flex min-w-0 items-center gap-4 xl:gap-[30px]">
             {links.map((link) => (
               <a
