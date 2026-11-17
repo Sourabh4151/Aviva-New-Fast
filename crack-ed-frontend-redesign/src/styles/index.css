@@ -1381,7 +1381,7 @@ button.download-brochure-btn:disabled:active {
 @media (max-width: 1023px) {
   .hero-bg {
     background-size: cover;
-    background-position: 38% center;
+    background-position: 42% center;
   }
 }
 
