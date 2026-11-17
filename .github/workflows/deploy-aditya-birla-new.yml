@@ -1,4 +1,5 @@
-name: Deploy Aditya Birla New HIM
+
+name: Deploy Aditya Birla NHIM
 
 on:
   push:
@@ -10,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy Aditya Birla New HIM
+      - name: Deploy to Server
         uses: appleboy/ssh-action@v1.2.2
         with:
           host: ${{ secrets.SERVER_HOST }}
