@@ -16,7 +16,7 @@ import Footer from "./components/Footer";
 import StickyIcon from "./components/StickyMobileIcon";
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#fafafa] pt-[68px] font-['Anek_Latin',sans-serif] text-[#231f20]">
+    <div className="min-h-screen bg-[#fafafa] pt-[64px] font-['Anek_Latin',sans-serif] text-[#231f20]">
       <Navbar />
       {/* Sentinel for navbar scroll background: when this leaves the viewport, navbar gets black background */}
       <div id="navbar-scroll-sentinel" className="h-px w-full pointer-events-none" aria-hidden="true" />
