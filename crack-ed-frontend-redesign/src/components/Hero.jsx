@@ -377,11 +377,11 @@ export default function Hero() {
                       className="hero-brand-logo block h-[49px] w-[180px] shrink-0 object-contain object-left"
                     />
                     <h1 className="hero-title type-hero w-full max-w-[586px] font-medium">
-                      <span className="lg:hidden">
+                      <span className="md:hidden">
                         <span className="block">Shape Better Health.</span>
                         <span className="block">Build a Better Career.</span>
                       </span>
-                      <span className="hidden lg:contents">
+                      <span className="hidden md:contents">
                         <span className="block">Shape Better Health. Build a</span>
                         <span className="block">Better Career.</span>
                       </span>

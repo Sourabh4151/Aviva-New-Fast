@@ -46,7 +46,7 @@ export default function TrackGrowth() {
                 <h3 className="font-['Anek_Latin',sans-serif] text-[18px] font-semibold leading-none text-[#c7222a]">
                   {item.title}
                 </h3>
-                <p className="text-left font-['Anek_Latin',sans-serif] text-[16px] font-normal leading-6 text-[rgba(65,64,66,0.9)]">
+                <p className="text-justify font-['Anek_Latin',sans-serif] text-[16px] font-normal leading-6 text-[rgba(65,64,66,0.9)]">
                   {item.description}
                 </p>
               </div>

@@ -70,7 +70,7 @@ export default function TrainingJourney() {
                 <h3 className="font-['Anek_Latin',sans-serif] text-[18px] font-semibold leading-6 text-[#c7222a]">
                   {card.title}
                 </h3>
-                <p className="font-['Anek_Latin',sans-serif] text-[14px] leading-[22px] text-[#414042]">
+                <p className="text-justify font-['Anek_Latin',sans-serif] text-[14px] leading-[22px] text-[#414042]">
                   {card.description}
                 </p>
               </div>
