@@ -18,7 +18,7 @@ export default function HaveQuestionsBanner() {
               "linear-gradient(180deg, rgba(199, 34, 42, 0.16) 0%, rgba(199, 34, 42, 0.05) 100%)",
           }}
         >
-          <p className="have-questions-title">Start your Banking Career today.</p>
+          <p className="have-questions-title">Start your Career in Financial Services today.</p>
           <p className="have-questions-subtitle mt-2">
             Request a callback and talk to our counsellors to know more
           </p>
