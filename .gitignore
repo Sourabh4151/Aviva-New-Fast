@@ -15,3 +15,14 @@ node_modules/
 dist/
 build/
 .vscode/
+# Environment files and runtime data
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Local database and runtime logs
+crack-ed-backend/instance/users.db
+**/nohup.out
