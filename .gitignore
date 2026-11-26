@@ -15,3 +15,12 @@ node_modules/
 dist/
 build/
 .vscode/
+
+# Environment files and runtime logs
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+**/nohup.out
