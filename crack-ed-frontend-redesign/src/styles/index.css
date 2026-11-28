@@ -646,6 +646,19 @@ select.hero-select::-ms-expand {
   border-radius: 6px;
 }
 
+.program-fee-pay-btn {
+  cursor: pointer;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.program-fee-pay-btn:hover {
+  opacity: 0.92;
+}
+
+.program-fee-pay-btn:active {
+  transform: translateY(1px);
+}
+
 /* Register button styles */
 .register-btn {
   width: 193px;
