@@ -13,17 +13,17 @@ const CAREER_STAGES = [
   {
     title: "Collection Officer",
     description:
-      "Build expertise in customer engagement, repayment resolution, and field collections while managing assigned accounts and supporting portfolio health.",
+      "Develop skills in customer engagement, repayment resolution, and managing accounts to support portfolio health.",
   },
   {
     title: "Senior Collection Officer",
     description:
-      "Take ownership of larger and more complex portfolios, handle escalated recovery cases, and mentor junior team members to improve collection outcomes.",
+      "Manage larger portfolios, handle escalated cases, and mentor juniors to improve collections.",
   },
   {
     title: "Collection Manager",
     description:
-      "Lead collection teams, drive recovery strategy, monitor portfolio performance, and ensure business targets are achieved through effective people and process management.",
+      "Lead collection teams, drive recovery, monitor performance, and ensure targets through effective management.",
   },
 ];
 
@@ -571,7 +571,7 @@ export default function CareerGrowth() {
                     "font-medium text-[18px] leading-[1] text-[rgba(250,250,250,1)]",
                 },
                 {
-                  text: "Earn a CTC of Rs 5 LPA + incentives",
+                  text: "Earn a CTC of Rs 5 LPA",
                   icon: ctcIcon,
                   textClassName:
                     "font-medium text-[18px] leading-[27px] text-[rgba(250,250,250,1)]",

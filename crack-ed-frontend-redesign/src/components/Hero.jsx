@@ -393,7 +393,7 @@ export default function Hero() {
                         className="hero-subtitle text-[16px] max-lg:text-[14px] font-normal leading-[1.55] tracking-[0em] max-lg:leading-[1.52]"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
-                        Join as a Collection Officer and secure a CTC of Rs 5 LPA + incentives
+                        Join as a Collection Officer and secure a CTC of Rs 5 LPA
                       </span>
                     </li>
                     <li className="flex items-start gap-2 sm:gap-3">

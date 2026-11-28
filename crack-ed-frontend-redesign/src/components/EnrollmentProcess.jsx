@@ -16,9 +16,9 @@ const STEPS = [
   },
   {
     number: "03",
-    title: "HFL Interview",
+    title: "HHFL Interview",
     description:
-      "Shortlisted candidates appear for the final interview with the Housing Finance hiring team ",
+      "Shortlisted candidates appear for the final interview with the Hero Housing Finance hiring team ",
   },
   {
     number: "04",
@@ -28,9 +28,9 @@ const STEPS = [
   },
   {
     number: "05",
-    title: "Training & Onboarding",
+    title: "Onboarding",
     description:
-      "Complete role-specific training and onboarding before beginning your career with HFL.",
+      "Complete role-specific training and onboarding before beginning your career with HHFL.",
   },
 ];
 
