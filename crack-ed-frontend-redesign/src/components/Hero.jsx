@@ -402,7 +402,7 @@ export default function Hero() {
                         <img src={tickSvg} alt="tick" className="hero-tick-icon" />
                       </span>
                       <span
-                        className="hero-subtitle text-[16px] max-lg:text-[14px] font-normal leading-[1.55] tracking-[0em] max-lg:leading-[1.52]"
+                        className="text-[16px] font-normal leading-[1.55] tracking-[0em] text-[rgba(250,250,250,1)] max-lg:leading-[1.52]"
                         style={{ fontFamily: "Poppins, sans-serif" }}
                       >
                         Join as a Collection Officer and secure a CTC of Rs 5 LPA

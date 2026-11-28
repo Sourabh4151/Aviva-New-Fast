@@ -90,11 +90,11 @@ body::-webkit-scrollbar {
     color: rgba(250, 250, 250, 1);
   }
 
-  /* Subtitle bullet (first hero line): Poppins 400, 14px — relaxed leading for wraps */
+  /* Hero bullets: Poppins 400, 16px — same size as the second point */
   .hero-subtitle {
     font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.52;
     letter-spacing: 0%;
     color: rgba(250, 250, 250, 1);
