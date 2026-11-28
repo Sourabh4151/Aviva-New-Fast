@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import crackEdLogo from "../assets/crack-ed_logo.svg";
+import { withUtmParams } from "../utils/utm";
+
+const CRACK_ED_HOME = "https://crack-ed.com/";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [logoHref, setLogoHref] = useState(CRACK_ED_HOME);
 
   useEffect(() => {
     const sentinel = document.getElementById("navbar-scroll-sentinel");
@@ -17,24 +21,11 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  const closeMobile = () => setMobileOpen(false);
+  useEffect(() => {
+    setLogoHref(withUtmParams(CRACK_ED_HOME));
+  }, []);
 
-  const handleLogoClick = (e) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    closeMobile();
-    // Scroll to top: scrollIntoView on sentinel works regardless of which element scrolls
-    const sentinel = document.getElementById("navbar-scroll-sentinel");
-    if (sentinel) {
-      sentinel.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
-      document.body.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
+  const closeMobile = () => setMobileOpen(false);
 
   const navLinks = (
     <>
@@ -65,10 +56,12 @@ export default function Navbar() {
         <div className="nav-container py-3 flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-4">
             <a
-              href="#"
-              onClick={handleLogoClick}
+              href={logoHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMobile}
               className="focus:outline-none inline-block"
-              aria-label="Go to top"
+              aria-label="Go to Crack-ED"
             >
               <img
                 src={crackEdLogo}
@@ -114,4 +107,3 @@ export default function Navbar() {
     </header>
   );
 }
-

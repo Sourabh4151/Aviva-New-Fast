@@ -258,6 +258,12 @@ export default function Hero() {
       if (res.ok) {
         const alreadyInSystem = json.message && json.message.includes("already in our system");
         if (alreadyInSystem) {
+          if (typeof window.gtag === "function") {
+            window.gtag("event", "generate_lead", {
+              program_name: window.PROGRAM_NAME,
+              page_type: "microsite",
+            });
+          }
           setStatus({ type: "success", message: json.message });
           setShowOtp(false);
         } else {
@@ -306,6 +312,12 @@ export default function Hero() {
       });
       const json = await res.json().catch(() => ({}));
       if (res.ok) {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "generate_lead", {
+            program_name: window.PROGRAM_NAME,
+            page_type: "microsite",
+          });
+        }
         setStatus({ type: "success", message: json.message || "We will contact you soon." });
         setShowPopup(true);
         setShowOtp(false);
@@ -436,6 +448,7 @@ export default function Hero() {
           <h3 className="hero-form-title text-[18px] font-semibold mb-1">Request a Callback!</h3>
           <p className="hero-form-subtitle text-sm text-[rgba(250,250,250,0.6)] mb-3">Talk to our counsellors to know more</p>
           <form
+            data-clarity-mask="true"
             onSubmit={(e) => {
               e.preventDefault();
               if (showOtp) verifyOtp(e);
